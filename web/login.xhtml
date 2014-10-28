@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="#{appBean.baseUrl}resources/css/login.css"></link>
+        <title>Inicio de Sesion</title>
+    </h:head>
+    <h:body>
+        
+            <div class="conteinerlogin">
+            <p:growl id="growl" showDetail="true" life="3000" />  
+            <h:form id="formLogin">  
+
+                <p:panel header="Inicio de Sesion" style="margin-bottom:10px;">  
+                    <h:panelGrid columns="2" cellpadding="5">  
+                        <h:outputLabel for="username" value="Usuario:" />  
+                        <p:inputText value="#{loginBean.usuario.sobrenombreUsu}"   
+                                     id="username" required="true" label="username" />  
+
+                        <h:outputLabel for="password" value="Contrase&ntilde;a:" />  
+                        <p:password value="#{loginBean.usuario.contraseniaUsu}"   
+                                    id="password" required="true" label="password"/>
+                        <f:facet name="footer">  
+                            <p:commandButton id="loginButton" value="Iniciar Sesion" update=":growl"   
+                                             actionListener="#{loginBean.login(actionEvent)}"   
+                                             oncomplete="handleLoginRequest(xhr, status, args)" icon="icon-login"/>  
+                        </f:facet>  
+                    </h:panelGrid>     
+                </p:panel>  
+            </h:form>
+        
+
+        <script type="text/javascript">
+            function handleLoginRequest(xhr, status, args) {
+                if (args.validationFailed || !args.loggedIn) {
+                    jQuery('#formLogin').effect("shake", {times: 3}, 100);
+                }
+                else {
+                    window.location = '/sisapus/Pantallas/menuTemplate.xhtml';
+                }
+            }
+        </script>
+            </div>
+             
+            
+             
+    </h:body>
+</html>
+

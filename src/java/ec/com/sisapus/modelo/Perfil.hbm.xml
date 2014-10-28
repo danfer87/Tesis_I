@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/03/2014 10:48:05 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.com.sisapus.modelo.Perfil" table="perfil" catalog="sisapubd">
+        <id name="codigoPerf" type="java.lang.Integer">
+            <column name="CODIGO_PERF" />
+            <generator class="identity" />
+        </id>
+        <property name="descripPerf" type="string">
+            <column name="DESCRIP_PERF" length="50" />
+        </property>
+        <property name="modProyecto" type="java.lang.Boolean">
+            <column name="MOD_PROYECTO" />
+        </property>
+        <property name="modProyectos" type="java.lang.Boolean">
+            <column name="MOD_PROYECTOS" />
+        </property>
+        <property name="modRecursos" type="java.lang.Boolean">
+            <column name="MOD_RECURSOS" />
+        </property>
+        <property name="modRubro" type="java.lang.Boolean">
+            <column name="MOD_RUBRO" />
+        </property>
+        <property name="modMateriales" type="java.lang.Boolean">
+            <column name="MOD_MATERIALES" />
+        </property>
+        <property name="modEquiherr" type="java.lang.Boolean">
+            <column name="MOD_EQUIHERR" />
+        </property>
+        <property name="modManoobra" type="java.lang.Boolean">
+            <column name="MOD_MANOOBRA" />
+        </property>
+        <property name="modTransporte" type="java.lang.Boolean">
+            <column name="MOD_TRANSPORTE" />
+        </property>
+        <property name="modAnalcosto" type="java.lang.Boolean">
+            <column name="MOD_ANALCOSTO" />
+        </property>
+        <property name="modApu" type="java.lang.Boolean">
+            <column name="MOD_APU" />
+        </property>
+        <property name="modPresup" type="java.lang.Boolean">
+            <column name="MOD_PRESUP" />
+        </property>
+        <property name="modCronograma" type="java.lang.Boolean">
+            <column name="MOD_CRONOGRAMA" />
+        </property>
+        <property name="modReajprec" type="java.lang.Boolean">
+            <column name="MOD_REAJPREC" />
+        </property>
+        <property name="modEjecpresup" type="java.lang.Boolean">
+            <column name="MOD_EJECPRESUP" />
+        </property>
+        <property name="modReportes" type="java.lang.Boolean">
+            <column name="MOD_REPORTES" />
+        </property>
+        <property name="modRepestadist" type="java.lang.Boolean">
+            <column name="MOD_REPESTADIST" />
+        </property>
+        <property name="modRepapu" type="java.lang.Boolean">
+            <column name="MOD_REPAPU" />
+        </property>
+        <property name="modReppresup" type="java.lang.Boolean">
+            <column name="MOD_REPPRESUP" />
+        </property>
+        <property name="modRepcronog" type="java.lang.Boolean">
+            <column name="MOD_REPCRONOG" />
+        </property>
+        <property name="modReppartida" type="java.lang.Boolean">
+            <column name="MOD_REPPARTIDA" />
+        </property>
+        <property name="modReprubro" type="java.lang.Boolean">
+            <column name="MOD_REPRUBRO" />
+        </property>
+        <property name="modRepejecpres" type="java.lang.Boolean">
+            <column name="MOD_REPEJECPRES" />
+        </property>
+        <property name="modSeguridad" type="java.lang.Boolean">
+            <column name="MOD_SEGURIDAD" />
+        </property>
+        <property name="modUsuario" type="java.lang.Boolean">
+            <column name="MOD_USUARIO" />
+        </property>
+        <property name="modPerfil" type="java.lang.Boolean">
+            <column name="MOD_PERFIL" />
+        </property>
+        <property name="modRegusu" type="java.lang.Boolean">
+            <column name="MOD_REGUSU" />
+        </property>
+        <set name="usuarios" inverse="true">
+            <key>
+                <column name="CODIGO_PERF" />
+            </key>
+            <one-to-many class="ec.com.sisapus.modelo.Usuario" />
+        </set>
+    </class>
+</hibernate-mapping>

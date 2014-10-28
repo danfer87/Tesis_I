@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    
+    <h:head>
+        <title>Mano de Obra</title>
+        <style type="text/css">
+            html{
+                height: 100%;
+            }
+            body{
+                height: 80%;
+            }
+        </style>
+    </h:head>
+    <body>
+        <ui:composition template="./../menuTemplate.xhtml">
+            <ui:define name="content">
+                <p:growl id="msgs" showDetail="false" />  
+                <h:form>
+                    <p:commandButton id="btnManoObraCreate" update=":formCreate" oncomplete="dialogManoObraCreate.show()" icon="icon-add" title="Nueva Mano de Obra" value="Crear">  
+                    </p:commandButton>  
+                </h:form>
+                <h:form id="formDataTable">  
+                    <p:dataTable id="mostrarManoObra" var="manodeobra" value="#{manodeobraBean.listamanoobra}"
+                                 paginator="true" rows="10" paginatorPosition="bottom"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 >  
+                        <f:facet name="header">  
+                            Mano de Obra  
+                        </f:facet>
+                        <!--<p:column headerText="Codigo" style="width:24%">  
+                            <h:outputText value="#{manodeobra.codigoManob}" />  
+                        </p:column>-->
+                        <p:column headerText="Nombre" style="width:24%" filterBy="#{manodeobra.nombreManob}"   
+                                  footerText="contains" filterMatchMode="contains">  
+                            <h:outputText value="#{manodeobra.nombreManob}" dir="center"/>  
+                        </p:column>  
+                        <p:column headerText="Costo Jornal" style="width:10%"> 
+                            <div style="text-align: center">
+                            <h:outputText value="#{manodeobra.costojrhManob}" />  
+                            </div>
+                        </p:column>  
+                        <p:column headerText="Categoria" style="width:15%" filterBy="#{manodeobra.categoriamanoobra.nombCatManob}">  
+                            <h:outputText value="#{manodeobra.categoriamanoobra.nombCatManob}" />  
+                        </p:column> 
+                        <p:column style="width:4%">  
+                            <p:commandButton id="btnManoObraUpdate" update=":formUpdate" oncomplete="dialogManoObraUpdate.show()" icon="icon-edit" title="Modificar">  
+                                <f:setPropertyActionListener value="#{manodeobra}" target="#{manodeobraBean.manoobra}" />  
+                            </p:commandButton>  
+
+                            <p:commandButton id="btnManoObraDelete" update=":formDelete" oncomplete="dialogManoObraDelete.show()" icon="icon-delete" title="Eliminar">  
+                                <f:setPropertyActionListener value="#{manodeobra}" target="#{manodeobraBean.manoobra}" />  
+                            </p:commandButton>  
+
+                        </p:column>  
+                    </p:dataTable>  
+                </h:form>  
+
+                <h:form id="formCreate">
+                    <p:dialog header="Crear Mano de Obra" widgetVar="dialogManoObraCreate" resizable="false" id="dlgManoObraCreate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="pantallaCrearManoObra" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText value="#{manodeobraBean.manoobra.nombreManob}" />  
+                            <h:outputText value="Costo Jornal:" />  
+                            <p:inputText value="#{manodeobraBean.manoobra.costojrhManob}" />  
+                            <h:outputText value="Categoria:" />  
+                            <p:selectOneMenu value="#{manodeobraBean.manoobra.categoriamanoobra.codCatManob}">  
+                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                                <f:selectItems value="#{catmanoobraBean.listacatmanoobra}" />  
+                            </p:selectOneMenu> 
+                            <h:inputHidden value="#{manodeobraBean.manoobra.codigoManob}"/>  
+                            
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="btnCreateAceptar" update=":formDataTable, :msgs" oncomplete="dialogManoObraCreate.hide()" actionListener="#{manodeobraBean.crearManoObra(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/>  
+                                <p:commandButton id="btnCreateCancelar" oncomplete="dialogManoObraCreate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>  
+
+                <h:form id="formUpdate">
+                    <p:dialog header="Modificar Mano de Obra" widgetVar="dialogManoObraUpdate" resizable="false" id="dlgManoObraUpdate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="pantallaModificarManoObra" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText value="#{manodeobraBean.manoobra.nombreManob}" />  
+                            <h:outputText value="Costo Jornal:" />  
+                            <p:inputText value="#{manodeobraBean.manoobra.costojrhManob}" />  
+                            <h:outputText value="Categoria:" />  
+                            <p:selectOneMenu value="#{manodeobraBean.manoobra.categoriamanoobra.codCatManob}">  
+                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                                <f:selectItems value="#{catmanoobraBean.listacatmanoobra}" />  
+                            </p:selectOneMenu> 
+                            <h:inputHidden value="#{manodeobraBean.manoobra.codigoManob}"/>  
+                            
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="btnUpdateAceptar" update=":formDataTable, :msgs" oncomplete="dialogManoObraUpdate.hide()" actionListener="#{manodeobraBean.actualizarManoObra(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/>  
+                                <p:commandButton id="btnUpdateCancelar" oncomplete="dialogManoObraUpdate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>  
+                <h:form id="formDelete">
+                    <p:confirmDialog id="confirmDialog" message="Seguro Desea Eliminar..?" showEffect="fade" hideEffect="explode"
+                                     header="Eliminar Mano de Obra" severity="alert" widgetVar="dialogManoObraDelete">  
+                        <h:inputHidden value="#{manodeobraBean.manoobra.codigoManob}"/>  
+                        <p:commandButton id="confirm" value="Aceptar" update=":formDataTable, :msgs" oncomplete="dialogManoObraDelete.hide()"  
+                                         actionListener="#{manodeobraBean.eliminarManoObra(actionEvent)}" icon="icon-check"/>  
+                        <p:commandButton id="decline" value="Cancelar" onclick="dialogManoObraDelete.hide()" type="button" icon="icon-cancel"/>       
+                    </p:confirmDialog>  
+                </h:form>
+
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

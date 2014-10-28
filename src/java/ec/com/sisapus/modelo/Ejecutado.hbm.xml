@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/03/2014 10:48:05 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.com.sisapus.modelo.Ejecutado" table="ejecutado" catalog="sisapubd">
+        <id name="codigoEjec" type="java.lang.Integer">
+            <column name="CODIGO_EJEC" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="proyecto" class="ec.com.sisapus.modelo.Proyecto" fetch="select">
+            <column name="CODIGO_PROY" />
+        </many-to-one>
+        <property name="duracionEjec" type="string">
+            <column name="DURACION_EJEC" length="100" />
+        </property>
+        <property name="periodoEjec" type="java.lang.Integer">
+            <column name="PERIODO_EJEC" />
+        </property>
+        <property name="fechainicioEjec" type="date">
+            <column name="FECHAINICIO_EJEC" length="10" />
+        </property>
+        <property name="fechafinEjec" type="date">
+            <column name="FECHAFIN_EJEC" length="10" />
+        </property>
+        <set name="ejecutadopresups" inverse="true">
+            <key>
+                <column name="CODIGO_EJEC" />
+            </key>
+            <one-to-many class="ec.com.sisapus.modelo.Ejecutadopresup" />
+        </set>
+    </class>
+</hibernate-mapping>

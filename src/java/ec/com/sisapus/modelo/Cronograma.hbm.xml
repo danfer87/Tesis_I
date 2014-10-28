@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/03/2014 10:48:05 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.com.sisapus.modelo.Cronograma" table="cronograma" catalog="sisapubd">
+        <id name="codigoCron" type="java.lang.Integer">
+            <column name="CODIGO_CRON" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="proyecto" class="ec.com.sisapus.modelo.Proyecto" fetch="select">
+            <column name="CODIGO_PROY" />
+        </many-to-one>
+        <property name="tiempodurCron" type="string">
+            <column name="TIEMPODUR_CRON" length="100" />
+        </property>
+        <property name="periodoCron" type="java.lang.Integer">
+            <column name="PERIODO_CRON" />
+        </property>
+        <property name="fechiniCron" type="date">
+            <column name="FECHINI_CRON" length="10" />
+        </property>
+        <property name="fechfinCron" type="date">
+            <column name="FECHFIN_CRON" length="10" />
+        </property>
+        <set name="cronogramatrabajos" inverse="true">
+            <key>
+                <column name="CODIGO_CRON" />
+            </key>
+            <one-to-many class="ec.com.sisapus.modelo.Cronogramatrabajo" />
+        </set>
+    </class>
+</hibernate-mapping>

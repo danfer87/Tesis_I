@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/03/2014 10:48:05 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.com.sisapus.modelo.Rubro" table="rubro" catalog="sisapubd">
+        <id name="codigoRubro" type="java.lang.Integer">
+            <column name="CODIGO_RUBRO" />
+            <generator class="identity" />
+        </id>
+        <property name="nombreRubro" type="string">
+            <column name="NOMBRE_RUBRO" />
+        </property>
+        <property name="detalleRubro" type="string">
+            <column name="DETALLE_RUBRO" />
+        </property>
+        <property name="unidadRubro" type="string">
+            <column name="UNIDAD_RUBRO" length="50" />
+        </property>
+        <set name="presupuestos" inverse="true">
+            <key>
+                <column name="CODIGO_RUBRO" />
+            </key>
+            <one-to-many class="ec.com.sisapus.modelo.Presupuesto" />
+        </set>
+        <set name="analisispreciounitarios" inverse="true">
+            <key>
+                <column name="CODIGO_RUBRO" />
+            </key>
+            <one-to-many class="ec.com.sisapus.modelo.Analisispreciounitario" />
+        </set>
+    </class>
+</hibernate-mapping>

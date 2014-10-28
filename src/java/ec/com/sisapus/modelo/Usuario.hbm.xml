@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/03/2014 10:48:05 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.com.sisapus.modelo.Usuario" table="usuario" catalog="sisapubd">
+        <id name="codigoUsu" type="java.lang.Integer">
+            <column name="CODIGO_USU" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="perfil" class="ec.com.sisapus.modelo.Perfil" fetch="select">
+            <column name="CODIGO_PERF" />
+        </many-to-one>
+        <property name="nombreUsu" type="string">
+            <column name="NOMBRE_USU" length="60" />
+        </property>
+        <property name="apellidoUsu" type="string">
+            <column name="APELLIDO_USU" length="60" />
+        </property>
+        <property name="sobrenombreUsu" type="string">
+            <column name="SOBRENOMBRE_USU" length="60" />
+        </property>
+        <property name="contraseniaUsu" type="string">
+            <column name="CONTRASENIA_USU" />
+        </property>
+        <property name="correoUsu" type="string">
+            <column name="CORREO_USU" length="100" />
+        </property>
+        <property name="estadoUsu" type="java.lang.Boolean">
+            <column name="ESTADO_USU" />
+        </property>
+        <property name="fechregUsu" type="date">
+            <column name="FECHREG_USU" length="10" />
+        </property>
+        <property name="fechmodUsu" type="date">
+            <column name="FECHMOD_USU" length="10" />
+        </property>
+        <set name="proyectos" inverse="true">
+            <key>
+                <column name="CODIGO_US" />
+            </key>
+            <one-to-many class="ec.com.sisapus.modelo.Proyecto" />
+        </set>
+    </class>
+</hibernate-mapping>

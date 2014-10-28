@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    
+    <h:head>
+        <title>Materiales</title>
+        <style type="text/css">
+            html{
+                height: 100%;
+            }
+            body{
+                height: 80%;
+            }
+        </style>
+    </h:head>
+    <body>
+        <ui:composition template="./../menuTemplate.xhtml">
+            <ui:define name="content">
+                <p:growl id="msgs" showDetail="false" />  
+                <h:form>
+                    <p:commandButton id="btnMaterialCreate" update=":formCreate" oncomplete="dialogMaterialCreate.show()" icon="icon-add" title="Nuevo Material" value="Crear">  
+                    </p:commandButton>  
+                </h:form>
+                <h:form id="formDataTable">  
+                    <p:dataTable id="mostrarMateriales" var="material" value="#{materialBean.listaMateriales}"
+                                 paginator="true" rows="10" paginatorPosition="bottom"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 >  
+                        <f:facet name="header">  
+                            Materiales  
+                        </f:facet>
+                        <!--<p:column headerText="Codigo" style="width:24%">  
+                            <h:outputText value="#{material.codigoMat}" />  
+                        </p:column>-->
+                        <p:column headerText="Nombre" style="width:25%" filterBy="#{material.nombreMat}"   
+                                  footerText="contains" filterMatchMode="contains">  
+                            <h:outputText value="#{material.nombreMat}" dir="center"/>  
+                        </p:column>  
+                        <p:column headerText="Unidad" style="width:10%"    
+                                  footerText="contains" filterMatchMode="contains">  
+                            <div style="text-align: center">
+                            <h:outputText value="#{material.unidMat}" />  
+                            </div>
+                        </p:column>  
+                        <p:column headerText="Precio" style="width:10%">  
+                            <div style="text-align: center">
+                            <h:outputText value="#{material.precunitMat}" />  
+                            </div>
+                        </p:column>  
+                        <p:column headerText="Categoria" style="width:15%" filterBy="#{material.categoriamaterial.nombCatMat}">  
+                            <h:outputText value="#{material.categoriamaterial.nombCatMat}" />  
+                        </p:column> 
+                        <p:column style="width:4%">  
+                            <p:commandButton id="btnMaterialUpdate" update=":formUpdate" oncomplete="dialogMaterialUpdate.show()" icon="icon-edit" title="Modificar">  
+                                <f:setPropertyActionListener value="#{material}" target="#{materialBean.material}" />  
+                            </p:commandButton>  
+
+                            <p:commandButton id="btnMaterialDelete" update=":formDelete" oncomplete="dialogMaterialDelete.show()" icon="icon-delete" title="Eliminar">  
+                                <f:setPropertyActionListener value="#{material}" target="#{materialBean.material}" />  
+                            </p:commandButton>  
+
+                        </p:column>  
+                    </p:dataTable>  
+                </h:form>  
+
+                <h:form id="formCreate">
+                    <p:dialog header="Crear Material" widgetVar="dialogMaterialCreate" resizable="false" id="dlgMaterialCreate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="pantallacrearmaterial" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <p:outputLabel value="Nombre:" />  
+                            <p:inputText value="#{materialBean.material.nombreMat}" />  
+                            <p:outputLabel value="Unidad:" />  
+                            <p:inputText value="#{materialBean.material.unidMat}" />  
+                            <p:outputLabel value="Precio:" />  
+                            <p:inputText value="#{materialBean.material.precunitMat}" />  
+                            <p:outputLabel value="Categoria:" />  
+                            <p:selectOneMenu value="#{materialBean.material.categoriamaterial.codCatMat}">  
+                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                                <f:selectItems value="#{catmatBean.listacatmater}" />  
+                            </p:selectOneMenu> 
+                            <h:inputHidden value="#{materialBean.material.codigoMat}"/>  
+                            
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="btnCreateAceptar" update=":formDataTable, :msgs" oncomplete="dialogMaterialCreate.hide()" actionListener="#{materialBean.crearMaterial(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/>  
+                                <p:commandButton id="btnCreateCancelar" oncomplete="dialogMaterialCreate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>  
+
+                <h:form id="formUpdate">
+                    <p:dialog header="Modificar Material" widgetVar="dialogMaterialUpdate" resizable="false" id="dlgMaterialUpdate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="pantallamodificarmaterial" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText value="#{materialBean.material.nombreMat}" />  
+                            <h:outputText value="Unidad:" />  
+                            <p:inputText value="#{materialBean.material.unidMat}" />  
+                            <h:outputText value="Precio:" />  
+                            <p:inputText value="#{materialBean.material.precunitMat}" />  
+                            <h:outputText value="Categoria:" />  
+                            <p:selectOneMenu value="#{materialBean.material.categoriamaterial.codCatMat}">  
+                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                                <f:selectItems value="#{catmatBean.listacatmater}" />  
+                            </p:selectOneMenu> 
+                            <h:inputHidden value="#{materialBean.material.codigoMat}"/>   
+                            
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="btnUpdateAceptar" update=":formDataTable, :msgs" oncomplete="dialogMaterialUpdate.hide()" actionListener="#{materialBean.actualizarMaterial(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/>  
+                                <p:commandButton id="btnUpdateCancelar" oncomplete="dialogMaterialUpdate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>  
+                <h:form id="formDelete">
+                    <p:confirmDialog id="confirmDialog" message="Seguro Desea Eliminar..?" showEffect="fade" hideEffect="explode"
+                                     header="Eliminar Material" severity="alert" widgetVar="dialogMaterialDelete">  
+                        <h:inputHidden value="#{materialBean.material.codigoMat}"/>  
+                        <p:commandButton id="confirm" value="Aceptar" update=":formDataTable, :msgs" oncomplete="dialogMaterialDelete.hide()"  
+                                         actionListener="#{materialBean.eliminarMaterial(actionEvent)}" icon="icon-check"/>  
+                        <p:commandButton id="decline" value="Cancelar" onclick="dialogMaterialDelete.hide()" type="button" icon="icon-cancel"/>       
+                    </p:confirmDialog>  
+                </h:form>
+
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

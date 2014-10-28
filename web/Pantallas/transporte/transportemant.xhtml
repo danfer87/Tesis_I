@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    
+    <h:head>
+        <title>Transporte</title>
+        <style type="text/css">
+            html{
+                height: 100%;
+            }
+            body{
+                height: 80%;
+            }
+        </style>
+    </h:head>
+    <body>
+        <ui:composition template="./../menuTemplate.xhtml">
+            <ui:define name="content">
+                <p:growl id="msgs" showDetail="false" />  
+                <h:form>
+                    <p:commandButton id="btnTransporteCreate" update=":formCreate" oncomplete="dialogTransporteCreate.show()" icon="icon-add" title="Nuevo Transporte" value="Crear">  
+                    </p:commandButton>  
+                </h:form>
+                <h:form id="formDataTable">  
+                    <p:dataTable id="mostrarTransporte" var="transporte" value="#{transportesBean.listaTransporte}"
+                                 paginator="true" rows="10" paginatorPosition="bottom"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 >  
+                        <f:facet name="header">  
+                            Transporte  
+                        </f:facet>
+                        <!--<p:column headerText="Codigo" style="width:24%">  
+                            <h:outputText value="#{transporte.codigoTransp}" />  
+                        </p:column>-->
+                        <p:column headerText="Nombre" style="width:25%" filterBy="#{transporte.nombreTransp}"   
+                                  footerText="contains" filterMatchMode="contains">  
+                            <h:outputText value="#{transporte.nombreTransp}" dir="center"/>  
+                        </p:column>  
+                        <p:column headerText="Tarifa" style="width:10%"> 
+                            <div style="text-align: center">
+                            <h:outputText value="#{transporte.tarifaTransp}" />  
+                            </div>
+                        </p:column>  
+                        <p:column headerText="Categoria" style="width:15%" filterBy="#{transporte.categoriatransporte.nombCatTrans}">  
+                            <h:outputText value="#{transporte.categoriatransporte.nombCatTrans}" />  
+                        </p:column> 
+                        <p:column style="width:4%">  
+                            <p:commandButton id="btnTransporteUpdate" update=":formUpdate" oncomplete="dialogTransporteUpdate.show()" icon="icon-edit" title="Modificar">  
+                                <f:setPropertyActionListener value="#{transporte}" target="#{transportesBean.transporte}" />  
+                            </p:commandButton>  
+
+                            <p:commandButton id="btnTransporteDelete" update=":formDelete" oncomplete="dialogTransporteDelete.show()" icon="icon-delete" title="Eliminar">  
+                                <f:setPropertyActionListener value="#{transporte}" target="#{transportesBean.transporte}" />  
+                            </p:commandButton>  
+
+                        </p:column>  
+                    </p:dataTable>  
+                </h:form>  
+
+                <h:form id="formCreate">
+                    <p:dialog header="Crear Transporte" widgetVar="dialogTransporteCreate" resizable="false" id="dlgTransporteCreate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="pantallaCrearTransporte" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText value="#{transportesBean.transporte.nombreTransp}" />  
+                            <h:outputText value="Tarifa:" />  
+                            <p:inputText value="#{transportesBean.transporte.tarifaTransp}" />  
+                            <h:outputText value="Categoria:" />  
+                            <p:selectOneMenu value="#{transportesBean.transporte.categoriatransporte.codCatTrans}">  
+                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                                <f:selectItems value="#{cattranspBean.listacattransporte}" />  
+                            </p:selectOneMenu> 
+                            <h:inputHidden value="#{transportesBean.transporte.codigoTransp}"/>  
+                            
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="btnCreateAceptar" update=":formDataTable, :msgs" oncomplete="dialogTransporteCreate.hide()" actionListener="#{transportesBean.crearTransporte(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/>  
+                                <p:commandButton id="btnCreateCancelar" oncomplete="dialogTransporteCreate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>  
+
+                <h:form id="formUpdate">
+                    <p:dialog header="Modificar Transporte" widgetVar="dialogTransporteUpdate" resizable="false" id="dlgTransporteUpdate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="pantallaModificarTransporte" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText value="#{transportesBean.transporte.nombreTransp}" />  
+                            <h:outputText value="Tarifa:" />  
+                            <p:inputText value="#{transportesBean.transporte.tarifaTransp}" />  
+                            <h:outputText value="Categoria:" />  
+                            <p:selectOneMenu value="#{transportesBean.transporte.categoriatransporte.codCatTrans}">  
+                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                                <f:selectItems value="#{cattranspBean.listacattransporte}" />  
+                            </p:selectOneMenu> 
+                            <h:inputHidden value="#{transportesBean.transporte.codigoTransp}"/>
+                            
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="btnUpdateAceptar" update=":formDataTable, :msgs" oncomplete="dialogTransporteUpdate.hide()" actionListener="#{transportesBean.actualizarTransporte(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/>  
+                                <p:commandButton id="btnUpdateCancelar" oncomplete="dialogTransporteUpdate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>  
+                <h:form id="formDelete">
+                    <p:confirmDialog id="confirmDialog" message="Seguro Desea Eliminar..?" showEffect="fade" hideEffect="explode"
+                                     header="Eliminar Transporte" severity="alert" widgetVar="dialogTransporteDelete">  
+                        <h:inputHidden value="#{transportesBean.transporte.codigoTransp}"/>  
+                        <p:commandButton id="confirm" value="Aceptar" update=":formDataTable, :msgs" oncomplete="dialogTransporteDelete.hide()"  
+                                         actionListener="#{transportesBean.eliminarTransporte(actionEvent)}" icon="icon-check"/>  
+                        <p:commandButton id="decline" value="Cancelar" onclick="dialogTransporteDelete.hide()" type="button" icon="icon-cancel"/>       
+                    </p:confirmDialog>  
+                </h:form>
+
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

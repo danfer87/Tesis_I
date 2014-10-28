@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <h:head>
+        <title>Usuarios</title>
+        <style type="text/css">
+            html{
+                height: 100%;
+            }
+            body{
+                height: 80%;
+            }
+        </style>
+    </h:head>
+    <body>
+        <h:form>
+        <ui:composition template="./../menuTemplate.xhtml">
+            <ui:define name="content">
+                <p:growl id="msgs" showDetail="false" />  
+                <p:tabView>
+                    <p:tab title="Precio Unitario" closable="true">
+                <FIELDSET  style="-moz-border-radius:10px; width: 850px; "  class="borderFieldSet">
+                    <legend>Datos Generales del Proyecto</legend>
+                    <h:form id="cargar_cabecera" >
+                        <h:panelGrid columns="2" cellpadding="4">
+                            <h:panelGrid columns="3" cellpadding="3">
+                                <p:outputLabel value="Codigo:" for="codigo" />
+                                <p:inputText value="" id="codigo" size="10"/>
+                                <p:message for="codigo"/>
+                                <p:outputLabel value="Propietario:" for="propietario" />
+                                <p:inputText value="" id="propietario" size="20"/>
+                                <p:message for="propietario"/>
+                                <p:outputLabel value="Contratista:" for="contratista" />
+                                <p:inputText value="" id="contratista" size="20"/>
+                                <p:message for="contratista"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="3" cellpadding="3">
+                                <p:outputLabel value="Fecha:" for="fecha" />
+                                <p:calendar id="fecha" size="10" label="Fecha:" showOn="button" title="Ejemplo: dd/mm/yyyy" value="#{proyecto.fechaProy}"/>  
+                                <p:message for="fecha"/>
+                                <p:outputLabel value="Obra:" for="obra" />
+                                <p:inputText value="" id="obra" size="25"/>   
+                                <p:message for="obra"/>
+                                <p:outputLabel value="Ubicacion:" for="ubic" />
+                                <p:inputText value="" id="ubic" size="25"/>   
+                                <p:message for="ubic"/>
+                           </h:panelGrid>
+                        </h:panelGrid>
+
+                    </h:form>
+
+                </FIELDSET>
+                <h:form>
+                   <br></br> 
+                   <p:commandButton id="btnAddRubro" title="" value="Anadir Rubro"/>   
+                   <p:commandButton id="btnDeleteRubro" title="" value="Eliminar Rubro"/>   
+                   <br></br>
+                   <br></br> 
+                </h:form>
+                <FIELDSET style="-moz-border-radius:10px;background-color: #EEEEEE;
+                          width: 850px;" class="borderFieldSet">
+                    <legend>Detalle Presupuesto</legend>
+                    <p:dataTable value="" var="proyecto" >
+                        <p:column>
+                            <f:facet name="header" >
+                            </f:facet>
+                            <h:outputText value="#" />
+
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Codigo" />
+                            </f:facet>
+                            <h:outputText value="" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Descripcion" />
+                            </f:facet>
+                            <h:outputText value="" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Unidad" />
+                            </f:facet>
+                            <h:outputText value="" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Cantidad" />
+                            </f:facet>
+                            <h:outputText value="" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Precio Unitario" />
+                            </f:facet>
+                            <h:outputText value="" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Precio Total" />
+                            </f:facet>
+                            <h:outputText value="" />
+                        </p:column>
+                    </p:dataTable>
+                </FIELDSET>
+                <FIELDSET style="-moz-border-radius:10px;width: 850px; ">
+                    <legend>Presupuestar</legend>
+                    <h:form>
+                        <td></td>
+                        <h:panelGrid columns="2" style="float:right" cellpadding="3">
+                            <h:outputText value="Subtotal "/>
+                            <p:inputText value=""/>  
+                            <h:outputText value="IVA " />
+                            <p:inputText value="" />  
+                            <h:outputText value="Costo Total "/>
+                            <p:inputText value="" />  
+                        </h:panelGrid>
+                    </h:form>
+                </FIELDSET>
+                        <h:form>
+                            <p:commandButton id="btnPresupuestar1" title="Generar Presupuesto" value="Presupuestar"/>  
+                        </h:form>
+                        </p:tab>
+                    </p:tabView>
+            </ui:define>
+        </ui:composition>
+            </h:form>
+    </body>
+</html>

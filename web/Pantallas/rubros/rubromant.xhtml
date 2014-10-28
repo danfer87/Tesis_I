@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    
+    <h:head>
+        <title>Rubros</title>
+        <style type="text/css">
+            html{
+                height: 100%;
+            }
+            body{
+                height: 80%;
+            }
+        </style>
+    </h:head>
+    <body>
+        <ui:composition template="./../menuTemplate.xhtml">
+            <ui:define name="content">
+                <p:growl id="msgs" showDetail="false" />  
+                <h:form>
+                    <p:commandButton id="btnRubroCreate" update=":formCreate" oncomplete="dialogRubroCreate.show()" icon="icon-add" title="Nuevo Rubro" value="Crear">  
+                    </p:commandButton>  
+                </h:form>
+                <h:form id="formDataTable">  
+                    <p:dataTable id="mostrarRubros" var="rubro" value="#{rubrosBean.listaRubros}"
+                                 paginator="true" rows="10" paginatorPosition="bottom"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 >  
+                        <f:facet name="header">  
+                            Rubros  
+                        </f:facet>
+                        <!--<p:column headerText="Codigo" style="width:24%">  
+                            <h:outputText value="#{rubro.codigoRubro}" />  
+                        </p:column>-->
+                        <p:column headerText="Nombre" style="width:24%" filterBy="#{rubro.nombreRubro}"   
+                                  footerText="contains" filterMatchMode="contains">  
+                            <h:outputText value="#{rubro.nombreRubro}" dir="center"/>  
+                        </p:column>  
+                        <p:column headerText="Detalle" style="width:24%"    
+                                  footerText="contains" filterMatchMode="contains">  
+                            <h:outputText value="#{rubro.detalleRubro}" />  
+                        </p:column>  
+                        <p:column headerText="Unidad" style="width:20%">  
+                            <h:outputText value="#{rubro.unidadRubro}" />  
+                        </p:column>  
+                        <p:column style="width:4%">  
+                            <p:commandButton id="btnRubroUpdate" update=":formUpdate" oncomplete="dialogRubroUpdate.show()" icon="icon-edit" title="Modificar">  
+                                <f:setPropertyActionListener value="#{rubro}" target="#{rubrosBean.rubro}" />  
+                            </p:commandButton>  
+
+                            <p:commandButton id="btnRubroDelete" update=":formDelete" oncomplete="dialogRubroDelete.show()" icon="icon-delete" title="Eliminar">  
+                                <f:setPropertyActionListener value="#{rubro}" target="#{rubrosBean.rubro}" />  
+                            </p:commandButton>  
+
+                        </p:column>  
+                    </p:dataTable>  
+                </h:form>  
+
+                <h:form id="formCreate">
+                    <p:dialog header="Crear Rubro" widgetVar="dialogRubroCreate" resizable="false" id="dlgRubroCreate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="pantallacrearRubro" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText value="#{rubrosBean.rubro.nombreRubro}" />  
+                            <h:outputText value="Detalle:" />  
+                            <p:inputText value="#{rubrosBean.rubro.detalleRubro}" />  
+                            <h:outputText value="Unidad:" />  
+                            <p:inputText value="#{rubrosBean.rubro.unidadRubro}" />  
+                            <h:inputHidden value="#{rubrosBean.rubro.codigoRubro}"/>  
+                            <!---->
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="btnCreateAceptar" update=":formDataTable, :msgs" oncomplete="dialogRubroCreate.hide()" actionListener="#{rubrosBean.crearRubro(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/>  
+                                <p:commandButton id="btnCreateCancelar" oncomplete="dialogRubroCreate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>  
+
+                <h:form id="formUpdate">
+                    <p:dialog header="Modificar Rubro" widgetVar="dialogRubroUpdate" resizable="false" id="dlgRubroUpdate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="pantallamodificarRubro" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                           <h:outputText value="Nombre:" />  
+                            <p:inputText value="#{rubrosBean.rubro.nombreRubro}" />  
+                            <h:outputText value="Detalle:" />  
+                            <p:inputText value="#{rubrosBean.rubro.detalleRubro}" />  
+                            <h:outputText value="Unidad:" />  
+                            <p:inputText value="#{rubrosBean.rubro.unidadRubro}" />  
+                            
+                            <h:inputHidden value="#{rubrosBean.rubro.codigoRubro}"/>  
+                            
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="btnUpdateAceptar" update=":formDataTable, :msgs" oncomplete="dialogRubroUpdate.hide()" actionListener="#{rubrosBean.actualizarRubro(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/>  
+                                <p:commandButton id="btnUpdateCancelar" oncomplete="dialogRubroUpdate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>  
+                <h:form id="formDelete">
+                    <p:confirmDialog id="confirmDialog" message="Desea Eliminar el Rubro..??" showEffect="fade" hideEffect="explode"
+                                     header="Eliminar Rubro" severity="alert" widgetVar="dialogRubroDelete">  
+                        <h:inputHidden value="#{rubrosBean.rubro.codigoRubro}"/>  
+                        <p:commandButton id="confirm" value="Aceptar" update=":formDataTable, :msgs" oncomplete="dialogRubroDelete.hide()"  
+                                         actionListener="#{rubrosBean.eliminarRubro(actionEvent)}" icon="icon-check"/>  
+                        <p:commandButton id="decline" value="Cancelar" onclick="dialogRubroDelete.hide()" type="button" icon="icon-cancel"/>       
+                    </p:confirmDialog>  
+                </h:form>
+
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    
+    <h:head>
+        <title>Equipos y Herramientas</title>
+        <style type="text/css">
+            html{
+                height: 100%;
+            }
+            body{
+                height: 80%;
+            }
+        </style>
+    </h:head>
+    <body>
+        <ui:composition template="./../menuTemplate.xhtml">
+            <ui:define name="content">
+                <p:growl id="msgs" showDetail="false" />  
+                <h:form>
+                    <p:commandButton id="btnEquipoCreate" update=":formCreate" oncomplete="dialogEquipoCreate.show()" icon="icon-add" title="Nuevo Material" value="Crear">  
+                    </p:commandButton>  
+                </h:form>
+                <h:form id="formDataTable">  
+                    <p:dataTable id="mostrarEquipos" var="equipo" value="#{equipoherramientaBean.listaEquipoHerramienta}"
+                                 paginator="true" rows="10" paginatorPosition="bottom"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 >  
+                        <f:facet name="header">  
+                            Equipos y Herramientas  
+                        </f:facet>
+                        <!--<p:column headerText="Codigo" style="width:24%">  
+                            <h:outputText value="#{equipo.codigoEqherr}" />  
+                        </p:column>-->
+                        <p:column headerText="Nombre:" style="width:25%" filterBy="#{equipo.nombreEqherr}"   
+                                  footerText="contains" filterMatchMode="contains">  
+                            <h:outputText value="#{equipo.nombreEqherr}" dir="center"/>  
+                        </p:column>  
+                        <p:column headerText="Costo:" style="width:10%"> 
+                            <div style="text-align: center;">
+                            <h:outputText value="#{equipo.costohoraEqherr}" />  
+                            </div>
+                        </p:column>  
+                        <p:column headerText="Categoria:" style="width:15%" filterBy="#{equipo.categoriaequipoherramienta.nombCatEqherr}">  
+                            <h:outputText value="#{equipo.categoriaequipoherramienta.nombCatEqherr}" />  
+                        </p:column> 
+                        <p:column style="width:4%">  
+                            <p:commandButton id="btnEquipoUpdate" update=":formUpdate" oncomplete="dialogEquipoUpdate.show()" icon="icon-edit" title="Modificar">  
+                                <f:setPropertyActionListener value="#{equipo}" target="#{equipoherramientaBean.equipoherramienta}" />  
+                            </p:commandButton>  
+
+                            <p:commandButton id="btnEquipoDelete" update=":formDelete" oncomplete="dialogEquipoDelete.show()" icon="icon-delete" title="Eliminar">  
+                                <f:setPropertyActionListener value="#{equipo}" target="#{equipoherramientaBean.equipoherramienta}" />  
+                            </p:commandButton>  
+
+                        </p:column>  
+                    </p:dataTable>  
+                </h:form>  
+
+                <h:form id="formCreate">
+                    <p:dialog header="Crear Equipo o Herramienta" widgetVar="dialogEquipoCreate" resizable="false" id="dlgMaterialCreate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="pantallaCrearEquipo" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText value="#{equipoherramientaBean.equipoherramienta.nombreEqherr}" />  
+                            <h:outputText value="Precio:" />  
+                            <p:inputText value="#{equipoherramientaBean.equipoherramienta.costohoraEqherr}" />  
+                            <h:outputText value="Categoria:" />  
+                            <p:selectOneMenu value="#{equipoherramientaBean.equipoherramienta.categoriaequipoherramienta.codCatEqherr}">  
+                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                                <f:selectItems value="#{catequipoherramientaBean.listacatequipoherr}" />  
+                            </p:selectOneMenu> 
+                            <h:inputHidden value="#{equipoherramientaBean.equipoherramienta.codigoEqherr}"/>  
+                            
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="btnCreateAceptar" update=":formDataTable, :msgs" oncomplete="dialogEquipoCreate.hide()" actionListener="#{equipoherramientaBean.crearEquipoHerram(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/>  
+                                <p:commandButton id="btnCreateCancelar" oncomplete="dialogEquipoCreate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>  
+
+                <h:form id="formUpdate">
+                    <p:dialog header="Modificar Equipo o Herramienta" widgetVar="dialogEquipoUpdate" resizable="false" id="dlgEquipoUpdate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="pantallaModificarEquipo" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText value="#{equipoherramientaBean.equipoherramienta.nombreEqherr}" />  
+                            <h:outputText value="Precio:" />  
+                            <p:inputText value="#{equipoherramientaBean.equipoherramienta.costohoraEqherr}" />  
+                            <h:outputText value="Categoria:" />  
+                            <p:selectOneMenu value="#{equipoherramientaBean.equipoherramienta.categoriaequipoherramienta.codCatEqherr}">  
+                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                                <f:selectItems value="#{catequipoherramientaBean.listacatequipoherr}" />  
+                            </p:selectOneMenu> 
+                            <h:inputHidden value="#{equipoherramientaBean.equipoherramienta.codigoEqherr}"/>
+                            
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="btnUpdateAceptar" update=":formDataTable, :msgs" oncomplete="dialogEquipoUpdate.hide()" actionListener="#{equipoherramientaBean.actualizarEquipoHerram(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/>  
+                                <p:commandButton id="btnUpdateCancelar" oncomplete="dialogEquipoUpdate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>  
+                <h:form id="formDelete">
+                    <p:confirmDialog id="confirmDialog" message="Seguro Desea Eliminar..?" showEffect="fade" hideEffect="explode"
+                                     header="Eliminar Equipo o Herramienta" severity="alert" widgetVar="dialogEquipoDelete">  
+                        <h:inputHidden value="#{equipoherramientaBean.equipoherramienta.codigoEqherr}"/>  
+                        <p:commandButton id="confirm" value="Aceptar" update=":formDataTable, :msgs" oncomplete="dialogEquipoDelete.hide()"  
+                                         actionListener="#{equipoherramientaBean.eliminarEquipoHerram(actionEvent)}" icon="icon-check"/>  
+                        <p:commandButton id="decline" value="Cancelar" onclick="dialogEquipoDelete.hide()" type="button" icon="icon-cancel"/>       
+                    </p:confirmDialog>  
+                </h:form>
+
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

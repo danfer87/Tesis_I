@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    
+    <h:head>
+        <title>Usuarios</title>
+        <style type="text/css">
+            html{
+                height: 100%;
+            }
+            body{
+                height: 80%;
+            }
+        </style>
+    </h:head>
+    <body>
+        <ui:composition template="./../menuTemplate.xhtml">
+            <ui:define name="content">
+                <p:growl id="msgs" showDetail="false" />  
+                <h:form>
+                    <p:commandButton id="btnUsuarioCreate" update=":formCreate" oncomplete="dialogUsuarioCreate.show()" icon="icon-add" title="Nuevo Usuario" value="Crear">  
+                    </p:commandButton>  
+                </h:form>
+                <h:form id="formDataTable">  
+                    <p:dataTable id="mostrarUsuarios" var="usuario" value="#{usuarioBean.listaUsuarios}"
+                                 paginator="true" rows="10" paginatorPosition="bottom"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 >  
+                        <f:facet name="header">  
+                            USUARIOS  
+                        </f:facet>
+                        <!--<p:column headerText="Codigo" style="width:24%">  
+                            <h:outputText value="#{usuario.codigoUsu}" />  
+                        </p:column>-->
+                        <!---->
+                        <p:column headerText="Nombre" style="width:20%" filterBy="#{usuario.nombreUsu}"   
+                                  footerText="contains" filterMatchMode="contains">  
+                            <h:outputText value="#{usuario.nombreUsu}" dir="center"/>  
+                        </p:column>  
+                        <p:column headerText="Apellido" style="width:20%" filterBy="#{usuario.apellidoUsu}"   
+                                  footerText="contains" filterMatchMode="contains">  
+                            <h:outputText value="#{usuario.apellidoUsu}" />  
+                        </p:column>  
+                        <p:column headerText="Nickname" style="width:20%">  
+                            <h:outputText value="#{usuario.sobrenombreUsu}" />  
+                        </p:column>  
+                        <p:column headerText="Contraseña" style="width:20%">  
+                            <h:outputText value="#{usuario.contraseniaUsu}" />  
+                        </p:column>  
+                        <p:column headerText="Correo" style="width:24%">  
+                            <h:outputText value="#{usuario.correoUsu}" />  
+                        </p:column> 
+                        <p:column headerText="Perfil" style="width:24%">  
+                            <h:outputText value="#{usuario.perfil.descripPerf}" />  
+                        </p:column> 
+                        <p:column headerText="Estado" style="width:24%">  
+                            <div style="text-align: center">
+                            <p:selectBooleanCheckbox value="#{usuario.estadoUsu}" />
+                            </div>
+                        </p:column> 
+                        <p:column style="width:4%">  
+                            <p:commandButton id="btnUsuarioUpdate" update=":formUpdate" oncomplete="dialogUsuarioUpdate.show()" icon="icon-edit" title="Modificar">  
+                                <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}" />  
+                            </p:commandButton>  
+
+                            <p:commandButton id="btnUsuarioDelete" update=":formDelete" oncomplete="dialogUsuarioDelete.show()" icon="icon-delete" title="Eliminar">  
+                                <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}" />  
+                            </p:commandButton>  
+
+                        </p:column>  
+                    </p:dataTable>
+                        
+                </h:form>  
+
+                <h:form id="formCreate">
+                    <p:dialog header="Crear Usuario" widgetVar="dialogUsuarioCreate" resizable="false" id="dlgUsuarioCreate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="pantallacrearusuario" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+                            <h:outputText value="Nombre:" />  
+                            <p:inputText value="#{usuarioBean.usuario.nombreUsu}" />  
+                            <h:outputText value="Apellido:" />  
+                            <p:inputText value="#{usuarioBean.usuario.apellidoUsu}" />  
+                            <h:outputText value="Correo:" />  
+                            <p:inputText value="#{usuarioBean.usuario.correoUsu}" size="30" />  
+                            <h:outputText value="Sobrenombre:" />  
+                            <p:inputText value="#{usuarioBean.usuario.sobrenombreUsu}" />
+                            <h:outputText value="Contraseña:" />  
+                            <p:password value="#{usuarioBean.usuario.contraseniaUsu}" size="20"/>  
+                            <h:outputText value="Rol:" />  
+                            <p:selectOneMenu value="#{usuarioBean.usuario.perfil.codigoPerf}">  
+                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                                <f:selectItems value="#{perfilBean.listaPerfiles}" />  
+                            </p:selectOneMenu> 
+                            <h:outputText value="Estado:" />  
+                            <p:selectBooleanCheckbox value="#{usuarioBean.usuario.estadoUsu}"/>
+                            <h:inputHidden value="#{usuarioBean.usuario.codigoUsu}"/>  
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="btnCreateAceptar" update=":formDataTable, :msgs" oncomplete="dialogUsuarioCreate.hide()" actionListener="#{usuarioBean.crearUsuario(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/>  
+                                <p:commandButton id="btnCreateCancelar" oncomplete="dialogUsuarioCreate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>  
+
+                <h:form id="formUpdate">
+                    <p:dialog header="Modificar Usuario" widgetVar="dialogUsuarioUpdate" resizable="false" id="dlgUsuarioUpdate"  
+                              showEffect="fade" hideEffect="explode" modal="true">  
+                        <h:panelGrid id="pantallamodificarus" columns="2" cellpadding="4" style="margin:0 auto;">  
+
+
+                            <h:outputText value="Nombre:"/>  
+                            <p:inputText value="#{usuarioBean.usuario.nombreUsu}" />  
+                            <h:outputText value="Apellido:"/>  
+                            <p:inputText value="#{usuarioBean.usuario.apellidoUsu}" />  
+                            <h:outputText value="Correo:"/>  
+                            <p:inputText value="#{usuarioBean.usuario.correoUsu}" size="30" />  
+                            <h:outputText value="Sobrenombre:"/>  
+                            <p:inputText value="#{usuarioBean.usuario.sobrenombreUsu}" />
+                            <h:outputText value="Contraseña:"/>  
+                            <p:inputText value="#{usuarioBean.usuario.contraseniaUsu}" size="20" />  
+                            <h:outputText value="Rol:" />  
+                            <p:selectOneMenu value="#{usuarioBean.usuario.perfil.codigoPerf}">  
+                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                                <f:selectItems value="#{perfilBean.listaPerfiles}" />  
+                            </p:selectOneMenu> 
+                            <h:outputText value="Estado:" />  
+                            <p:selectBooleanCheckbox value="#{usuarioBean.usuario.estadoUsu}"/>
+                            <h:inputHidden value="#{usuarioBean.usuario.codigoUsu}"/>  
+                            <f:facet name="footer">
+                                <p:separator/>
+                                <p:commandButton id="btnUpdateAceptar" update=":formDataTable, :msgs" oncomplete="dialogUsuarioUpdate.hide()" actionListener="#{usuarioBean.actualizarUsuario(actionEvent)}" icon="icon-save" title="Guardar" value="Guardar"/>  
+                                <p:commandButton id="btnUpdateCancelar" oncomplete="dialogUsuarioUpdate.hide()" icon="icon-cancel" title="Cancelar" value="Cancelar"/>  
+                            </f:facet>
+                        </h:panelGrid>  
+                    </p:dialog>  
+                </h:form>  
+                <h:form id="formDelete">
+                    <p:confirmDialog id="confirmDialog" message="Seguro Desea Eliminar..?" showEffect="fade" hideEffect="explode"
+                                     header="Eliminar Usuario" severity="alert" widgetVar="dialogUsuarioDelete">  
+                        <h:inputHidden value="#{usuarioBean.usuario.codigoUsu}"/>  
+                        <p:commandButton id="confirm" value="Aceptar" update=":formDataTable, :msgs" oncomplete="dialogUsuarioDelete.hide()"  
+                                         actionListener="#{usuarioBean.eliminarUsuario(actionEvent)}" icon="icon-check"/>  
+                        <p:commandButton id="decline" value="Cancelar" onclick="dialogUsuarioDelete.hide()" type="button" icon="icon-cancel"/>       
+                    </p:confirmDialog>  
+                </h:form>
+
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

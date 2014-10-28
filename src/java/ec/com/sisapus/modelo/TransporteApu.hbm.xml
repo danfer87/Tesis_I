@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/03/2014 10:48:05 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.com.sisapus.modelo.TransporteApu" table="transporte_apu" catalog="sisapubd">
+        <id name="codTranApu" type="java.lang.Integer">
+            <column name="COD_TRAN_APU" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="transporte" class="ec.com.sisapus.modelo.Transporte" fetch="select">
+            <column name="CODIGO_TRANSP" />
+        </many-to-one>
+        <many-to-one name="analisispreciounitario" class="ec.com.sisapus.modelo.Analisispreciounitario" fetch="select">
+            <column name="CODIGO_APU" />
+        </many-to-one>
+        <property name="descTranApu" type="string">
+            <column name="DESC_TRAN_APU" length="100" />
+        </property>
+        <property name="unidTranApu" type="java.lang.Integer">
+            <column name="UNID_TRAN_APU" />
+        </property>
+        <property name="cantTranApu" type="java.lang.Integer">
+            <column name="CANT_TRAN_APU" />
+        </property>
+        <property name="tarifaTranApu" type="java.lang.Double">
+            <column name="TARIFA_TRAN_APU" precision="22" scale="0" />
+        </property>
+        <property name="costotTranApu" type="java.lang.Double">
+            <column name="COSTOT_TRAN_APU" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/03/2014 10:48:05 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.com.sisapus.modelo.Categoriaequipoherramienta" table="categoriaequipoherramienta" catalog="sisapubd">
+        <id name="codCatEqherr" type="java.lang.Integer">
+            <column name="COD_CAT_EQHERR" />
+            <generator class="identity" />
+        </id>
+        <property name="nombCatEqherr" type="string">
+            <column name="NOMB_CAT_EQHERR" length="100" />
+        </property>
+        <set name="equipoherramientas" inverse="true">
+            <key>
+                <column name="COD_CAT_EQHERR" />
+            </key>
+            <one-to-many class="ec.com.sisapus.modelo.Equipoherramienta" />
+        </set>
+    </class>
+</hibernate-mapping>
