@@ -7,6 +7,7 @@ package ec.com.sisapus.daoimpl;
 import ec.com.sisapus.dao.usuarioDao;
 import ec.com.sisapus.modelo.Usuario;
 import ec.com.sisapus.util.HibernateUtil;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -112,6 +113,31 @@ public class usuarioDaoImpl implements usuarioDao{
             flag = false;
         }
         return flag;
+    }
+
+    @Override
+    public void registrarUsuario(String nombre, String apellido, String sobrenom, String contrasenia, String correo) {
+        
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        try {
+            session.beginTransaction();
+            Query q = session.createSQLQuery("call registrar_usuario(:nombre,:apellido,:sobrenom,:contrasenia,:correo) ");
+            q.setParameter("nombre", nombre);
+            q.setParameter("apellido", apellido);
+            q.setParameter("sobrenom", sobrenom);
+            q.setParameter("contrasenia", contrasenia);
+            q.setParameter("correo", correo);
+            
+            q.executeUpdate();
+            
+            session.beginTransaction().commit();
+            session.close();
+
+        } catch (Exception e) {
+            //System.out.println("Error en el registro del usuario" +e.getMessage());
+            //session.beginTransaction().rollback();
+        }
+        
     }
     
 }

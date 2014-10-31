@@ -30,19 +30,19 @@
                     <h:panelGrid columns="3">
                         
                         <p:outputLabel value="Nombre" for="txtNombre"/>
-                        <p:inputText id="txtNombre" label="Nombre" size="50" value="#{usuarioBean.usuario.nombreUsu}">
+                        <p:inputText id="txtNombre" label="Nombre" size="50" value="#{usuarioBean.nombre}">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtNombre"/>
                         
                         <p:outputLabel value="Apellido" for="txtApellido"/>
-                        <p:inputText id="txtApellido" label="Apellido" size="50" value="#{usuarioBean.usuario.apellidoUsu}">
+                        <p:inputText id="txtApellido" label="Apellido" size="50" value="#{usuarioBean.apellido}">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtApellido"/>
                         
                         <p:outputLabel value="Correo electrónico" for="txtCorreoElectronico"/>
-                        <p:inputText id="txtCorreoElectronico" label="Correo electrónico" size="50" title="Ejemplo: xxx@xxx.com" value="#{usuarioBean.usuario.correoUsu}">
+                        <p:inputText id="txtCorreoElectronico" label="Correo electrónico" size="50" title="Ejemplo: xxx@xxx.com" value="#{usuarioBean.correo}">
                             <f:validator validatorId="validatorVacio"/>
                             <f:validator validatorId="validatorEmail"/>
                         </p:inputText>
@@ -52,29 +52,28 @@
                         </h:panelGroup>
                         
                         <p:outputLabel value="Usuario" for="txtUsuario"/>
-                        <p:inputText id="txtUsuario" label="Usuaeio" size="50" value="#{usuarioBean.usuario.sobrenombreUsu}">
+                        <p:inputText id="txtUsuario" label="Usuaeio" size="50" value="#{usuarioBean.sobrenombre}">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtUsuario"/>
                         
                         <p:outputLabel value="Contraseña" for="txtContrasenia"/>
-                        <p:password id="txtContrasenia" label="Contraseña" size="50" value="#{usuarioBean.usuario.contraseniaUsu}">
+                        <p:password id="txtContrasenia" label="Contraseña" size="50" value="#{usuarioBean.contrasenia}">
                         <f:validator validatorId="validatorVacio"/>
                         </p:password>
                         <p:message for="txtContrasenia"/>
                         
-                        <h:outputText value="Tipo de Usuario:"/>  
-                        <p:selectOneMenu value="#{usuarioBean.usuario.perfil.codigoPerf}">  
-                        <f:selectItem value="#{perfilBean.listaPerfiles[2]}"/>  
-                        </p:selectOneMenu> 
-                        
-                        
+                        <p:outputLabel value="Repita contraseña" for="txtContraseniaRepita"/>
+                        <p:password id="txtContraseniaRepita" label="Repita contraseña" size="50" value="#{usuarioBean.contraseniaRepita}">
+                               <f:validator validatorId="validatorVacio"/>
+                        </p:password>
+                       <p:message for="txtContraseniaRepita"/>
                                                
                         <h:panelGroup></h:panelGroup>
                         
                         <h:panelGroup></h:panelGroup>
                         <h:panelGroup></h:panelGroup>
-                        <p:commandButton value="Registrar Usuario" ajax="false" actionListener="#{usuarioBean.registarUsuario(actionEvent)}"/>
+                        <p:commandButton value="Registrar Usuario" ajax="false" actionListener="#{usuarioBean.registUsuario(actionEvent)}"/>
                     </h:panelGrid>
                 </h:form> 
        

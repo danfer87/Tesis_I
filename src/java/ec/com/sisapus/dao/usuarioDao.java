@@ -1,6 +1,7 @@
 package ec.com.sisapus.dao;
 
 import ec.com.sisapus.modelo.Usuario;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,5 +18,7 @@ public interface usuarioDao {
     public boolean eliminarUsu(Integer idUs);
     public boolean regisUsu(Usuario usuario);
     //public boolean buscarUsuario();
+    public void registrarUsuario(String nombre, String apellido, String sobrenom, String contrasenia, String correo );
+    
     
 }
