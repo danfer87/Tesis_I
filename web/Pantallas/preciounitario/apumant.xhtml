@@ -24,7 +24,130 @@
             <ui:define name="content">
                 <p:growl id="msgs" showDetail="false" />  
                 <p:tabView>
-                    <p:tab title="Equipos y Herramientas" closable="true">
+                    
+                   <p:tab title="Analisis Precio Unitario" closable="false">
+                <FIELDSET  style="-moz-border-radius:10px; width: 850px; "  class="borderFieldSet">
+                    <legend>Datos Generales Analisis Precio Unitario</legend>
+                    <h:form  id="frmcabapus"> 
+                       <p:dataTable value="#{equipoherramientaBean.listaEquipoHerramienta}" var="equipos"  scrollable="true" scrollHeight="100">
+                        
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Codigo" />
+                            </f:facet>
+                            <h:outputText value="#{equipos.codigoEqherr}"  />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Descripcion" />
+                            </f:facet>
+                            <h:outputText value="#{equipos.nombreEqherr}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Costo" />
+                            </f:facet>
+                            <h:outputText value="#{equipos.costohoraEqherr}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Categoria" />
+                            </f:facet>
+                            <h:outputText value="#{equipos.categoriaequipoherramienta.nombCatEqherr}" />
+                        </p:column>
+                       <p:column>
+                           <p:commandButton value="Agregar" actionListener="#{ApuBeanVista.agregarListaEquiposApus(idEquipos)}" />
+                        </p:column>
+                    </p:dataTable>
+
+                 </h:form>  
+
+                </FIELDSET>
+
+                <FIELDSET style="-moz-border-radius:10px;background-color: #EEEEEE;
+                          width: 850px;" class="borderFieldSet">
+                    <legend>Detalle Equipos y Herramientas</legend>
+                        <h:form  id="frmdeteapus"> 
+                    <p:dataTable id="tablaListaEquipos" value="#{ApuBeanVista.listaEquiposApus}"  var="equipo1" >
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Descripcion" />
+                            </f:facet>
+                            <h:outputText value="#{equipo1.descEqherrApu}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Costo Hora" />
+                            </f:facet>
+                            <h:outputText value="#{equipo1.costohoraEqherrApu}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Cantidad" />
+                            </f:facet>
+                            <h:outputText value="#{equipo1.cantEqherrApu}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Tarifa" />
+                            </f:facet>
+                            <h:outputText value="#{equipo1.tarifaEqherrApu}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Rendimiento" />
+                            </f:facet>
+                            <h:outputText value="#{equipo1.rendimEqherrApu}" />
+                        </p:column>
+                        
+                         <p:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Total" />
+                            </f:facet>
+                             <h:outputText value="#{equipo1.costohoraEqherrApu}" />
+                         </p:column>
+                    </p:dataTable>
+                            </h:form>  
+                </FIELDSET>
+                <FIELDSET style="-moz-border-radius:10px;width: 850px; ">
+                    <legend>Total</legend>
+                    <h:form>
+                        <td></td>
+                        <h:panelGrid columns="2" style="float:right" cellpadding="3">
+                            <h:outputText value="Costo Total Equipos "/>
+                            <p:inputText value="" />  
+                        </h:panelGrid>
+             </h:form>
+                </FIELDSET>
+                        <h:form>
+                            <p:commandButton id="btnEquipoyof" title="GuardarEquipos" value="Guardar"/>  
+                       </h:form>
+                        </p:tab>       
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <p:tab title="Equipos y Herramientas" closable="false">
                 <FIELDSET  style="-moz-border-radius:10px; width: 850px; "  class="borderFieldSet">
                     <legend>Datos Generales Equipos y Herramientas</legend>
                     <h:form  id="frmcabeequipos"> 
@@ -124,7 +247,7 @@
                         </p:tab>
                     
          
-        <p:tab title="Materiales" closable="true">
+        <p:tab title="Materiales" closable="false">
                 <FIELDSET  style="-moz-border-radius:10px; width: 850px; "  class="borderFieldSet">
                     <legend>Datos Generales Materiales</legend>
                     <h:form  id="frmcabmateriales"> 
