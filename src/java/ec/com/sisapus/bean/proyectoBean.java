@@ -3,6 +3,7 @@ package ec.com.sisapus.bean;
 import ec.com.sisapus.dao.proyectoDao;
 import ec.com.sisapus.daoimpl.proyectoDaoImpl;
 import ec.com.sisapus.modelo.Proyecto;
+import ec.com.sisapus.modelo.Usuario;
 import ec.com.sisapus.util.HibernateUtil;
 import java.awt.event.ActionEvent;
 import java.util.List;
@@ -24,7 +25,9 @@ import org.primefaces.context.RequestContext;
 public class proyectoBean {
 
     private Proyecto proyecto;
+        private Usuario usuario;
     private List<Proyecto> listaProyectos;
+        private List<Proyecto> listaporUsuario;
     
     //////
     private Session session;
@@ -55,6 +58,22 @@ public class proyectoBean {
     public void setListaProyectos(List<Proyecto> listaProyectos) {
         this.listaProyectos = listaProyectos;
     }
+
+    public List<Proyecto> getListaporUsuario() {
+          proyectoDao proyecDao = new proyectoDaoImpl();
+        listaporUsuario = proyecDao.listarProyectosPorUsuario(proyecto.getUsuario().getSobrenombreUsu());
+        return listaporUsuario;
+    }
+
+    public void setListaporUsuario(List<Proyecto> listaporUsuario) {
+        this.listaporUsuario = listaporUsuario;
+    }
+    
+    
+    
+    
+    
+    
     
     //////////////////////////
     public Session getSession() {
