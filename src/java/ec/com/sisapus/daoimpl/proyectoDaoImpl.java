@@ -6,6 +6,7 @@ package ec.com.sisapus.daoimpl;
 
 import ec.com.sisapus.dao.proyectoDao;
 import ec.com.sisapus.modelo.Proyecto;
+import ec.com.sisapus.modelo.Usuario;
 import ec.com.sisapus.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Query;
@@ -23,10 +24,11 @@ public class proyectoDaoImpl implements proyectoDao{
         Session sesion = HibernateUtil.getSessionFactory().getCurrentSession();
         String sql = "from Proyecto p left join fetch p.usuario";
         //String sql = "from Proyecto p inner join p.usuario u WHERE u.sobrenombreUsu=";
+     
         //Query query=sesion.createQuery(sql);
         try {
             sesion.beginTransaction();
-            //query.setString("usuario", usuario.getSobrenombreUsu());
+          //  query.setString("sobre",sobre);
             listado = sesion.createQuery(sql).list();
             sesion.beginTransaction().commit();
         } catch (Exception e) {
@@ -92,14 +94,14 @@ public class proyectoDaoImpl implements proyectoDao{
     }
 
     @Override
-    public List<Proyecto> listarProyectosPorUsuario(Proyecto proyecto) {
+    public List<Proyecto> listarProyectosPorUsuario(String sobre) {
         List<Proyecto> listado = null;
         Session sesion = HibernateUtil.getSessionFactory().getCurrentSession();
-        String sql = "from Proyecto p inner join p.usuario u WHERE u.sobrenombreUsu=:usuario";
+        String sql = "from Proyecto p inner join p.usuario u WHERE u.sobrenombreUsu=usuario";
         try {
             Query query=sesion.createQuery(sql);
-            //sesion.beginTransaction();
-            query.setString("usuario", proyecto.getUsuario().getSobrenombreUsu());
+            sesion.beginTransaction();
+       query.setParameter("usuario","kleper");
             listado = sesion.createQuery(sql).list();
             sesion.beginTransaction().commit();
         } catch (Exception e) {

@@ -86,5 +86,10 @@ public class equipoherrDaoImpl implements equipoherrDao{
         }
         return flag;
     }
+
+    @Override
+    public Equipoherramienta getByIdEquipo(Session session, Integer idequipo) throws Exception {
+       return (Equipoherramienta) session.load(Equipoherramienta.class, idequipo); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
