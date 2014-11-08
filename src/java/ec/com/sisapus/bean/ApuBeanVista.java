@@ -5,6 +5,7 @@
 package ec.com.sisapus.bean;
 
 import ec.com.sisapus.dao.equipoherrDao;
+import ec.com.sisapus.daoimpl.ApusDaoImpl;
 import ec.com.sisapus.daoimpl.equipoherrDaoImpl;
 import java.io.Serializable;
 import java.util.List;
@@ -215,7 +216,54 @@ public class ApuBeanVista implements Serializable {
         }
     }
        
-       
-       
+  ///guardar equipos y herramientas apu     
+        public void GuardarEquipos()
+    {
+        this.session=null;
+        this.transaction=null;
+        
+        try
+        {
+            this.session=HibernateUtil.getSessionFactory().openSession();
+            
+              equipoherrDaoImpl daoequipo=new equipoherrDaoImpl();
+            ApusDaoImpl apusdaoequipos=new ApusDaoImpl();  
+            this.transaction=this.session.beginTransaction();
+            
+            apusdaoequipos.insert(this.session, this.equipapus);
+            this.equipherramientas=daoequipo.getUltimoRegistro(this.session);
+            
+            for(EquipherrApu item : this.listaEquiposApus)
+            {
+                this.equipherramientas=daoequipo.getByIdEquipo(this.session, item.getCodEqherrApu());
+                item.setCostotEqherrApu(this.getPrecioTotalEquipo());
+                item.setEquipoherramienta(this.equipherramientas);
+                 apusdaoequipos.insert(this.session, item);  
+            }
+            
+            this.transaction.commit();
+            
+            this.listaEquiposApus=new ArrayList<>();
+            this.equipherramientas=new Equipoherramienta();
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Venta realizada correctamente"));
+        }
+        catch(Exception ex)
+        {
+            if(this.transaction!=null)
+            {
+                transaction.rollback();
+            }
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }
+        finally
+        {
+            if(this.session!=null)
+            {
+                this.session.close();
+            }
+        }
+    }
        
 }

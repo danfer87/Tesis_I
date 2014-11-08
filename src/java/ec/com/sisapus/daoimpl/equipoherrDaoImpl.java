@@ -8,6 +8,7 @@ import ec.com.sisapus.dao.equipoherrDao;
 import ec.com.sisapus.modelo.Equipoherramienta;
 import ec.com.sisapus.util.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -90,6 +91,14 @@ public class equipoherrDaoImpl implements equipoherrDao{
     @Override
     public Equipoherramienta getByIdEquipo(Session session, Integer idequipo) throws Exception {
        return (Equipoherramienta) session.load(Equipoherramienta.class, idequipo); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Equipoherramienta getUltimoRegistro(Session session) throws Exception {
+         String hql="FROM Equipoherramienta e left join fetch e.categoriaequipoherramienta order by CODIGO_EQHERR desc";
+        Query query=session.createQuery(hql).setMaxResults(1);
+        
+        return (Equipoherramienta) query.uniqueResult();//To change body of generated methods, choose Tools | Templates.
     }
     
 }

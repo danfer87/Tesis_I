@@ -20,4 +20,5 @@ public interface equipoherrDao {
     public boolean eliminarEquipoHerr(Integer idEqHerr);
     //agregado
       public Equipoherramienta getByIdEquipo(Session session, Integer idequipo) throws Exception;
+       public Equipoherramienta getUltimoRegistro(Session session) throws Exception;
 }
