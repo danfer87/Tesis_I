@@ -103,8 +103,11 @@ public class ApuBeanVista implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Equipo/Herramienta agregado"));
             
          
-            RequestContext.getCurrentInstance().update("frmdeteequipos:tablaListaEquipos");
-            RequestContext.getCurrentInstance().update("frmEquipos:msgs");
+       
+            //RequestContext.getCurrentInstance().update("frmApus:frmdetequipos:tablaListaEquipos");
+           //RequestContext.getCurrentInstance().update("frmApus:msgs");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
         }
         catch(Exception ex)
         {
