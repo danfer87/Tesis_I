@@ -15,6 +15,7 @@ import org.hibernate.Transaction;
 import ec.com.sisapus.modelo.EquipherrApu;
 import ec.com.sisapus.modelo.Equipoherramienta;
 import ec.com.sisapus.util.HibernateUtil;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -33,7 +34,8 @@ public class ApuBeanVista implements Serializable {
     
      private Equipoherramienta equipherramientas;    
      private List<EquipherrApu> listaEquiposApus;
-     
+      private EquipherrApu equipapus;
+     private Double precioTotalEquipo;
      
      public ApuBeanVista()
              
@@ -48,6 +50,22 @@ public class ApuBeanVista implements Serializable {
 
     public void setEquipherramientas(Equipoherramienta equipherramientas) {
         this.equipherramientas = equipherramientas;
+    }
+
+    public Double getPrecioTotalEquipo() {
+        return precioTotalEquipo;
+    }
+
+    public void setPrecioTotalEquipo(Double precioTotalEquipo) {
+        this.precioTotalEquipo = precioTotalEquipo;
+    }
+
+    public EquipherrApu getEquipapus() {
+        return equipapus;
+    }
+
+    public void setEquipapus(EquipherrApu equipapus) {
+        this.equipapus = equipapus;
     }
              
      
@@ -126,6 +144,78 @@ public class ApuBeanVista implements Serializable {
             }
         }
     }
-     
-   
+   //funcion para retirar
+       public void EliminarListaEquipo(String nom)
+    {        
+        try
+        {
+            int i=0;
+            
+            for(EquipherrApu item : this.listaEquiposApus)
+            {
+                if(item.getDescEqherrApu().equals(nom))
+                {
+                    this.listaEquiposApus.remove(i);
+                    
+                    break;
+                }
+                
+                i++;
+            }
+            
+           Double totalVenta=new Double("0");
+            
+            for(EquipherrApu item : this.listaEquiposApus)
+            {
+                Double totalVentaPorProducto=item.getCantEqherrApu()*(new Double(item.getTarifaEqherrApu())*(new Double(item.getCostohoraEqherrApu()))*(new Double(item.getRendimEqherrApu())));
+                
+                item.setCostotEqherrApu(totalVentaPorProducto);
+                
+                totalVenta=totalVenta+totalVentaPorProducto;
+            }
+            
+          this.setPrecioTotalEquipo(totalVenta);
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Producto retirado de la lista de venta"));
+            
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:panelFinalVenta");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
+        }
+        catch(Exception ex)
+        {            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }
+    }
+  //calculo subtotal equipos
+       
+       public void calcularCostos()
+    {
+        try
+        {   
+           Double totalVenta=new Double("0");
+            
+            for(EquipherrApu item : this.listaEquiposApus)
+            {
+                 Double totalVentaPorProducto=item.getCantEqherrApu()*(new Double(item.getTarifaEqherrApu())*(new Double(item.getCostohoraEqherrApu()))*(new Double(item.getRendimEqherrApu())));
+                
+                item.setCostotEqherrApu(totalVentaPorProducto);
+                
+                totalVenta=totalVentaPorProducto+totalVenta;
+            }
+            
+            this.setPrecioTotalEquipo(totalVenta);
+            
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:panelFinalVenta");
+        }
+        catch(Exception ex)
+        {            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }
+    }
+       
+       
+       
+       
 }
