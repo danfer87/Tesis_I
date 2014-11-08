@@ -194,7 +194,7 @@ public class ApuBeanVista implements Serializable {
     {
         try
         {   
-           Double totalVenta=new Double("0");
+           Double totalVenta=new Double("0.00");
             
             for(EquipherrApu item : this.listaEquiposApus)
             {
@@ -237,7 +237,7 @@ public class ApuBeanVista implements Serializable {
             {
                 this.equipherramientas=daoequipo.getByIdEquipo(this.session, item.getCodEqherrApu());
                 item.setCostotEqherrApu(this.getPrecioTotalEquipo());
-                item.setEquipoherramienta(this.equipherramientas);
+             //   item.setEquipoherramienta(this.equipherramientas);
                  apusdaoequipos.insert(this.session, item);  
             }
             
