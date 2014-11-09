@@ -5,6 +5,7 @@
 package ec.com.sisapus.dao;
 
 import ec.com.sisapus.modelo.Proyecto;
+import ec.com.sisapus.modelo.Usuario;
 import java.util.List;
 import org.hibernate.Session;
 
@@ -18,7 +19,11 @@ public interface proyectoDao {
     public boolean crearProyecto(Proyecto proyecto);
     public boolean actualizarProyecto(Proyecto proyecto);
     public boolean eliminarProyecto(Integer idProyecto);
+
     /////
+
+    public List<Proyecto> listarProyectosPorUsuario(String sobre);
+
     public boolean modificarProyecto(Session session, Proyecto tProyecto)throws Exception;
     ///// Metodos para listar proyectos por usuario
     public List<Proyecto> listarPorUsuario(Session session, String isUser)throws Exception;

@@ -6,6 +6,7 @@ package ec.com.sisapus.dao;
 
 import ec.com.sisapus.modelo.Equipoherramienta;
 import java.util.List;
+import org.hibernate.Session;
 
 /**
  *
@@ -17,4 +18,7 @@ public interface equipoherrDao {
     public boolean crearEquipoHerr(Equipoherramienta equipoherr);
     public boolean actualizarEquipoHerr(Equipoherramienta equipoherr);
     public boolean eliminarEquipoHerr(Integer idEqHerr);
+    //agregado
+      public Equipoherramienta getByIdEquipo(Session session, Integer idequipo) throws Exception;
+       public Equipoherramienta getUltimoRegistro(Session session) throws Exception;
 }

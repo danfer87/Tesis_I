@@ -25,7 +25,12 @@ import org.primefaces.context.RequestContext;
 public class proyectoBean {
 
     private Proyecto proyecto;
+        private Usuario usuario;
     private List<Proyecto> listaProyectos;
+
+        private List<Proyecto> listaporUsuario;
+    
+
     //////
     private Session session;
     private Transaction transaccion;
@@ -56,6 +61,23 @@ public class proyectoBean {
     public void setListaProyectos(List<Proyecto> listaProyectos) {
         this.listaProyectos = listaProyectos;
     }
+
+    public List<Proyecto> getListaporUsuario() {
+          proyectoDao proyecDao = new proyectoDaoImpl();
+        listaporUsuario = proyecDao.listarProyectosPorUsuario(proyecto.getUsuario().getSobrenombreUsu());
+        return listaporUsuario;
+    }
+
+    public void setListaporUsuario(List<Proyecto> listaporUsuario) {
+        this.listaporUsuario = listaporUsuario;
+    }
+    
+    
+    
+    
+    
+    
+    
 
     //////////////////////////
     public Session getSession() {

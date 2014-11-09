@@ -19,119 +19,84 @@
         </style>
     </h:head>
     <body>
-        <h:form>
-        <ui:composition template="./../menuTemplate.xhtml">
-            <ui:define name="content">
-                <p:growl id="msgs" showDetail="false" />  
-                <p:tabView>
-                    <p:tab title="Precio Unitario" closable="true">
-                <FIELDSET  style="-moz-border-radius:10px; width: 850px; "  class="borderFieldSet">
-                    <legend>Datos Generales del Proyecto</legend>
-                    <h:form id="cargar_cabecera" >
-                        <h:panelGrid columns="2" cellpadding="4">
-                            <h:panelGrid columns="3" cellpadding="3">
-                                <p:outputLabel value="Codigo:" for="codigo" />
-                                <p:inputText value="" id="codigo" size="10"/>
-                                <p:message for="codigo"/>
-                                <p:outputLabel value="Propietario:" for="propietario" />
-                                <p:inputText value="" id="propietario" size="20"/>
-                                <p:message for="propietario"/>
-                                <p:outputLabel value="Contratista:" for="contratista" />
-                                <p:inputText value="" id="contratista" size="20"/>
-                                <p:message for="contratista"/>
-                            </h:panelGrid>
-                            <h:panelGrid columns="3" cellpadding="3">
-                                <p:outputLabel value="Fecha:" for="fecha" />
-                                <p:calendar id="fecha" size="10" label="Fecha:" showOn="button" title="Ejemplo: dd/mm/yyyy" value="#{proyecto.fechaProy}"/>  
-                                <p:message for="fecha"/>
-                                <p:outputLabel value="Obra:" for="obra" />
-                                <p:inputText value="" id="obra" size="25"/>   
-                                <p:message for="obra"/>
-                                <p:outputLabel value="Ubicacion:" for="ubic" />
-                                <p:inputText value="" id="ubic" size="25"/>   
-                                <p:message for="ubic"/>
-                           </h:panelGrid>
-                        </h:panelGrid>
-
-                    </h:form>
-
-                </FIELDSET>
-                <h:form>
-                   <br></br> 
-                   <p:commandButton id="btnAddRubro" title="" value="Anadir Rubro"/>   
-                   <p:commandButton id="btnDeleteRubro" title="" value="Eliminar Rubro"/>   
-                   <br></br>
-                   <br></br> 
-                </h:form>
-                <FIELDSET style="-moz-border-radius:10px;background-color: #EEEEEE;
-                          width: 850px;" class="borderFieldSet">
-                    <legend>Detalle Presupuesto</legend>
-                    <p:dataTable value="" var="proyecto" >
-                        <p:column>
-                            <f:facet name="header" >
-                            </f:facet>
-                            <h:outputText value="#" />
-
+ 
+   <ui:composition template="./../menuTemplate.xhtml">
+      <ui:define name="content">
+       <h:form id="frmRealizarVentas">
+        <p:growl id="mensajeGeneral" showDetail="true"/>
+      
+                
+    <p:tabView>
+        <p:tab title="Equipos y Herramientas" closable="false"  >
+         <FIELDSET  style="-moz-border-radius:3px;background-color: #dddddd;
+                          width: 1200px;"  class="borderFieldSet">
+                            <legend>Datos Generales Equipos y Herramientas</legend>    
+                    <p:dataTable value="#{equipoherramientaBean.listaEquipoHerramienta}" var="item"  scrollable="true" scrollHeight="100">
+                        <p:column headerText="Codigo">
+                            <h:outputText value="#{item.codigoEqherr}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE" filterBy="nombre">
+                            <h:outputText value="#{item.nombreEqherr}"/>
+                        </p:column>
+                        <p:column headerText="Costo Hora">
+                            <h:outputText value="#{item.costohoraEqherr}"/>
+                        </p:column>
+                        <p:column headerText="Categoria">
+                            <h:outputText value="#{item.categoriaequipoherramienta.nombCatEqherr}"/>
                         </p:column>
                         <p:column>
-                            <f:facet name="header" >
-                                <h:outputText value="Codigo" />
-                            </f:facet>
-                            <h:outputText value="" />
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header" >
-                                <h:outputText value="Descripcion" />
-                            </f:facet>
-                            <h:outputText value="" />
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header" >
-                                <h:outputText value="Unidad" />
-                            </f:facet>
-                            <h:outputText value="" />
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header" >
-                                <h:outputText value="Cantidad" />
-                            </f:facet>
-                            <h:outputText value="" />
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header" >
-                                <h:outputText value="Precio Unitario" />
-                            </f:facet>
-                            <h:outputText value="" />
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header" >
-                                <h:outputText value="Precio Total" />
-                            </f:facet>
-                            <h:outputText value="" />
+                            <p:commandButton value="Agregar" ajax="true" actionListener="#{ApuBeanVista.agregarListaEquiposApus(item.codigoEqherr)}" />
                         </p:column>
                     </p:dataTable>
-                </FIELDSET>
-                <FIELDSET style="-moz-border-radius:10px;width: 850px; ">
-                    <legend>Presupuestar</legend>
-                    <h:form>
-                        <td></td>
-                        <h:panelGrid columns="2" style="float:right" cellpadding="3">
-                            <h:outputText value="Subtotal "/>
-                            <p:inputText value=""/>  
-                            <h:outputText value="IVA " />
-                            <p:inputText value="" />  
-                            <h:outputText value="Costo Total "/>
-                            <p:inputText value="" />  
-                        </h:panelGrid>
-                    </h:form>
-                </FIELDSET>
-                        <h:form>
-                            <p:commandButton id="btnPresupuestar1" title="Generar Presupuesto" value="Presupuestar"/>  
-                        </h:form>
-                        </p:tab>
-                    </p:tabView>
+                    </FIELDSET>
+                  </p:tab>  
+                 
+                   </p:tabView>  
+ 
+    
+            <FIELDSET  style="-moz-border-radius:10px;background-color: #dddddd;
+                          width: 1230px;" class="borderFieldSet" >
+                    <legend>Detalle Equipos y Herramientas</legend>
+            <p:dataTable id="tablaListaProductosVenta" value="#{ApuBeanVista.listaEquiposApus}" var="item" >
+              
+                  
+                <p:column headerText="NOMBRE" style="text-align: left;">
+                    <h:outputText value="#{item.descEqherrApu}"/>
+                </p:column>
+                <p:column headerText="Costo Hora" style="text-align: center;">
+                    <h:outputText value="#{item.costohoraEqherrApu}"/>
+                </p:column>
+                <p:column headerText="Cantidad" style="text-align: center;">
+                    <p:inputText value="#{item.cantEqherrApu}" style="text-align: center;" />                    
+                </p:column>
+                     <p:column headerText="Rendimiento" style="text-align: center;">
+                         <p:inputText value="#{item.rendimEqherrApu}" style="text-align: center;" />                    
+                </p:column>
+                     <p:column headerText="Tarifa" style="text-align: center;">
+                         <p:inputText value="#{item.tarifaEqherrApu}" style="text-align: center;" />                    
+                </p:column>
+                <p:column headerText="Total" style="text-align: center;">
+                    S./ 
+                    <h:outputText value="#{item.costotEqherrApu}"/>
+                </p:column>
+                <p:column style="text-align: center;">
+                    <p:commandButton value="Retirar de la lista" ajax="true" actionListener="#{ApuBeanVista.EliminarListaEquipo(item.descEqherrApu)}"/>
+                </p:column>
+            </p:dataTable>
+            <p:panelGrid id="panelFinalVenta" columns="1" style="text-align: right;width: 100%;">
+                <h:panelGroup>
+                    <p:commandButton value="Actualizar Total Equipos" actionListener="#{ApuBeanVista.calcularCostos()}" />
+                    S./ 
+                    <h:outputText value="#{ApuBeanVista.precioTotalEquipo}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>
+                 ___________
+                 <p:commandButton value="Guardar" ajax="false" actionListener="#{ApuBeanVista.guardarequiposApus()}"/>
+                </h:panelGroup>
+            </p:panelGrid>
+           </FIELDSET>
+               
+        </h:form>
             </ui:define>
         </ui:composition>
-            </h:form>
+            
     </body>
 </html>
