@@ -26,7 +26,7 @@ public interface proyectoDao {
 
     public boolean modificarProyecto(Session session, Proyecto tProyecto)throws Exception;
     ///// Metodos para listar proyectos por usuario
-    public List<Proyecto> listarPorUsuario(Session session, String isUser)throws Exception;
+    public List<Proyecto> listarPorUsuario(Session session, String sobre1)throws Exception;
     
     
     

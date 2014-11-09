@@ -120,11 +120,11 @@ public class proyectoDaoImpl implements proyectoDao{
     }
 
     @Override
-    public List<Proyecto> listarPorUsuario(Session session, String idUser) throws Exception {
-        String hql="from Proyecto p inner join p.usuario u WHERE u.sobrenombreUsu=:sobrenombreUsuario";
+    public List<Proyecto> listarPorUsuario(Session session, String sobrenombre1) throws Exception {
+        String hql="from Proyecto p inner join p.usuario u WHERE u.sobrenombreUsu=:sobre1";
         Query query=session.createQuery(hql);
         try {
-            query.setParameter("sobrenombreUsuario", idUser);
+            query.setParameter("sobre1", sobrenombre1);
         } catch (Exception e) {
             session.beginTransaction().rollback();
         }
