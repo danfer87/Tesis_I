@@ -232,24 +232,19 @@ public class ApuBeanVista implements Serializable {
      
             
             this.transaction=this.session.beginTransaction();
-          //  daoequipo.crearEquipoHerr(equipherramientas);
-            //daoTVenta.insert(this.session, this.venta);
             this.equipherramientas=daoequipo.getUltimoRegistro(session);
             
             for(EquipherrApu item : this.listaEquiposApus)
             {
                 this.equipherramientas=daoequipo.getByIdEquipo(session,this.equipherramientas.getCodigoEqherr());
                 item.setEquipoherramienta(this.equipherramientas);
-                //item.setTproducto(this.producto);
-                
                 apusequip.insert(this.session, item);
             }
             
             this.transaction.commit();
-            
             this.listaEquiposApus=new ArrayList<>();
             this.equipherramientas=new Equipoherramienta();
-            
+            this.precioTotalEquipo=0.0;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Equipo y Herramientas guardado correctamente"));
         }
         catch(Exception ex)
