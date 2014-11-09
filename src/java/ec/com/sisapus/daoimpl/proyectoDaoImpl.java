@@ -103,6 +103,7 @@ public class proyectoDaoImpl implements proyectoDao{
             Query query=sesion.createQuery(sql);
             sesion.beginTransaction();
        query.setParameter("usuario",sobre);
+        query.executeUpdate();
             listado = sesion.createQuery(sql).list();
             sesion.beginTransaction().commit();
         } catch (Exception e) {
