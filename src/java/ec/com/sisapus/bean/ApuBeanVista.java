@@ -113,10 +113,11 @@ public class ApuBeanVista implements Serializable {
             
             this.transaction=this.session.beginTransaction();
             
-            this.equipherramientas=daoequipo.getByIdEquipo(session, idEquipos);
-            
+             this.equipherramientas=daoequipo.getByIdEquipo(session, idEquipos);
+             
+                 
             this.listaEquiposApus.add(new EquipherrApu(null, null,this.equipherramientas.getNombreEqherr(), null,null,this.equipherramientas.getCostohoraEqherr(), null, null));
-            
+         
             this.transaction.commit();
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Equipo/Herramienta agregado"));
@@ -216,8 +217,7 @@ public class ApuBeanVista implements Serializable {
         }
     }
        
-  ///guardar equipos y herramientas apu     
-        public void GuardarEquipos()
+     public void realizarVenta()
     {
         this.session=null;
         this.transaction=null;
@@ -226,19 +226,22 @@ public class ApuBeanVista implements Serializable {
         {
             this.session=HibernateUtil.getSessionFactory().openSession();
             
-              equipoherrDaoImpl daoequipo=new equipoherrDaoImpl();
-            ApusDaoImpl apusdaoequipos=new ApusDaoImpl();  
-            this.transaction=this.session.beginTransaction();
+           equipoherrDaoImpl daoequipo=new equipoherrDaoImpl();
+            ApusDaoImpl apusequip= new ApusDaoImpl();
+     
             
-            apusdaoequipos.insert(this.session, this.equipapus);
-            this.equipherramientas=daoequipo.getUltimoRegistro(this.session);
+            this.transaction=this.session.beginTransaction();
+            daoequipo.crearEquipoHerr(equipherramientas);
+            //daoTVenta.insert(this.session, this.venta);
+            this.equipherramientas=daoequipo.getUltimoRegistro(session);
             
             for(EquipherrApu item : this.listaEquiposApus)
             {
-                this.equipherramientas=daoequipo.getByIdEquipo(this.session, item.getCodEqherrApu());
-                item.setCostotEqherrApu(this.getPrecioTotalEquipo());
-             //   item.setEquipoherramienta(this.equipherramientas);
-                 apusdaoequipos.insert(this.session, item);  
+                this.equipherramientas=daoequipo.getByIdEquipo(session, item.getCodEqherrApu());
+                item.setEquipoherramienta(this.equipherramientas);
+                //item.setTproducto(this.producto);
+                
+                apusequip.insert(this.session, item);
             }
             
             this.transaction.commit();
