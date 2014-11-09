@@ -217,9 +217,10 @@ public class ApuBeanVista implements Serializable {
         }
     }
        
-     public void realizarVenta()
-    {
-        this.session=null;
+   
+  public void guardarequiposApus()
+        {
+           this.session=null;
         this.transaction=null;
         
         try
@@ -231,13 +232,13 @@ public class ApuBeanVista implements Serializable {
      
             
             this.transaction=this.session.beginTransaction();
-            daoequipo.crearEquipoHerr(equipherramientas);
+          //  daoequipo.crearEquipoHerr(equipherramientas);
             //daoTVenta.insert(this.session, this.venta);
             this.equipherramientas=daoequipo.getUltimoRegistro(session);
             
             for(EquipherrApu item : this.listaEquiposApus)
             {
-                this.equipherramientas=daoequipo.getByIdEquipo(session, item.getCodEqherrApu());
+                this.equipherramientas=daoequipo.getByIdEquipo(session,this.equipherramientas.getCodigoEqherr());
                 item.setEquipoherramienta(this.equipherramientas);
                 //item.setTproducto(this.producto);
                 
@@ -249,7 +250,7 @@ public class ApuBeanVista implements Serializable {
             this.listaEquiposApus=new ArrayList<>();
             this.equipherramientas=new Equipoherramienta();
             
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Venta realizada correctamente"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Equipo y Herramientas guardado correctamente"));
         }
         catch(Exception ex)
         {
@@ -266,7 +267,6 @@ public class ApuBeanVista implements Serializable {
             {
                 this.session.close();
             }
-        }
-    }
-       
+        }  
+        }  
 }
