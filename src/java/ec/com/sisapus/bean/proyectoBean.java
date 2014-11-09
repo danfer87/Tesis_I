@@ -76,7 +76,7 @@ public class proyectoBean {
             this.session=HibernateUtil.getSessionFactory().openSession();
             this.transaccion=this.session.beginTransaction();
             
-            this.listaporUsuario=daoproyecto.listarProyectosPorUsuario("kleper");
+            this.listaporUsuario=daoproyecto.listarProyectosPorUsuario(this.proyecto.getUsuario().getSobrenombreUsu());
             
             this.transaccion.commit();
             
