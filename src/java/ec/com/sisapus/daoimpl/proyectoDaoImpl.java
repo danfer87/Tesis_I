@@ -92,32 +92,24 @@ public class proyectoDaoImpl implements proyectoDao{
     }
 
     @Override
-    public List<Proyecto> listarProyectosPorUsuario(Proyecto proyecto) {
-        List<Proyecto> listado = null;
-        Session sesion = HibernateUtil.getSessionFactory().getCurrentSession();
-        String sql = "from Proyecto p inner join p.usuario u WHERE u.sobrenombreUsu=:usuario";
-        try {
-            Query query=sesion.createQuery(sql);
-            //sesion.beginTransaction();
-            query.setString("usuario", proyecto.getUsuario().getSobrenombreUsu());
-            listado = sesion.createQuery(sql).list();
-            sesion.beginTransaction().commit();
-        } catch (Exception e) {
-            sesion.beginTransaction().rollback();
-        }
-
-        return listado;
-    }
-
-    @Override
     public boolean modificarProyecto(Session session, Proyecto tProyecto) throws Exception {
         session.update(tProyecto);
         return true;
     }
 
     @Override
-    public Proyecto getByCodigoProyecto(Session session, String codigoProyecto) throws Exception {
-        return (Proyecto) session.get(Proyecto.class,codigoProyecto );
+    public List<Proyecto> listarPorUsuario(Session session, String idUser) throws Exception {
+        String hql="from Proyecto p inner join p.usuario u WHERE u.sobrenombreUsu=:sobrenombreUsuario";
+        Query query=session.createQuery(hql);
+        try {
+            query.setParameter("sobrenombreUsuario", idUser);
+        } catch (Exception e) {
+            session.beginTransaction().rollback();
+        }
+                return (List<Proyecto>) query.list();
     }
+
+    
+    
     
 }

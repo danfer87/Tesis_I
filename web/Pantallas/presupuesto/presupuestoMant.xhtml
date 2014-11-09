@@ -25,7 +25,16 @@
                 <p:growl id="msgs" showDetail="false" />  
                 <p:tabView>
                     <p:tab title="Presupuesto" closable="true">
+                      <h:form>
+                        <p:outputLabel value="Seleccione el proyecto:" />
+                        <p:selectOneMenu value="#">  
+                            <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                            <f:selectItems value="#" />  
+                        </p:selectOneMenu> 
+                      </h:form>
+                      <br></br>
                 <FIELDSET  style="-moz-border-radius:10px; width: 850px; "  class="borderFieldSet">
+                    
                     <legend>Datos Generales del Proyecto</legend>
                     <h:form id="cargar_cabecera" >
                         <h:panelGrid columns="2" cellpadding="4">
@@ -41,15 +50,16 @@
                                 <p:message for="contratista"/>
                             </h:panelGrid>
                             <h:panelGrid columns="3" cellpadding="3">
-                                <p:outputLabel value="Fecha:" for="fecha" />
-                                <p:calendar id="fecha" size="10" label="Fecha:" showOn="button" title="Ejemplo: dd/mm/yyyy" value="#{proyecto.fechaProy}"/>  
-                                <p:message for="fecha"/>
                                 <p:outputLabel value="Obra:" for="obra" />
                                 <p:inputText value="" id="obra" size="25"/>   
                                 <p:message for="obra"/>
                                 <p:outputLabel value="Ubicacion:" for="ubic" />
                                 <p:inputText value="" id="ubic" size="25"/>   
                                 <p:message for="ubic"/>
+                                <p:outputLabel value="Fecha:" for="fecha" />
+                                <p:calendar id="fecha" size="10" label="Fecha:" showOn="button" title="Ejemplo: dd/mm/yyyy" value="#{proyecto.fechaProy}"/>  
+                                <p:message for="fecha"/>
+                                
                            </h:panelGrid>
                         </h:panelGrid>
 
@@ -125,6 +135,7 @@
                         </h:panelGrid>
                     </h:form>
                 </FIELDSET>
+                      <br></br>
                         <h:form>
                             <p:commandButton id="btnPresupuestar1" title="Generar Presupuesto" value="Presupuestar"/>  
                         </h:form>
