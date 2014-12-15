@@ -63,9 +63,47 @@ public class proyectoBean {
     }
 
     public List<Proyecto> getListaporUsuario() {
-          proyectoDao proyecDao = new proyectoDaoImpl();
-        listaporUsuario = proyecDao.listarProyectosPorUsuario(proyecto.getUsuario().getSobrenombreUsu());
-        return listaporUsuario;
+        //  proyectoDao proyecDao = new proyectoDaoImpl();
+        //listaporUsuario = proyecDao.listarProyectosPorUsuario("kleper");
+        
+         this.session=null;
+        this.transaccion=null;
+        
+        try
+        {
+            proyectoDaoImpl daoproyecto=new proyectoDaoImpl();
+            
+            this.session=HibernateUtil.getSessionFactory().openSession();
+            this.transaccion=this.session.beginTransaction();
+            
+            this.listaporUsuario=daoproyecto.listarProyectosPorUsuario(this.proyecto.getUsuario().getSobrenombreUsu());
+            
+            this.transaccion.commit();
+            
+               return this.listaporUsuario;
+        }
+        catch(Exception ex)
+        {
+            if(this.transaccion!=null)
+            {
+                this.transaccion.rollback();
+            }
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador "+ex.getMessage()));
+            
+            return null;
+        }
+        finally
+        {
+            if(this.session!=null)
+            {
+                this.session.close();
+            }
+        }
+        
+        
+        
+
     }
 
     public void setListaporUsuario(List<Proyecto> listaporUsuario) {
