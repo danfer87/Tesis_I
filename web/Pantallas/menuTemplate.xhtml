@@ -24,8 +24,8 @@
     <h:body>
 
         <div id="conteiner">
-            <div id="top" class="ui-widget-header ui-corner-all">
-                <ui:insert name="top">SISAPU - Menu Principal</ui:insert>
+            <div id="top" >
+                <ui:insert name="top"></ui:insert>
             </div >
             <div id="divSesionUsuario">
                 <span>
@@ -42,7 +42,7 @@
                     <p:growl id="messages"/>  
                     <p:menubar autoDisplay="false">  
                         <p:submenu rendered="#{loginBean.usuario.perfil.modProyecto}" label="Proyecto" icon="ui-icon-document">  
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modProyectos}" value="Nuevo Proyecto" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
+                            <p:menuitem icon="ui-icon-document" rendered="#{loginBean.usuario.perfil.modProyectos}" value="Nuevo Proyecto" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
                         </p:submenu>  
 
                         <p:submenu rendered="#{loginBean.usuario.perfil.modRecursos}" label="Recursos" icon="ui-icon-document">  

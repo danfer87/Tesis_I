@@ -1,5 +1,5 @@
 body {
-    background-color: #ffffff;
+    background-color: #1E1E1E;
     font-size: 12px;
     font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
     color: #ffffff;  
@@ -13,7 +13,7 @@ h1 {
     font-weight: bold;
     margin: 0px;
     padding: 0px;
-    color: #D20005;
+    color: #375A85;
 }
 
 a:link, a:visited {
@@ -23,7 +23,7 @@ a:link, a:visited {
 }
 
 a:link:hover, a:visited:hover  {
-  color: #ffffff;
+  color: #666;
   font-weight : bold;
   text-decoration : underline;
 }
@@ -46,3 +46,7 @@ a:link:hover, a:visited:hover  {
 .ui-state-default .icon-check{
     background-image: url(../imagenes/iconos/Check.png); 
     }
+    
+.ui-state-default .icon-proyecto{
+        background-image: url(../imagenes/iconos/Project.png);
+    }    

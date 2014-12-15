@@ -1,13 +1,15 @@
 body{
-    background-color: indigo;
+    background-color: #1E1E1E;
+    
 }
 
 .conteinerlogin{
-    width: 350px;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
+    width: 380px;
     margin-top: 10%;
-    font-size: 85%;
+    font-size: 80%;
+    padding: 5px;
     
 }
 
@@ -15,4 +17,42 @@ body{
     background-image: url(../imagenes/iconos/Login.png);
     }
 
-
+ #cabeceraLogin{
+        background-color: #CDCDCD;
+	height: 94px;
+        background-image: url(../imagenes/logo/logo1.png);
+        background-repeat: no-repeat;
+        border-radius: 5px 5px 5px 5px;
+    }
+    
+    #contenedorLogin{
+        width: 980px;
+        background-color: #999;
+        border-radius: 5px 5px 5px 5px;
+        margin-right: auto;
+	margin-left: auto;
+    }
+    
+    #contenedorLoginIzq{
+        float: left;
+    }
+    
+    #pieLogin{
+        background-color: #cdcdcd;
+        clear: both;
+	height: 90px;
+        text-align: center;
+        
+    }
+    
+    #contenedorGeneral{
+        
+    }
+    
+  .gradient {
+  background-image:
+    radial-gradient(
+      yellow,
+      #f06d06
+    );
+}

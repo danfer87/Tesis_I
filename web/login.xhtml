@@ -10,11 +10,15 @@
     </h:head>
     <h:body>
         
+        <div id="cabeceraLogin"></div>
+        
+        <div id="contenedorLogin">
+            <div id="contenedorLoginIzq">
             <div class="conteinerlogin">
             <p:growl id="growl" showDetail="true" life="3000" />  
             <h:form id="formLogin">  
 
-                <p:panel header="Inicio de Sesion" style="margin-bottom:10px;">  
+                <p:panel header="Inicio de Sesion" style="margin-bottom:20px; margin-top:20px ">  
                     <h:panelGrid columns="2" cellpadding="5">  
                         <h:outputLabel for="username" value="Usuario:" />  
                         <p:inputText value="#{loginBean.usuario.sobrenombreUsu}"   
@@ -44,9 +48,11 @@
             }
         </script>
             </div>
-             
-            
-             
+    </div>
+   </div>
+        
+        <div id="pieLogin"></div>
+        
     </h:body>
 </html>
 

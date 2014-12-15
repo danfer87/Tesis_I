@@ -1,51 +1,50 @@
 #top {
-    
-    background-color:#666 ;
-    padding: 5px;
-    margin: 0px 0px 10px 0px;
-    height: 50px;
+    background-image: url(../imagenes/logo/logo1.png);
+    background-color:#CDCDCD ;
+    height: 94px;
+    background-repeat: no-repeat;
+    border-radius: 5px 5px 5px 5px;
+    margin: 0px 0px 5px 0px;
     }
 
 #bottom {
     text-align: center;
     position: relative;
-    background-color: #666;
-    padding: 5px;
-    margin: 10px 0px 0px 0px;
+    background-color: #CDCDCD;
+    margin: 5px 0px 0px 0px;
     height: 40px;
+    border-radius: 5px 5px 5px 5px;
+    
 }
 
 #left {
     float: left;
     background-color: #ece3a5;
-    padding: 5px;
     width: 150px;
 }
 
 #right {
     float: right;
     background-color: #ece3a5;
-    padding: 5px;
     width: 150px;
 }
 
 .center_content {
     position: relative;
     background-color: #dddddd;
-    padding: 5px;
     margin-top: 1px;
     min-height: 110px;
 }
 
 .left_content {
     background-color: #dddddd;
-    padding: 5px;
+    padding: 0px;
     margin-left: 170px;
 }
 
 .right_content {
     background-color: #dddddd;
-    padding: 5px;
+    padding: 0px;
     margin: 0px 170px 0px 170px;
 }
 
@@ -73,15 +72,18 @@
     position: inherit;
     right: 10px;
     top: 30px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 5px 5px 5px 5px;
+    border-color: red;
  }
 
 #divSesionUsuario > span
 {
     color: black;
-    
+}
+
+#bottom > span
+{
+    color: black;
 }
 
 #menu
@@ -89,3 +91,5 @@
  padding-top: 5px;
  padding-bottom: 5px;
 }
+
+
