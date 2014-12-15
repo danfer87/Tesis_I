@@ -41,30 +41,36 @@
                 <h:form id="frmMenu">  
                     <p:growl id="messages"/>  
                     <p:menubar autoDisplay="false">  
+
                         <p:submenu rendered="#{loginBean.usuario.perfil.modProyecto}" label="Proyecto" icon="ui-icon-document">  
                             <p:menuitem icon="ui-icon-document" rendered="#{loginBean.usuario.perfil.modProyectos}" value="Nuevo Proyecto" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
                         </p:submenu>  
+                        <p:submenu rendered="#{loginBean.usuario.perfil.modProyecto}" label="Proyecto" icon="ui-icon-home">  
+                           <p:menuitem rendered="#{loginBean.usuario.perfil.modProyectos}" icon="ui-icon-document" value="Nuevo Proyecto" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
 
-                        <p:submenu rendered="#{loginBean.usuario.perfil.modRecursos}" label="Recursos" icon="ui-icon-document">  
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modRubro}" value="Gestionar Rubros" url="#{appBean.basePath}rubros/rubrosMante.xhtml" />      
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modEquiherr}" value="Gestionar Equipos y Herramientas" url="#{appBean.basePath}equiposherramientas/equipoherramientamant.xhtml" />  
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modMateriales}" value="Gestionar Materiales" url="#{appBean.basePath}materiales/materialmant.xhtml" />  
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modManoobra}" value="Gestionar Mano de Obra" url="#{appBean.basePath}manodeobra/manodeobramant.xhtml" />  
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modTransporte}" value="Gestionar Transporte" url="#{appBean.basePath}transporte/transportemant.xhtml" />  
                         </p:submenu>  
 
-                        <p:submenu rendered="#{loginBean.usuario.perfil.modAnalcosto}" label="Analisis de Costos" icon="ui-icon-document">  
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modApu}" value="Analisis de Precios Unitarios" url="#{appBean.basePath}preciounitario/precioUnitarioMant.xhtml" />  
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modPresup}" value="Presupuestos" url="#{appBean.basePath}presupuesto/presupuestoMant.xhtml" />  
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modCronograma}" value="Cronograma Valorado" url="#" />  
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modReajprec}" value="Reajuste de Precios" url="#" />  
+                        <p:submenu rendered="#{loginBean.usuario.perfil.modRecursos}" label="Recursos" icon="ui-icon-wrench">  
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modRubro}"   value="Gestionar Rubros" url="#{appBean.basePath}rubros/rubrosMante.xhtml" />      
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modEquiherr}"   value="Gestionar Equipos y Herramientas" url="#{appBean.basePath}equiposherramientas/equipoherramientamant.xhtml" />  
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modMateriales}"  value="Gestionar Materiales" url="#{appBean.basePath}materiales/materialmant.xhtml" />  
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modManoobra}"  value="Gestionar Mano de Obra" url="#{appBean.basePath}manodeobra/manodeobramant.xhtml" />  
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modTransporte}"    value="Gestionar Transporte" url="#{appBean.basePath}transporte/transportemant.xhtml" />  
                         </p:submenu>  
 
-                        <p:submenu rendered="#{loginBean.usuario.perfil.modSeguridad}" label="Seguridad" icon="ui-icon-document">  
+                        <p:submenu rendered="#{loginBean.usuario.perfil.modAnalcosto}" label="Analisis de Costos" icon="ui-icon-person">  
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modApu}"   value="Analisis de Precios Unitarios" url="#{appBean.basePath}preciounitario/precioUnitarioMant.xhtml" />  
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modPresup}"   value="Presupuestos" url="#{appBean.basePath}presupuesto/presupuestoMant.xhtml" />  
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modCronograma}"   value="Cronograma Valorado" url="#" />  
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modReajprec}"    value="Reajuste de Precios" url="#" />  
+                        </p:submenu>  
+
+                        <p:submenu rendered="#{loginBean.usuario.perfil.modSeguridad}" label="Seguridad" icon="ui-icon-gear">  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modUsuario}" value="Gestion Usuarios" url="#{appBean.basePath}usuarios/usuariomantenimiento.xhtml"  />  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modPerfil}" value="Gestion Perfiles" url="#{appBean.basePath}perfiles/perfilmantenimiento.xhtml" />  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modRegusu}" value="Registrar Usuario" url="#{appBean.basePath}usuarios/usuarioregistro.xhtml" />  
                         </p:submenu>
+                        
                         <p:menuitem value="Cerrar Sesion" actionListener="#{loginBean.cerrarSesion()}" icon="ui-icon-close" oncomplete="handleLoginRequest(xhr, status, args)" style="margin-right:10px" />  
                         </p:menubar>  
 
