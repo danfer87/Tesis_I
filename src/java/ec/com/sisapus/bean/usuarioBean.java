@@ -302,7 +302,7 @@ public class usuarioBean {
         String fecha = new SimpleDateFormat("yyyy-MM-dd").format(hoy);
         this.usuario.setFechregUsu(java.sql.Date.valueOf(fecha));
         
-        if (usuarioDao.regisUsu(this.usuario)) {
+        if (usuarioDao.regisUsu(usuario)) {
             msg = "Usuario Regitrado correctamente";
             FacesMessage message1 = new FacesMessage(FacesMessage.SEVERITY_INFO,msg , null);
             FacesContext.getCurrentInstance().addMessage(null, message1);

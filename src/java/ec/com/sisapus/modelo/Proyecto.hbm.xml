@@ -9,7 +9,7 @@
             <generator class="identity" />
         </id>
         <many-to-one name="usuario" class="ec.com.sisapus.modelo.Usuario" fetch="select">
-            <column name="CODIGO_US" />
+            <column name="CODIGO_USU" />
         </many-to-one>
         <property name="propiepProy" type="string">
             <column name="PROPIEP_PROY" />
