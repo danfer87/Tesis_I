@@ -42,12 +42,16 @@
                     <p:growl id="messages"/>  
                     <p:menubar autoDisplay="false">  
 
+
                         <p:submenu rendered="#{loginBean.usuario.perfil.modProyecto}" label="Proyecto" icon="ui-icon-document">  
                             <p:menuitem icon="ui-icon-document" rendered="#{loginBean.usuario.perfil.modProyectos}" value="Nuevo Proyecto" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
                         </p:submenu>  
                         <p:submenu rendered="#{loginBean.usuario.perfil.modProyecto}" label="Proyecto" icon="ui-icon-home">  
                            <p:menuitem rendered="#{loginBean.usuario.perfil.modProyectos}" icon="ui-icon-document" value="Nuevo Proyecto" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
+                        </p:submenu>  
 
+                        <p:submenu rendered="#{loginBean.usuario.perfil.modProyecto}" label="Proyecto" icon="ui-icon-home">  
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modProyectos}" icon="ui-icon-document" value="Nuevo Proyecto" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
                         </p:submenu>  
 
                         <p:submenu rendered="#{loginBean.usuario.perfil.modRecursos}" label="Recursos" icon="ui-icon-wrench">  
