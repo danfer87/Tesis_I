@@ -46,13 +46,7 @@
                         <p:submenu rendered="#{loginBean.usuario.perfil.modProyecto}" label="Proyecto" icon="ui-icon-document">  
                             <p:menuitem icon="ui-icon-document" rendered="#{loginBean.usuario.perfil.modProyectos}" value="Nuevo Proyecto" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
                         </p:submenu>  
-                        <p:submenu rendered="#{loginBean.usuario.perfil.modProyecto}" label="Proyecto" icon="ui-icon-home">  
-                           <p:menuitem rendered="#{loginBean.usuario.perfil.modProyectos}" icon="ui-icon-document" value="Nuevo Proyecto" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
-                        </p:submenu>  
-
-                        <p:submenu rendered="#{loginBean.usuario.perfil.modProyecto}" label="Proyecto" icon="ui-icon-home">  
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modProyectos}" icon="ui-icon-document" value="Nuevo Proyecto" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
-                        </p:submenu>  
+                        
 
                         <p:submenu rendered="#{loginBean.usuario.perfil.modRecursos}" label="Recursos" icon="ui-icon-wrench">  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modRubro}"   value="Gestionar Rubros" url="#{appBean.basePath}rubros/rubrosMante.xhtml" />      
@@ -68,6 +62,9 @@
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modCronograma}"   value="Cronograma Valorado" url="#" />  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modReajprec}"    value="Reajuste de Precios" url="#" />  
                         </p:submenu>  
+                        <p:submenu rendered="#{loginBean.usuario.perfil.modReportes}" label="Reportes" icon="ui-icon-contact">  
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modReppartida}" icon="ui-icon-document" value="Reporte Partidas" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
+                        </p:submenu> 
 
                         <p:submenu rendered="#{loginBean.usuario.perfil.modSeguridad}" label="Seguridad" icon="ui-icon-gear">  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modUsuario}" value="Gestion Usuarios" url="#{appBean.basePath}usuarios/usuariomantenimiento.xhtml"  />  
