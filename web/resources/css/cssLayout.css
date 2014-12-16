@@ -9,7 +9,7 @@
 
 #bottom {
     text-align: center;
-    position: relative;
+    clear: both;
     background-color: #CDCDCD;
     margin: 5px 0px 0px 0px;
     height: 40px;
