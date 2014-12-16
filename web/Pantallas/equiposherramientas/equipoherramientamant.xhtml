@@ -27,14 +27,14 @@
                     </p:commandButton>  
                 </h:form>
                 <h:form id="formDataTable">  
-                    <p:dataTable id="mostrarEquipos" var="equipo" value="#{equipoherramientaBean.listaEquipoHerramienta}"
+                    <p:dataTable id="mostrarEquipos" var="equipo" value="#{equipoherramientaBean.listaEquipoHerramienta}" scrollable="true" scrollHeight="150"
                                  paginator="true" rows="10" paginatorPosition="bottom"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                  >  
                         <f:facet name="header">  
                             Equipos y Herramientas  
                         </f:facet>
-                        <!--<p:column headerText="Codigo" style="width:24%">  
+                        <!--<p:column headerText="Codigo">  
                             <h:outputText value="#{equipo.codigoEqherr}" />  
                         </p:column>-->
                         <p:column headerText="Nombre:" style="width:25%" filterBy="#{equipo.nombreEqherr}"   
@@ -49,8 +49,8 @@
                         <p:column headerText="Categoria:" style="width:15%" filterBy="#{equipo.categoriaequipoherramienta.nombCatEqherr}">  
                             <h:outputText value="#{equipo.categoriaequipoherramienta.nombCatEqherr}" />  
                         </p:column> 
-                        <p:column style="width:4%">  
-                            <p:commandButton id="btnEquipoUpdate" update=":formUpdate" oncomplete="dialogEquipoUpdate.show()" icon="icon-edit" title="Modificar">  
+                        <p:column style="width:8%">  
+                            <p:commandButton id="btnEquipoUpdate" update=":formUpdate" oncomplete="dialogEquipoUpdate.show()" icon="icon-edit1" title="Modificar">  
                                 <f:setPropertyActionListener value="#{equipo}" target="#{equipoherramientaBean.equipoherramienta}" />  
                             </p:commandButton>  
 

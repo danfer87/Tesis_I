@@ -1,8 +1,8 @@
 body {
-    background-color: #1E1E1E;
+    background-color: #727D88;
     font-size: 12px;
     font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
-    color: #ffffff;  
+    color: #375A85;  
     margin: 10px;
 }
 
@@ -17,36 +17,44 @@ h1 {
 }
 
 a:link, a:visited {
-  color: black;
-  font-weight : bold;
-  text-decoration: none;
+    color: black;
+    font-weight : bold;
+    text-decoration: none;
 }
 
 a:link:hover, a:visited:hover  {
-  color: #666;
-  font-weight : bold;
-  text-decoration : underline;
+    color: #666;
+    font-weight : bold;
+    text-decoration : underline;
 }
 
 .ui-state-default .icon-add{
     background-image: url(../imagenes/iconos/Add.png); 
-        }
+}
 .ui-state-default .icon-delete{
     background-image: url(../imagenes/iconos/Delete.png);
-    }
+}
 .ui-state-default .icon-edit{
     background-image: url(../imagenes/iconos/Edit.png); 
-    }
+}
 .ui-state-default .icon-save{
     background-image: url(../imagenes/iconos/Save.png); 
-    }
+}
 .ui-state-default .icon-cancel{
     background-image: url(../imagenes/iconos/Cancel.png); 
-    }
+}
 .ui-state-default .icon-check{
     background-image: url(../imagenes/iconos/Check.png); 
-    }
-    
+}
+
 .ui-state-default .icon-proyecto{
-        background-image: url(../imagenes/iconos/Project.png);
-    }    
+    background-image: url(../imagenes/iconos/Project.png);
+}    
+
+.ui-state-default .icon-edit1{
+    background-image: url(../imagenes/iconos/Edit1.png); 
+}
+
+.ui-state-default .icon-permiso{
+    background-image: url(../imagenes/iconos/Permiso.png); 
+}

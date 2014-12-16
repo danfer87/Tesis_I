@@ -26,7 +26,7 @@
         </h:form>
         <br/>
         <h:form id="formDataTable">
-            <p:dataTable id="mostrarPerfil" var="perfil" value="#{perfilBean.perfiles}"
+            <p:dataTable id="mostrarPerfil" var="perfil" value="#{perfilBean.perfiles}" scrollable="true" scrollHeight="150"
                          paginator="true" rows="10" paginatorPosition="bottom"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                          >
@@ -37,11 +37,11 @@
                 <p:column headerText="Perfiles" style="width:15%">  
                     <h:outputText value="#{perfil.descripPerf}" />  
                 </p:column>  
-                <p:column headerText="Permisos" style="width:10%; text-align:center">  
-                    <p:commandButton oncomplete="dlgPermisos.show()" icon="ui-icon-search" title="Permisos de Perfil"
+                <p:column headerText="Acciones" style="width:10%; text-align:center">  
+                    <p:commandButton oncomplete="dlgPermisos.show()" icon="icon-permiso" title="Permisos de Perfil" 
                                      update=":frmPermisos:dlgPermisos" actionListener="#{perfilBean.prepararPerfil(perfil.codigoPerf)}">
                     </p:commandButton> 
-                    <p:commandButton id="btnPerfilUpdate" update=":formUpdate" oncomplete="dialogPerfilUpdate.show()" icon="icon-edit" title="Modificar">  
+                    <p:commandButton id="btnPerfilUpdate" update=":formUpdate" oncomplete="dialogPerfilUpdate.show()" icon="icon-edit1" title="Modificar">  
                         <f:setPropertyActionListener value="#{perfil}" target="#{perfilBean.perfil}" />  
                     </p:commandButton>  
                     <p:commandButton id="btnPerfilDelete" update=":formDelete" oncomplete="dialogPerfilDelete.show()" icon="icon-delete" title="Eliminar">  
@@ -104,14 +104,15 @@
                 <p:growl id="growl" showDetail="false" sticky="true" /> 
                 <h:panelGrid id="pantallaPermisosPerfil" columns="1" cellpadding="1">
                 <h:outputText value="#{perfilBean.perfil.descripPerf}" style="font-weight:bold"/>  
-                <br/><h:outputText value="Proyecto" />
+                <br/>
                 <h:panelGroup>
+                <h:outputText value="Proyecto" />
                 <br/><p:selectBooleanCheckbox value="#{perfilBean.perfil.modProyectos}"/>
                 <h:outputText value=" Proyectos"/>
                 </h:panelGroup>
                 <p:separator/>
-                <h:outputText value="Recursos" /> 
                 <h:panelGroup>
+                <h:outputText value="Recursos" /> 
                 <br/><p:selectBooleanCheckbox value="#{perfilBean.perfil.modRubro}"/>
                 <h:outputText value=" Rubros" /> 
                 <br/><p:selectBooleanCheckbox value="#{perfilBean.perfil.modMateriales}"/>
@@ -124,8 +125,8 @@
                 <h:outputText value=" Gestion Transporte" />
                 </h:panelGroup>
                 <p:separator/>
-                <h:outputText value="Analisis de Costos" />
                 <h:panelGroup>
+                <h:outputText value="Analisis de Costos" />    
                 <br/><p:selectBooleanCheckbox value="#{perfilBean.perfil.modApu}"/>
                 <h:outputText value=" Generacion APU" />
                 <br/><p:selectBooleanCheckbox value="#{perfilBean.perfil.modPresup}"/>
@@ -136,8 +137,8 @@
                 <h:outputText value=" Reajuste de Precios" />
                 </h:panelGroup>
                 <p:separator/>
-                <h:outputText value="Seguridad" /> 
                 <h:panelGroup>
+                <h:outputText value="Seguridad" /> 
                 <br/><p:selectBooleanCheckbox value="#{perfilBean.perfil.modUsuario}"/>
                 <h:outputText value=" Gestion Usuarios" />
                 <br/><p:selectBooleanCheckbox value="#{perfilBean.perfil.modPerfil}"/>

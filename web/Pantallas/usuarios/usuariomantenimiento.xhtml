@@ -27,7 +27,7 @@
                     </p:commandButton>  
                 </h:form>
                 <h:form id="formDataTable">  
-                    <p:dataTable id="mostrarUsuarios" var="usuario" value="#{usuarioBean.listaUsuarios}"
+                    <p:dataTable id="mostrarUsuarios" var="usuario" value="#{usuarioBean.listaUsuarios}" scrollable="true" scrollHeight="150"
                                  paginator="true" rows="10" paginatorPosition="bottom"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                  >  
@@ -46,25 +46,25 @@
                                   footerText="contains" filterMatchMode="contains">  
                             <h:outputText value="#{usuario.apellidoUsu}" />  
                         </p:column>  
-                        <p:column headerText="Nickname" style="width:20%">  
+                        <p:column headerText="Nickname" style="width:15%">  
                             <h:outputText value="#{usuario.sobrenombreUsu}" />  
                         </p:column>  
-                        <p:column headerText="Contraseña" style="width:20%">  
+                        <p:column headerText="Contraseña" style="width:15%">  
                             <h:outputText value="#{usuario.contraseniaUsu}" />  
                         </p:column>  
-                        <p:column headerText="Correo" style="width:24%">  
+                        <p:column headerText="Correo" style="width:20%">  
                             <h:outputText value="#{usuario.correoUsu}" />  
                         </p:column> 
-                        <p:column headerText="Perfil" style="width:24%">  
+                        <p:column headerText="Perfil" style="width:20%; text-align: center" >  
                             <h:outputText value="#{usuario.perfil.descripPerf}" />  
                         </p:column> 
-                        <p:column headerText="Estado" style="width:24%">  
+                        <p:column headerText="Estado" style="width:7%">  
                             <div style="text-align: center">
                             <p:selectBooleanCheckbox value="#{usuario.estadoUsu}" />
                             </div>
                         </p:column> 
-                        <p:column style="width:4%">  
-                            <p:commandButton id="btnUsuarioUpdate" update=":formUpdate" oncomplete="dialogUsuarioUpdate.show()" icon="icon-edit" title="Modificar">  
+                        <p:column style="width:8%">  
+                            <p:commandButton id="btnUsuarioUpdate" update=":formUpdate" oncomplete="dialogUsuarioUpdate.show()" icon="icon-edit1" title="Modificar">  
                                 <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}" />  
                             </p:commandButton>  
 

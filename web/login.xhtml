@@ -6,53 +6,52 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <link rel="stylesheet" href="#{appBean.baseUrl}resources/css/login.css"></link>
+        <link rel="stylesheet" href="#{appBean.baseUrl}resources/css/cssLayout.css"></link>
+        <link rel="stylesheet" href="#{appBean.baseUrl}resources/css/default.css"></link>
         <title>Inicio de Sesion</title>
     </h:head>
     <h:body>
-        
+
         <div id="cabeceraLogin"></div>
-        
+
         <div id="contenedorLogin">
-            <div id="contenedorLoginIzq">
             <div class="conteinerlogin">
-            <p:growl id="growl" showDetail="true" life="3000" />  
-            <h:form id="formLogin">  
+                <p:growl id="growl" showDetail="true" life="3000" />  
+                <h:form id="formLogin">  
 
-                <p:panel header="Inicio de Sesion" style="margin-bottom:20px; margin-top:20px ">  
-                    <h:panelGrid columns="2" cellpadding="5">  
-                        <h:outputLabel for="username" value="Usuario:" />  
-                        <p:inputText value="#{loginBean.usuario.sobrenombreUsu}"   
-                                     id="username" required="true" label="username" />  
+                    <p:panel header="Inicio de Sesion" style="margin-bottom:20px; margin-top:20px ">  
+                        <h:panelGrid columns="2" cellpadding="5">  
+                            <h:outputLabel for="username" value="Usuario:" />  
+                            <p:inputText value="#{loginBean.usuario.sobrenombreUsu}"   
+                                         id="username" required="true" label="username" />  
 
-                        <h:outputLabel for="password" value="Contrase&ntilde;a:" />  
-                        <p:password value="#{loginBean.usuario.contraseniaUsu}"   
-                                    id="password" required="true" label="password"/>
-                        <f:facet name="footer">  
-                            <p:commandButton id="loginButton" value="Iniciar Sesion" update=":growl"   
-                                             actionListener="#{loginBean.login(actionEvent)}"   
-                                             oncomplete="handleLoginRequest(xhr, status, args)" icon="icon-login"/>  
-                        </f:facet>  
-                    </h:panelGrid>     
-                </p:panel>  
-            </h:form>
-        
+                            <h:outputLabel for="password" value="Contrase&ntilde;a:" />  
+                            <p:password value="#{loginBean.usuario.contraseniaUsu}"   
+                                        id="password" required="true" label="password"/>
+                            <f:facet name="footer">  
+                                <p:commandButton id="loginButton" value="Iniciar Sesion" update=":growl"   
+                                                 actionListener="#{loginBean.login(actionEvent)}"   
+                                                 oncomplete="handleLoginRequest(xhr, status, args)" icon="icon-login"/>  
+                            </f:facet>  
+                        </h:panelGrid>     
+                    </p:panel>  
+                </h:form>
 
-        <script type="text/javascript">
-            function handleLoginRequest(xhr, status, args) {
-                if (args.validationFailed || !args.loggedIn) {
-                    jQuery('#formLogin').effect("shake", {times: 3}, 100);
-                }
-                else {
-                    window.location = '/sisapus/Pantallas/menuTemplate.xhtml';
-                }
-            }
-        </script>
+
+                <script type="text/javascript">
+                    function handleLoginRequest(xhr, status, args) {
+                        if (args.validationFailed || !args.loggedIn) {
+                            jQuery('#formLogin').effect("shake", {times: 3}, 100);
+                        }
+                        else {
+                            window.location = '/sisapus/Pantallas/menuTemplate.xhtml';
+                        }
+                    }
+                </script>
             </div>
-    </div>
-   </div>
-        
-        <div id="pieLogin"></div>
-        
+            <div id="contenedorImagenLogin"></div>
+        </div>
+        <div id="pieLogin">&copy;SISAPU 2014, Derechos Reservados</div>
     </h:body>
 </html>
 

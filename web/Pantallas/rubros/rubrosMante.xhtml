@@ -27,36 +27,31 @@
                     </p:commandButton>  
                 </h:form>
                 <h:form id="formDataTable">  
-                    <p:dataTable id="mostrarRubros" var="rubro" value="#{rubroBeanVista.all}"
+                    <p:dataTable id="mostrarRubros" var="rubro" value="#{rubroBeanVista.all}" scrollable="true" scrollHeight="150"
                                  paginator="true" rows="10" paginatorPosition="bottom"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-                                 >  
+                                 resizableColumns="true">  
                         <f:facet name="header">  
                             Rubros  
                         </f:facet>
-                        <!--<p:column headerText="Codigo" style="width:24%">  
+                        <!--<p:column headerText="Codigo" >  
                             <h:outputText value="#{rubro.codigoRubro}" />  
                         </p:column>-->
-                        <p:column headerText="Nombre" style="width:24%" filterBy="#{rubro.nombreRubro}"   
+                        <p:column headerText="Nombre"  filterBy="#{rubro.nombreRubro}"   
                                   footerText="contains" filterMatchMode="contains">  
                             <h:outputText value="#{rubro.nombreRubro}" dir="center"/>  
                         </p:column>  
-                        <p:column headerText="Detalle" style="width:24%"    
-                                  footerText="contains" filterMatchMode="contains">  
-                            <h:outputText value="#{rubro.detalleRubro}" />  
-                        </p:column>  
-                        <p:column headerText="Unidad" style="width:10%">  
+                        <p:column headerText="Unidad">  
                             <div style="text-align: center;">
                             <h:outputText value="#{rubro.unidadRubro}"/>
                             </div>
                         </p:column>  
-                        <p:column style="width:4%">  
-                            <p:commandButton id="btnRubroUpdate" update=":formUpdate" oncomplete="dialogRubroUpdate.show()" icon="icon-edit" title="Modificar">  
-                                <f:setPropertyActionListener value="#{rubro}" target="#{rubroBeanVista.rubro}" />  
+                        <p:column>  
+                            <p:commandButton id="btnRubroUpdate" update=":formUpdate" oncomplete="dialogRubroUpdate.show()" icon="icon-edit1" title="Modificar">  
+                                <f:setPropertyActionListener value="#{rubro}" target="#{rubroBeanVista.rubro}"/>  
                             </p:commandButton>  
-
                             <p:commandButton id="btnRubroDelete" update=":formDelete" oncomplete="dialogRubroDelete.show()" icon="icon-delete" title="Eliminar">  
-                                <f:setPropertyActionListener value="#{rubro}" target="#{rubroBeanVista.rubro}" />  
+                                <f:setPropertyActionListener value="#{rubro}" target="#{rubroBeanVista.rubro}"/>  
                             </p:commandButton>  
 
                         </p:column>  

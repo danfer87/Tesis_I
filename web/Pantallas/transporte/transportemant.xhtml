@@ -27,7 +27,7 @@
                     </p:commandButton>  
                 </h:form>
                 <h:form id="formDataTable">  
-                    <p:dataTable id="mostrarTransporte" var="transporte" value="#{transportesBean.listaTransporte}"
+                    <p:dataTable id="mostrarTransporte" var="transporte" value="#{transportesBean.listaTransporte}" scrollable="true" scrollHeight="150"
                                  paginator="true" rows="10" paginatorPosition="bottom"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                  >  
@@ -50,7 +50,7 @@
                             <h:outputText value="#{transporte.categoriatransporte.nombCatTrans}" />  
                         </p:column> 
                         <p:column style="width:4%">  
-                            <p:commandButton id="btnTransporteUpdate" update=":formUpdate" oncomplete="dialogTransporteUpdate.show()" icon="icon-edit" title="Modificar">  
+                            <p:commandButton id="btnTransporteUpdate" update=":formUpdate" oncomplete="dialogTransporteUpdate.show()" icon="icon-edit1" title="Modificar">  
                                 <f:setPropertyActionListener value="#{transporte}" target="#{transportesBean.transporte}" />  
                             </p:commandButton>  
 

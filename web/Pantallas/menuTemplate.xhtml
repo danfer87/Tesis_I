@@ -42,14 +42,6 @@
                     <p:growl id="messages"/>  
                     <p:menubar autoDisplay="false">  
 
-
-                        <p:submenu rendered="#{loginBean.usuario.perfil.modProyecto}" label="Proyecto" icon="ui-icon-document">  
-                            <p:menuitem icon="ui-icon-document" rendered="#{loginBean.usuario.perfil.modProyectos}" value="Nuevo Proyecto" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
-                        </p:submenu>  
-                        <p:submenu rendered="#{loginBean.usuario.perfil.modProyecto}" label="Proyecto" icon="ui-icon-home">  
-                           <p:menuitem rendered="#{loginBean.usuario.perfil.modProyectos}" icon="ui-icon-document" value="Nuevo Proyecto" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
-                        </p:submenu>  
-
                         <p:submenu rendered="#{loginBean.usuario.perfil.modProyecto}" label="Proyecto" icon="ui-icon-home">  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modProyectos}" icon="ui-icon-document" value="Nuevo Proyecto" url="#{appBean.basePath}proyecto/mantProyecto.xhtml"/>  
                         </p:submenu>  
@@ -67,7 +59,11 @@
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modPresup}"   value="Presupuestos" url="#{appBean.basePath}presupuesto/presupuestoMant.xhtml" />  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modCronograma}"   value="Cronograma Valorado" url="#" />  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modReajprec}"    value="Reajuste de Precios" url="#" />  
-                        </p:submenu>  
+                        </p:submenu>
+                        
+                        <p:submenu rendered="#{loginBean.usuario.perfil.modReportes}" label="Reportes Generales" icon="ui-icon-gear">  
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modReppartida}" value="Partidas" url="#{appBean.basePath}usuarios/reppartidas.xhtml"  />  
+                        </p:submenu>
 
                         <p:submenu rendered="#{loginBean.usuario.perfil.modSeguridad}" label="Seguridad" icon="ui-icon-gear">  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modUsuario}" value="Gestion Usuarios" url="#{appBean.basePath}usuarios/usuariomantenimiento.xhtml"  />  
@@ -86,7 +82,7 @@
                 <ui:insert name="content"></ui:insert>
             </div>
             <div id="bottom">
-                <ui:insert name="bottom">&copy;SISAPU 2014</ui:insert>
+                <ui:insert name="bottom">&copy;SISAPU 2014, Derechos Reservados</ui:insert>
             </div>
         </div>
         <script type="text/javascript">

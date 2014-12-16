@@ -27,7 +27,7 @@
                     </p:commandButton>  
                 </h:form>
                 <h:form id="formDataTable">  
-                    <p:dataTable id="mostrarRubros" var="rubro" value="#{rubrosBean.listaRubros}"
+                    <p:dataTable id="mostrarRubros" var="rubro" value="#{rubrosBean.listaRubros}" scrollable="true" 
                                  paginator="true" rows="10" paginatorPosition="bottom"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                  >  
@@ -41,18 +41,13 @@
                                   footerText="contains" filterMatchMode="contains">  
                             <h:outputText value="#{rubro.nombreRubro}" dir="center"/>  
                         </p:column>  
-                        <p:column headerText="Detalle" style="width:24%"    
-                                  footerText="contains" filterMatchMode="contains">  
-                            <h:outputText value="#{rubro.detalleRubro}" />  
-                        </p:column>  
-                        <p:column headerText="Unidad" style="width:20%">  
+                        <p:column headerText="Unidad" style="width:10%">  
                             <h:outputText value="#{rubro.unidadRubro}" />  
                         </p:column>  
                         <p:column style="width:4%">  
                             <p:commandButton id="btnRubroUpdate" update=":formUpdate" oncomplete="dialogRubroUpdate.show()" icon="icon-edit" title="Modificar">  
                                 <f:setPropertyActionListener value="#{rubro}" target="#{rubrosBean.rubro}" />  
                             </p:commandButton>  
-
                             <p:commandButton id="btnRubroDelete" update=":formDelete" oncomplete="dialogRubroDelete.show()" icon="icon-delete" title="Eliminar">  
                                 <f:setPropertyActionListener value="#{rubro}" target="#{rubrosBean.rubro}" />  
                             </p:commandButton>  
