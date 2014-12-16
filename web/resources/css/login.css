@@ -41,6 +41,17 @@
     
 }
 
+  .contenedorderecha{
+        width: 50px;
+        height: 200px;
+        background-color: #999;
+        
+        margin-right: auto;
+	margin-left: auto;
+        border-bottom: burlywood;
+    }
+    
+
 .ui-state-default .icon-login{
  background-image: url(../imagenes/iconos/Login.png);
 }
