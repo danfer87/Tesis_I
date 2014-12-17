@@ -102,7 +102,25 @@ fail("Rubro no eliminado");
 } 
    } 
     
+ @Test   
+ public void ActualizarRubro() {
+   try {
     
+rubrodao.actualizarRubro(rubro); 
+if(rubrodao !=null) {
+ 
+assertTrue(" Registro Actualizado Exitosamente", true);
+
+} else {
+
+fail("Error Rubro no se pudo actualizar" );
+}
+
+} catch (Exception e) {
+
+fail("Error Rubro no se pudo Actualizar");
+} 
+   }
     
     
     
