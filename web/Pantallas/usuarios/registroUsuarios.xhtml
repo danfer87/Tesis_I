@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="#{appBean.baseUrl}resources/css/registro.css"></link>
+        <link rel="stylesheet" href="#{appBean.baseUrl}resources/css/cssLayout.css"></link>
+        <link rel="stylesheet" href="#{appBean.baseUrl}resources/css/default.css"></link>
+        <title>Registro de Usuarios</title>
+    </h:head>
+    <h:body>
+
+        <div id="cabeceraRegistro"></div>
+        <div id="contenedorRegistro">
+            <div id="cabecera" style="color:steelblue;font-size:20px;font-weight:bold">
+                Registro de Usuarios
+        </div>
+                <h:form id="frmRegistrarUsuario">
+                    <p:growl id="mensajeGeneral" showDetail="true" sticky="false" />
+                    <p:panel >
+                    <h:panelGrid columns="3">
+                        
+                        <p:outputLabel value="Nombre" for="txtNombre"/>
+                        <p:inputText id="txtNombre" label="Nombre" size="50" value="#{usuarioBean.nombre}">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtNombre"/>
+                        
+                        <p:outputLabel value="Apellido" for="txtApellido"/>
+                        <p:inputText id="txtApellido" label="Apellido" size="50" value="#{usuarioBean.apellido}">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtApellido"/>
+                        
+                        <p:outputLabel value="Correo electrónico" for="txtCorreoElectronico"/>
+                        <p:inputText id="txtCorreoElectronico" label="Correo electrónico" size="50" title="Ejemplo: xxx@xxx.com" value="#{usuarioBean.correo}">
+                            <f:validator validatorId="validatorVacio"/>
+                            <f:validator validatorId="validatorEmail"/>
+                        </p:inputText>
+                        <h:panelGroup>
+                            <p:tooltip for="txtCorreoElectronico" showEvent="focus" hideEvent="blur"/>
+                            <p:message for="txtCorreoElectronico"/>
+                        </h:panelGroup>
+                        
+                        <p:outputLabel value="Usuario" for="txtUsuario"/>
+                        <p:inputText id="txtUsuario" label="Usuaeio" size="50" value="#{usuarioBean.sobrenombre}">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtUsuario"/>
+                        
+                        <p:outputLabel value="Contraseña" for="txtContrasenia"/>
+                        <p:password id="txtContrasenia" label="Contraseña" size="50" value="#{usuarioBean.contrasenia}">
+                        <f:validator validatorId="validatorVacio"/>
+                        </p:password>
+                        <p:message for="txtContrasenia"/>
+                        
+                        <p:outputLabel value="Repita contraseña" for="txtContraseniaRepita"/>
+                        <p:password id="txtContraseniaRepita" label="Repita contraseña" size="50" value="#{usuarioBean.contraseniaRepita}">
+                               <f:validator validatorId="validatorVacio"/>
+                        </p:password>
+                       <p:message for="txtContraseniaRepita"/>
+                                               
+                        <h:panelGroup></h:panelGroup>
+                        
+                        <h:panelGroup></h:panelGroup>
+                        
+                        <h:panelGroup></h:panelGroup>
+                        
+                       
+                        <p:commandButton value="Registrarse" ajax="false" actionListener="#{usuarioBean.registUsuario(actionEvent)}" icon="icon-registro"/>
+                    </h:panelGrid>
+                        </p:panel>
+                </h:form> 
+         </div>       
+        <div id="pieRegistro">&copy;SISAPU 2014, Derechos Reservados</div>
+    </h:body>
+</html>
+
