@@ -35,7 +35,7 @@ public class Administrar_Proyectos {
     Usuario usuario;
     usuarioDao usuarioDao= new usuarioDaoImpl();
     proyectoDao proyectoDao=new proyectoDaoImpl();
-    private static final int proyectobd = 3;  
+    private static final int proyectobd = 4;  
     @BeforeClass
    
     public static void setUpClass() {
@@ -75,7 +75,7 @@ public class Administrar_Proyectos {
  public void ListarProyectos()
            {
          listaproyectos=proyectoDao.listarProyectos();
-          Assert.assertTrue("Comprobar que en la base de datos hay 3 registros de proyectos",  
+          Assert.assertTrue("Comprobar que en la base de datos hay 4 registros de proyectos",  
            listaproyectos.size() == proyectobd);  
            }  
    
@@ -120,7 +120,7 @@ fail("Proyecto no eliminado");
    }   
    
      @Test   
- public void ActualizarProyectp() {
+ public void ActualizarProyecto() {
    try {
     
 proyectoDao.actualizarProyecto(proyecto);   
