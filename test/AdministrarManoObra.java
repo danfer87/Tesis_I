@@ -31,7 +31,7 @@ public class AdministrarManoObra {
      Categoriamanoobra catmanoobra;
     manoobraDao manodao= new manoobraDaoImpl();
     
-    private static final int manobd = 3; 
+    private static final int manobd = 5; 
     
     @BeforeClass
     public static void setUpClass() {
@@ -46,6 +46,7 @@ public class AdministrarManoObra {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
+
     @Before
     public void setUp() {
         manoobra=new Manoobra();
@@ -59,7 +60,7 @@ public class AdministrarManoObra {
     public void BuscarManoObra()
            {
         listarmanoObra=manodao.buscarTodosManoObra();
-          Assert.assertTrue("Busca en la base de datos que exista 3 registros para Mantenimiento de Mano de Obra",  
+          Assert.assertTrue("Busca en la base de datos que exista 5 registros para Mantenimiento de Mano de Obra",  
           listarmanoObra.size() == manobd);  
            }  
     @Test
