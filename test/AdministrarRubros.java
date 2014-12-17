@@ -31,7 +31,7 @@ public class AdministrarRubros {
     
     rubroDao rubrodao= new rubroDaoImpl();
     
-    private static final int Rubrobd = 1;  
+    private static final int Rubrobd = 3;  
     
     @BeforeClass
     public static void setUpClass() {
@@ -56,11 +56,11 @@ public class AdministrarRubros {
     // The methods must be annotated with annotation @Test. For example:
     //
     
-    
+     @Test
     public void BuscarRubros()
            {
          listarubros=rubrodao.buscarTodosRubros();
-          Assert.assertTrue("Busca en la base de datos que exista  registros de Rubros",  
+          Assert.assertTrue("Busca en la base de datos que exista 3 registros de Rubros",  
           listarubros.size() == Rubrobd);  
            }  
     @Test
