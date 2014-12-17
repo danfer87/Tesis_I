@@ -31,7 +31,7 @@ public class AdministrarRubros {
     
     rubroDao rubrodao= new rubroDaoImpl();
     
-    private static final int Rubrobd = 3;  
+    private static final int Rubrobd = 4;  
     
     @BeforeClass
     public static void setUpClass() {
@@ -60,7 +60,7 @@ public class AdministrarRubros {
     public void BuscarRubros()
            {
          listarubros=rubrodao.buscarTodosRubros();
-          Assert.assertTrue("Busca en la base de datos que exista 3 registros de Rubros",  
+          Assert.assertTrue("Busca en la base de datos que exista 4 registros de Rubros",  
           listarubros.size() == Rubrobd);  
            }  
     @Test
