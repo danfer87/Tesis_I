@@ -3,6 +3,12 @@
  * and open the template in the editor.
  */
 
+import ec.com.sisapus.dao.manoobraDao;
+import ec.com.sisapus.daoimpl.manoobraDaoImpl;
+import ec.com.sisapus.modelo.Categoriamanoobra;
+import ec.com.sisapus.modelo.Manoobra;
+import java.util.List;
+import javax.annotation.Resource;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,6 +24,13 @@ public class AdministrarManoObra {
     
     public AdministrarManoObra() {
     }
+     @Resource  
+    List<Manoobra> listarmanoObra;  
+    Manoobra equipo;
+     Categoriamanoobra catmanoobra;
+    manoobraDao manodao= new manoobraDaoImpl();
+    
+    private static final int equipobd = 2; 
     
     @BeforeClass
     public static void setUpClass() {
