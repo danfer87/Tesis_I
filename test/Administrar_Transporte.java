@@ -31,7 +31,7 @@ public class Administrar_Transporte {
      Categoriatransporte cattrans;
     transporteDao transportedao= new transporteDaoImpl();
     
-    private static final int transpbd = 2; 
+    private static final int transpbd = 1; 
     @BeforeClass
     public static void setUpClass() {
     }
@@ -56,7 +56,7 @@ public class Administrar_Transporte {
     public void BuscarTransporte()
            {
        listartransporte=transportedao.buscarTodosTransportes();
-          Assert.assertTrue("Busca en la base de datos que exista 2 registros para Mantenimiento de Transporte",  
+          Assert.assertTrue("Busca en la base de datos que exista 1 registros para Mantenimiento de Transporte",  
          listartransporte.size() == transpbd);  
            }  
     @Test
