@@ -31,7 +31,7 @@ public class AdministrarManoObra {
      Categoriamanoobra catmanoobra;
     manoobraDao manodao= new manoobraDaoImpl();
     
-    private static final int manobd = 5; 
+    private static final int manobd = 7; 
     
     @BeforeClass
     public static void setUpClass() {
@@ -60,7 +60,7 @@ public class AdministrarManoObra {
     public void BuscarManoObra()
            {
         listarmanoObra=manodao.buscarTodosManoObra();
-          Assert.assertTrue("Busca en la base de datos que exista 5 registros para Mantenimiento de Mano de Obra",  
+          Assert.assertTrue("Busca en la base de datos que exista 7 registros para Mantenimiento de Mano de Obra",  
           listarmanoObra.size() == manobd);  
            }  
     @Test
