@@ -23,13 +23,20 @@
    <ui:composition template="./../menuTemplate.xhtml">
       <ui:define name="content">
        <h:form id="frmRealizarVentas">
+           <p:layout fullPage="true">
+ 
+   
+
+    <p:layoutUnit position="west" size="200" header="Precios Unitarios" resizable="true" closable="true" collapsible="true">
+        <h:outputText value="Materiales" />
+    </p:layoutUnit>
         <p:growl id="mensajeGeneral" showDetail="true"/>
       
-                
+      <p:layoutUnit position="center">          
     <p:tabView>
         <p:tab title="Equipos y Herramientas" closable="false"  >
          <FIELDSET  style="-moz-border-radius:3px;background-color: #dddddd;
-                          width: 1200px;"  class="borderFieldSet">
+                          width: 1100px;"  class="borderFieldSet">
                             <legend>Datos Generales Equipos y Herramientas</legend>    
                     <p:dataTable value="#{equipoherramientaBean.listaEquipoHerramienta}" var="item"  scrollable="true" scrollHeight="100">
                         <p:column headerText="Codigo">
@@ -55,7 +62,7 @@
  
     
             <FIELDSET  style="-moz-border-radius:10px;background-color: #dddddd;
-                          width: 1230px;" class="borderFieldSet" >
+                          width: 1118px;" class="borderFieldSet" >
                     <legend>Detalle Equipos y Herramientas</legend>
             <p:dataTable id="tablaListaProductosVenta" value="#{ApuBeanVista.listaEquiposApus}" var="item" >
               
@@ -93,8 +100,10 @@
                 </h:panelGroup>
             </p:panelGrid>
            </FIELDSET>
-               
+         </p:layoutUnit> 
+        </p:layout>
         </h:form>
+        
             </ui:define>
         </ui:composition>
             

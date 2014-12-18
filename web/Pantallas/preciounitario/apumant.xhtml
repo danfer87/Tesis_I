@@ -23,64 +23,84 @@
             <ui:define name="content">
      
      <h:form>   
-       <script type="text/javascript">
-    function handleDrop(event, ui) {
-        var droppedCar = ui.draggable;
+     <p:layout fullPage="true">
  
-        droppedCar.fadeOut('fast');
-    }
-</script>
-         <p:growl id="growl" sticky="true" showDetail="true"/>
-    <p:wizard >
-        <p:tab id="personal" title="Equipos y Herramientas">
-            <p:panel header="Equipos y Herramientas">
-                <p:messages />
-                <h:panelGrid columns="2" columnClasses="label, value">
-          
+   
+
+    <p:layoutUnit position="west" size="200" header="Precios Unitarios" resizable="true" closable="true" collapsible="true">
+        <h:outputText value="Materiales" />
+    </p:layoutUnit>
  
-                    <h:outputText value="Descripcion:" />
-                    <p:inputText value="" required="true" label="Descripcion"/>
  
-                    <h:outputText value="Cantidad: " />
-                    <p:inputText value="" required="true" label="Cantidad" />
-                    
-                    <h:outputText value="Tarifa: " />
-                    <p:inputText value="" required="true" label="Tarifa" />
-                    <h:outputText value="Costo Hora: " />
-                    <p:inputText value="" required="true" label="Costo Hora" />
+    <p:layoutUnit position="center">
+       <p:tabView>
+        <p:tab title="Equipos y Herramientas" closable="false"  >
+         <FIELDSET  style="-moz-border-radius:3px;background-color: #dddddd;
+                          width: 1100px;"  class="borderFieldSet">
+                            <legend>Datos Generales Equipos y Herramientas</legend>    
+                    <p:dataTable value="#{equipoherramientaBean.listaEquipoHerramienta}" var="item"  scrollable="true" scrollHeight="100">
+                        <p:column headerText="Codigo">
+                            <h:outputText value="#{item.codigoEqherr}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE" filterBy="nombre">
+                            <h:outputText value="#{item.nombreEqherr}"/>
+                        </p:column>
+                        <p:column headerText="Costo Hora">
+                            <h:outputText value="#{item.costohoraEqherr}"/>
+                        </p:column>
+                        <p:column headerText="Categoria">
+                            <h:outputText value="#{item.categoriaequipoherramienta.nombCatEqherr}"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Agregar" ajax="true" actionListener="#{ApuBeanVista.agregarListaEquiposApus(item.codigoEqherr)}" />
+                        </p:column>
+                    </p:dataTable>
+                    </FIELDSET>
+                  </p:tab>  
+                 
+                   </p:tabView>  
+  <FIELDSET  style="-moz-border-radius:10px;background-color: #dddddd;
+                          width: 1118px;" class="borderFieldSet" >
+                    <legend>Detalle Equipos y Herramientas</legend>
+            <p:dataTable id="tablaListaProductosVenta" value="#{ApuBeanVista.listaEquiposApus}" var="item" >
+              
+                  
+                <p:column headerText="NOMBRE" style="text-align: left;">
+                    <h:outputText value="#{item.descEqherrApu}"/>
+                </p:column>
+                <p:column headerText="Costo Hora" style="text-align: center;">
+                    <h:outputText value="#{item.costohoraEqherrApu}"/>
+                </p:column>
+                <p:column headerText="Cantidad" style="text-align: center;">
+                    <p:inputText value="#{item.cantEqherrApu}" style="text-align: center;" />                    
+                </p:column>
+                     <p:column headerText="Rendimiento" style="text-align: center;">
+                         <p:inputText value="#{item.rendimEqherrApu}" style="text-align: center;" />                    
+                </p:column>
+                     <p:column headerText="Tarifa" style="text-align: center;">
+                         <p:inputText value="#{item.tarifaEqherrApu}" style="text-align: center;" />                    
+                </p:column>
+                <p:column headerText="Total" style="text-align: center;">
+                    S./ 
+                    <h:outputText value="#{item.costotEqherrApu}"/>
+                </p:column>
+                <p:column style="text-align: center;">
+                    <p:commandButton value="Retirar de la lista" ajax="true" actionListener="#{ApuBeanVista.EliminarListaEquipo(item.descEqherrApu)}"/>
+                </p:column>
+            </p:dataTable>
+            <p:panelGrid id="panelFinalVenta" columns="1" style="text-align: right;width: 100%;">
+                <h:panelGroup>
+                    <p:commandButton value="Actualizar Total Equipos" actionListener="#{ApuBeanVista.calcularCostos()}" />
+                    S./ 
+                    <h:outputText value="#{ApuBeanVista.precioTotalEquipo}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>
+                 ___________
+                 <p:commandButton value="Guardar" ajax="false" actionListener="#{ApuBeanVista.guardarequiposApus()}"/>
+                </h:panelGroup>
+            </p:panelGrid>
+           </FIELDSET>
+    </p:layoutUnit>
  
-                     <h:outputText value="Rendimiento: " />
-                     <p:inputText value="" required="true" label="Rendimiento" />
- 
-                    <h:outputText value="Costo Total: " />
-                    <p:inputText value="" required="true" label="Total" />
- 
-                    <h:outputText value="Ir al Ultimo: " />
-                    <h:selectBooleanCheckbox value="" />
-                </h:panelGrid>
-            </p:panel>
-        </p:tab>
- 
-        <p:tab id="address" title="Materiales">
-            <p:panel header="Materiales">
-               
-            </p:panel>
-        </p:tab>
- 
-        <p:tab id="contact" title="Mano de Obra">
-            <p:panel header="Mano de Obra">
-                
-            </p:panel>
-        </p:tab>
- 
-        <p:tab id="confirm" title="Confirmacion">
-            <p:panel header="Confirmacion">
-               
- 
-                <p:commandButton value="Submit" update="growl" process="@this"/>
-            </p:panel>
-        </p:tab>
-    </p:wizard>
+</p:layout>
  
 </h:form>
            
