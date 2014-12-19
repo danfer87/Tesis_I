@@ -19,13 +19,14 @@
         </style>
     </h:head>
     <body>
-        <h:form id="formAPU">
+       
             <ui:composition template="./../menuTemplate.xhtml">
                 <ui:define name="content">
-                    <p:growl id="msgs" showDetail="false" />  
+                  
+                     
                     <p:tabView>
                         <p:tab title="Analisis Precio Unitario" closable="true">
-                            <h:form>
+                            <h:form id="Rubros">
                                 <p:outputLabel value="Seleccione el rubro:" />
                                 <p:selectOneMenu value="#">  
                                     <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
@@ -56,45 +57,73 @@
                                 </h:form>
                             </FIELDSET>
                             <br></br>
-
-                            <FIELDSET style="-moz-border-radius:10px;background-color: #EEEEEE;
+       <!--aumento de dialogo para crear equipos y herramientas-->
+                  <h:form id="formCrearEquipoh">
+                       <p:growl id="mensajeGeneral" showDetail="true"/>
+                    <p:dialog header="Equipos y Herramientas" widgetVar="dialogEquipoh" resizable="false" id="dialogEquipoh"  
+                              showEffect="fade" hideEffect="explode" modal="true"  >
+                        <p:dataTable value="#{equipoherramientaBean.listaEquipoHerramienta}" var="item"  scrollable="true" scrollHeight="100"
+                                     style="width:650px ">
+                        <p:column headerText="Codigo">
+                            <h:outputText value="#{item.codigoEqherr}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE" >
+                            <h:outputText value="#{item.nombreEqherr}"/>
+                        </p:column>
+                        <p:column headerText="Costo Hora">
+                            <h:outputText value="#{item.costohoraEqherr}"/>
+                        </p:column>
+                        <p:column headerText="Categoria">
+                            <h:outputText value="#{item.categoriaequipoherramienta.nombCatEqherr}"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Seleccionar"  actionListener="#{ApuBeanVista.agregarListaEquiposApus(item.codigoEqherr)}"
+                                            />
+                        </p:column>
+                    </p:dataTable>
+                    </p:dialog>
+                </h:form>  
+          <!--fin de dialogo para crear equipos y herramientas-->               
+                        
+        <FIELDSET style="-moz-border-radius:10px;background-color: #EEEEEE;
                                       width: 850px;" class="borderFieldSet">
                                 
-                                <legend>Equipo y Herramientas</legend>
-                                <h:form>
-                                <p:dataTable value="" var="equipoherramienta" >
-                                    <p:column headerText="#" style="text-align: center;">
-                                    </p:column>
-                                    <p:column headerText="Codigo" style="text-align: center;">
-                                            <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Descripcion" style="text-align: center;">
-                                            <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Unidad" style="text-align: center;">
-                                            <h:outputText value=""/>
-                                    </p:column>
-                                    <p:column headerText="Cantidad" style="text-align: center;">
-                                            <p:inputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Precio Unitario" style="text-align: center;">
-                                            <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Rendimiento" style="text-align: center;">
-                                            <p:inputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Precio Total" style="text-align: center;">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                </p:dataTable>
+                 <legend>Equipo y Herramientas</legend>
+                  <h:form id="frmRealizarVentas">
+                    <p:growl id="mensajeGeneral" showDetail="true"/>
+                   <p:dataTable id="tablaListaProductosVenta" value="#{ApuBeanVista.listaEquiposApus}" var="item" scrollable="true" scrollHeight="100">
+                                     <p:column headerText="NOMBRE" style="text-align: left;">
+                    <h:outputText value="#{item.descEqherrApu}"/>
+                </p:column>
+                <p:column headerText="Costo Hora" style="text-align: center;">
+                    <h:outputText value="#{item.costohoraEqherrApu}"/>
+                </p:column>
+                <p:column headerText="Cantidad" style="text-align: center;">
+                    <p:inputText value="#{item.cantEqherrApu}" style="text-align: center;" />                    
+                </p:column>
+                     <p:column headerText="Rendimiento" style="text-align: center;">
+                         <p:inputText value="#{item.rendimEqherrApu}" style="text-align: center;" />                    
+                </p:column>
+                     <p:column headerText="Tarifa" style="text-align: center;">
+                         <p:inputText value="#{item.tarifaEqherrApu}" style="text-align: center;" />                    
+                </p:column>
+                <p:column headerText="Total" style="text-align: center;">
+                    S./ 
+                    <h:outputText value="#{item.costotEqherrApu}"/>
+                </p:column>
+                <p:column style="text-align: center;">
+                    <p:commandButton value="Retirar de la lista" ajax="true" actionListener="#{ApuBeanVista.EliminarListaEquipo(item.descEqherrApu)}"/>
+                </p:column>
+                                    
+                  </p:dataTable>
+                                    
                                 <br></br>
                                 <h:panelGrid columns="2" style="float:right" cellpadding="3" >
                                     <h:panelGrid columns="2" cellpadding="3" >
                                     <h:form>
-                                    <p:commandButton id="btnAgregarEH" title="" value="Agregar"/>
-                                    </h:form>
-                                    <h:form>
-                                    <p:commandButton id="btnCalcularSubTEH" title="" value="Calcular"/>
+                                    <p:commandButton id="btnAgregarEH"  oncomplete="dialogEquipoh.show()" value="Agregar"/>
+                                   
+                                    <p:commandButton id="btnCalcularSubTEH"  title="" value="Calcular"/>
                                     </h:form>
                                     </h:panelGrid>
                                     <h:panelGrid columns="2" cellpadding="3" >
@@ -201,7 +230,7 @@
                             <br></br>
 
                             <FIELDSET style="-moz-border-radius:10px;background-color: #EEEEEE;
-                                      width: 850px;" class="borderFieldSet">
+                                      width: 850px; " class="borderFieldSet">
                                 <legend>Transporte</legend>
                                 <h:form>
                                 <p:dataTable value="" var="transporte" >
@@ -245,7 +274,7 @@
                             </FIELDSET>
                             <br></br>
                             <fieldset style="-moz-border-radius:10px;background-color: #EEEEEE;
-                                      width: 350px;">
+                                      width: 350px ;float: right;">
                                 <legend>Costo Rubro</legend>
                                 <h:form id="cargar_coto_rubro" >
                                     <h:panelGrid columns="2" cellpadding="4" style="float:right" border="2">
@@ -267,6 +296,6 @@
                     </p:tabView>
                 </ui:define>
             </ui:composition>
-        </h:form>
+  
     </body>
 </html>

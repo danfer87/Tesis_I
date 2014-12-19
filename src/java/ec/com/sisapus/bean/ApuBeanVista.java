@@ -131,8 +131,13 @@ public class ApuBeanVista implements Serializable {
        
             //RequestContext.getCurrentInstance().update("frmApus:frmdetequipos:tablaListaEquipos");
            //RequestContext.getCurrentInstance().update("frmApus:msgs");
+            //el qu estaba
             RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta");
             RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
+            //
+        //nuevas tablas    
+       // RequestContext.getCurrentInstance().update("conequih,:tablaListaProductosVenta");
+        //    RequestContext.getCurrentInstance().update("conequih,:mensajeGeneral");    
         }
         catch(Exception ex)
         {

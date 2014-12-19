@@ -22,28 +22,28 @@
  
    <ui:composition template="./../menuTemplate.xhtml">
       <ui:define name="content">
+       
        <h:form id="frmRealizarVentas">
-           
- 
-
- 
         <p:growl id="mensajeGeneral" showDetail="true"/>
-      
-           
-                   
+                 
     <p:tabView>
-        <p:tab id="quito" title="Quito" closable="false"  >
-         <FIELDSET  style="-moz-border-radius:3px;background-color: #dddddd;
-                          width: 1100px;"  class="borderFieldSet">
+        
+        
+     <p:tab id="quito" title="Quito" closable="false"  >
+         
+                     
+  <p:dialog header="Crear Nuevo Proyecto" widgetVar="dialogProyectoCreate" resizable="false" id="dlgProyectoCreate"  
+                              showEffect="fade" hideEffect="explode" modal="true" style="width: 550px">     
+                        <FIELDSET  style="-moz-border-radius:3px;background-color: #dddddd;
+                          width: 550px;"  class="borderFieldSet">
                             <legend>Datos Generales Equipos y Herramientas</legend>    
                             <p:dataTable value="#{equipoherramientaBean.listaEquipoHerramienta}" var="item"  scrollable="true" scrollHeight="100"
-                                         selection="#{ApuBeanVista.equipapus}" selectionMode="single"  rowKey="#{item.codigoEqherr}">
-                                <p:ajax event="rowSelect" listener="#{ApuBeanVista.SeleccionarFila(event)}"  />
-                          
+                                         style="width: 550px">
+                                        
                         <p:column headerText="Codigo">
                             <h:outputText value="#{item.codigoEqherr}"/>
                         </p:column>
-                        <p:column headerText="NOMBRE" filterBy="nombre">
+                        <p:column headerText="NOMBRE" >
                             <h:outputText value="#{item.nombreEqherr}"/>
                         </p:column>
                         <p:column headerText="Costo Hora">
@@ -56,11 +56,15 @@
                             <p:commandButton value="Agregar" ajax="true" actionListener="#{ApuBeanVista.agregarListaEquiposApus(item.codigoEqherr)}" />
                         </p:column>
                     </p:dataTable>
+                            
                     </FIELDSET>
-            
+            </p:dialog> 
+               
+                            
                   </p:tab>  
     </p:tabView>
-         <FIELDSET  style="-moz-border-radius:10px;background-color: #dddddd;
+         
+   <FIELDSET  style="-moz-border-radius:10px;background-color: #dddddd;
                           width: 1118px;" class="borderFieldSet" >
                     <legend>Detalle Equipos y Herramientas</legend>
             <p:dataTable id="tablaListaProductosVenta" value="#{ApuBeanVista.listaEquiposApus}" var="item" scrollable="true" scrollHeight="100">
@@ -91,6 +95,9 @@
             </p:dataTable>
             <p:panelGrid id="panelFinalVenta" columns="1" style="text-align: right;width: 100%;">
                 <h:panelGroup>
+                    <p:commandButton id="btnProyectoCreate"  oncomplete="dialogProyectoCreate.show()" icon="icon-add" title="Nuevo Proyecto" value="Crear">  
+                    </p:commandButton>   
+
                     <p:commandButton value="Actualizar Total Equipos" actionListener="#{ApuBeanVista.calcularCostos()}" />
                     S./ 
                     <h:outputText value="#{ApuBeanVista.precioTotalEquipo}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>
@@ -98,8 +105,10 @@
                  <p:commandButton value="Guardar" ajax="false" actionListener="#{ApuBeanVista.guardarequiposApus()}"/>
                 </h:panelGroup>
             </p:panelGrid>
-           </FIELDSET>
-          
+           </FIELDSET>     
+        
+        
+        
         </h:form>
         
             </ui:define>
