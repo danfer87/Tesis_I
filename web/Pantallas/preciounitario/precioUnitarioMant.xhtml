@@ -25,16 +25,23 @@
        <h:form id="frmRealizarVentas">
            <p:layout fullPage="true">
  
-   
 
     <p:layoutUnit position="west" size="200" header="Precios Unitarios" resizable="true" closable="true" collapsible="true">
         <h:outputText value="Materiales" />
+        <p:menu>
+        <p:menuitem value="Ingresar Informacion para APUS" url="#{appBean.basePath}preciounitario/IngresarApu.xhtml"/>
+        <p:menuitem value="Crear APUS" url="#"/>
+        <p:menuitem value="Eliminar APUS" url="#"/>
+        <p:menuitem value="Lista APUS" url="#"/>
+        
+    </p:menu>
     </p:layoutUnit>
         <p:growl id="mensajeGeneral" showDetail="true"/>
       
       <p:layoutUnit position="center">          
+                   
     <p:tabView>
-        <p:tab title="Equipos y Herramientas" closable="false"  >
+        <p:tab id="quito" title="Quito" closable="false"  >
          <FIELDSET  style="-moz-border-radius:3px;background-color: #dddddd;
                           width: 1100px;"  class="borderFieldSet">
                             <legend>Datos Generales Equipos y Herramientas</legend>    
@@ -56,17 +63,14 @@
                         </p:column>
                     </p:dataTable>
                     </FIELDSET>
+            
                   </p:tab>  
-                 
-                   </p:tabView>  
- 
-    
-            <FIELDSET  style="-moz-border-radius:10px;background-color: #dddddd;
+    </p:tabView>
+         <FIELDSET  style="-moz-border-radius:10px;background-color: #dddddd;
                           width: 1118px;" class="borderFieldSet" >
                     <legend>Detalle Equipos y Herramientas</legend>
-            <p:dataTable id="tablaListaProductosVenta" value="#{ApuBeanVista.listaEquiposApus}" var="item" >
-              
-                  
+            <p:dataTable id="tablaListaProductosVenta" value="#{ApuBeanVista.listaEquiposApus}" var="item" scrollable="true" scrollHeight="100">
+                
                 <p:column headerText="NOMBRE" style="text-align: left;">
                     <h:outputText value="#{item.descEqherrApu}"/>
                 </p:column>
