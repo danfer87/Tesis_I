@@ -76,4 +76,14 @@
         <managed-bean-class>ec.com.sisapus.bean.rubroBeanVista</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>catrubroBean</managed-bean-name>
+        <managed-bean-class>ec.com.sisapus.bean.catrubroBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>rubroBean</managed-bean-name>
+        <managed-bean-class>ec.com.sisapus.bean.rubroBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
 </faces-config>

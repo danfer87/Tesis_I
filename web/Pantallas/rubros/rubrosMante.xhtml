@@ -45,12 +45,12 @@
                             <div style="text-align: center;">
                             <h:outputText value="#{rubro.unidadRubro}"/>
                             </div>
-                        </p:column>  
-                        <p:column headerText="Categoria">  
-                            <div style="text-align: center;">
-                                <h:outputText value="#{rubro.categoriarubro.descripcionCatRubro}"/>
-                            </div>
-                        </p:column>  
+                        </p:column>
+                        
+                        <p:column headerText="Categoria:" style="width:15%" filterBy="#{rubro.categoriarubro.descripcionCatRubro}">  
+                            <h:outputText value="#{rubro.categoriarubro.descripcionCatRubro}" />  
+                        </p:column> 
+                        
                         <p:column>  
                             <p:commandButton id="btnRubroUpdate" update=":formUpdate" oncomplete="dialogRubroUpdate.show()" icon="icon-edit1" title="Modificar">  
                                 <f:setPropertyActionListener value="#{rubro}" target="#{rubroBeanVista.rubro}"/>  
@@ -74,12 +74,12 @@
                             <p:inputText value="#{rubroBeanVista.rubro.detalleRubro}" />  
                             <h:outputText value="Unidad:" />  
                             <p:inputText value="#{rubroBeanVista.rubro.unidadRubro}" />  
-                            <h:inputHidden value="#{rubroBeanVista.rubro.codigoRubro}"/>  
-                            <h:outputText value="Rol:" />  
+                            <h:outputText value="Categoria:" />
                             <p:selectOneMenu value="#{rubroBeanVista.rubro.categoriarubro.codigoCatRubro}">  
                                 <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
-                                <f:selectItems value="#{perfilBean.listaPerfiles}" />  
+                                <f:selectItems value="#{catrubroBean.listacatrubro}" />  
                             </p:selectOneMenu> 
+                            <h:inputHidden value="#{rubroBeanVista.rubro.codigoRubro}"/>  
                             <!---->
                             <f:facet name="footer">
                                 <p:separator/>
@@ -100,7 +100,12 @@
                             <h:outputText value="Detalle:" />  
                             <p:inputText value="#{rubroBeanVista.rubro.detalleRubro}" />  
                             <h:outputText value="Unidad:" />  
-                            <p:inputText value="#{rubroBeanVista.rubro.unidadRubro}" />  
+                            <p:inputText value="#{rubroBeanVista.rubro.unidadRubro}" />
+                            <h:outputText value="Categoria:" />
+                            <p:selectOneMenu value="#{rubroBeanVista.rubro.categoriarubro.codigoCatRubro}">  
+                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                                <f:selectItems value="#{catrubroBean.listacatrubro}" />  
+                            </p:selectOneMenu> 
                             <h:inputHidden value="#{rubroBeanVista.rubro.codigoRubro}"/>  
                             
                             <f:facet name="footer">

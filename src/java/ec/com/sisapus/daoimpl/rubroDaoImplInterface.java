@@ -30,7 +30,7 @@ public class rubroDaoImplInterface implements rubroInterfaceDao{
 
     @Override
     public List<Rubro> listarTodosRubros(Session session) throws Exception {
-        String hql="from Rubro r";
+        String hql="from Rubro r left join fetch r.categoriarubro";
         Query query=session.createQuery(hql);
         List<Rubro> listaTRubro=(List<Rubro>) query.list();
         return listaTRubro;
