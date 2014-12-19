@@ -6,7 +6,9 @@ import ec.com.sisapus.modelo.Proyecto;
 import ec.com.sisapus.modelo.Usuario;
 import ec.com.sisapus.util.HibernateUtil;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -14,6 +16,9 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.primefaces.component.inputtext.InputText;
+import org.primefaces.component.tabview.Tab;
+import org.primefaces.component.tabview.TabView;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -27,8 +32,10 @@ public class proyectoBean {
     private Proyecto proyecto;
         private Usuario usuario;
     private List<Proyecto> listaProyectos;
-
+ private List<Proyecto> liscaldimensional;
         private List<Proyecto> listaporUsuario;
+
+   
     
 
     //////
@@ -270,5 +277,41 @@ public class proyectoBean {
         }
     }
     
+     private TabView tabView;
+
+    public TabView getTabView() {
+   FacesContext fc = FacesContext.getCurrentInstance();
+      tabView = (TabView) fc.getApplication().createComponent("org.primefaces.component.TabView");
     
+        // cargar la lista de objetos para tabview
+       
+        //Se crean dinamicamente las tabs y en su contenido, unas cajas de texto
+        for ( Proyecto sub : listaProyectos) {
+            Tab tab = new Tab();
+            tab.setTitle(sub.getContratProy());
+            Random randomGenerator = new Random();
+       int total =4 ;//Math.max(1, randomGenerator.nextInt(6));
+            for (int i = 0; i < total; i++) {
+                
+                InputText inputtext = new InputText();
+                
+                inputtext.setLabel("Label");
+                inputtext.setValue("id:" + inputtext.getClientId());
+                inputtext.setOnfocus("");
+                tab.getChildren().add(inputtext);
+            }
+            tabView.getChildren().add(tab);
+        }
+        return tabView;
+    }
+
+    public void setTabView(TabView tabView) {
+        this.tabView = tabView;
+    }
+    
+
+   
+     
+     
+     
 }

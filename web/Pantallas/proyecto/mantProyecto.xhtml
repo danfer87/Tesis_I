@@ -22,10 +22,12 @@
         <ui:composition template="./../menuTemplate.xhtml">
             <ui:define name="content">
                 <p:growl id="msgs" showDetail="false" />  
+            
+                
                 <h:form>
                     <p:commandButton id="btnProyectoCreate" update=":formCreate" oncomplete="dialogProyectoCreate.show()" icon="icon-add" title="Nuevo Proyecto" value="Crear">  
                     </p:commandButton>  
-                </h:form>
+                                      </h:form>
                 <h:form id="formDataTable">  
                     <p:dataTable id="mostrarProyectos" var="proyecto" value="#{proyectoBean.listaProyectos}" scrollable="true" scrollHeight="150"
                                  paginator="true" rows="10" paginatorPosition="bottom"
