@@ -38,11 +38,11 @@
                             <h:outputText value="#{usuario.codigoUsu}" />  
                         </p:column>-->
                         <!---->
-                        <p:column headerText="Nombre" style="width:20%" filterBy="#{usuario.nombreUsu}"   
+                        <p:column headerText="Nombre" style="width:18%" filterBy="#{usuario.nombreUsu}"   
                                   footerText="contains" filterMatchMode="contains">  
                             <h:outputText value="#{usuario.nombreUsu}" dir="center"/>  
                         </p:column>  
-                        <p:column headerText="Apellido" style="width:20%" filterBy="#{usuario.apellidoUsu}"   
+                        <p:column headerText="Apellido" style="width:18%" filterBy="#{usuario.apellidoUsu}"   
                                   footerText="contains" filterMatchMode="contains">  
                             <h:outputText value="#{usuario.apellidoUsu}" />  
                         </p:column>  
@@ -63,7 +63,7 @@
                             <p:selectBooleanCheckbox value="#{usuario.estadoUsu}" />
                             </div>
                         </p:column> 
-                        <p:column style="width:8%">  
+                        <p:column style="width:8%;text-align: center">  
                             <p:commandButton id="btnUsuarioUpdate" update=":formUpdate" oncomplete="dialogUsuarioUpdate.show()" icon="icon-edit1" title="Modificar">  
                                 <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuario}" />  
                             </p:commandButton>  

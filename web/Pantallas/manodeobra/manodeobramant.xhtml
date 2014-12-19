@@ -49,7 +49,7 @@
                         <p:column headerText="Categoria" style="width:15%" filterBy="#{manodeobra.categoriamanoobra.nombCatManob}">  
                             <h:outputText value="#{manodeobra.categoriamanoobra.nombCatManob}" />  
                         </p:column> 
-                        <p:column style="width:4%">  
+                        <p:column style="width:5%; text-align: center">  
                             <p:commandButton id="btnManoObraUpdate" update=":formUpdate" oncomplete="dialogManoObraUpdate.show()" icon="icon-edit1" title="Modificar">  
                                 <f:setPropertyActionListener value="#{manodeobra}" target="#{manodeobraBean.manoobra}" />  
                             </p:commandButton>  
