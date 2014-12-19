@@ -49,7 +49,7 @@
                         <p:column headerText="Categoria" style="width:15%" filterBy="#{transporte.categoriatransporte.nombCatTrans}">  
                             <h:outputText value="#{transporte.categoriatransporte.nombCatTrans}" />  
                         </p:column> 
-                        <p:column style="width:4%">  
+                        <p:column style="width:5%; text-align: center">  
                             <p:commandButton id="btnTransporteUpdate" update=":formUpdate" oncomplete="dialogTransporteUpdate.show()" icon="icon-edit1" title="Modificar">  
                                 <f:setPropertyActionListener value="#{transporte}" target="#{transportesBean.transporte}" />  
                             </p:commandButton>  

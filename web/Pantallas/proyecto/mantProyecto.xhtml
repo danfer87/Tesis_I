@@ -55,7 +55,7 @@
                             <h:outputText value="#{proyecto.fechaProy}" />
                         </p:column>
                         
-                        <p:column style="width:4%">  
+                        <p:column style="width:5%; text-align: center">  
                             <p:commandButton id="btnProyectoUpdate" update=":formUpdate" oncomplete="dialogProyectoUpdate.show()" icon="icon-edit" title="Modificar">  
                                 <f:setPropertyActionListener value="#{proyecto}" target="#{proyectoBean.proyecto}" />  
                             </p:commandButton>  

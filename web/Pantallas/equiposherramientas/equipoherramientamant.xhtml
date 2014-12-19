@@ -49,7 +49,7 @@
                         <p:column headerText="Categoria:" style="width:15%" filterBy="#{equipo.categoriaequipoherramienta.nombCatEqherr}">  
                             <h:outputText value="#{equipo.categoriaequipoherramienta.nombCatEqherr}" />  
                         </p:column> 
-                        <p:column style="width:8%">  
+                        <p:column style="width:5%; text-align: center">  
                             <p:commandButton id="btnEquipoUpdate" update=":formUpdate" oncomplete="dialogEquipoUpdate.show()" icon="icon-edit1" title="Modificar">  
                                 <f:setPropertyActionListener value="#{equipo}" target="#{equipoherramientaBean.equipoherramienta}" />  
                             </p:commandButton>  

@@ -55,7 +55,7 @@
                         <p:column headerText="Categoria" style="width:15%" filterBy="#{material.categoriamaterial.nombCatMat}">  
                             <h:outputText value="#{material.categoriamaterial.nombCatMat}" />  
                         </p:column> 
-                        <p:column style="width:4%">  
+                        <p:column style="width:5%; text-align: center">  
                             <p:commandButton id="btnMaterialUpdate" update=":formUpdate" oncomplete="dialogMaterialUpdate.show()" icon="icon-edit1" title="Modificar">  
                                 <f:setPropertyActionListener value="#{material}" target="#{materialBean.material}" />  
                             </p:commandButton>  

@@ -51,7 +51,7 @@
                             <h:outputText value="#{rubro.categoriarubro.descripcionCatRubro}" />  
                         </p:column> 
                         
-                        <p:column>  
+                        <p:column style="width:5%; text-align: center">  
                             <p:commandButton id="btnRubroUpdate" update=":formUpdate" oncomplete="dialogRubroUpdate.show()" icon="icon-edit1" title="Modificar">  
                                 <f:setPropertyActionListener value="#{rubro}" target="#{rubroBeanVista.rubro}"/>  
                             </p:commandButton>  
