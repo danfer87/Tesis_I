@@ -25,6 +25,7 @@ import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.tabview.Tab;
 import org.primefaces.component.tabview.TabView;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -302,6 +303,59 @@ public class ApuBeanVista implements Serializable {
         }
         return tabView;
     }*/
-  
+  //probar a lo que se selecciona la fila
+    
+public void SeleccionarFila(SelectEvent event) {  
+    
+    this.session=null;
+        this.transaction=null;
+        
+        try
+        {
+            this.session=HibernateUtil.getSessionFactory().openSession();
+            
+          equipoherrDaoImpl daoequipo=new equipoherrDaoImpl();
+         //   equipoherrDao daoequipo=new equipoherrDaoImpl();
+            
+            this.transaction=this.session.beginTransaction();
+            
+             this.equipherramientas=daoequipo.getByIdEquipo(session, equipherramientas.getCodigoEqherr());
+             
+                 
+            this.listaEquiposApus.add(new EquipherrApu( null,this.equipherramientas.getNombreEqherr(), null,null,this.equipherramientas.getCostohoraEqherr(), null, null, null));
+         
+            this.transaction.commit();
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Equipo/Herramienta agregado"));
+            
+         
+       
+            //RequestContext.getCurrentInstance().update("frmApus:frmdetequipos:tablaListaEquipos");
+           //RequestContext.getCurrentInstance().update("frmApus:msgs");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
+        }
+        catch(Exception ex)
+        {
+            if(this.transaction!=null)
+            {
+                transaction.rollback();
+            }
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }
+        finally
+        {
+            if(this.session!=null)
+            {
+                this.session.close();
+            }
+        }
+        FacesMessage msg = new FacesMessage("Equipo y Herramienta Seleccionado", equipherramientas.getNombreEqherr());  
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        
+        
+    }  
+    
   
 }
