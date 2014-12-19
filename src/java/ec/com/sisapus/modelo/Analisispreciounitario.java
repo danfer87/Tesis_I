@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 24/03/2014 10:48:04 AM by Hibernate Tools 3.2.1.GA
+// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -12,8 +12,15 @@ public class Analisispreciounitario  implements java.io.Serializable {
 
 
      private Integer codigoApu;
-     private Presupuesto presupuesto;
+     private TransporteApu transporteApu;
+     private Categoriapreciounitario categoriapreciounitario;
      private Rubro rubro;
+     private MaterialApu materialApu;
+     private ManoobraApu manoobraApu;
+     private EquipherrApu equipherrApu;
+     private String descApu;
+     private String unidadApu;
+     private String categoriaApu;
      private Double analApuMat;
      private Double analApuEqherr;
      private Double analApuMob;
@@ -23,17 +30,23 @@ public class Analisispreciounitario  implements java.io.Serializable {
      private Double costOtrosIndApu;
      private Double costotApu;
      private Double rendApu;
-     private Set<ManoobraApu> manoobraApus = new HashSet<ManoobraApu>(0);
-     private Set<TransporteApu> transporteApus = new HashSet<TransporteApu>(0);
-     private Set<EquipherrApu> equipherrApus = new HashSet<EquipherrApu>(0);
-     private Set<MaterialApu> materialApus = new HashSet<MaterialApu>(0);
+     private Double porcenIndApu;
+     private Set presupuestos = new HashSet(0);
+     private Set escenarioapus = new HashSet(0);
 
     public Analisispreciounitario() {
     }
 
-    public Analisispreciounitario(Presupuesto presupuesto, Rubro rubro, Double analApuMat, Double analApuEqherr, Double analApuMob, Double analApuTran, Double costDirApu, Double costIndApu, Double costOtrosIndApu, Double costotApu, Double rendApu, Set<ManoobraApu> manoobraApus, Set<TransporteApu> transporteApus, Set<EquipherrApu> equipherrApus, Set<MaterialApu> materialApus) {
-       this.presupuesto = presupuesto;
+    public Analisispreciounitario(TransporteApu transporteApu, Categoriapreciounitario categoriapreciounitario, Rubro rubro, MaterialApu materialApu, ManoobraApu manoobraApu, EquipherrApu equipherrApu, String descApu, String unidadApu, String categoriaApu, Double analApuMat, Double analApuEqherr, Double analApuMob, Double analApuTran, Double costDirApu, Double costIndApu, Double costOtrosIndApu, Double costotApu, Double rendApu, Double porcenIndApu, Set presupuestos, Set escenarioapus) {
+       this.transporteApu = transporteApu;
+       this.categoriapreciounitario = categoriapreciounitario;
        this.rubro = rubro;
+       this.materialApu = materialApu;
+       this.manoobraApu = manoobraApu;
+       this.equipherrApu = equipherrApu;
+       this.descApu = descApu;
+       this.unidadApu = unidadApu;
+       this.categoriaApu = categoriaApu;
        this.analApuMat = analApuMat;
        this.analApuEqherr = analApuEqherr;
        this.analApuMob = analApuMob;
@@ -43,10 +56,9 @@ public class Analisispreciounitario  implements java.io.Serializable {
        this.costOtrosIndApu = costOtrosIndApu;
        this.costotApu = costotApu;
        this.rendApu = rendApu;
-       this.manoobraApus = manoobraApus;
-       this.transporteApus = transporteApus;
-       this.equipherrApus = equipherrApus;
-       this.materialApus = materialApus;
+       this.porcenIndApu = porcenIndApu;
+       this.presupuestos = presupuestos;
+       this.escenarioapus = escenarioapus;
     }
    
     public Integer getCodigoApu() {
@@ -56,12 +68,19 @@ public class Analisispreciounitario  implements java.io.Serializable {
     public void setCodigoApu(Integer codigoApu) {
         this.codigoApu = codigoApu;
     }
-    public Presupuesto getPresupuesto() {
-        return this.presupuesto;
+    public TransporteApu getTransporteApu() {
+        return this.transporteApu;
     }
     
-    public void setPresupuesto(Presupuesto presupuesto) {
-        this.presupuesto = presupuesto;
+    public void setTransporteApu(TransporteApu transporteApu) {
+        this.transporteApu = transporteApu;
+    }
+    public Categoriapreciounitario getCategoriapreciounitario() {
+        return this.categoriapreciounitario;
+    }
+    
+    public void setCategoriapreciounitario(Categoriapreciounitario categoriapreciounitario) {
+        this.categoriapreciounitario = categoriapreciounitario;
     }
     public Rubro getRubro() {
         return this.rubro;
@@ -69,6 +88,48 @@ public class Analisispreciounitario  implements java.io.Serializable {
     
     public void setRubro(Rubro rubro) {
         this.rubro = rubro;
+    }
+    public MaterialApu getMaterialApu() {
+        return this.materialApu;
+    }
+    
+    public void setMaterialApu(MaterialApu materialApu) {
+        this.materialApu = materialApu;
+    }
+    public ManoobraApu getManoobraApu() {
+        return this.manoobraApu;
+    }
+    
+    public void setManoobraApu(ManoobraApu manoobraApu) {
+        this.manoobraApu = manoobraApu;
+    }
+    public EquipherrApu getEquipherrApu() {
+        return this.equipherrApu;
+    }
+    
+    public void setEquipherrApu(EquipherrApu equipherrApu) {
+        this.equipherrApu = equipherrApu;
+    }
+    public String getDescApu() {
+        return this.descApu;
+    }
+    
+    public void setDescApu(String descApu) {
+        this.descApu = descApu;
+    }
+    public String getUnidadApu() {
+        return this.unidadApu;
+    }
+    
+    public void setUnidadApu(String unidadApu) {
+        this.unidadApu = unidadApu;
+    }
+    public String getCategoriaApu() {
+        return this.categoriaApu;
+    }
+    
+    public void setCategoriaApu(String categoriaApu) {
+        this.categoriaApu = categoriaApu;
     }
     public Double getAnalApuMat() {
         return this.analApuMat;
@@ -133,33 +194,26 @@ public class Analisispreciounitario  implements java.io.Serializable {
     public void setRendApu(Double rendApu) {
         this.rendApu = rendApu;
     }
-    public Set<ManoobraApu> getManoobraApus() {
-        return this.manoobraApus;
+    public Double getPorcenIndApu() {
+        return this.porcenIndApu;
     }
     
-    public void setManoobraApus(Set<ManoobraApu> manoobraApus) {
-        this.manoobraApus = manoobraApus;
+    public void setPorcenIndApu(Double porcenIndApu) {
+        this.porcenIndApu = porcenIndApu;
     }
-    public Set<TransporteApu> getTransporteApus() {
-        return this.transporteApus;
-    }
-    
-    public void setTransporteApus(Set<TransporteApu> transporteApus) {
-        this.transporteApus = transporteApus;
-    }
-    public Set<EquipherrApu> getEquipherrApus() {
-        return this.equipherrApus;
+    public Set getPresupuestos() {
+        return this.presupuestos;
     }
     
-    public void setEquipherrApus(Set<EquipherrApu> equipherrApus) {
-        this.equipherrApus = equipherrApus;
+    public void setPresupuestos(Set presupuestos) {
+        this.presupuestos = presupuestos;
     }
-    public Set<MaterialApu> getMaterialApus() {
-        return this.materialApus;
+    public Set getEscenarioapus() {
+        return this.escenarioapus;
     }
     
-    public void setMaterialApus(Set<MaterialApu> materialApus) {
-        this.materialApus = materialApus;
+    public void setEscenarioapus(Set escenarioapus) {
+        this.escenarioapus = escenarioapus;
     }
 
 

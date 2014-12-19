@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/12/2014 06:11:01 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.com.sisapus.modelo.Categoriapreciounitario" table="categoriapreciounitario" catalog="bdsisapu">
+        <id name="codigoCatApu" type="java.lang.Integer">
+            <column name="CODIGO_CAT_APU" />
+            <generator class="identity" />
+        </id>
+        <property name="descripcionCatApu" type="string">
+            <column name="DESCRIPCION_CAT_APU" length="100" />
+        </property>
+        <set name="analisispreciounitarios" inverse="true">
+            <key>
+                <column name="CODIGO_CAT_APU" />
+            </key>
+            <one-to-many class="ec.com.sisapus.modelo.Analisispreciounitario" />
+        </set>
+    </class>
+</hibernate-mapping>

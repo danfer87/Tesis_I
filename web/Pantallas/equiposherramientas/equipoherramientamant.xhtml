@@ -117,7 +117,7 @@
                         <h:inputHidden value="#{equipoherramientaBean.equipoherramienta.codigoEqherr}"/>  
                         <p:commandButton id="confirm" value="Aceptar" update=":formDataTable, :msgs" oncomplete="dialogEquipoDelete.hide()"  
                                          actionListener="#{equipoherramientaBean.eliminarEquipoHerram(actionEvent)}" icon="icon-check"/>  
-                        <p:commandButton id="decline" value="Cancelar" onclick="dialogEquipoDelete.hide()" type="button" icon="icon-cancel"/>       
+                        <p:commandButton id="decline" value="Cancelar" onclick="dialogEquipoDelete.hide();" type="button" icon="icon-cancel"/>       
                     </p:confirmDialog>  
                 </h:form>
 

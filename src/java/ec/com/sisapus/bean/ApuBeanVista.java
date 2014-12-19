@@ -120,7 +120,7 @@ public class ApuBeanVista implements Serializable {
              this.equipherramientas=daoequipo.getByIdEquipo(session, idEquipos);
              
                  
-            this.listaEquiposApus.add(new EquipherrApu(null, null,this.equipherramientas.getNombreEqherr(), null,null,this.equipherramientas.getCostohoraEqherr(), null, null));
+            this.listaEquiposApus.add(new EquipherrApu( null,this.equipherramientas.getNombreEqherr(), null,null,this.equipherramientas.getCostohoraEqherr(), null, null, null));
          
             this.transaction.commit();
             

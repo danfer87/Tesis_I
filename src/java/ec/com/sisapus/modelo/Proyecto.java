@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 24/03/2014 10:48:04 AM by Hibernate Tools 3.2.1.GA
+// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -20,16 +20,16 @@ public class Proyecto  implements java.io.Serializable {
      private String ubicProy;
      private Date fechaProy;
      private Double costotProy;
-     private Set<Cronograma> cronogramas = new HashSet<Cronograma>(0);
-     private Set<Ejecutado> ejecutados = new HashSet<Ejecutado>(0);
-     private Set<Presupuesto> presupuestos = new HashSet<Presupuesto>(0);
+     private Set cronogramas = new HashSet(0);
+     private Set controlEjecutadoPresupuestados = new HashSet(0);
+     private Set presupuestos = new HashSet(0);
 
     public Proyecto() {
         this.codigoProy = 0;
         this.usuario = new Usuario();
     }
 
-    public Proyecto(Usuario usuario, String propiepProy, String contratProy, String obraProy, String ubicProy, Date fechaProy, Double costotProy, Set<Cronograma> cronogramas, Set<Ejecutado> ejecutados, Set<Presupuesto> presupuestos) {
+    public Proyecto(Usuario usuario, String propiepProy, String contratProy, String obraProy, String ubicProy, Date fechaProy, Double costotProy, Set cronogramas, Set controlEjecutadoPresupuestados, Set presupuestos) {
        this.usuario = usuario;
        this.propiepProy = propiepProy;
        this.contratProy = contratProy;
@@ -38,7 +38,7 @@ public class Proyecto  implements java.io.Serializable {
        this.fechaProy = fechaProy;
        this.costotProy = costotProy;
        this.cronogramas = cronogramas;
-       this.ejecutados = ejecutados;
+       this.controlEjecutadoPresupuestados = controlEjecutadoPresupuestados;
        this.presupuestos = presupuestos;
     }
    
@@ -98,25 +98,25 @@ public class Proyecto  implements java.io.Serializable {
     public void setCostotProy(Double costotProy) {
         this.costotProy = costotProy;
     }
-    public Set<Cronograma> getCronogramas() {
+    public Set getCronogramas() {
         return this.cronogramas;
     }
     
-    public void setCronogramas(Set<Cronograma> cronogramas) {
+    public void setCronogramas(Set cronogramas) {
         this.cronogramas = cronogramas;
     }
-    public Set<Ejecutado> getEjecutados() {
-        return this.ejecutados;
+    public Set getControlEjecutadoPresupuestados() {
+        return this.controlEjecutadoPresupuestados;
     }
     
-    public void setEjecutados(Set<Ejecutado> ejecutados) {
-        this.ejecutados = ejecutados;
+    public void setControlEjecutadoPresupuestados(Set controlEjecutadoPresupuestados) {
+        this.controlEjecutadoPresupuestados = controlEjecutadoPresupuestados;
     }
-    public Set<Presupuesto> getPresupuestos() {
+    public Set getPresupuestos() {
         return this.presupuestos;
     }
     
-    public void setPresupuestos(Set<Presupuesto> presupuestos) {
+    public void setPresupuestos(Set presupuestos) {
         this.presupuestos = presupuestos;
     }
 

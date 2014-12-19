@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 24/03/2014 10:48:04 AM by Hibernate Tools 3.2.1.GA
+// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -16,7 +16,7 @@ public class Perfil  implements java.io.Serializable {
      private Boolean modProyecto;
      private Boolean modProyectos;
      private Boolean modRecursos;
-     private Boolean modRubro;
+     private Boolean modRubros;
      private Boolean modMateriales;
      private Boolean modEquiherr;
      private Boolean modManoobra;
@@ -39,18 +39,18 @@ public class Perfil  implements java.io.Serializable {
      private Boolean modUsuario;
      private Boolean modPerfil;
      private Boolean modRegusu;
-     private Set<Usuario> usuarios = new HashSet<Usuario>(0);
+     private Set usuarios = new HashSet(0);
 
     public Perfil() {
         this.codigoPerf = 0;
     }
 
-    public Perfil(String descripPerf, Boolean modProyecto, Boolean modProyectos, Boolean modRecursos, Boolean modRubro, Boolean modMateriales, Boolean modEquiherr, Boolean modManoobra, Boolean modTransporte, Boolean modAnalcosto, Boolean modApu, Boolean modPresup, Boolean modCronograma, Boolean modReajprec, Boolean modEjecpresup, Boolean modReportes, Boolean modRepestadist, Boolean modRepapu, Boolean modReppresup, Boolean modRepcronog, Boolean modReppartida, Boolean modReprubro, Boolean modRepejecpres, Boolean modSeguridad, Boolean modUsuario, Boolean modPerfil, Boolean modRegusu, Set<Usuario> usuarios) {
+    public Perfil(String descripPerf, Boolean modProyecto, Boolean modProyectos, Boolean modRecursos, Boolean modRubros, Boolean modMateriales, Boolean modEquiherr, Boolean modManoobra, Boolean modTransporte, Boolean modAnalcosto, Boolean modApu, Boolean modPresup, Boolean modCronograma, Boolean modReajprec, Boolean modEjecpresup, Boolean modReportes, Boolean modRepestadist, Boolean modRepapu, Boolean modReppresup, Boolean modRepcronog, Boolean modReppartida, Boolean modReprubro, Boolean modRepejecpres, Boolean modSeguridad, Boolean modUsuario, Boolean modPerfil, Boolean modRegusu, Set usuarios) {
        this.descripPerf = descripPerf;
        this.modProyecto = modProyecto;
        this.modProyectos = modProyectos;
        this.modRecursos = modRecursos;
-       this.modRubro = modRubro;
+       this.modRubros = modRubros;
        this.modMateriales = modMateriales;
        this.modEquiherr = modEquiherr;
        this.modManoobra = modManoobra;
@@ -111,12 +111,12 @@ public class Perfil  implements java.io.Serializable {
     public void setModRecursos(Boolean modRecursos) {
         this.modRecursos = modRecursos;
     }
-    public Boolean getModRubro() {
-        return this.modRubro;
+    public Boolean getModRubros() {
+        return this.modRubros;
     }
     
-    public void setModRubro(Boolean modRubro) {
-        this.modRubro = modRubro;
+    public void setModRubros(Boolean modRubros) {
+        this.modRubros = modRubros;
     }
     public Boolean getModMateriales() {
         return this.modMateriales;
@@ -272,11 +272,11 @@ public class Perfil  implements java.io.Serializable {
     public void setModRegusu(Boolean modRegusu) {
         this.modRegusu = modRegusu;
     }
-    public Set<Usuario> getUsuarios() {
+    public Set getUsuarios() {
         return this.usuarios;
     }
     
-    public void setUsuarios(Set<Usuario> usuarios) {
+    public void setUsuarios(Set usuarios) {
         this.usuarios = usuarios;
     }
 

@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 24/03/2014 10:48:04 AM by Hibernate Tools 3.2.1.GA
+// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -15,14 +15,14 @@ public class Manoobra  implements java.io.Serializable {
      private Categoriamanoobra categoriamanoobra;
      private String nombreManob;
      private Double costojrhManob;
-     private Set<ManoobraApu> manoobraApus = new HashSet<ManoobraApu>(0);
+     private Set manoobraApus = new HashSet(0);
 
     public Manoobra() {
-        this.codigoManob = 0;
+        this.codigoManob=0;
         this.categoriamanoobra = new Categoriamanoobra();
     }
 
-    public Manoobra(Categoriamanoobra categoriamanoobra, String nombreManob, Double costojrhManob, Set<ManoobraApu> manoobraApus) {
+    public Manoobra(Categoriamanoobra categoriamanoobra, String nombreManob, Double costojrhManob, Set manoobraApus) {
        this.categoriamanoobra = categoriamanoobra;
        this.nombreManob = nombreManob;
        this.costojrhManob = costojrhManob;
@@ -57,11 +57,11 @@ public class Manoobra  implements java.io.Serializable {
     public void setCostojrhManob(Double costojrhManob) {
         this.costojrhManob = costojrhManob;
     }
-    public Set<ManoobraApu> getManoobraApus() {
+    public Set getManoobraApus() {
         return this.manoobraApus;
     }
     
-    public void setManoobraApus(Set<ManoobraApu> manoobraApus) {
+    public void setManoobraApus(Set manoobraApus) {
         this.manoobraApus = manoobraApus;
     }
 

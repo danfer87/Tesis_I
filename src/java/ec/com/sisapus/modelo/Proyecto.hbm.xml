@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 24/03/2014 10:48:05 AM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 18/12/2014 06:11:01 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="ec.com.sisapus.modelo.Proyecto" table="proyecto" catalog="sisapubd">
+    <class name="ec.com.sisapus.modelo.Proyecto" table="proyecto" catalog="bdsisapu">
         <id name="codigoProy" type="java.lang.Integer">
             <column name="CODIGO_PROY" />
             <generator class="identity" />
@@ -35,11 +35,11 @@
             </key>
             <one-to-many class="ec.com.sisapus.modelo.Cronograma" />
         </set>
-        <set name="ejecutados" inverse="true">
+        <set name="controlEjecutadoPresupuestados" inverse="true">
             <key>
                 <column name="CODIGO_PROY" />
             </key>
-            <one-to-many class="ec.com.sisapus.modelo.Ejecutado" />
+            <one-to-many class="ec.com.sisapus.modelo.ControlEjecutadoPresupuestado" />
         </set>
         <set name="presupuestos" inverse="true">
             <key>

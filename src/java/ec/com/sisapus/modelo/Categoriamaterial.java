@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 24/03/2014 10:48:04 AM by Hibernate Tools 3.2.1.GA
+// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -13,13 +13,13 @@ public class Categoriamaterial  implements java.io.Serializable {
 
      private Integer codCatMat;
      private String nombCatMat;
-     private Set<Material> materials = new HashSet<Material>(0);
+     private Set materials = new HashSet(0);
 
     public Categoriamaterial() {
         this.codCatMat = 0;
     }
 
-    public Categoriamaterial(String nombCatMat, Set<Material> materials) {
+    public Categoriamaterial(String nombCatMat, Set materials) {
        this.nombCatMat = nombCatMat;
        this.materials = materials;
     }
@@ -38,11 +38,11 @@ public class Categoriamaterial  implements java.io.Serializable {
     public void setNombCatMat(String nombCatMat) {
         this.nombCatMat = nombCatMat;
     }
-    public Set<Material> getMaterials() {
+    public Set getMaterials() {
         return this.materials;
     }
     
-    public void setMaterials(Set<Material> materials) {
+    public void setMaterials(Set materials) {
         this.materials = materials;
     }
 

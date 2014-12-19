@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 24/03/2014 10:48:04 AM by Hibernate Tools 3.2.1.GA
+// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -15,14 +15,14 @@ public class Equipoherramienta  implements java.io.Serializable {
      private Categoriaequipoherramienta categoriaequipoherramienta;
      private String nombreEqherr;
      private Double costohoraEqherr;
-     private Set<EquipherrApu> equipherrApus = new HashSet<EquipherrApu>(0);
+     private Set equipherrApus = new HashSet(0);
 
     public Equipoherramienta() {
-        this.codigoEqherr = 0;
+        this.codigoEqherr=0;
         this.categoriaequipoherramienta = new Categoriaequipoherramienta();
     }
 
-    public Equipoherramienta(Categoriaequipoherramienta categoriaequipoherramienta, String nombreEqherr, Double costohoraEqherr, Set<EquipherrApu> equipherrApus) {
+    public Equipoherramienta(Categoriaequipoherramienta categoriaequipoherramienta, String nombreEqherr, Double costohoraEqherr, Set equipherrApus) {
        this.categoriaequipoherramienta = categoriaequipoherramienta;
        this.nombreEqherr = nombreEqherr;
        this.costohoraEqherr = costohoraEqherr;
@@ -57,11 +57,11 @@ public class Equipoherramienta  implements java.io.Serializable {
     public void setCostohoraEqherr(Double costohoraEqherr) {
         this.costohoraEqherr = costohoraEqherr;
     }
-    public Set<EquipherrApu> getEquipherrApus() {
+    public Set getEquipherrApus() {
         return this.equipherrApus;
     }
     
-    public void setEquipherrApus(Set<EquipherrApu> equipherrApus) {
+    public void setEquipherrApus(Set equipherrApus) {
         this.equipherrApus = equipherrApus;
     }
 

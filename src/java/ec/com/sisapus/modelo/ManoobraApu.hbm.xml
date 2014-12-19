@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 24/03/2014 10:48:05 AM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 18/12/2014 06:11:01 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="ec.com.sisapus.modelo.ManoobraApu" table="manoobra_apu" catalog="sisapubd">
+    <class name="ec.com.sisapus.modelo.ManoobraApu" table="manoobra_apu" catalog="bdsisapu">
         <id name="codMoApu" type="java.lang.Integer">
             <column name="COD_MO_APU" />
             <generator class="identity" />
         </id>
-        <many-to-one name="analisispreciounitario" class="ec.com.sisapus.modelo.Analisispreciounitario" fetch="select">
-            <column name="CODIGO_APU" />
-        </many-to-one>
         <many-to-one name="manoobra" class="ec.com.sisapus.modelo.Manoobra" fetch="select">
             <column name="CODIGO_MANOB" />
         </many-to-one>
@@ -35,5 +32,11 @@
         <property name="costotMoApu" type="java.lang.Double">
             <column name="COSTOT_MO_APU" precision="22" scale="0" />
         </property>
+        <set name="analisispreciounitarios" inverse="true">
+            <key>
+                <column name="COD_MO_APU" />
+            </key>
+            <one-to-many class="ec.com.sisapus.modelo.Analisispreciounitario" />
+        </set>
     </class>
 </hibernate-mapping>

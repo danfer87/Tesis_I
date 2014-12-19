@@ -124,3 +124,7 @@ a:link:hover, a:visited:hover  {
 .ui-icon.icon-reajuste{
     background-image: url(../imagenes/iconos/Reajuste.png);
 }
+
+.ui-icon.icon-presupuesto{
+    background-image: url(../imagenes/iconos/Presupuesto.png);
+}
