@@ -77,47 +77,25 @@
                           width: 850px;" class="borderFieldSet">
                     <legend>Detalle Presupuesto</legend>
                     <p:dataTable value="" var="proyecto" >
-                        <p:column>
-                            <f:facet name="header" >
-                            </f:facet>
-                            <h:outputText value="#" />
-
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header" >
-                                <h:outputText value="Codigo" />
-                            </f:facet>
+                        <p:column headerText="#" style="text-align: center;">
                             <h:outputText value="" />
                         </p:column>
-                        <p:column>
-                            <f:facet name="header" >
-                                <h:outputText value="Descripcion" />
-                            </f:facet>
+                        <p:column headerText="Codigo" style="text-align: center;">
                             <h:outputText value="" />
                         </p:column>
-                        <p:column>
-                            <f:facet name="header" >
-                                <h:outputText value="Unidad" />
-                            </f:facet>
+                        <p:column headerText="Descripcion" style="text-align: center;">
                             <h:outputText value="" />
                         </p:column>
-                        <p:column>
-                            <f:facet name="header" >
-                                <h:outputText value="Cantidad" />
-                                <p:inputText value="" style="text-align: center;" />                    
-                            </f:facet>
+                        <p:column headerText="Unidad" style="text-align: center;">
                             <h:outputText value="" />
                         </p:column>
-                        <p:column>
-                            <f:facet name="header" >
-                                <h:outputText value="Precio Unitario" />
-                            </f:facet>
+                        <p:column headerText="Cantidad" style="text-align: center;">
+                            <h:outputText value="#" style="text-align: center;" />
+                        </p:column>
+                        <p:column headerText="Precio Unitario" style="text-align: center;">
                             <h:outputText value="" />
                         </p:column>
-                        <p:column>
-                            <f:facet name="header" >
-                                <h:outputText value="Precio Total" />
-                            </f:facet>
+                        <p:column headerText="Precio Total" style="text-align: center;">
                             <h:outputText value="" />
                         </p:column>
                     </p:dataTable>
