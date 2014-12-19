@@ -18,8 +18,12 @@ import ec.com.sisapus.modelo.Equipoherramienta;
 import ec.com.sisapus.util.HibernateUtil;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.primefaces.component.inputtext.InputText;
+import org.primefaces.component.tabview.Tab;
+import org.primefaces.component.tabview.TabView;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -263,5 +267,41 @@ public class ApuBeanVista implements Serializable {
                 this.session.close();
             }
         }  
-        }  
+        }
+  
+  //probar creacion de Escenarios
+  
+  private TabView tabView;
+
+    public void setTabView(TabView tabView) {
+        this.tabView = tabView;
+    }
+  
+   public TabView getTabView() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        tabView = (TabView) fc.getApplication().createComponent("org.primefaces.component.TabView");
+
+        // cargar la lista de objetos para tabview
+        List liscaldimensional = new ArrayList();
+        liscaldimensional =a//ejbFacadeCalidadDimensional.findAll();
+
+        //Se crean dinamicamente las tabs y en su contenido, unas cajas de texto
+        for (CalidadDimensional sub : liscaldimensional) {
+            Tab tab = new Tab();
+            tab.setTitle(sub.getCalidadDimensional());
+            Random randomGenerator = new Random();
+            int total = 4;
+            for (int i = 0; i < total; i++) {
+                InputText inputtext = new InputText();
+                inputtext.setLabel("Label");
+                inputtext.setValue("id:" + inputtext.getClientId());
+                inputtext.setOnfocus("");
+                tab.getChildren().add(inputtext);
+            }
+            tabView.getChildren().add(tab);
+        }
+        return tabView;
+    }
+  
+  
 }
