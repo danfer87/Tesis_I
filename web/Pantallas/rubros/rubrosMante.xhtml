@@ -46,6 +46,11 @@
                             <h:outputText value="#{rubro.unidadRubro}"/>
                             </div>
                         </p:column>  
+                        <p:column headerText="Categoria">  
+                            <div style="text-align: center;">
+                                <h:outputText value="#{rubro.categoriarubro.descripcionCatRubro}"/>
+                            </div>
+                        </p:column>  
                         <p:column>  
                             <p:commandButton id="btnRubroUpdate" update=":formUpdate" oncomplete="dialogRubroUpdate.show()" icon="icon-edit1" title="Modificar">  
                                 <f:setPropertyActionListener value="#{rubro}" target="#{rubroBeanVista.rubro}"/>  
@@ -70,6 +75,11 @@
                             <h:outputText value="Unidad:" />  
                             <p:inputText value="#{rubroBeanVista.rubro.unidadRubro}" />  
                             <h:inputHidden value="#{rubroBeanVista.rubro.codigoRubro}"/>  
+                            <h:outputText value="Rol:" />  
+                            <p:selectOneMenu value="#{rubroBeanVista.rubro.categoriarubro.codigoCatRubro}">  
+                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                                <f:selectItems value="#{perfilBean.listaPerfiles}" />  
+                            </p:selectOneMenu> 
                             <!---->
                             <f:facet name="footer">
                                 <p:separator/>
