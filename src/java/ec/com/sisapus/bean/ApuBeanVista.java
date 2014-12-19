@@ -277,7 +277,7 @@ public class ApuBeanVista implements Serializable {
         this.tabView = tabView;
     }
   
-   public TabView getTabView() {
+  /* public TabView getTabView() {
         FacesContext fc = FacesContext.getCurrentInstance();
         tabView = (TabView) fc.getApplication().createComponent("org.primefaces.component.TabView");
 
@@ -301,7 +301,7 @@ public class ApuBeanVista implements Serializable {
             tabView.getChildren().add(tab);
         }
         return tabView;
-    }
+    }*/
   
   
 }
