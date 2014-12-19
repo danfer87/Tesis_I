@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 24/03/2014 10:48:04 AM by Hibernate Tools 3.2.1.GA
+// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -13,13 +13,13 @@ public class Categoriamanoobra  implements java.io.Serializable {
 
      private Integer codCatManob;
      private String nombCatManob;
-     private Set<Manoobra> manoobras = new HashSet<Manoobra>(0);
+     private Set manoobras = new HashSet(0);
 
     public Categoriamanoobra() {
         this.codCatManob = 0;
     }
 
-    public Categoriamanoobra(String nombCatManob, Set<Manoobra> manoobras) {
+    public Categoriamanoobra(String nombCatManob, Set manoobras) {
        this.nombCatManob = nombCatManob;
        this.manoobras = manoobras;
     }
@@ -38,11 +38,11 @@ public class Categoriamanoobra  implements java.io.Serializable {
     public void setNombCatManob(String nombCatManob) {
         this.nombCatManob = nombCatManob;
     }
-    public Set<Manoobra> getManoobras() {
+    public Set getManoobras() {
         return this.manoobras;
     }
     
-    public void setManoobras(Set<Manoobra> manoobras) {
+    public void setManoobras(Set manoobras) {
         this.manoobras = manoobras;
     }
 

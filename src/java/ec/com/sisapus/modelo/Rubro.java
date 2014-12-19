@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 24/03/2014 10:48:04 AM by Hibernate Tools 3.2.1.GA
+// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -12,17 +12,20 @@ public class Rubro  implements java.io.Serializable {
 
 
      private Integer codigoRubro;
+     private Categoriarubro categoriarubro;
      private String nombreRubro;
      private String detalleRubro;
      private String unidadRubro;
-     private Set<Presupuesto> presupuestos = new HashSet<Presupuesto>(0);
-     private Set<Analisispreciounitario> analisispreciounitarios = new HashSet<Analisispreciounitario>(0);
+     private Set presupuestos = new HashSet(0);
+     private Set analisispreciounitarios = new HashSet(0);
 
     public Rubro() {
         this.codigoRubro = 0;
+        this.categoriarubro = new Categoriarubro();
     }
 
-    public Rubro(String nombreRubro, String detalleRubro, String unidadRubro, Set<Presupuesto> presupuestos, Set<Analisispreciounitario> analisispreciounitarios) {
+    public Rubro(Categoriarubro categoriarubro, String nombreRubro, String detalleRubro, String unidadRubro, Set presupuestos, Set analisispreciounitarios) {
+       this.categoriarubro = categoriarubro;
        this.nombreRubro = nombreRubro;
        this.detalleRubro = detalleRubro;
        this.unidadRubro = unidadRubro;
@@ -36,6 +39,13 @@ public class Rubro  implements java.io.Serializable {
     
     public void setCodigoRubro(Integer codigoRubro) {
         this.codigoRubro = codigoRubro;
+    }
+    public Categoriarubro getCategoriarubro() {
+        return this.categoriarubro;
+    }
+    
+    public void setCategoriarubro(Categoriarubro categoriarubro) {
+        this.categoriarubro = categoriarubro;
     }
     public String getNombreRubro() {
         return this.nombreRubro;
@@ -58,18 +68,18 @@ public class Rubro  implements java.io.Serializable {
     public void setUnidadRubro(String unidadRubro) {
         this.unidadRubro = unidadRubro;
     }
-    public Set<Presupuesto> getPresupuestos() {
+    public Set getPresupuestos() {
         return this.presupuestos;
     }
     
-    public void setPresupuestos(Set<Presupuesto> presupuestos) {
+    public void setPresupuestos(Set presupuestos) {
         this.presupuestos = presupuestos;
     }
-    public Set<Analisispreciounitario> getAnalisispreciounitarios() {
+    public Set getAnalisispreciounitarios() {
         return this.analisispreciounitarios;
     }
     
-    public void setAnalisispreciounitarios(Set<Analisispreciounitario> analisispreciounitarios) {
+    public void setAnalisispreciounitarios(Set analisispreciounitarios) {
         this.analisispreciounitarios = analisispreciounitarios;
     }
 

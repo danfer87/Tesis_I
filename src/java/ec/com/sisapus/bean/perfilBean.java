@@ -133,9 +133,9 @@ public class perfilBean implements Serializable {
             perfil.setModProyecto(false);
         }
         //////Recursos//////
-        if (perfil.getModRubro() == true || perfil.getModMateriales() == true || perfil.getModEquiherr() == true || perfil.getModManoobra() == true || perfil.getModTransporte() == true) {
+        if (perfil.getModRubros() == true || perfil.getModMateriales() == true || perfil.getModEquiherr() == true || perfil.getModManoobra() == true || perfil.getModTransporte() == true) {
             perfil.setModRecursos(true);
-        } else if (perfil.getModRubro() == false && perfil.getModMateriales() == false && perfil.getModEquiherr() == false && perfil.getModManoobra() == false && perfil.getModTransporte() == false) {
+        } else if (perfil.getModRubros() == false && perfil.getModMateriales() == false && perfil.getModEquiherr() == false && perfil.getModManoobra() == false && perfil.getModTransporte() == false) {
             perfil.setModRecursos(false);
         }
         //////Analisis de Costos////////

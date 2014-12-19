@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/12/2014 06:11:01 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.com.sisapus.modelo.Categoriarubro" table="categoriarubro" catalog="bdsisapu">
+        <id name="codigoCatRubro" type="java.lang.Integer">
+            <column name="CODIGO_CAT_RUBRO" />
+            <generator class="identity" />
+        </id>
+        <property name="descripcionCatRubro" type="string">
+            <column name="DESCRIPCION_CAT_RUBRO" length="100" />
+        </property>
+        <set name="rubros" inverse="true">
+            <key>
+                <column name="CODIGO_CAT_RUBRO" />
+            </key>
+            <one-to-many class="ec.com.sisapus.modelo.Rubro" />
+        </set>
+    </class>
+</hibernate-mapping>

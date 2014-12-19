@@ -4,34 +4,34 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sisapubd?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bdsisapu?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">nic0kl3p3r</property>
+    <property name="hibernate.connection.password">edison</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
-    <mapping resource="ec/com/sisapus/modelo/EquipherrApu.hbm.xml"/>
-    <mapping resource="ec/com/sisapus/modelo/Ejecutadopresup.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/Rubro.hbm.xml"/>
-    <mapping resource="ec/com/sisapus/modelo/Cronogramatrabajo.hbm.xml"/>
+    <mapping resource="ec/com/sisapus/modelo/Escenarioapu.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/Equipoherramienta.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/Material.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/Categoriamaterial.hbm.xml"/>
-    <mapping resource="ec/com/sisapus/modelo/Categoriatransporte.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/Proyecto.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/Analisispreciounitario.hbm.xml"/>
-    <mapping resource="ec/com/sisapus/modelo/Manoobra.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/ManoobraApu.hbm.xml"/>
-    <mapping resource="ec/com/sisapus/modelo/Transporte.hbm.xml"/>
-    <mapping resource="ec/com/sisapus/modelo/MaterialApu.hbm.xml"/>
-    <mapping resource="ec/com/sisapus/modelo/Ejecutado.hbm.xml"/>
+    <mapping resource="ec/com/sisapus/modelo/Detallecronograma.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/Presupuesto.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/Usuario.hbm.xml"/>
+    <mapping resource="ec/com/sisapus/modelo/EquipherrApu.hbm.xml"/>
+    <mapping resource="ec/com/sisapus/modelo/Categoriarubro.hbm.xml"/>
+    <mapping resource="ec/com/sisapus/modelo/Categoriatransporte.hbm.xml"/>
+    <mapping resource="ec/com/sisapus/modelo/Manoobra.hbm.xml"/>
+    <mapping resource="ec/com/sisapus/modelo/Categoriapreciounitario.hbm.xml"/>
+    <mapping resource="ec/com/sisapus/modelo/Transporte.hbm.xml"/>
+    <mapping resource="ec/com/sisapus/modelo/MaterialApu.hbm.xml"/>
+    <mapping resource="ec/com/sisapus/modelo/ControlEjecutadoPresupuestado.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/TransporteApu.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/Cronograma.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/Categoriamanoobra.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/Categoriaequipoherramienta.hbm.xml"/>
-    <mapping resource="ec/com/sisapus/modelo/Presupuestado.hbm.xml"/>
     <mapping resource="ec/com/sisapus/modelo/Perfil.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

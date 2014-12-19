@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="sisapubd"/>
+  <schema-selection match-catalog="bdsisapu"/>
+  <table-filter match-name="categoriamaterial"/>
+  <table-filter match-name="escenarioapu"/>
+  <table-filter match-name="transporte_apu"/>
+  <table-filter match-name="analisispreciounitario"/>
   <table-filter match-name="categoriatransporte"/>
+  <table-filter match-name="proyecto"/>
+  <table-filter match-name="detallecronograma"/>
+  <table-filter match-name="categoriaequipoherramienta"/>
+  <table-filter match-name="cronograma"/>
+  <table-filter match-name="equipoherramienta"/>
+  <table-filter match-name="rubro"/>
+  <table-filter match-name="material"/>
+  <table-filter match-name="presupuesto"/>
+  <table-filter match-name="manoobra"/>
+  <table-filter match-name="categoriarubro"/>
+  <table-filter match-name="manoobra_apu"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="control_ejecutado_presupuestado"/>
+  <table-filter match-name="categoriapreciounitario"/>
+  <table-filter match-name="material_apu"/>
+  <table-filter match-name="equipherr_apu"/>
+  <table-filter match-name="categoriamanoobra"/>
   <table-filter match-name="transporte"/>
   <table-filter match-name="perfil"/>
-  <table-filter match-name="cronogramatrabajo"/>
-  <table-filter match-name="manoobra"/>
-  <table-filter match-name="transporte_apu"/>
-  <table-filter match-name="manoobra_apu"/>
-  <table-filter match-name="categoriaequipoherramienta"/>
-  <table-filter match-name="rubro"/>
-  <table-filter match-name="categoriamaterial"/>
-  <table-filter match-name="proyecto"/>
-  <table-filter match-name="analisispreciounitario"/>
-  <table-filter match-name="equipherr_apu"/>
-  <table-filter match-name="cronograma"/>
-  <table-filter match-name="presupuesto"/>
-  <table-filter match-name="ejecutado"/>
-  <table-filter match-name="presupuestado"/>
-  <table-filter match-name="material_apu"/>
-  <table-filter match-name="usuario"/>
-  <table-filter match-name="material"/>
-  <table-filter match-name="equipoherramienta"/>
-  <table-filter match-name="ejecutadopresup"/>
-  <table-filter match-name="categoriamanoobra"/>
 </hibernate-reverse-engineering>

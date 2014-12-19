@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 24/03/2014 10:48:04 AM by Hibernate Tools 3.2.1.GA
+// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -13,13 +13,13 @@ public class Categoriaequipoherramienta  implements java.io.Serializable {
 
      private Integer codCatEqherr;
      private String nombCatEqherr;
-     private Set<Equipoherramienta> equipoherramientas = new HashSet<Equipoherramienta>(0);
+     private Set equipoherramientas = new HashSet(0);
 
     public Categoriaequipoherramienta() {
         this.codCatEqherr = 0;
     }
 
-    public Categoriaequipoherramienta(String nombCatEqherr, Set<Equipoherramienta> equipoherramientas) {
+    public Categoriaequipoherramienta(String nombCatEqherr, Set equipoherramientas) {
        this.nombCatEqherr = nombCatEqherr;
        this.equipoherramientas = equipoherramientas;
     }
@@ -38,11 +38,11 @@ public class Categoriaequipoherramienta  implements java.io.Serializable {
     public void setNombCatEqherr(String nombCatEqherr) {
         this.nombCatEqherr = nombCatEqherr;
     }
-    public Set<Equipoherramienta> getEquipoherramientas() {
+    public Set getEquipoherramientas() {
         return this.equipoherramientas;
     }
     
-    public void setEquipoherramientas(Set<Equipoherramienta> equipoherramientas) {
+    public void setEquipoherramientas(Set equipoherramientas) {
         this.equipoherramientas = equipoherramientas;
     }
 

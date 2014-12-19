@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 24/03/2014 10:48:05 AM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 18/12/2014 06:11:01 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="ec.com.sisapus.modelo.Usuario" table="usuario" catalog="sisapubd">
+    <class name="ec.com.sisapus.modelo.Usuario" table="usuario" catalog="bdsisapu">
         <id name="codigoUsu" type="java.lang.Integer">
             <column name="CODIGO_USU" />
             <generator class="identity" />
@@ -29,15 +29,15 @@
         <property name="estadoUsu" type="java.lang.Boolean">
             <column name="ESTADO_USU" />
         </property>
-        <property name="fechregUsu" type="date">
-            <column name="FECHREG_USU" length="10" />
+        <property name="fechregUsu" type="timestamp">
+            <column name="FECHREG_USU" length="19" />
         </property>
-        <property name="fechmodUsu" type="date">
-            <column name="FECHMOD_USU" length="10" />
+        <property name="fechmodUsu" type="timestamp">
+            <column name="FECHMOD_USU" length="19" />
         </property>
         <set name="proyectos" inverse="true">
             <key>
-                <column name="CODIGO_US" />
+                <column name="CODIGO_USU" />
             </key>
             <one-to-many class="ec.com.sisapus.modelo.Proyecto" />
         </set>

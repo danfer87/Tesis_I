@@ -76,7 +76,7 @@
                         <h:inputHidden value="#{perfilBean.perfil.codigoPerf}"/>  
                         <p:commandButton id="confirm" value="Aceptar" update=":formDataTable, :msgs" oncomplete="dialogPerfilDelete.hide()"  
                                          actionListener="#{perfilBean.eliminarPerfil(actionEvent)}" icon="icon-check"/>  
-                        <p:commandButton id="decline" value="Cancelar" onclick="dialogPerfilDelete.hide()" type="button" icon="icon-cancel"/>       
+                        <p:commandButton id="decline" value="Cancelar" onclick="dialogPerfilDelete.hide();" type="button" icon="icon-cancel"/>       
                     </p:confirmDialog>  
         </h:form>
         
@@ -113,7 +113,7 @@
                 <p:separator/>
                 <h:panelGroup>
                 <h:outputText value="Recursos" /> 
-                <br/><p:selectBooleanCheckbox value="#{perfilBean.perfil.modRubro}"/>
+                <br/><p:selectBooleanCheckbox value="#{perfilBean.perfil.modRubros}"/>
                 <h:outputText value=" Rubros" /> 
                 <br/><p:selectBooleanCheckbox value="#{perfilBean.perfil.modMateriales}"/>
                 <h:outputText value=" Gestion Materiales" />

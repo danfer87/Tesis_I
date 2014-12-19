@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 24/03/2014 10:48:04 AM by Hibernate Tools 3.2.1.GA
+// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -16,14 +16,14 @@ public class Material  implements java.io.Serializable {
      private String nombreMat;
      private String unidMat;
      private Double precunitMat;
-     private Set<MaterialApu> materialApus = new HashSet<MaterialApu>(0);
+     private Set materialApus = new HashSet(0);
 
     public Material() {
         this.codigoMat = 0;
         this.categoriamaterial = new Categoriamaterial();
     }
 
-    public Material(Categoriamaterial categoriamaterial, String nombreMat, String unidMat, Double precunitMat, Set<MaterialApu> materialApus) {
+    public Material(Categoriamaterial categoriamaterial, String nombreMat, String unidMat, Double precunitMat, Set materialApus) {
        this.categoriamaterial = categoriamaterial;
        this.nombreMat = nombreMat;
        this.unidMat = unidMat;
@@ -66,11 +66,11 @@ public class Material  implements java.io.Serializable {
     public void setPrecunitMat(Double precunitMat) {
         this.precunitMat = precunitMat;
     }
-    public Set<MaterialApu> getMaterialApus() {
+    public Set getMaterialApus() {
         return this.materialApus;
     }
     
-    public void setMaterialApus(Set<MaterialApu> materialApus) {
+    public void setMaterialApus(Set materialApus) {
         this.materialApus = materialApus;
     }
 

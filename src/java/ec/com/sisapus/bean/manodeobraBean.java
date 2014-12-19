@@ -89,7 +89,7 @@ public class manodeobraBean {
       }
     
     /*Eliminar Mano de Obra*/
-    public void eliminarMaterial(ActionEvent actionEvent) {
+    public void eliminarManoObra(ActionEvent actionEvent) {
         manoobraDao manobraDao = new manoobraDaoImpl();
         String msg;
         if (manobraDao.eliminarManoObra(this.manoobra.getCodigoManob())) {

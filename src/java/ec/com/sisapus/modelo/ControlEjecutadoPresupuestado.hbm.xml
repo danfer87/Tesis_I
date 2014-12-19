@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/12/2014 06:11:01 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="ec.com.sisapus.modelo.ControlEjecutadoPresupuestado" table="control_ejecutado_presupuestado" catalog="bdsisapu">
+        <id name="codigoEjec" type="java.lang.Integer">
+            <column name="CODIGO_EJEC" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="proyecto" class="ec.com.sisapus.modelo.Proyecto" fetch="select">
+            <column name="CODIGO_PROY" />
+        </many-to-one>
+        <property name="descripcionEjec" type="string">
+            <column name="DESCRIPCION_EJEC" length="100" />
+        </property>
+        <property name="PUnitEjec" type="java.lang.Double">
+            <column name="P_UNIT_EJEC" precision="22" scale="0" />
+        </property>
+        <property name="PTotalEjecut" type="java.lang.Double">
+            <column name="P_TOTAL_EJECUT" precision="22" scale="0" />
+        </property>
+        <property name="PTotalEjec" type="java.lang.Double">
+            <column name="P_TOTAL_EJEC" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

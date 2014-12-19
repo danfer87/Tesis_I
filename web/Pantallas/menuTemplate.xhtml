@@ -47,7 +47,7 @@
                         </p:submenu>  
 
                         <p:submenu rendered="#{loginBean.usuario.perfil.modRecursos}" label="Recursos" icon="icon-recursos">  
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modRubro}"   value="Gestionar Rubros" url="#{appBean.basePath}rubros/rubrosMante.xhtml" icon="icon-rubro"/>      
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modRubros}"   value="Gestionar Rubros" url="#{appBean.basePath}rubros/rubrosMante.xhtml" icon="icon-rubro"/>      
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modEquiherr}"   value="Gestionar Equipos y Herramientas" url="#{appBean.basePath}equiposherramientas/equipoherramientamant.xhtml" icon="icon-herramienta" />  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modMateriales}"  value="Gestionar Materiales" url="#{appBean.basePath}materiales/materialmant.xhtml" icon="icon-material"/>  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modManoobra}"  value="Gestionar Mano de Obra" url="#{appBean.basePath}manodeobra/manodeobramant.xhtml" icon="icon-manoobra"/>  
@@ -55,8 +55,8 @@
                         </p:submenu>  
 
                         <p:submenu rendered="#{loginBean.usuario.perfil.modAnalcosto}" label="Analisis de Costos" icon="icon-costo">  
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modApu}"   value="Analisis de Precios Unitarios" url="#{appBean.basePath}preciounitario/precioUnitarioMant.xhtml" icon="icon-precio" />  
-                            <p:menuitem rendered="#{loginBean.usuario.perfil.modPresup}"   value="Presupuestos" url="#{appBean.basePath}presupuesto/presupuestoMant.xhtml" />  
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modApu}"   value="Analisis Precios Unitarios" url="#{appBean.basePath}preciounitario/precioUnitarioMant.xhtml" icon="icon-precio" />  
+                            <p:menuitem rendered="#{loginBean.usuario.perfil.modPresup}"   value="Presupuestos" url="#{appBean.basePath}presupuesto/presupuestoMant.xhtml" icon="icon-presupuesto"/>  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modCronograma}"   value="Cronograma Valorado" url="#" icon="icon-cronograma" />  
                             <p:menuitem rendered="#{loginBean.usuario.perfil.modReajprec}"    value="Reajuste de Precios" url="#" icon="icon-reajuste" />  
                         </p:submenu>
