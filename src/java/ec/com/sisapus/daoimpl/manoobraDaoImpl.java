@@ -8,6 +8,7 @@ import ec.com.sisapus.dao.manoobraDao;
 import ec.com.sisapus.modelo.Manoobra;
 import ec.com.sisapus.util.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -86,6 +87,20 @@ public class manoobraDaoImpl implements manoobraDao{
             flag = false;
         }
         return flag;
+    }
+
+    @Override
+    public Manoobra getByIdManobra(Session session, Integer idmanobra) throws Exception {
+         return (Manoobra) session.load(Manoobra.class, idmanobra);
+         //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Manoobra getUltimoRegistro(Session session) throws Exception {
+         String hql="FROM Manoobra mo left join fetch mo.categoriamanoobra order by CODIGO_MANOB desc";
+        Query query=session.createQuery(hql).setMaxResults(1);
+        
+        return (Manoobra) query.uniqueResult(); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -83,8 +83,6 @@
                         </p:column>
                     </p:dataTable>
                        </p:dialog>
-           
-                               
         
         
              <FIELDSET  style="-moz-border-radius:10px;background-color: #dddddd;
@@ -96,18 +94,20 @@
                 <p:column headerText="NOMBRE" style="text-align: left;">
                     <h:outputText value="#{item.descEqherrApu}"/>
                 </p:column>
-                <p:column headerText="Costo Hora" style="text-align: center;">
-                    <h:outputText value="#{item.costohoraEqherrApu}"/>
-                </p:column>
-                <p:column headerText="Cantidad" style="text-align: center;">
+              <p:column headerText="Cantidad" style="text-align: center;">
                     <p:inputText value="#{item.cantEqherrApu}" style="text-align: center;" />                    
+                </p:column>
+                 <p:column headerText="Tarifa" style="text-align: center;">
+                         <p:inputText value="#{item.tarifaEqherrApu}" style="text-align: center;" />                    
+                </p:column>
+               
+                <p:column headerText="Costo Hora" style="text-align: center;">
+                    S./   <h:outputText value="#{item.costohoraEqherrApu}" />
                 </p:column>
                      <p:column headerText="Rendimiento" style="text-align: center;">
                          <p:inputText value="#{item.rendimEqherrApu}" style="text-align: center;" />                    
                 </p:column>
-                     <p:column headerText="Tarifa" style="text-align: center;">
-                         <p:inputText value="#{item.tarifaEqherrApu}" style="text-align: center;" />                    
-                </p:column>
+                 
                 <p:column headerText="Total" style="text-align: center;">
                     S./ 
                     <h:outputText value="#{item.costotEqherrApu}"/>
