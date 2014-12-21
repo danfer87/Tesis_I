@@ -98,7 +98,7 @@
                     <p:inputText value="#{item.cantEqherrApu}" style="text-align: center;" />                    
                 </p:column>
                  <p:column headerText="Tarifa" style="text-align: center;">
-                         <p:inputText value="#{item.tarifaEqherrApu}" style="text-align: center;" />                    
+                     S./   <h:outputText value="#{item.tarifaEqherrApu}" />                   
                 </p:column>
                
                 <p:column headerText="Costo Hora" style="text-align: center;">
@@ -138,22 +138,22 @@
      
           <p:dialog header="Effects" id="dlg1" widgetVar="dlg1" showEffect="fade" hideEffect="explode" height="120"  modal="true">
     
-              <p:dataTable value="#{manodeobraBean.listamanoobra}" var="item1"  scrollable="true" scrollHeight="100"
+              <p:dataTable value="#{manodeobraBean.listamanoobra}" var="item2"  scrollable="true" scrollHeight="100"
                                      style="width:650px ">
                         <p:column headerText="Codigo">
-                            <h:outputText value="#{item1.codigoManob}"/>
+                            <h:outputText value="#{item2.codigoManob}"/>
                         </p:column>
                         <p:column headerText="NOMBRE" >
-                            <h:outputText value="#{item1.nombreManob}"/>
+                            <h:outputText value="#{item2.nombreManob}"/>
                         </p:column>
                         <p:column headerText="Costo Jornal H/R">
-                            <h:outputText value="#{item1.costojrhManob}"/>
+                            <h:outputText value="#{item2.costojrhManob}"/>
                         </p:column>
                         <p:column headerText="Categoria">
-                            <h:outputText value="#{item1.categoriamanoobra.nombCatManob}"/>
+                            <h:outputText value="#{item2.categoriamanoobra.nombCatManob}"/>
                         </p:column>
                         <p:column>
-                            <p:commandButton value="Seleccionar"  actionListener="#{ApuBeanVista.agregarListaManobraApu(codigoManob)}"
+                            <p:commandButton value="Seleccionar"  actionListener="#{ApuBeanVista.agregarListaManobraApu(item2.codigoManob)}"
                                             />
                             
                         </p:column>
@@ -174,7 +174,7 @@
                 </p:column>
                         
                 <p:column headerText="Costo Jornal H/R" style="text-align: center;">
-                    <h:outputText value="#{item1.costojrhMoApu}"/>
+                    S./   <h:outputText value="#{item1.costojrhMoApu}"  />
                 </p:column>
               
                   <p:column headerText="Costo Hora" style="text-align: center;">
@@ -195,7 +195,7 @@
             </p:dataTable>
             <p:panelGrid id="panelFinalVenta1" columns="1" style="text-align: right;width: 100%;">
                 <h:panelGroup>
-                    <p:commandButton id="btnProyectoCreate1"  oncomplete="dlg2.show()"  value="Crear">  
+                    <p:commandButton id="btnProyectoCreate1"  oncomplete="dlg1.show()"  value="Crear">  
                     </p:commandButton>   
 
                     <p:commandButton value="Calcular" actionListener="#{ApuBeanVista.calcularCostosManobra()}" />
