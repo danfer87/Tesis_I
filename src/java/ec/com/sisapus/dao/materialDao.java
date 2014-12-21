@@ -6,6 +6,7 @@ package ec.com.sisapus.dao;
 
 import ec.com.sisapus.modelo.Material;
 import java.util.List;
+import org.hibernate.Session;
 
 /**
  *
@@ -19,5 +20,7 @@ public interface materialDao {
     public boolean actualizarMater(Material material);
     public boolean eliminarMater(Integer idMater);
     
-    
+      //agregado
+      public Material getByIdMaterial(Session session, Integer idmaterial) throws Exception;
+       public Material getUltimoRegistro(Session session) throws Exception; 
 }

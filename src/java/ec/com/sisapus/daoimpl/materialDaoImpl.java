@@ -8,6 +8,7 @@ import ec.com.sisapus.dao.materialDao;
 import ec.com.sisapus.modelo.Material;
 import ec.com.sisapus.util.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -86,6 +87,21 @@ public class materialDaoImpl implements materialDao{
             flag = false;
         }
         return flag;
+    }
+
+  
+
+    @Override
+    public Material getUltimoRegistro(Session session) throws Exception {
+        String hql="FROM Material m left join fetch m.categoriamaterial order by CODIGO_MAT desc";
+        Query query=session.createQuery(hql).setMaxResults(1);
+        
+        return (Material) query.uniqueResult(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Material getByIdMaterial(Session session, Integer idmaterial) throws Exception {
+           return (Material) session.load(Material.class, idmaterial);//To change body of generated methods, choose Tools | Templates.
     }
     
 }

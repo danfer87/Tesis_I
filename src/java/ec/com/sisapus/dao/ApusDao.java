@@ -7,6 +7,7 @@ package ec.com.sisapus.dao;
 import org.hibernate.Session;
 import ec.com.sisapus.modelo.EquipherrApu;
 import ec.com.sisapus.modelo.ManoobraApu;
+import ec.com.sisapus.modelo.MaterialApu;
 
 /**
  *
@@ -17,5 +18,6 @@ public interface ApusDao {
      public boolean insert(Session session, EquipherrApu equipherrapu) throws Exception;
     //insertar nano de obra apus
       public boolean insertarManobra(Session session,ManoobraApu manapu) throws Exception;
-     
+         //insertar nano de obra apus
+      public boolean insertarMaterial(Session session,MaterialApu mateapu) throws Exception;
 }
