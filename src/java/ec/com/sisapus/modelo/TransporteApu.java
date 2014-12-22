@@ -14,7 +14,7 @@ public class TransporteApu  implements java.io.Serializable {
      private Integer codTranApu;
      private Transporte transporte;
      private String descTranApu;
-     private Integer unidTranApu;
+     private String unidTranApu;
      private Integer cantTranApu;
      private Double tarifaTranApu;
      private Double costotTranApu;
@@ -25,7 +25,7 @@ public class TransporteApu  implements java.io.Serializable {
         this.transporte = new Transporte();
     }
 
-    public TransporteApu(Transporte transporte, String descTranApu, Integer unidTranApu, Integer cantTranApu, Double tarifaTranApu, Double costotTranApu, Set analisispreciounitarios) {
+    public TransporteApu(Transporte transporte, String descTranApu, String unidTranApu, Integer cantTranApu, Double tarifaTranApu, Double costotTranApu, Set analisispreciounitarios) {
        this.transporte = transporte;
        this.descTranApu = descTranApu;
        this.unidTranApu = unidTranApu;
@@ -56,13 +56,15 @@ public class TransporteApu  implements java.io.Serializable {
     public void setDescTranApu(String descTranApu) {
         this.descTranApu = descTranApu;
     }
-    public Integer getUnidTranApu() {
-        return this.unidTranApu;
+
+    public String getUnidTranApu() {
+        return unidTranApu;
     }
-    
-    public void setUnidTranApu(Integer unidTranApu) {
+
+    public void setUnidTranApu(String unidTranApu) {
         this.unidTranApu = unidTranApu;
     }
+    
     public Integer getCantTranApu() {
         return this.cantTranApu;
     }

@@ -9,6 +9,7 @@ import ec.com.sisapus.daoimpl.ApusDaoImpl;
 import ec.com.sisapus.daoimpl.equipoherrDaoImpl;
 import ec.com.sisapus.daoimpl.manoobraDaoImpl;
 import ec.com.sisapus.daoimpl.materialDaoImpl;
+import ec.com.sisapus.daoimpl.transporteDaoImpl;       
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.view.ViewScoped;
@@ -21,6 +22,8 @@ import ec.com.sisapus.modelo.Manoobra;
 import ec.com.sisapus.modelo.ManoobraApu;
 import ec.com.sisapus.modelo.Material;
 import ec.com.sisapus.modelo.MaterialApu;
+import ec.com.sisapus.modelo.Transporte;
+import ec.com.sisapus.modelo.TransporteApu;
 import ec.com.sisapus.util.HibernateUtil;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -61,7 +64,12 @@ public class ApuBeanVista implements Serializable {
       private MaterialApu materialapus;
      private Double precioTotalmaterial;
      
+     //transporte
      
+     private Transporte transportes;    
+     private List<TransporteApu> listaTransporteApus;
+      private TransporteApu transportapus;
+     private Double precioTotaltransporte; 
      
      public ApuBeanVista()
              
@@ -72,6 +80,8 @@ public class ApuBeanVista implements Serializable {
                 this.listaManoBra=new ArrayList<>();
                 this.materiales=new Material();
                 this.listaMaterialApus=new ArrayList<>();
+                this.transportes=new Transporte();
+                this.listaTransporteApus=new ArrayList<>();
                         
              }
 
@@ -708,7 +718,191 @@ public void SeleccionarFila(SelectEvent event) {
     
 //fin materiales
 
+//transporte    
+    
+     public void agregarListaTransporteApu(Integer idtrans)
+    {
+        this.session=null;
+        this.transaction=null;
+        
+        try
+        {
+            this.session=HibernateUtil.getSessionFactory().openSession();
+                 
+       transporteDaoImpl transpdao=new transporteDaoImpl();
+        
+            
+            this.transaction=this.session.beginTransaction();
+            
+             this.transportes=transpdao.getByIdTransporte(session, idtrans);
+             
+        //this.listaManoBra.add(new ManoobraApu(null,this.manoobras.getNombreManob(),null,null,this.manoobras.getCostojrhManob(),null, null, null,null));
+          this.listaTransporteApus.add(new TransporteApu(null, this.transportes.getNombreTransp(), null,null, this.transportes.getTarifaTransp(), null, null));
+        this.transaction.commit();
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Material agregado"));
+            
+         
+       
+            //RequestContext.getCurrentInstance().update("frmApus:frmdetequipos:tablaListaEquipos");
+           //RequestContext.getCurrentInstance().update("frmApus:msgs");
+            //el qu estaba
+            RequestContext.getCurrentInstance().update("frmRealizarVentas2:tablaListaProductosVenta2");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas2:mensajeGeneral2");
+            //
+       
+        }
+        catch(Exception ex)
+        {
+            if(this.transaction!=null)
+            {
+                transaction.rollback();
+            }
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }
+        finally
+        {
+            if(this.session!=null)
+            {
+                this.session.close();
+            }
+        }
+    }
 
+//
+
+    //funcion para retirar
+       public void EliminarListaMateriales(String nom)
+    {        
+        try
+        {
+            int i=0;
+            
+            for(MaterialApu item : this.listaMaterialApus)
+            {
+                if(item.getDescMatApu().equals(nom))
+                {
+                    this.listaMaterialApus.remove(i);
+                    
+                    break;
+                }
+                
+                i++;
+            }
+            
+           Double totalVenta1=new Double("0.00");
+            
+            for(MaterialApu item : this.listaMaterialApus)
+            {
+                
+               
+                Double totalVentaPorProducto1=(new Double(item.getCantMatApu()))*(new Double(item.getPreunitMatApu()));
+                
+                item.setCostotMatApu(totalVentaPorProducto1);
+                
+                totalVenta1=totalVenta1+totalVentaPorProducto1;
+            }
+            
+          this.setPrecioTotalmaterial(totalVenta1);
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Material retirado de la lista"));
+            
+            RequestContext.getCurrentInstance().update("frmRealizarVentas2:tablaListaProductosVenta2");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas2:panelFinalVenta2");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas2:mensajeGeneral2");
+        }
+        catch(Exception ex)
+        {            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }
+    }
+
+    //calculo subtotal equipos
+       
+       public void calcularCostosMateriales()
+    {
+        try
+        {   
+             Double totalVenta1=new Double("0.00");
+            
+            for(MaterialApu item : this.listaMaterialApus)
+            {
+                
+               
+                Double totalVentaPorProducto1=(new Double(item.getCantMatApu()))*(new Double(item.getPreunitMatApu()));
+                
+                item.setCostotMatApu(totalVentaPorProducto1);
+                
+                totalVenta1=totalVenta1+totalVentaPorProducto1;
+            }
+            
+          this.setPrecioTotalmaterial(totalVenta1);
+            
+            RequestContext.getCurrentInstance().update("frmRealizarVentas2:tablaListaProductosVenta2");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas2:panelFinalVenta2");
+        }
+        catch(Exception ex)
+        {            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }
+    }
+       
+   // 
+    
+     public void guardarmaterialApus()
+        {
+           this.session=null;
+        this.transaction=null;
+        
+        try
+        {
+            this.session=HibernateUtil.getSessionFactory().openSession();
+            
+          materialDaoImpl materialdao=new materialDaoImpl();
+            ApusDaoImpl apusmaterial= new ApusDaoImpl();
+     
+            
+            this.transaction=this.session.beginTransaction();
+            this.materiales=materialdao.getUltimoRegistro(session);
+            
+            for(MaterialApu item : this.listaMaterialApus)
+            {
+                this.materiales=materialdao.getByIdMaterial(session,this.materiales.getCodigoMat());
+                item.setMaterial(this.materiales);
+                apusmaterial.insertarMaterial(this.session, item);
+            }
+            
+            this.transaction.commit();
+            this.listaMaterialApus=new ArrayList<>();
+            this.materiales=new Material();
+            this.precioTotalmaterial=0.0;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Material guardado correctamente"));
+        }
+        catch(Exception ex)
+        {
+            if(this.transaction!=null)
+            {
+                transaction.rollback();
+            }
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }
+        finally
+        {
+            if(this.session!=null)
+            {
+                this.session.close();
+            }
+        }  
+        }
+     
+     
+     
+     
+    
+    
+//fin transporte
 
 
 
@@ -842,7 +1036,38 @@ public void SeleccionarFila(SelectEvent event) {
         this.precioTotalmaterial = precioTotalmaterial;
     }
     
-    
+    //transporte
+    public Transporte getTransportes() {
+        return transportes;
+    }
+
+    public void setTransportes(Transporte transportes) {
+        this.transportes = transportes;
+    }
+
+    public List<TransporteApu> getListaTransporteApus() {
+        return listaTransporteApus;
+    }
+
+    public void setListaTransporteApus(List<TransporteApu> listaTransporteApus) {
+        this.listaTransporteApus = listaTransporteApus;
+    }
+
+    public TransporteApu getTransportapus() {
+        return transportapus;
+    }
+
+    public void setTransportapus(TransporteApu transportapus) {
+        this.transportapus = transportapus;
+    }
+
+    public Double getPrecioTotaltransporte() {
+        return precioTotaltransporte;
+    }
+
+    public void setPrecioTotaltransporte(Double precioTotaltransporte) {
+        this.precioTotaltransporte = precioTotaltransporte;
+    }
     
     
     

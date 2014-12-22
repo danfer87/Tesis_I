@@ -14,8 +14,8 @@
         <property name="descTranApu" type="string">
             <column name="DESC_TRAN_APU" length="100" />
         </property>
-        <property name="unidTranApu" type="java.lang.Integer">
-            <column name="UNID_TRAN_APU" />
+        <property name="unidTranApu" type="string">
+            <column name="UNID_TRAN_APU" length="20" />
         </property>
         <property name="cantTranApu" type="java.lang.Integer">
             <column name="CANT_TRAN_APU" />
