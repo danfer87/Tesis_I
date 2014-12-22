@@ -290,22 +290,22 @@
           <p:dialog header="Effects" id="dlg3" widgetVar="dlg3"
                     showEffect="fade" hideEffect="explode" height="100"  modal="true">
     
-                        <p:dataTable value="#{equipoherramientaBean.listaEquipoHerramienta}" var="item"  scrollable="true" scrollHeight="100"
+              <p:dataTable value="#{transportesBean.listaTransporte}" var="item5"  scrollable="true" scrollHeight="100"
                                      style="width:650px ">
                         <p:column headerText="Codigo">
-                            <h:outputText value="#{item.codigoEqherr}"/>
+                            <h:outputText value="#{item5.codigoTransp}"/>
                         </p:column>
                         <p:column headerText="NOMBRE" >
-                            <h:outputText value="#{item.nombreEqherr}"/>
+                            <h:outputText value="#{item5.nombreTransp}"/>
                         </p:column>
-                        <p:column headerText="Costo Hora">
-                            <h:outputText value="#{item.costohoraEqherr}"/>
+                        <p:column headerText="Tarifa">
+                            <h:outputText value="#{item5.tarifaTransp}"/>
                         </p:column>
                         <p:column headerText="Categoria">
-                            <h:outputText value="#{item.categoriaequipoherramienta.nombCatEqherr}"/>
+                            <h:outputText value="#{item5.categoriatransporte.nombCatTrans}"/>
                         </p:column>
                         <p:column>
-                            <p:commandButton value="Seleccionar"  actionListener="#{ApuBeanVista.agregarListaEquiposApus(item.codigoEqherr)}"
+                            <p:commandButton value="Seleccionar"  actionListener="#{ApuBeanVista.agregarListaTransporteApu(item5.codigoTransp)}"
                                             />
                             
                         </p:column>
@@ -315,30 +315,29 @@
              <FIELDSET  style="-moz-border-radius:10px;background-color: #dddddd;
                           width: 1118px;" class="borderFieldSet" >
                     <legend>Transporte</legend>
-            <p:dataTable id="tablaListaProductosVenta3" value="#{ApuBeanVista.listaEquiposApus}" var="item" scrollable="true" scrollHeight="100">
+                    <p:dataTable id="tablaListaProductosVenta3" value="#{ApuBeanVista.listaTransporteApus}" var="item6" scrollable="true" scrollHeight="100">
               
     
                 <p:column headerText="NOMBRE" style="text-align: left;">
-                    <h:outputText value="#{item.descEqherrApu}"/>
+                    <h:outputText value="#{item6.descTranApu}"/>
                 </p:column>
-                <p:column headerText="Costo Hora" style="text-align: center;">
-                    <h:outputText value="#{item.costohoraEqherrApu}"/>
+                      
+                <p:column headerText="Unidad" style="text-align: center;">
+                    <p:inputText value="#{item6.unidTranApu}" style="text-align: center;" />                    
                 </p:column>
-                <p:column headerText="Cantidad" style="text-align: center;">
-                    <p:inputText value="#{item.cantEqherrApu}" style="text-align: center;" />                    
+                         <p:column headerText="Cantidad" style="text-align: center;">
+                             <p:inputText value="#{item6.cantTranApu}" style="text-align: center;" />                    
                 </p:column>
-                     <p:column headerText="Rendimiento" style="text-align: center;">
-                         <p:inputText value="#{item.rendimEqherrApu}" style="text-align: center;" />                    
-                </p:column>
+                         
                      <p:column headerText="Tarifa" style="text-align: center;">
-                         <p:inputText value="#{item.tarifaEqherrApu}" style="text-align: center;" />                    
+                       S./   <h:outputText value="#{item6.tarifaTranApu}"/>                  
                 </p:column>
                 <p:column headerText="Total" style="text-align: center;">
                     S./ 
-                    <h:outputText value="#{item.costotEqherrApu}"/>
+                    <h:outputText value="#{item6.costotTranApu}"/>
                 </p:column>
                 <p:column style="text-align: center;">
-                    <p:commandButton value="Retirar de la lista" ajax="true" actionListener="#{ApuBeanVista.EliminarListaEquipo(item.descEqherrApu)}"/>
+                    <p:commandButton value="Retirar de la lista" ajax="true" actionListener="#{ApuBeanVista.EliminarListaTransporte(item6.descTranApu)}"/>
                 </p:column>
             </p:dataTable>
             <p:panelGrid id="panelFinalVenta3" columns="1" style="text-align: right;width: 100%;">
@@ -346,11 +345,11 @@
                     <p:commandButton id="btnProyectoCreate3"  oncomplete="dlg3.show()"  value="Crear">  
                     </p:commandButton>   
 
-                    <p:commandButton value="Calcular" actionListener="#{ApuBeanVista.calcularCostos()}" />
+                    <p:commandButton value="Calcular" actionListener="#{ApuBeanVista.calcularCostosTransporte()}" />
                     S./ 
-                    <h:outputText value="#{ApuBeanVista.precioTotalEquipo}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>
+                    <h:outputText value="#{ApuBeanVista.precioTotaltransporte}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>
                  _______
-                 <p:commandButton value="Guardar" ajax="false" actionListener="#{ApuBeanVista.guardarequiposApus()}"/>
+                 <p:commandButton value="Guardar" ajax="false" actionListener="#{ApuBeanVista.guardarTransporteApus()}"/>
                 </h:panelGroup>
             </p:panelGrid>
            </FIELDSET>     
