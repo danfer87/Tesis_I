@@ -24,6 +24,7 @@ import ec.com.sisapus.modelo.Material;
 import ec.com.sisapus.modelo.MaterialApu;
 import ec.com.sisapus.modelo.Transporte;
 import ec.com.sisapus.modelo.TransporteApu;
+import ec.com.sisapus.modelo.Analisispreciounitario;
 import ec.com.sisapus.util.HibernateUtil;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -70,6 +71,8 @@ public class ApuBeanVista implements Serializable {
      private List<TransporteApu> listaTransporteApus;
       private TransporteApu transportapus;
      private Double precioTotaltransporte; 
+     
+     private Analisispreciounitario analisisapus;
      
      public ApuBeanVista()
              
@@ -1063,6 +1066,14 @@ public void SeleccionarFila(SelectEvent event) {
 
     public void setPrecioTotaltransporte(Double precioTotaltransporte) {
         this.precioTotaltransporte = precioTotaltransporte;
+    }
+
+    public Analisispreciounitario getAnalisisapus() {
+        return analisisapus;
+    }
+
+    public void setAnalisisapus(Analisispreciounitario analisisapus) {
+        this.analisisapus = analisisapus;
     }
     
     

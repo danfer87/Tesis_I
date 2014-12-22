@@ -23,9 +23,9 @@
         <h:form id="frmRubros">
             <h:panelGrid columns="2" cellpadding="4" >
                                 <p:outputLabel value="Seleccione el rubro:" />
-                                <p:selectOneMenu value="#">  
+                                <p:selectOneMenu value="#{ApuBeanVista.analisisapus.rubro.codigoRubro}">  
                                     <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
-                                    <f:selectItems value="#" />  
+                                    <f:selectItems value="#{rubroBeanVista.listaRubross}" />  
                                 </p:selectOneMenu> 
                              </h:panelGrid>   
                     
