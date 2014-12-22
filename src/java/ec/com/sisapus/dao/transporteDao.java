@@ -6,6 +6,7 @@ package ec.com.sisapus.dao;
 
 import ec.com.sisapus.modelo.Transporte;
 import java.util.List;
+import org.hibernate.Session;
 
 /**
  *
@@ -17,4 +18,8 @@ public interface transporteDao {
     public boolean crearTransporte(Transporte transporte);
     public boolean actualizarTransporte(Transporte transporte);
     public boolean eliminarTransporte(Integer idTransporte);  
+    
+    //agregado
+      public Transporte getByIdTransporte(Session session, Integer idtransp) throws Exception;
+       public Transporte getUltimoRegistro(Session session) throws Exception; 
 }

@@ -8,6 +8,7 @@ import ec.com.sisapus.dao.transporteDao;
 import ec.com.sisapus.modelo.Transporte;
 import ec.com.sisapus.util.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -85,6 +86,19 @@ public class transporteDaoImpl implements transporteDao{
             flag = false;
         }
         return flag;
+    }
+
+    @Override
+    public Transporte getByIdTransporte(Session session, Integer idtransp) throws Exception {
+        return (Transporte) session.load(Transporte.class, idtransp);//To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Transporte getUltimoRegistro(Session session) throws Exception {
+         String hql="FROM Transporte t left join fetch t.categoriatransporte order by CODIGO_TRANSP desc";
+        Query query=session.createQuery(hql).setMaxResults(1);
+        
+        return (Transporte) query.uniqueResult();//To change body of generated methods, choose Tools | Templates.
     }
     
 }
