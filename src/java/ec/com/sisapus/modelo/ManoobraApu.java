@@ -14,7 +14,6 @@ public class ManoobraApu  implements java.io.Serializable {
      private Integer codMoApu;
      private Manoobra manoobra;
      private String descMoApu;
-     private String categMoApu;
      private Integer cantMoApu;
      private Double costojrhMoApu;
      private Double costohoraMoApu;
@@ -27,10 +26,9 @@ public class ManoobraApu  implements java.io.Serializable {
         this.manoobra = new Manoobra();
     }
 
-    public ManoobraApu(Manoobra manoobra, String descMoApu, String categMoApu, Integer cantMoApu, Double costojrhMoApu, Double costohoraMoApu, Double rendimMoApu, Double costotMoApu, Set analisispreciounitarios) {
+    public ManoobraApu(Manoobra manoobra, String descMoApu, Integer cantMoApu, Double costojrhMoApu, Double costohoraMoApu, Double rendimMoApu, Double costotMoApu, Set analisispreciounitarios) {
        this.manoobra = manoobra;
        this.descMoApu = descMoApu;
-       this.categMoApu = categMoApu;
        this.cantMoApu = cantMoApu;
        this.costojrhMoApu = costojrhMoApu;
        this.costohoraMoApu = costohoraMoApu;
@@ -60,13 +58,8 @@ public class ManoobraApu  implements java.io.Serializable {
     public void setDescMoApu(String descMoApu) {
         this.descMoApu = descMoApu;
     }
-    public String getCategMoApu() {
-        return this.categMoApu;
-    }
     
-    public void setCategMoApu(String categMoApu) {
-        this.categMoApu = categMoApu;
-    }
+    
     public Integer getCantMoApu() {
         return this.cantMoApu;
     }

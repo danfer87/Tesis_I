@@ -371,7 +371,7 @@ public void SeleccionarFila(SelectEvent event) {
             
              this.manoobras=daomano.getByIdManobra(session, idmanobra);
              
-        this.listaManoBra.add(new ManoobraApu(null,this.manoobras.getNombreManob(),null,null,this.manoobras.getCostojrhManob(),null, null, null,null));
+        this.listaManoBra.add(new ManoobraApu(null,this.manoobras.getNombreManob(),null,this.manoobras.getCostojrhManob(),null, null, null,null));
             this.transaction.commit();
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Mano de Obra agregado"));

@@ -14,9 +14,6 @@
         <property name="descMoApu" type="string">
             <column name="DESC_MO_APU" length="100" />
         </property>
-        <property name="categMoApu" type="string">
-            <column name="CATEG_MO_APU" length="70" />
-        </property>
         <property name="cantMoApu" type="java.lang.Integer">
             <column name="CANT_MO_APU" />
         </property>
