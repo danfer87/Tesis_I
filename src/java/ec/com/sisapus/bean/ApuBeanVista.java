@@ -86,7 +86,7 @@ public class ApuBeanVista implements Serializable {
                 this.listaMaterialApus=new ArrayList<>();
                 this.transportes=new Transporte();
                 this.listaTransporteApus=new ArrayList<>();
-                 this.rubro=new Rubro();
+                this.rubro=new Rubro();
              }
 
   
