@@ -240,30 +240,27 @@
              <FIELDSET  style="-moz-border-radius:10px;background-color: #dddddd;
                           width: 1118px;" class="borderFieldSet" >
                     <legend>Materiales</legend>
-            <p:dataTable id="tablaListaProductosVenta2" value="#{ApuBeanVista.listaEquiposApus}" var="item" scrollable="true" scrollHeight="100">
+                    <p:dataTable id="tablaListaProductosVenta2" value="#{ApuBeanVista.listaMaterialApus}" var="item3" scrollable="true" scrollHeight="100">
               
     
                 <p:column headerText="NOMBRE" style="text-align: left;">
-                    <h:outputText value="#{item.descEqherrApu}"/>
+                    <h:outputText value="#{item3.descMatApu}"/>
                 </p:column>
-                <p:column headerText="Costo Hora" style="text-align: center;">
-                    <h:outputText value="#{item.costohoraEqherrApu}"/>
+                <p:column headerText="Unidad" style="text-align: center;">
+                    <h:outputText value="#{item3.unidMatApu}"/>
                 </p:column>
                 <p:column headerText="Cantidad" style="text-align: center;">
-                    <p:inputText value="#{item.cantEqherrApu}" style="text-align: center;" />                    
+                    <p:inputText value="#{item3.cantMatApu}" style="text-align: center;" />                    
                 </p:column>
-                     <p:column headerText="Rendimiento" style="text-align: center;">
-                         <p:inputText value="#{item.rendimEqherrApu}" style="text-align: center;" />                    
-                </p:column>
-                     <p:column headerText="Tarifa" style="text-align: center;">
-                         <p:inputText value="#{item.tarifaEqherrApu}" style="text-align: center;" />                    
-                </p:column>
+                      <p:column headerText="Costo Unitario" style="text-align: center;">
+                          <h:outputText value="#{item3.preunitMatApu}"/>                 
+                       </p:column>
                 <p:column headerText="Total" style="text-align: center;">
                     S./ 
-                    <h:outputText value="#{item.costotEqherrApu}"/>
+                    <h:outputText value="#{item3.costotMatApu}"/>
                 </p:column>
                 <p:column style="text-align: center;">
-                    <p:commandButton value="Retirar de la lista" ajax="true" actionListener="#{ApuBeanVista.EliminarListaEquipo(item.descEqherrApu)}"/>
+                    <p:commandButton value="Retirar de la lista" ajax="true" actionListener="#{ApuBeanVista.EliminarListaMateriales(item3.codMatApu)}"/>
                 </p:column>
             </p:dataTable>
             <p:panelGrid id="panelFinalVenta2" columns="1" style="text-align: right;width: 100%;">
@@ -271,11 +268,11 @@
                     <p:commandButton id="btnProyectoCreate2"  oncomplete="dlg2.show()"  value="Crear">  
                     </p:commandButton>   
 
-                    <p:commandButton value="Calcular" actionListener="#{ApuBeanVista.calcularCostos()}" />
+                    <p:commandButton value="Calcular" actionListener="#{ApuBeanVista.calcularCostosMateriales()}" />
                     S./ 
-                    <h:outputText value="#{ApuBeanVista.precioTotalEquipo}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>
+                    <h:outputText value="#{ApuBeanVista.precioTotalmaterial}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>
                  _______
-                 <p:commandButton value="Guardar" ajax="false" actionListener="#{ApuBeanVista.guardarequiposApus()}"/>
+                 <p:commandButton value="Guardar" ajax="false" actionListener="#{ApuBeanVista.guardarmaterialApus()}"/>
                 </h:panelGroup>
             </p:panelGrid>
            </FIELDSET>     
