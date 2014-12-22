@@ -4,14 +4,18 @@
  */
 package ec.com.sisapus.bean;
 
+import ec.com.sisapus.dao.rubroDao;
+import ec.com.sisapus.daoimpl.rubroDaoImpl;
 import ec.com.sisapus.daoimpl.rubroDaoImplInterface;
 import ec.com.sisapus.modelo.Rubro;
 import ec.com.sisapus.util.HibernateUtil;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -33,6 +37,7 @@ public class rubroBeanVista {
     
     private Rubro rubro;
     private List<Rubro> listaRubro;
+    private List<SelectItem> listaRubross;
     
     public rubroBeanVista() {
         this.rubro=new Rubro();
@@ -258,4 +263,16 @@ public class rubroBeanVista {
             }
         }
     }
+     
+     public List<SelectItem> getListaRubross() {
+        this.listaRubross = new ArrayList<SelectItem>();
+        rubroDao rubrodao = new rubroDaoImpl();
+        List<Rubro> rubross = rubrodao.buscarTodosRubros();
+        for (Rubro rub : rubross) {
+            SelectItem selectItem = new SelectItem(rub.getCodigoRubro(),rub.getNombreRubro());
+            this.listaRubross.add(selectItem);
+        }
+        return listaRubross;
+    }
+
 }
