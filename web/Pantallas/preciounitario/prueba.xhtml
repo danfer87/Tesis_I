@@ -19,29 +19,38 @@
     <h:body>
       <ui:composition template="./../menuTemplate.xhtml">
           <ui:define name="content">
+              
+        
      
         <h:form id="frmRubros">
+              <p:growl id="msgs" showDetail="true" /> 
             <h:panelGrid columns="2" cellpadding="4" >
                                 <p:outputLabel value="Seleccione el rubro:" />
-                                <p:selectOneMenu value="#{ApuBeanVista.analisisapus.rubro.codigoRubro}">  
+                                <p:selectOneMenu immediate="true"     valueChangeListener="#{rubroBeanVista.valueChangeListener(event)}"  value="#{ApuBeanVista.analisisapus.rubro.codigoRubro}">  
                                     <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
-                                    <f:selectItems value="#{rubroBeanVista.listaRubross}" />  
+                                    <f:selectItems  value="#{rubroBeanVista.listaRubross}" />
+                                         <p:ajax update="prueba"/>
                                 </p:selectOneMenu> 
-                             </h:panelGrid>   
-                    
+                            
+                      <p:outputLabel value="Codigo:"/>
+                      <p:inputText value="#{ApuBeanVista.auxdesrubro}" id="prueba" size="10"/>            
+                    </h:panelGrid>                 
+ 
+                </h:form> 
+                   
                             <FIELDSET  style="-moz-border-radius:10px; width: 1118px; "  class="borderFieldSet">
                                 <legend>Rubro</legend>
                                 <h:form id="frmcargarrubros" >
                                     <h:panelGrid columns="2" cellpadding="4" >
                                         <h:panelGrid columns="2" cellpadding="3" >
                                             <p:outputLabel value="Codigo:"/>
-                                            <p:inputText value="" id="codigo" size="10"/>
+                                            <p:inputText value="#{rubroBeanVista.codigorubro}" id="opcion" size="10"/>
                                             <p:outputLabel value="Descripcion:"/>
-                                            <p:inputText value="" id="propietario" size="20"/>
+                                            <p:inputText value="#{rubroBeanVista.descripcrubro}" id="propietario" size="20"/>
                                          </h:panelGrid>
                                         <h:panelGrid columns="2" cellpadding="3" >
                                             <p:outputLabel value="Unidad:" />
-                                            <p:inputText value="" id="contratista" size="20"/>
+                                            <p:inputText value="#{rubroBeanVista.unidadrubro}" id="contratista" size="20"/>
                                             <p:outputLabel value="Categoria:" />
                                             <p:inputText value="" id="obra" size="25"/> 
                                            
@@ -53,14 +62,13 @@
                                     </h:panelGrid>
                                 </h:form>
                             </FIELDSET>
-                            <br></br>
     
-                 </h:form> 
+                 
         <h:form id="frmRealizarVentas">
         <p:growl id="mensajeGeneral" showDetail="true"/>   
       
           
-          <p:dialog header="Equipos y Herramientas" id="dlg" widgetVar="dlg" showEffect="fade" hideEffect="explode" height="120"  modal="true">
+          <p:dialog header="Equipos y Herramientas" id="dlg" widgetVar="dlg" showEffect="fade" hideEffect="explode" height="145"  modal="true">
     
                         <p:dataTable value="#{equipoherramientaBean.listaEquipoHerramienta}" var="item"  scrollable="true" scrollHeight="100"
                                      style="width:650px ">
@@ -136,7 +144,7 @@
        <h:form id="frmRealizarVentas1">
         <p:growl id="mensajeGeneral1" showDetail="true"/>   
      
-          <p:dialog header="Effects" id="dlg1" widgetVar="dlg1" showEffect="fade" hideEffect="explode" height="120"  modal="true">
+          <p:dialog header="Effects" id="dlg1" widgetVar="dlg1" showEffect="fade" hideEffect="explode" height="145"  modal="true">
     
               <p:dataTable value="#{manodeobraBean.listamanoobra}" var="item2"  scrollable="true" scrollHeight="100"
                                      style="width:650px ">
@@ -213,7 +221,7 @@
        <h:form id="frmRealizarVentas2">
         <p:growl id="mensajeGeneral2" showDetail="true"/>   
      
-          <p:dialog header="Effects" id="dlg2" widgetVar="dlg2" showEffect="fade" hideEffect="explode" height="120"  modal="true">
+          <p:dialog header="Effects" id="dlg2" widgetVar="dlg2" showEffect="fade" hideEffect="explode" height="145"  modal="true">
     
               <p:dataTable value="#{materialBean.listaMateriales}" var="item4"  scrollable="true" scrollHeight="100"
                                      style="width:650px ">
@@ -288,7 +296,7 @@
         <p:growl id="mensajeGeneral3" showDetail="true"/>   
      
           <p:dialog header="Effects" id="dlg3" widgetVar="dlg3"
-                    showEffect="fade" hideEffect="explode" height="100"  modal="true">
+                    showEffect="fade" hideEffect="explode" height="145"  modal="true">
     
               <p:dataTable value="#{transportesBean.listaTransporte}" var="item5"  scrollable="true" scrollHeight="100"
                                      style="width:650px ">
@@ -372,7 +380,7 @@
                                         <p:outputLabel value="Valor Ofertado:" for="valorofertado" />
                                         <p:inputText value="" id="valorofertado" size="10"/>
                                         <p:outputLabel value=" "  />
-                                           <p:commandButton id="btnGuardarApu"    value="GUARDAR">  
+                                        <p:commandButton id="btnGuardarApu"     value="GUARDAR">  
                                                </p:commandButton> 
                                         </h:panelGrid>
                                     

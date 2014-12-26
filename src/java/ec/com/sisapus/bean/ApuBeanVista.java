@@ -32,6 +32,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
+import javax.faces.event.ValueChangeEvent;
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.tabview.Tab;
 import org.primefaces.component.tabview.TabView;
@@ -74,7 +76,12 @@ public class ApuBeanVista implements Serializable {
      private Double precioTotaltransporte; 
      
      private Analisispreciounitario analisisapus;
+     //rubros
      private Rubro rubro;
+     private String auxdesrubro;
+     private String auxunidrubro;
+     ///
+    
      public ApuBeanVista()
              
              {
@@ -87,9 +94,13 @@ public class ApuBeanVista implements Serializable {
                 this.transportes=new Transporte();
                 this.listaTransporteApus=new ArrayList<>();
                 this.rubro=new Rubro();
+                this.analisisapus=new Analisispreciounitario();
+              //  analisisapus.setRubro(rubro);
+                //auxiliar rubro
+                
+                this.auxdesrubro="";
+                this.auxunidrubro="";
              }
-
-  
      
  ///funcion para lista de elementos detalle)
     
@@ -245,9 +256,9 @@ public class ApuBeanVista implements Serializable {
             }
             
             this.transaction.commit();
-            this.listaEquiposApus=new ArrayList<>();
-            this.equipherramientas=new Equipoherramienta();
-            this.precioTotalEquipo=0.0;
+          //  this.listaEquiposApus=new ArrayList<>();
+           // this.equipherramientas=new Equipoherramienta();
+           // this.precioTotalEquipo=0.0;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Equipo y Herramientas guardado correctamente"));
         }
         catch(Exception ex)
@@ -852,7 +863,7 @@ public void SeleccionarFila(SelectEvent event) {
     
      public void guardarTransporteApus()
         {
-           this.session=null;
+          this.session=null;
         this.transaction=null;
         
         try
@@ -904,7 +915,60 @@ public void SeleccionarFila(SelectEvent event) {
     
 //fin transporte
 
-
+//Analisis Precios Unitarios
+     
+   public void guardarAPU()
+        {
+         this.session=null;
+        this.transaction=null;
+        
+        try
+        {
+            this.session=HibernateUtil.getSessionFactory().openSession();
+            
+        transporteDaoImpl transpodao=new transporteDaoImpl();
+            ApusDaoImpl apustraanporte= new ApusDaoImpl();
+     
+            
+            this.transaction=this.session.beginTransaction();
+            this.transportes=transpodao.getUltimoRegistro(session);
+            
+            for(TransporteApu item : this.listaTransporteApus)
+            {
+                this.transportes=transpodao.getByIdTransporte(session,this.transportes.getCodigoTransp());
+                item.setTransporte(this.transportes);
+                apustraanporte.insertarTransporte(this.session, item);
+            }
+            
+            this.transaction.commit();
+            this.listaTransporteApus=new ArrayList<>();
+            this.transportes=new Transporte();
+            this.precioTotaltransporte=0.0;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Transporte guardado correctamente"));
+        }
+        catch(Exception ex)
+        {
+            if(this.transaction!=null)
+            {
+                transaction.rollback();
+            }
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }
+        finally
+        {
+            if(this.session!=null)
+            {
+                this.session.close();
+            }
+        }  
+        }
+     
+     
+     
+     ///  
+     
+     
 
 
 
@@ -1084,9 +1148,32 @@ public void SeleccionarFila(SelectEvent event) {
     public void setRubro(Rubro rubro) {
         this.rubro = rubro;
     }
-    
-    
-    
-    
+
   
+
+    public String getAuxdesrubro() {
+        return auxdesrubro;
+    }
+
+    public void setAuxdesrubro(String auxdesrubro) {
+        this.auxdesrubro = auxdesrubro;
+    }
+
+    public String getAuxunidrubro() {
+        return auxunidrubro;
+    }
+
+    public void setAuxunidrubro(String auxunidrubro) {
+        this.auxunidrubro = auxunidrubro;
+    }
+    
+    
+ 
+    
+    
+    
+   
+
+    
+    
 }

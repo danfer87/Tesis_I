@@ -9,7 +9,7 @@ import ec.com.sisapus.modelo.EquipherrApu;
 import ec.com.sisapus.modelo.ManoobraApu;
 import ec.com.sisapus.modelo.MaterialApu;
 import ec.com.sisapus.modelo.TransporteApu;
-
+import ec.com.sisapus.modelo.Analisispreciounitario;
 /**
  *
  * @author kleber
@@ -23,4 +23,5 @@ public interface ApusDao {
       public boolean insertarMaterial(Session session,MaterialApu mateapu) throws Exception; 
       //insertar transporte
       public boolean insertarTransporte(Session session,TransporteApu transapu) throws Exception;
+     public boolean insertarAPU(Session session,Analisispreciounitario apu) throws Exception; 
 }

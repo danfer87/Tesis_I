@@ -5,6 +5,7 @@
 package ec.com.sisapus.daoimpl;
 
 import ec.com.sisapus.dao.ApusDao;
+import ec.com.sisapus.modelo.Analisispreciounitario;
 import ec.com.sisapus.modelo.EquipherrApu;
 import ec.com.sisapus.modelo.ManoobraApu;
 import ec.com.sisapus.modelo.MaterialApu;
@@ -45,5 +46,11 @@ public class ApusDaoImpl implements ApusDao {
         return true; //To change body of generated methods, choose Tools | Templates.
     }
 
-   
+    @Override
+    public boolean insertarAPU(Session session, Analisispreciounitario apu) throws Exception {
+        session.save(apu); //To change body of generated methods, choose Tools | Templates.
+        return true; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }

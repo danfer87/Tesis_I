@@ -21,6 +21,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -43,6 +44,8 @@ public class usuarioBean {
     private String contraseniaRepita;
     private String nombre,apellido,sobrenombre, contrasenia,correo;
     //private boolean estado;
+    
+    private String nombreperfil;
     //private Date fechaReg, fechaMod;
     
     public usuarioBean() {
@@ -314,10 +317,18 @@ public class usuarioBean {
         
     }
     
-   
+
 
     
     //public String getLoggedUserName() {
       //  return ((usuarioBean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(USER_KEY)).toString();
     //}
+
+    public String getNombreperfil() {
+        return nombreperfil;
+    }
+
+    public void setNombreperfil(String nombreperfil) {
+        this.nombreperfil = nombreperfil;
+    }
 }

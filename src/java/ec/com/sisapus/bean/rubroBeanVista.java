@@ -11,14 +11,19 @@ import ec.com.sisapus.modelo.Rubro;
 import ec.com.sisapus.util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.mapping.Map;
+import org.primefaces.component.inputtext.InputText;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -38,9 +43,18 @@ public class rubroBeanVista {
     private Rubro rubro;
     private List<Rubro> listaRubro;
     private List<SelectItem> listaRubross;
-    
+    //setear 
+    private int codigorubro ;
+      private String unidadrubro ;
+        private String descripcrubro ;
+          private String categString ;
+            Transaction transaction;
     public rubroBeanVista() {
         this.rubro=new Rubro();
+       
+         this.codigorubro=0;
+           this.descripcrubro="";
+           this.unidadrubro="";
         //this.rubro.setCodigoRubro();
     }
 
@@ -266,13 +280,127 @@ public class rubroBeanVista {
      
      public List<SelectItem> getListaRubross() {
         this.listaRubross = new ArrayList<SelectItem>();
-        rubroDao rubrodao = new rubroDaoImpl();
+               rubroDao rubrodao = new rubroDaoImpl();
         List<Rubro> rubross = rubrodao.buscarTodosRubros();
         for (Rubro rub : rubross) {
             SelectItem selectItem = new SelectItem(rub.getCodigoRubro(),rub.getNombreRubro());
+           
             this.listaRubross.add(selectItem);
+          
+       
         }
+       
         return listaRubross;
     }
+
+   /*public void cargartextosRubros() throws Exception
+           
+     {
+          this.listaRubross = new ArrayList<>();
+        rubroDao rubrodao = new rubroDaoImpl();
+          this.session=HibernateUtil.getSessionFactory().openSession();
+            this.transaction=this.session.beginTransaction();
+      rubro = rubrodao.getByIdRubro(session,this.rubro.getCodigoRubro());
+        for (Rubro rub : listaRubro) {
+            SelectItem selectItem = new SelectItem(rub.getCodigoRubro(),rub.getNombreRubro());
+          
+           this.codigorubro=rub.getCodigoRubro();
+           this.descripcrubro=rub.getNombreRubro();
+           this.unidadrubro=rub.getUnidadRubro();
+          
+    
+       
+        }
+          this.transaction.commit();
+     }*/
+     
+     
+    public int getCodigorubro() {
+        return codigorubro;
+    }
+
+    public void setCodigorubro(int codigorubro) {
+        this.codigorubro = codigorubro;
+    }
+
+    public String getUnidadrubro() {
+        return unidadrubro;
+    }
+
+    public void setUnidadrubro(String unidadrubro) {
+        this.unidadrubro = unidadrubro;
+    }
+
+    public String getDescripcrubro() {
+        return descripcrubro;
+    }
+
+    public void setDescripcrubro(String descripcrubro) {
+        this.descripcrubro = descripcrubro;
+    }
+
+    
+
+    public String getCategString() {
+        return categString;
+    }
+
+    public void setCategString(String categString) {
+        this.categString = categString;
+    }
+
+    public void setListaRubross(List<SelectItem> listaRubross) {
+        
+        this.listaRubross = listaRubross;
+    }
+
+    public Transaction getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }
+
+ /*   
+public void cargartextoscombos1(ValueChangeEvent e) throws Exception{
+     
+         
+         //this.codigorubro=(int) e.getNewValue();
+        this.descripcrubro="fdfdfddff";
+        this.unidadrubro="ffgfgffgfgffgfgg";
+          
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador "+ this.unidadrubro));
+
+   
+	}*/
+        
+public void valueChangeListener(ValueChangeEvent event) {  
+        //System.out.println("Cliente: " + event.getNewValue());  
+         
+      /*  PhaseId phaseId = event.getPhaseId();  
+        //pega o novo valor  
+        Integer newValue = (Integer) event.getNewValue();  
+        if (phaseId.equals(PhaseId.ANY_PHASE)) {  
+            //agenda o evento para a fase que nos interessa  
+            event.setPhaseId(PhaseId.UPDATE_MODEL_VALUES);  
+            event.queue();  
+        } else if (phaseId.equals(PhaseId.UPDATE_MODEL_VALUES)) {  
+            //aqui vai o método de antes (um pouco mudado)  
+              
+            this.rubro.setNombreRubro(newValue);  
+           // this.rubro.setDetalleRubro(newValue);
+            descripcrubro = String.valueOf(newValue);*/
+            String msg;
+             msg = "cambiio creado correctamente";
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,msg , null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }  
+    
+    
+    
+
+    
+
 
 }
