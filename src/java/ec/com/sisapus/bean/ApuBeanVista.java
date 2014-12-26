@@ -9,7 +9,8 @@ import ec.com.sisapus.daoimpl.ApusDaoImpl;
 import ec.com.sisapus.daoimpl.equipoherrDaoImpl;
 import ec.com.sisapus.daoimpl.manoobraDaoImpl;
 import ec.com.sisapus.daoimpl.materialDaoImpl;
-import ec.com.sisapus.daoimpl.transporteDaoImpl;       
+import ec.com.sisapus.daoimpl.transporteDaoImpl;  
+import ec.com.sisapus.daoimpl.rubroDaoImpl;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.view.ViewScoped;
@@ -78,6 +79,7 @@ public class ApuBeanVista implements Serializable {
      private Analisispreciounitario analisisapus;
      //rubros
      private Rubro rubro;
+      private List<Rubro> listaRubro;
      private String auxdesrubro;
      private String auxunidrubro;
      ///
@@ -967,7 +969,51 @@ public void SeleccionarFila(SelectEvent event) {
      
      
      ///  
-     
+     public void SeleccionTextos(ValueChangeEvent e)
+        {
+         this.session=null;
+        this.transaction=null;
+        
+        try
+        {
+            this.session=HibernateUtil.getSessionFactory().openSession();
+            
+     rubroDaoImpl rubrodao=new rubroDaoImpl();
+          
+            this.transaction=this.session.beginTransaction();
+            this.rubro=rubrodao.getUltimoRegistroRubro(session);
+            
+            for(Rubro item : this.listaRubro)
+            {
+                this.rubro=rubrodao.getByIdRubro(session,this.rubro.getCodigoRubro());
+              auxdesrubro=item.getDetalleRubro();
+              auxunidrubro=item.getUnidadRubro();
+                
+            }
+            
+            this.transaction.commit();
+            this.listaRubro=new ArrayList<>();
+            this.rubro=new Rubro();
+           
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Registro encontrado correctamente"));
+        }
+        catch(Exception ex)
+        {
+            if(this.transaction!=null)
+            {
+                transaction.rollback();
+            }
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }
+        finally
+        {
+            if(this.session!=null)
+            {
+                this.session.close();
+            }
+        }  
+        } 
      
 
 
@@ -1165,6 +1211,14 @@ public void SeleccionarFila(SelectEvent event) {
 
     public void setAuxunidrubro(String auxunidrubro) {
         this.auxunidrubro = auxunidrubro;
+    }
+
+    public List<Rubro> getListaRubro() {
+        return listaRubro;
+    }
+
+    public void setListaRubro(List<Rubro> listaRubro) {
+        this.listaRubro = listaRubro;
     }
     
     

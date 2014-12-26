@@ -20,5 +20,7 @@ public boolean crearRubro(Rubro rubro);
 public boolean actualizarRubro(Rubro rubro);
 public boolean eliminarRubro(Integer idRubro);   
 
- public Rubro getByIdRubro(Session session, Integer idrubros) throws Exception;
+  //agregado
+      public Rubro getByIdRubro(Session session, Integer idrubro) throws Exception;
+       public Rubro getUltimoRegistroRubro(Session session) throws Exception; 
 }

@@ -26,7 +26,7 @@
               <p:growl id="msgs" showDetail="true" /> 
             <h:panelGrid columns="2" cellpadding="4" >
                                 <p:outputLabel value="Seleccione el rubro:" />
-                                <p:selectOneMenu immediate="true"     valueChangeListener="#{rubroBeanVista.valueChangeListener(event)}"  value="#{ApuBeanVista.analisisapus.rubro.codigoRubro}">  
+                                <p:selectOneMenu immediate="true"     valueChangeListener="#{ApuBeanVista.SeleccionTextos(e)}"  value="#{ApuBeanVista.analisisapus.rubro.codigoRubro}">  
                                     <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
                                     <f:selectItems  value="#{rubroBeanVista.listaRubross}" />
                                          <p:ajax update="prueba"/>

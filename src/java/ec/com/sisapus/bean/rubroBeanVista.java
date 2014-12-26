@@ -362,18 +362,7 @@ public class rubroBeanVista {
         this.transaction = transaction;
     }
 
- /*   
-public void cargartextoscombos1(ValueChangeEvent e) throws Exception{
-     
-         
-         //this.codigorubro=(int) e.getNewValue();
-        this.descripcrubro="fdfdfddff";
-        this.unidadrubro="ffgfgffgfgffgfgg";
-          
-         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador "+ this.unidadrubro));
 
-   
-	}*/
         
 public void valueChangeListener(ValueChangeEvent event) {  
         //System.out.println("Cliente: " + event.getNewValue());  

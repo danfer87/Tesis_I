@@ -8,6 +8,7 @@ import ec.com.sisapus.dao.rubroDao;
 import ec.com.sisapus.modelo.Rubro;
 import ec.com.sisapus.util.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -88,8 +89,18 @@ public class rubroDaoImpl implements rubroDao{
     }
 
     @Override
-    public Rubro getByIdRubro(Session session, Integer idrubros) throws Exception {
-       return (Rubro) session.load(Rubro.class, idrubros); //To change body of generated methods, choose Tools | Templates.
+    public Rubro getByIdRubro(Session session, Integer idrubro) throws Exception {
+        
+         return (Rubro) session.load(Rubro.class, idrubro); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Rubro getUltimoRegistroRubro(Session session) throws Exception {
+        String hql="FROM Rubro r left join fetch r.categoriarubro order by CODIGO_RUBRO desc";
+        Query query=session.createQuery(hql).setMaxResults(1);
+         return (Rubro) query.uniqueResult();//To change body of generated methods, choose Tools | Templates.
+    }
+
+  
     
 }
