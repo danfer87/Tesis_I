@@ -379,7 +379,7 @@
            <h:form id="frmcostoApu">         
            <FIELDSET  style="-moz-border-radius:10px; width: 1118px; "  class="borderFieldSet">
                                 <legend>Costo Rubro</legend>
-                                <h:form id="frmcostosrubros" >
+                              
                                      <h:panelGrid columns="2" cellpadding="4" style="float:right" border="2">
                                         <p:outputLabel value="Costo Directo (EH+M+MO+T):" for="costodirecto" />
                                         <p:inputText value="" id="costodirecto" size="10"/>
@@ -392,16 +392,18 @@
                                         <p:outputLabel value="Valor Ofertado:" for="valorofertado" />
                                         <p:inputText value="" id="valorofertado" size="10"/>
                                         <p:outputLabel value=" "  />
-                                        <p:commandButton value="Guardar APU" ajax="false"/>
+                                      <h:panelGroup>
+                                          <p:commandButton id="btnguardarApu" ajax="true"  value="Guardar">  
+                                             </p:commandButton>  
+
+                                              </h:panelGroup>
                                         </h:panelGrid>
                                     
                                          
-
-                   
                                       
-                                </h:form>
+                              
                             </FIELDSET>
-                            <br></br>
+                            
     
                  </h:form> 
             

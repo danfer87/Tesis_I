@@ -250,7 +250,7 @@ public class ApuBeanVista implements Serializable {
                 totalVenta=totalVenta+totalVentaPorProducto;
             }
             
-          //this.setPrecioTotalEquipo(totalVenta);
+          this.setPrecioTotalEquipo(totalVenta);
              this.analisisapus.setAnalApuEqherr(totalVenta);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Equipos y Herramientas retirado de la lista"));
             
@@ -915,8 +915,12 @@ public class ApuBeanVista implements Serializable {
      
      
      
-     
-    
+   public void guardardos()
+           
+     {
+         guardarequiposApus();
+         guardarmanObraApus();
+     }
     
 //fin transporte
 
@@ -934,12 +938,10 @@ public class ApuBeanVista implements Serializable {
          ApusDaoImpl apusdao=new ApusDaoImpl();
             this.transaction=this.session.beginTransaction();
             this.equipapus=apusdao.getUltimoRegistroEqApu(session);
-             this.listapus.add(new Analisispreciounitario(null, null, null,null,null, null, this.equipherramientas.getNombreEqherr(), null, null,this.equipapus.getCostotEqherrApu(), null,null, null,null, null, null,null, null, null, null, null));
-      
+             
             for(Analisispreciounitario item : this.listapus)
             {
-                this.equipapus=apusdao.getByIdEquipoAPU(session,this.equipapus.getCodEqherrApu());
-                //probar
+               
                
                 item.setEquipherrApu(this.equipapus);
                 apusdao.insertarAPU(this.session, item);
