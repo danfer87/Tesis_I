@@ -17,6 +17,10 @@ import ec.com.sisapus.modelo.Analisispreciounitario;
 public interface ApusDao {
     //insertar equiposapus
      public boolean insert(Session session, EquipherrApu equipherrapu) throws Exception;
+    public EquipherrApu getByIdEquipoAPU(Session session, Integer idequipoapu) throws Exception;
+       public EquipherrApu getUltimoRegistroEqApu(Session session) throws Exception;
+     
+     
     //insertar nano de obra apus
       public boolean insertarManobra(Session session,ManoobraApu manapu) throws Exception;
          //insertar material apus

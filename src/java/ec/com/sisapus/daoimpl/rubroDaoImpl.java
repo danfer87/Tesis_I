@@ -88,7 +88,7 @@ public class rubroDaoImpl implements rubroDao{
         return flag;
     }
 
-    @Override
+        @Override
     public Rubro getByIdRubro(Session session, Integer idrubro) throws Exception {
         
          return (Rubro) session.load(Rubro.class, idrubro); //To change body of generated methods, choose Tools | Templates.
@@ -99,6 +99,22 @@ public class rubroDaoImpl implements rubroDao{
         String hql="FROM Rubro r left join fetch r.categoriarubro order by CODIGO_RUBRO desc";
         Query query=session.createQuery(hql).setMaxResults(1);
          return (Rubro) query.uniqueResult();//To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Rubro> BuscarRubro() {
+        List<Rubro> listado = null;
+        Session sesion = HibernateUtil.getSessionFactory().getCurrentSession();
+        String sql = "FROM Rubro";
+        try {
+            sesion.beginTransaction();
+            listado = sesion.createQuery(sql).list();
+            sesion.beginTransaction().commit();
+        } catch (Exception e) {
+            sesion.beginTransaction().rollback();
+        }
+
+        return listado; //To change body of generated methods, choose Tools | Templates.
     }
 
   

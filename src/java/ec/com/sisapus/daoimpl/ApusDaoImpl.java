@@ -12,6 +12,7 @@ import ec.com.sisapus.modelo.MaterialApu;
 import ec.com.sisapus.modelo.TransporteApu;
 import ec.com.sisapus.util.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -50,6 +51,19 @@ public class ApusDaoImpl implements ApusDao {
     public boolean insertarAPU(Session session, Analisispreciounitario apu) throws Exception {
         session.save(apu); //To change body of generated methods, choose Tools | Templates.
         return true; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public EquipherrApu getByIdEquipoAPU(Session session, Integer idequipoapu) throws Exception {
+       return (EquipherrApu) session.load(EquipherrApu.class, idequipoapu); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public EquipherrApu getUltimoRegistroEqApu(Session session) throws Exception {
+     String hql="FROM EquipherrApu order by COD_EQHERR_APU desc";
+        Query query=session.createQuery(hql).setMaxResults(1);
+        
+        return (EquipherrApu) query.uniqueResult(); //To change body of generated methods, choose Tools | Templates.
     }
     
     

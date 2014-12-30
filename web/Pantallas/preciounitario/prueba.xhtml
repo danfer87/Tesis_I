@@ -19,51 +19,63 @@
     <h:body>
       <ui:composition template="./../menuTemplate.xhtml">
           <ui:define name="content">
-              
+          
+              <h:form id="frmRealizarVentas4">
+        <p:growl id="mensajeGeneral4" showDetail="true"/>   
         
-     
-        <h:form id="frmRubros">
-              <p:growl id="msgs" showDetail="true" /> 
-            <h:panelGrid columns="2" cellpadding="4" >
-                                <p:outputLabel value="Seleccione el rubro:" />
-                                <p:selectOneMenu immediate="true"     valueChangeListener="#{ApuBeanVista.SeleccionTextos(e)}"  value="#{ApuBeanVista.analisisapus.rubro.codigoRubro}">  
-                                    <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
-                                    <f:selectItems  value="#{rubroBeanVista.listaRubross}" />
-                                         <p:ajax update="prueba"/>
-                                </p:selectOneMenu> 
+      
+        
+        
+        
+        <p:dialog header="Rubros" id="dlg" widgetVar="dlg4" showEffect="fade" hideEffect="explode" height="145"  modal="true">
+    
+           <p:dataTable value="#{rubroBeanVista.all}" var="item8"  scrollable="true" scrollHeight="100"
+                                     style="width:650px ">
+                        <p:column headerText="Codigo">
+                            <h:outputText value="#{item8.codigoRubro}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE" >
+                            <h:outputText value="#{item8.nombreRubro}"/>
+                        </p:column>
+                        <p:column headerText="Detalle">
+                            <h:outputText value="#{item8.detalleRubro}"/>
+                        </p:column>
+                        <p:column headerText="Categoria">
+                            <h:outputText value="#{item8.categoriarubro}"/>
+                        </p:column>
+                      <p:column headerText="Unidad">
+                          <h:outputText value="#{item8.unidadRubro}"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Seleccionar"  actionListener="#{ApuBeanVista.agregarRubroApus(item8.codigoRubro)}"/>
                             
-                      <p:outputLabel value="Codigo:"/>
-                      <p:inputText value="#{ApuBeanVista.auxdesrubro}" id="prueba" size="10"/>            
-                    </h:panelGrid>                 
- 
-                </h:form> 
-                   
+                        </p:column>
+                    </p:dataTable>
+                       </p:dialog>           
+       
                             <FIELDSET  style="-moz-border-radius:10px; width: 1118px; "  class="borderFieldSet">
                                 <legend>Rubro</legend>
-                                <h:form id="frmcargarrubros" >
-                                    <h:panelGrid columns="2" cellpadding="4" >
-                                        <h:panelGrid columns="2" cellpadding="3" >
+                               
+                                <h:panelGrid id="panelFinalVenta4" columns="2" cellpadding="1" >
+                                        
                                             <p:outputLabel value="Codigo:"/>
-                                            <p:inputText value="#{rubroBeanVista.codigorubro}" id="opcion" size="10"/>
+                                            <p:inputText value="#{ApuBeanVista.auxocidigo}" id="auxcodrub" size="10"/>
                                             <p:outputLabel value="Descripcion:"/>
-                                            <p:inputText value="#{rubroBeanVista.descripcrubro}" id="propietario" size="20"/>
-                                         </h:panelGrid>
-                                        <h:panelGrid columns="2" cellpadding="3" >
+                                            <p:inputText value="#{ApuBeanVista.auxdesrubro}" id="auxdesru" size="20"/>
                                             <p:outputLabel value="Unidad:" />
-                                            <p:inputText value="#{rubroBeanVista.unidadrubro}" id="contratista" size="20"/>
-                                            <p:outputLabel value="Categoria:" />
-                                            <p:inputText value="" id="obra" size="25"/> 
-                                           
-                                        </h:panelGrid>
+                                            <p:inputText value="#{ApuBeanVista.auxunidrubro}" id="auxunidad" size="20"/>
+                                              <p:outputLabel value="Categoria:" />
+                                            <p:inputText value="#{ApuBeanVista.auxcategoria}" id="auxcatru" size="20"/>          
                                         <h:panelGroup>
-                                        <p:commandButton id="btnCrearRubro" value="Crear Rubro"/>
-                                        <p:commandButton id="btnModRubro" value="Actualizar Rubro"/>   
+                                        <p:commandButton id="btnCrearRubro" oncomplete="dlg4.show()" value="Añadir Rubro"/>
+                                      
                                         </h:panelGroup>
                                     </h:panelGrid>
-                                </h:form>
+                            
                             </FIELDSET>
-    
-                 
+        
+        
+            </h:form>  
         <h:form id="frmRealizarVentas">
         <p:growl id="mensajeGeneral" showDetail="true"/>   
       
@@ -380,8 +392,7 @@
                                         <p:outputLabel value="Valor Ofertado:" for="valorofertado" />
                                         <p:inputText value="" id="valorofertado" size="10"/>
                                         <p:outputLabel value=" "  />
-                                        <p:commandButton id="btnGuardarApu"     value="GUARDAR">  
-                                               </p:commandButton> 
+                                        <p:commandButton value="Guardar APU" ajax="false"/>
                                         </h:panelGrid>
                                     
                                          

@@ -26,11 +26,13 @@ import ec.com.sisapus.modelo.MaterialApu;
 import ec.com.sisapus.modelo.Transporte;
 import ec.com.sisapus.modelo.TransporteApu;
 import ec.com.sisapus.modelo.Analisispreciounitario;
+import ec.com.sisapus.modelo.Categoriarubro;
 import ec.com.sisapus.modelo.Rubro;
 import ec.com.sisapus.util.HibernateUtil;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
@@ -76,13 +78,20 @@ public class ApuBeanVista implements Serializable {
       private TransporteApu transportapus;
      private Double precioTotaltransporte; 
      
+     //precios unitarios
      private Analisispreciounitario analisisapus;
+     private List<Analisispreciounitario>  listapus;
      //rubros
      private Rubro rubro;
       private List<Rubro> listaRubro;
      private String auxdesrubro;
      private String auxunidrubro;
-     ///
+     private int auxocidigo;
+    private String auxcategoria;
+     ///para la categoria rubro
+    private Categoriarubro catrubro;
+   /// 
+    
     
      public ApuBeanVista()
              
@@ -104,8 +113,61 @@ public class ApuBeanVista implements Serializable {
                 this.auxunidrubro="";
              }
      
- ///funcion para lista de elementos detalle)
+ ///funcion para agregar rubro
     
+  public void agregarRubroApus(Integer idRubros)
+    {
+        this.session=null;
+        this.transaction=null;
+        
+        try
+        {
+            this.session=HibernateUtil.getSessionFactory().openSession();
+            
+            rubroDaoImpl daorubro=new rubroDaoImpl();
+       
+            
+            this.transaction=this.session.beginTransaction();
+            
+             this.rubro=daorubro.getByIdRubro(session, idRubros);
+            
+            this.setAuxocidigo(this.rubro.getCodigoRubro());
+            this.setAuxdesrubro(this.rubro.getDetalleRubro());
+            this.setAuxunidrubro(this.rubro.getUnidadRubro());
+            this.setAuxcategoria(this.rubro.getCategoriarubro().getDescripcionCatRubro());
+                 
+           // this.listaEquiposApus.add(new EquipherrApu( null,this.equipherramientas.getNombreEqherr(), null,this.equipherramientas.getCostohoraEqherr(),null, null, null, null));
+       
+            this.transaction.commit();
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Rubro agregado"));
+          
+             RequestContext.getCurrentInstance().update("frmRealizarVentas4:panelFinalVenta4");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas4:mensajeGeneral4");
+           
+          
+        }
+        catch(Exception ex)
+        {
+            if(this.transaction!=null)
+            {
+                transaction.rollback();
+            }
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }
+        finally
+        {
+            if(this.session!=null)
+            {
+                this.session.close();
+            }
+        }
+    }   
+     
+     
+     
+  //  
     public void agregarListaEquiposApus(Integer idEquipos)
     {
         this.session=null;
@@ -137,9 +199,7 @@ public class ApuBeanVista implements Serializable {
             RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta");
             RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
             //
-        //nuevas tablas    
-       // RequestContext.getCurrentInstance().update("conequih,:tablaListaProductosVenta");
-        //    RequestContext.getCurrentInstance().update("conequih,:mensajeGeneral");    
+       
         }
         catch(Exception ex)
         {
@@ -190,8 +250,8 @@ public class ApuBeanVista implements Serializable {
                 totalVenta=totalVenta+totalVentaPorProducto;
             }
             
-          this.setPrecioTotalEquipo(totalVenta);
-            
+          //this.setPrecioTotalEquipo(totalVenta);
+             this.analisisapus.setAnalApuEqherr(totalVenta);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Equipos y Herramientas retirado de la lista"));
             
             RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta");
@@ -223,7 +283,7 @@ public class ApuBeanVista implements Serializable {
             }
             
             this.setPrecioTotalEquipo(totalVenta);
-            
+             this.analisisapus.setAnalApuEqherr(totalVenta);
             RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta");
             RequestContext.getCurrentInstance().update("frmRealizarVentas:panelFinalVenta");
         }
@@ -254,6 +314,7 @@ public class ApuBeanVista implements Serializable {
             {
                 this.equipherramientas=daoequipo.getByIdEquipo(session,this.equipherramientas.getCodigoEqherr());
                 item.setEquipoherramienta(this.equipherramientas);
+           
                 apusequip.insert(this.session, item);
             }
             
@@ -316,61 +377,9 @@ public class ApuBeanVista implements Serializable {
     }*/
   //probar a lo que se selecciona la fila
     
-public void SeleccionarFila(SelectEvent event) {  
-    
-    this.session=null;
-        this.transaction=null;
-        
-        try
-        {
-            this.session=HibernateUtil.getSessionFactory().openSession();
-            
-          equipoherrDaoImpl daoequipo=new equipoherrDaoImpl();
-         //   equipoherrDao daoequipo=new equipoherrDaoImpl();
-            
-            this.transaction=this.session.beginTransaction();
-            
-             this.equipherramientas=daoequipo.getByIdEquipo(session, equipherramientas.getCodigoEqherr());
-             
-                 
-            this.listaEquiposApus.add(new EquipherrApu( null,this.equipherramientas.getNombreEqherr(), null,null,this.equipherramientas.getCostohoraEqherr(), null, null, null));
-         
-            this.transaction.commit();
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Equipo/Herramienta agregado"));
-            
-         
-       
-            //RequestContext.getCurrentInstance().update("frmApus:frmdetequipos:tablaListaEquipos");
-           //RequestContext.getCurrentInstance().update("frmApus:msgs");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
-        }
-        catch(Exception ex)
-        {
-            if(this.transaction!=null)
-            {
-                transaction.rollback();
-            }
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
-        }
-        finally
-        {
-            if(this.session!=null)
-            {
-                this.session.close();
-            }
-        }
-        FacesMessage msg = new FacesMessage("Equipo y Herramienta Seleccionado", equipherramientas.getNombreEqherr());  
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        
-        
-    }  
-    
 
 //material
-///funcion para lista de elementos detalle)
+
     
     public void agregarListaManobraApu(Integer idmanobra)
     {
@@ -393,10 +402,7 @@ public void SeleccionarFila(SelectEvent event) {
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Mano de Obra agregado"));
             
-         
-       
-            //RequestContext.getCurrentInstance().update("frmApus:frmdetequipos:tablaListaEquipos");
-           //RequestContext.getCurrentInstance().update("frmApus:msgs");
+ 
             //el qu estaba
             RequestContext.getCurrentInstance().update("frmRealizarVentas1:tablaListaProductosVenta1");
             RequestContext.getCurrentInstance().update("frmRealizarVentas1:mensajeGeneral1");
@@ -573,10 +579,7 @@ public void SeleccionarFila(SelectEvent event) {
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Material agregado"));
             
-         
-       
-            //RequestContext.getCurrentInstance().update("frmApus:frmdetequipos:tablaListaEquipos");
-           //RequestContext.getCurrentInstance().update("frmApus:msgs");
+   
             //el qu estaba
             RequestContext.getCurrentInstance().update("frmRealizarVentas2:tablaListaProductosVenta2");
             RequestContext.getCurrentInstance().update("frmRealizarVentas2:mensajeGeneral2");
@@ -927,26 +930,26 @@ public void SeleccionarFila(SelectEvent event) {
         try
         {
             this.session=HibernateUtil.getSessionFactory().openSession();
-            
-        transporteDaoImpl transpodao=new transporteDaoImpl();
-            ApusDaoImpl apustraanporte= new ApusDaoImpl();
-     
-            
+             
+         ApusDaoImpl apusdao=new ApusDaoImpl();
             this.transaction=this.session.beginTransaction();
-            this.transportes=transpodao.getUltimoRegistro(session);
-            
-            for(TransporteApu item : this.listaTransporteApus)
+            this.equipapus=apusdao.getUltimoRegistroEqApu(session);
+             this.listapus.add(new Analisispreciounitario(null, null, null,null,null, null, this.equipherramientas.getNombreEqherr(), null, null,this.equipapus.getCostotEqherrApu(), null,null, null,null, null, null,null, null, null, null, null));
+      
+            for(Analisispreciounitario item : this.listapus)
             {
-                this.transportes=transpodao.getByIdTransporte(session,this.transportes.getCodigoTransp());
-                item.setTransporte(this.transportes);
-                apustraanporte.insertarTransporte(this.session, item);
+                this.equipapus=apusdao.getByIdEquipoAPU(session,this.equipapus.getCodEqherrApu());
+                //probar
+               
+                item.setEquipherrApu(this.equipapus);
+                apusdao.insertarAPU(this.session, item);
             }
             
             this.transaction.commit();
-            this.listaTransporteApus=new ArrayList<>();
-            this.transportes=new Transporte();
-            this.precioTotaltransporte=0.0;
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Transporte guardado correctamente"));
+            this.listapus=new ArrayList<>();
+            this.equipapus=new EquipherrApu();
+           // this.precioTotaltransporte=0.0;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Precio Unitario guardado correctamente"));
         }
         catch(Exception ex)
         {
@@ -965,60 +968,7 @@ public void SeleccionarFila(SelectEvent event) {
             }
         }  
         }
-     
-     
-     
-     ///  
-     public void SeleccionTextos(ValueChangeEvent e)
-        {
-         this.session=null;
-        this.transaction=null;
-        
-        try
-        {
-            this.session=HibernateUtil.getSessionFactory().openSession();
-            
-     rubroDaoImpl rubrodao=new rubroDaoImpl();
-          
-            this.transaction=this.session.beginTransaction();
-            this.rubro=rubrodao.getUltimoRegistroRubro(session);
-            
-            for(Rubro item : this.listaRubro)
-            {
-                this.rubro=rubrodao.getByIdRubro(session,this.rubro.getCodigoRubro());
-              auxdesrubro=item.getDetalleRubro();
-              auxunidrubro=item.getUnidadRubro();
-                
-            }
-            
-            this.transaction.commit();
-            this.listaRubro=new ArrayList<>();
-            this.rubro=new Rubro();
-           
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Registro encontrado correctamente"));
-        }
-        catch(Exception ex)
-        {
-            if(this.transaction!=null)
-            {
-                transaction.rollback();
-            }
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
-        }
-        finally
-        {
-            if(this.session!=null)
-            {
-                this.session.close();
-            }
-        }  
-        } 
-     
-
-
-
-
+    
   public Equipoherramienta getEquipherramientas() {
         return equipherramientas;
     }
@@ -1220,14 +1170,40 @@ public void SeleccionarFila(SelectEvent event) {
     public void setListaRubro(List<Rubro> listaRubro) {
         this.listaRubro = listaRubro;
     }
+
+    public int getAuxocidigo() {
+        return auxocidigo;
+    }
+
+    public void setAuxocidigo(int auxocidigo) {
+        this.auxocidigo = auxocidigo;
+    }
+
+    public List<Analisispreciounitario> getListapus() {
+        return listapus;
+    }
+
+    public void setListapus(List<Analisispreciounitario> listapus) {
+        this.listapus = listapus;
+    }
+
+    public String getAuxcategoria() {
+        return auxcategoria;
+    }
+
+    public void setAuxcategoria(String auxcategoria) {
+        this.auxcategoria = auxcategoria;
+    }
+
+    public Categoriarubro getCatrubro() {
+        return catrubro;
+    }
+
+    public void setCatrubro(Categoriarubro catrubro) {
+        this.catrubro = catrubro;
+    }
     
     
  
-    
-    
-    
-   
-
-    
     
 }

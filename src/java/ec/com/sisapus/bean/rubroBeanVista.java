@@ -278,18 +278,15 @@ public class rubroBeanVista {
         }
     }
      
-     public List<SelectItem> getListaRubross() {
-        this.listaRubross = new ArrayList<SelectItem>();
-               rubroDao rubrodao = new rubroDaoImpl();
-        List<Rubro> rubross = rubrodao.buscarTodosRubros();
-        for (Rubro rub : rubross) {
+     public List<SelectItem> getListaRubross() throws Exception {
+          this.listaRubross = new ArrayList<SelectItem>();
+        ///Crear Instancia de objeto para RolDaoImpl
+        rubroDaoImpl rubrosdao = new rubroDaoImpl();
+        List<Rubro> rubros = rubrosdao.BuscarRubro();
+        for (Rubro rub : rubros) {
             SelectItem selectItem = new SelectItem(rub.getCodigoRubro(),rub.getNombreRubro());
-           
             this.listaRubross.add(selectItem);
-          
-       
         }
-       
         return listaRubross;
     }
 
@@ -380,10 +377,7 @@ public void valueChangeListener(ValueChangeEvent event) {
             this.rubro.setNombreRubro(newValue);  
            // this.rubro.setDetalleRubro(newValue);
             descripcrubro = String.valueOf(newValue);*/
-            String msg;
-             msg = "cambiio creado correctamente";
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,msg , null);
-            FacesContext.getCurrentInstance().addMessage(null, message);
+            
         }  
     
     
