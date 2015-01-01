@@ -1,7 +1,9 @@
 package ec.com.sisapus.bean;
 
 import ec.com.sisapus.dao.proyectoDao;
+import ec.com.sisapus.dao.proyectoInterface;
 import ec.com.sisapus.daoimpl.proyectoDaoImpl;
+import ec.com.sisapus.daoimpl.proyectoImplementaInterface;
 import ec.com.sisapus.modelo.Proyecto;
 import ec.com.sisapus.modelo.Usuario;
 import ec.com.sisapus.util.HibernateUtil;
@@ -14,6 +16,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.DataModel;
+import javax.faces.model.SelectItem;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
@@ -34,17 +38,20 @@ import org.primefaces.context.RequestContext;
 public class proyectoBean implements Serializable {
 
     private Proyecto proyecto;
-        private Usuario usuario;
+    private Usuario usuario;
     private List<Proyecto> listaProyectos;
- private List<Proyecto> liscaldimensional;
-        private List<Proyecto> listaporUsuario;
-
-   
-    
-
+    private List<Proyecto> liscaldimensional;
+    private List<Proyecto> listaporUsuario;
+    private List<Proyecto> listaporcodigoproyecto;
+    private DataModel<Proyecto> modelp;
+    private Proyecto proyectoXId;
     //////
     private Session session;
     private Transaction transaccion;
+    private List<SelectItem> cargarProyectos;
+    private List<SelectItem> cargarproyectosporid;
+    private List<SelectItem> cargarTodosP;
+    private Integer codigoProy;
     /////
     private Usuario idUssuu;
 
@@ -73,58 +80,65 @@ public class proyectoBean implements Serializable {
         this.listaProyectos = listaProyectos;
     }
 
+    ///////////
+    public Integer getCodigoProy() {
+        return codigoProy;
+    }
+
+    public void setCodigoProy(Integer codigoProy) {
+        this.codigoProy = codigoProy;
+    }
+
+    ///////////
     public List<Proyecto> getListaporUsuario() {
         //  proyectoDao proyecDao = new proyectoDaoImpl();
         //listaporUsuario = proyecDao.listarProyectosPorUsuario("kleper");
-        
-         this.session=null;
-        this.transaccion=null;
-        
-        try
-        {
-            proyectoDaoImpl daoproyecto=new proyectoDaoImpl();
-            
-            this.session=HibernateUtil.getSessionFactory().openSession();
-            this.transaccion=this.session.beginTransaction();
-            
-            this.listaporUsuario=daoproyecto.listarProyectosPorUsuario(this.proyecto.getUsuario().getSobrenombreUsu());
-            
+        this.session = null;
+        this.transaccion = null;
+        try {
+            proyectoDaoImpl daoproyecto = new proyectoDaoImpl();
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaccion = this.session.beginTransaction();
+            this.listaporUsuario = daoproyecto.listarProyectosPorUsuario(this.proyecto.getUsuario().getSobrenombreUsu());
             this.transaccion.commit();
-            
-               return this.listaporUsuario;
-        }
-        catch(Exception ex)
-        {
-            if(this.transaccion!=null)
-            {
+            return this.listaporUsuario;
+        } catch (Exception ex) {
+            if (this.transaccion != null) {
                 this.transaccion.rollback();
             }
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador "+ex.getMessage()));
-            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador " + ex.getMessage()));
             return null;
-        }
-        finally
-        {
-            if(this.session!=null)
-            {
+        } finally {
+            if (this.session != null) {
                 this.session.close();
             }
         }
-        
-        
-        
+
+
+
 
     }
 
-    public void setListaporUsuario(List<Proyecto> listaporUsuario) {
+public void setListaporUsuario(List<Proyecto> listaporUsuario) {
         this.listaporUsuario = listaporUsuario;
     }
-    
-    
-    
-    
-    
+
+
+//////////
+
+    ///////////
+    public List<Proyecto> getListaporcodigoproyecto() {
+        this.listaporcodigoproyecto = new ArrayList<Proyecto>();
+        proyectoInterface dao = new proyectoImplementaInterface();
+        
+        List<Proyecto> proyectos = dao.encontrarProyectos(codigoProy);
+        System.out.println("Se cargaron los proyetos" + cargarproyectosporid.size());
+        return listaporcodigoproyecto;
+    }
+
+    public void setListaporcodigoproyecto(List<Proyecto> listaporcodigoproyecto) {
+        this.listaporcodigoproyecto = listaporcodigoproyecto;
+    }
     
     
 
@@ -145,7 +159,7 @@ public class proyectoBean implements Serializable {
     public void setTransaccion(Transaction transaccion) {
         this.transaccion = transaccion;
     }
-    
+
     //////----Getter y Setter idUsss//////
     public Usuario getIdUssuu() {
         return idUssuu;
@@ -155,9 +169,8 @@ public class proyectoBean implements Serializable {
     public void setIdUssuu(Usuario idUssuu) {
         this.idUssuu = idUssuu;
     }
-    
-    //////////
 
+    //////////
     //////////////////////////
     ////Crear Proyecto
     public void crearProyecto(ActionEvent actionEvent) {
@@ -248,8 +261,7 @@ public class proyectoBean implements Serializable {
             }
         }
     }
-    
-    
+
     ////////////////////////////////
     public List<Proyecto> listarProyectosUsuario() {
         this.session = null;
@@ -264,9 +276,7 @@ public class proyectoBean implements Serializable {
             this.listaProyectos = daoProy.listarPorUsuario(this.session, sessionUsuario.getAttribute("sobrenombreUsuario").toString());
             this.transaccion.commit();
             return this.listaProyectos;
-        }
-        
-        catch (Exception ex) {
+        } catch (Exception ex) {
             if (this.transaccion != null) {
                 this.transaccion.rollback();
             }
@@ -280,47 +290,108 @@ public class proyectoBean implements Serializable {
             }
         }
     }
-    
-private TabView tabView;
 
-  public TabView getTabView() {
-  FacesContext fc = FacesContext.getCurrentInstance();
-      tabView = (TabView) fc.getApplication().createComponent("org.primefaces.component.TabView");
-    
+    public List<SelectItem> getCargarProyectos() {
+        this.cargarProyectos = new ArrayList<SelectItem>();
+        proyectoDao proydao = new proyectoDaoImpl();
+        List<Proyecto> proy = proydao.listarProyectos();
+        for (Proyecto pro : proy) {
+            SelectItem selectItem = new SelectItem(pro.getCodigoProy(), pro.getObraProy());
+            this.cargarProyectos.add(selectItem);
+        }
+        return cargarProyectos;
+    }
+
+    public List<SelectItem> getCargarTodosP() {
+        /*this.cargarTodosP = new ArrayList<SelectItem>();
+        proyectoInterface dao = new proyectoImplementaInterface();
+        List<Proyecto> proyectos = dao.encontrarTodoslosProyectos();
+        //cargarTodosP.clear();
+        for (Proyecto proj : proyectos) {
+            SelectItem selectitem = new SelectItem(proj.getCodigoProy(), proj.getObraProy());
+            this.cargarproyectosporid.add(selectitem);
+        }
+        System.out.println("Se cargaron los proyetos" + cargarTodosP.size());
+        * */
+        this.cargarProyectos = new ArrayList<SelectItem>();
+        proyectoInterface proydao = new proyectoImplementaInterface();
+        List<Proyecto> proy = proydao.encontrarProyectos(this.session, proyecto.getCodigoProy());
+        for (Proyecto pro : proy) {
+            SelectItem selectItem = new SelectItem(pro.getCodigoProy(), pro.getObraProy());
+            this.cargarProyectos.add(selectItem);
+        }
+        return cargarTodosP;
+    }
+
+    public void setCargarTodosP(List<SelectItem> cargarTodosP) {
+        this.cargarTodosP = cargarTodosP;
+    }
+
+    public List<SelectItem> getCargarproyectosporid() {
+        this.cargarproyectosporid = new ArrayList<SelectItem>();
+        proyectoInterface dao = new proyectoImplementaInterface();
+        List<Proyecto> proyectos = dao.encontrarProyectos(codigoProy);
+        cargarproyectosporid.clear();
+        for (Proyecto proj : proyectos) {
+            SelectItem selectitem = new SelectItem(proj.getCodigoProy(), proj.getObraProy(), proj.getContratProy());
+            this.cargarproyectosporid.add(selectitem);
+        }
+        System.out.println("Se cargaron los proyetos" + cargarproyectosporid.size());
+        return cargarproyectosporid;
+    }
+
+    public void setCargarproyectosporid(List<SelectItem> cargarproyectosporid) {
+        this.cargarproyectosporid = cargarproyectosporid;
+    }
+    ////////Pestañas
+    private TabView tabView;
+
+    public TabView getTabView() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        tabView = (TabView) fc.getApplication().createComponent("org.primefaces.component.TabView");
+
         // cargar la lista de objetos para tabview
-       
+
         //Se crean dinamicamente las tabs y en su contenido, unas cajas de texto
         //for ( Proyecto sub : listaProyectos) {
-            Tab tab = new Tab();
-            tab.setTitle("Guayaquil");
-            
-           
-            Random randomGenerator = new Random();
-       int total =4 ;//Math.max(1, randomGenerator.nextInt(6));
-            for (int i = 0; i < total; i++) {
-                
-                InputText inputtext = new InputText();
-                
-                inputtext.setLabel("Label");
-                inputtext.setValue("id:" + inputtext.getClientId());
-                inputtext.setOnfocus("");
-                tab.getChildren().add(inputtext);
-            }
-            tabView.getChildren().add(tab);
-           return tabView;   
+        Tab tab = new Tab();
+        tab.setTitle("Guayaquil");
+
+
+        Random randomGenerator = new Random();
+        int total = 4;//Math.max(1, randomGenerator.nextInt(6));
+        for (int i = 0; i < total; i++) {
+
+            InputText inputtext = new InputText();
+
+            inputtext.setLabel("Label");
+            inputtext.setValue("id:" + inputtext.getClientId());
+            inputtext.setOnfocus("");
+            tab.getChildren().add(inputtext);
         }
-        
-     // return tabView; 
-   
-        //}
-    
+        tabView.getChildren().add(tab);
+        return tabView;
+    }
+
+    // return tabView; 
+    //}
     public void setTabView(TabView tabView) {
         this.tabView = tabView;
     }
     
+    
+    
+    /////////////
 
-   
-     
-     
-     
+    /////////////
+    public Proyecto getProyectoXId() {
+        this.session = null;
+        proyectoInterface proyecDao = new proyectoImplementaInterface();
+        proyectoXId = proyecDao.proyetoPorId(session, proyecto.getCodigoProy());
+        return proyectoXId;
+    }
+
+    public void setProyectoXId(Proyecto proyectoXId) {
+        this.proyectoXId = proyectoXId;
+    }
 }

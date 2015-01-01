@@ -95,7 +95,7 @@ public class equipoherrDaoImpl implements equipoherrDao{
 
     @Override
     public Equipoherramienta getUltimoRegistro(Session session) throws Exception {
-         String hql="FROM Equipoherramienta e left join fetch e.categoriaequipoherramienta order by CODIGO_EQHERR desc";
+        String hql="FROM Equipoherramienta e left join fetch e.categoriaequipoherramienta order by CODIGO_EQHERR desc";
         Query query=session.createQuery(hql).setMaxResults(1);
         
         return (Equipoherramienta) query.uniqueResult();//To change body of generated methods, choose Tools | Templates.

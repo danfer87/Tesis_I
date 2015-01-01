@@ -20,4 +20,8 @@ public interface rubroInterfaceDao {
     public List<Rubro> listarTodosRubros(Session session)throws Exception;
     public Rubro getByCodigoRubro(Session session, String codigoRubro)throws Exception;
     
+    //agregado
+    public Rubro getByIdRubro(Session session, Integer idrubro) throws Exception;
+    public Rubro getUltimoRegistro(Session session) throws Exception;
+    
 }

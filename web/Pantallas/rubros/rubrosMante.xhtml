@@ -34,24 +34,24 @@
                         <f:facet name="header">  
                             Rubros  
                         </f:facet>
-                       <p:column headerText="Codigo" >  
-                            <h:outputText value="#{rubro.codigoRubro}" />  
-                        </p:column>
                         <p:column headerText="Nombre"  filterBy="#{rubro.nombreRubro}"   
-                                  footerText="contains" filterMatchMode="contains">  
+                                  footerText="contains" filterMatchMode="contains" style="width: 30%">  
                             <h:outputText value="#{rubro.nombreRubro}" dir="center"/>  
                         </p:column>  
-                        <p:column headerText="Unidad">  
+                        <p:column headerText="Unidad" style="width: 8%; text-align: center">  
                             <div style="text-align: center;">
                             <h:outputText value="#{rubro.unidadRubro}"/>
                             </div>
+                        </p:column>
+                        <p:column headerText="Detalle" style="width: 30%">  
+                            <h:outputText value="#{rubro.detalleRubro}" />  
                         </p:column>
                         
                         <p:column headerText="Categoria:" style="width:15%" filterBy="#{rubro.categoriarubro.descripcionCatRubro}">  
                             <h:outputText value="#{rubro.categoriarubro.descripcionCatRubro}" />  
                         </p:column> 
                         
-                        <p:column style="width:5%; text-align: center">  
+                        <p:column style="width:8%; text-align: center">  
                             <p:commandButton id="btnRubroUpdate" update=":formUpdate" oncomplete="dialogRubroUpdate.show()" icon="icon-edit1" title="Modificar">  
                                 <f:setPropertyActionListener value="#{rubro}" target="#{rubroBeanVista.rubro}"/>  
                             </p:commandButton>  
