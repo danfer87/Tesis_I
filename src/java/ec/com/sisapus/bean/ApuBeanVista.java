@@ -31,6 +31,7 @@ import ec.com.sisapus.modelo.Rubro;
 import ec.com.sisapus.util.HibernateUtil;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 import javax.faces.application.FacesMessage;
@@ -53,7 +54,7 @@ public class ApuBeanVista implements Serializable {
     
      Session session;
     Transaction transaction;
-    
+     // equipos   
      private Equipoherramienta equipherramientas;    
      private List<EquipherrApu> listaEquiposApus;
       private EquipherrApu equipapus;
@@ -65,12 +66,10 @@ public class ApuBeanVista implements Serializable {
       private ManoobraApu manopapus;
      private Double precioTotalmanoobra;
    //material
-     
-     private Material materiales;    
+      private Material materiales;    
      private List<MaterialApu> listaMaterialApus;
       private MaterialApu materialapus;
      private Double precioTotalmaterial;
-     
      //transporte
      
      private Transporte transportes;    
@@ -81,6 +80,11 @@ public class ApuBeanVista implements Serializable {
      //precios unitarios
      private Analisispreciounitario analisisapus;
      private List<Analisispreciounitario>  listapus;
+     private Double auxiliarPorcenjate; 
+     private Double auxiliarotroscostos;
+    private   Double totaldirAPU;
+  private  Double costoinAPu;
+  private  Double costoaputotal;
      //rubros
      private Rubro rubro;
       private List<Rubro> listaRubro;
@@ -106,11 +110,15 @@ public class ApuBeanVista implements Serializable {
                 this.listaTransporteApus=new ArrayList<>();
                 this.rubro=new Rubro();
                 this.analisisapus=new Analisispreciounitario();
-              //  analisisapus.setRubro(rubro);
-                //auxiliar rubro
+              
                 
                 this.auxdesrubro="";
                 this.auxunidrubro="";
+                //inicializar precios totales
+         //escenarios
+                
+                
+                
              }
      
  ///funcion para agregar rubro
@@ -135,8 +143,7 @@ public class ApuBeanVista implements Serializable {
             this.setAuxdesrubro(this.rubro.getDetalleRubro());
             this.setAuxunidrubro(this.rubro.getUnidadRubro());
             this.setAuxcategoria(this.rubro.getCategoriarubro().getDescripcionCatRubro());
-                 
-           // this.listaEquiposApus.add(new EquipherrApu( null,this.equipherramientas.getNombreEqherr(), null,this.equipherramientas.getCostohoraEqherr(),null, null, null, null));
+                
        
             this.transaction.commit();
             
@@ -166,7 +173,6 @@ public class ApuBeanVista implements Serializable {
     }   
      
      
-     
   //  
     public void agregarListaEquiposApus(Integer idEquipos)
     {
@@ -178,28 +184,20 @@ public class ApuBeanVista implements Serializable {
             this.session=HibernateUtil.getSessionFactory().openSession();
             
           equipoherrDaoImpl daoequipo=new equipoherrDaoImpl();
-         //   equipoherrDao daoequipo=new equipoherrDaoImpl();
-            
-            this.transaction=this.session.beginTransaction();
-            
-             this.equipherramientas=daoequipo.getByIdEquipo(session, idEquipos);
-             
-                 
+                   
+            this.transaction=this.session.beginTransaction();    
+             this.equipherramientas=daoequipo.getByIdEquipo(session, idEquipos);              
+            //this.listaEquiposApus.add(new EquipherrApu( null,this.equipherramientas.getNombreEqherr(), null,this.equipherramientas.getCostohoraEqherr(),null, null, null, null));
             this.listaEquiposApus.add(new EquipherrApu( null,this.equipherramientas.getNombreEqherr(), null,this.equipherramientas.getCostohoraEqherr(),null, null, null, null));
-       
             this.transaction.commit();
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Equipo/Herramienta agregado"));
-            
-         
-       
-            //RequestContext.getCurrentInstance().update("frmApus:frmdetequipos:tablaListaEquipos");
-           //RequestContext.getCurrentInstance().update("frmApus:msgs");
+     
             //el qu estaba
             RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta");
             RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
-            //
-       
+            
+                            
         }
         catch(Exception ex)
         {
@@ -304,9 +302,7 @@ public class ApuBeanVista implements Serializable {
             this.session=HibernateUtil.getSessionFactory().openSession();
             
            equipoherrDaoImpl daoequipo=new equipoherrDaoImpl();
-            ApusDaoImpl apusequip= new ApusDaoImpl();
-     
-            
+            ApusDaoImpl apusequip= new ApusDaoImpl();  
             this.transaction=this.session.beginTransaction();
             this.equipherramientas=daoequipo.getUltimoRegistro(session);
             
@@ -853,6 +849,8 @@ public class ApuBeanVista implements Serializable {
             }
             
           this.setPrecioTotaltransporte(totalVenta1);
+          
+   
            
             
             RequestContext.getCurrentInstance().update("frmRealizarVentas3:tablaListaProductosVenta3");
@@ -941,8 +939,6 @@ public class ApuBeanVista implements Serializable {
              
             for(Analisispreciounitario item : this.listapus)
             {
-               
-               
                 item.setEquipherrApu(this.equipapus);
                 apusdao.insertarAPU(this.session, item);
             }
@@ -971,6 +967,50 @@ public class ApuBeanVista implements Serializable {
         }  
         }
     
+  //costos totales apus
+ public void calcularCostosTotalesAPU()
+    {
+        try
+        {   
+           Double costodir1APu=new Double("0.00");
+           Double costoinAPu=new Double("0.00");
+           Double costosotrosindAPu=new Double("0.00");
+           Double costoaputotal=new Double("0.00");
+            Analisispreciounitario apus=new Analisispreciounitario();
+          
+             costodir1APu=this.precioTotaltransporte+this.precioTotalEquipo+this.precioTotalmaterial+this.precioTotalmanoobra;
+            costoinAPu= (costodir1APu*(this.auxiliarPorcenjate/100));
+            costosotrosindAPu=this.auxiliarotroscostos;
+            costoaputotal=costodir1APu+costoinAPu+costosotrosindAPu;
+         //setear los totales del apu     
+          apus.setCostDirApu(costodir1APu);
+          apus.setCostIndApu(costoinAPu);
+          apus.setCostOtrosIndApu(costosotrosindAPu);
+          apus.setCostotApu(costoinAPu);
+          //setear los totales de la pantalla
+          this.setTotaldirAPU(costodir1APu);
+          this.setCostoinAPu(costoinAPu);
+          this.setCostoaputotal(costoaputotal);
+     
+            RequestContext.getCurrentInstance().update("frmRealizarVentas5:panelFinalVenta5");
+        }
+        catch(Exception ex)
+        {            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }
+    }
+       //fin de costos totales apus   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   public Equipoherramienta getEquipherramientas() {
         return equipherramientas;
     }
@@ -1204,7 +1244,48 @@ public class ApuBeanVista implements Serializable {
     public void setCatrubro(Categoriarubro catrubro) {
         this.catrubro = catrubro;
     }
+
     
+    public Double getTotaldirAPU() {
+        return totaldirAPU;
+    }
+
+    public void setTotaldirAPU(Double totaldirAPU) {
+        this.totaldirAPU = totaldirAPU;
+    }
+
+    public Double getAuxiliarPorcenjate() {
+        return auxiliarPorcenjate;
+    }
+
+    public void setAuxiliarPorcenjate(Double auxiliarPorcenjate) {
+        this.auxiliarPorcenjate = auxiliarPorcenjate;
+    }
+
+    public Double getCostoinAPu() {
+        return costoinAPu;
+    }
+
+    public void setCostoinAPu(Double costoinAPu) {
+        this.costoinAPu = costoinAPu;
+    }
+
+    public Double getCostoaputotal() {
+        return costoaputotal;
+    }
+
+    public void setCostoaputotal(Double costoaputotal) {
+        this.costoaputotal = costoaputotal;
+    }
+
+    public Double getAuxiliarotroscostos() {
+        return auxiliarotroscostos;
+    }
+
+    public void setAuxiliarotroscostos(Double auxiliarotroscostos) {
+        this.auxiliarotroscostos = auxiliarotroscostos;
+    }
+
     
  
     

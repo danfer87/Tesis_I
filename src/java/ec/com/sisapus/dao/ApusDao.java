@@ -21,7 +21,7 @@ public interface ApusDao {
        public EquipherrApu getUltimoRegistroEqApu(Session session) throws Exception;
      
      
-    //insertar nano de obra apus
+    //insertar mano de obra apus
       public boolean insertarManobra(Session session,ManoobraApu manapu) throws Exception;
          //insertar material apus
       public boolean insertarMaterial(Session session,MaterialApu mateapu) throws Exception; 
