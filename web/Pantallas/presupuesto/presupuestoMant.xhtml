@@ -25,19 +25,19 @@
                 <p:growl id="msgs" showDetail="false" />  
                 <p:tabView>
                     <p:tab title="Presupuesto" closable="true">
-                      <h:form>
-                        <p:outputLabel value="Seleccione el proyecto:" />
-                        <p:selectOneMenu value="#">  
-                            <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
-                            <f:selectItems value="#" />  
-                        </p:selectOneMenu> 
-                      </h:form>
-                      <br></br>
+                        <h:form>
+                        <h:outputText value="Proyectos:" />
+                        <p:selectOneMenu value="#{proyectoBean.proyecto.codigoProy}" onchange="submit()">  
+                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
+                                <f:selectItems value="#{proyectoBean.cargarProyectos}" />  
+                        </p:selectOneMenu>
+                        <br></br>
+                        </h:form>
                 <FIELDSET  style="-moz-border-radius:10px; width: 850px; "  class="borderFieldSet">
                     
                     <legend>Datos Generales del Proyecto</legend>
                     <h:form id="cargar_cabecera" >
-                        <h:panelGrid columns="2" cellpadding="4">
+                        <h:panelGrid columns="2" cellpadding="4" >
                             <h:panelGrid columns="3" cellpadding="3">
                                 <p:outputLabel value="Codigo:" for="codigo" />
                                 <p:inputText value="" id="codigo" size="10"/>
@@ -66,40 +66,61 @@
                     </h:form>
 
                 </FIELDSET>
-                <h:form>
+   <h:form id="frmPresupuesto">
+                <p:growl id="mensajeGeneral" showDetail="true"/>   
                    <br></br> 
-                   <p:commandButton id="btnAddRubro" title="" value="Anadir Rubro"/>   
-                   <p:commandButton id="btnDeleteRubro" title="" value="Eliminar Rubro"/>   
+                   <p:commandButton id="btnAddRubro" oncomplete="dlgRubros.show()" value="Anadir">
+                   </p:commandButton>       
                    <br></br>
                    <br></br> 
-                </h:form>
+                
+       
+       <p:dialog header="Rubros" id="dlgRubros" widgetVar="dlgRubros" showEffect="fade" hideEffect="explode" height="120"  modal="true">
+    
+           <p:dataTable value="#{rubroBeanVista.all}" var="rubro"  scrollable="true" scrollHeight="100"
+                                     style="width:650px ">
+                        <p:column headerText="Codigo">
+                            <h:outputText value="#{rubro.codigoRubro}"/>
+                        </p:column>
+                        <p:column headerText="Nombre" >
+                            <h:outputText value="#{rubro.nombreRubro}"/>
+                        </p:column>
+                        <p:column headerText="Unidad">
+                            <h:outputText value="#{rubro.unidadRubro}"/>
+                        </p:column>
+                        <p:column headerText="Categoria">
+                            <h:outputText value="#{rubro.categoriarubro.descripcionCatRubro}"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Seleccionar"  actionListener="#{presupuestoBean.agregarListaRubros(rubro.codigoRubro)}"/>
+                        </p:column>
+                    </p:dataTable>
+        </p:dialog>
+       
+       
                 <FIELDSET style="-moz-border-radius:10px;background-color: #EEEEEE;
                           width: 850px;" class="borderFieldSet">
                     <legend>Detalle Presupuesto</legend>
-                    <p:dataTable value="" var="proyecto" >
+                    <p:dataTable id="tablaDetallePresupuesto" value="#{presupuestoBean.listaRubros}" var="rubros" >
                         <p:column headerText="#" style="text-align: center;">
                             <h:outputText value="" />
                         </p:column>
                         <p:column headerText="Codigo" style="text-align: center;">
-                            <h:outputText value="" />
+                            <h:outputText value="#{rubros.codigoRubro}" />
                         </p:column>
                         <p:column headerText="Descripcion" style="text-align: center;">
-                            <h:outputText value="" />
+                            <h:outputText value="#{rubros.nombreRubro}" />
                         </p:column>
                         <p:column headerText="Unidad" style="text-align: center;">
-                            <h:outputText value="" />
+                            <h:outputText value="#{rubros.unidadRubro}" />
                         </p:column>
-                        <p:column headerText="Cantidad" style="text-align: center;">
-                            <h:outputText value="#" style="text-align: center;" />
+                        <p:column headerText="Categoria" style="text-align: center;">
+                            <h:outputText value="#{rubros.categoriarubro.descripcionCatRubro}" />
                         </p:column>
-                        <p:column headerText="Precio Unitario" style="text-align: center;">
-                            <h:outputText value="" />
-                        </p:column>
-                        <p:column headerText="Precio Total" style="text-align: center;">
-                            <h:outputText value="" />
-                        </p:column>
+                        
                     </p:dataTable>
                 </FIELDSET>
+     </h:form>     
                 <FIELDSET style="-moz-border-radius:10px;width: 850px; ">
                     <legend>Presupuestar</legend>
                     <h:form>

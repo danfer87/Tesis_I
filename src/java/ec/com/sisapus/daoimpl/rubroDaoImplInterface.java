@@ -47,5 +47,17 @@ public class rubroDaoImplInterface implements rubroInterfaceDao{
         session.delete(rubro);
         return true;
     }
+
+    @Override
+    public Rubro getByIdRubro(Session session, Integer idrubro) throws Exception {
+        return (Rubro) session.load(Rubro.class, idrubro);
+    }
+
+    @Override
+    public Rubro getUltimoRegistro(Session session) throws Exception {
+        String hql="FROM Rubro r left join fetch r.categoriarubro order by CODIGO_RUBRO desc";
+        Query query=session.createQuery(hql).setMaxResults(1);
+        return (Rubro) query.uniqueResult();
+    }
     
 }

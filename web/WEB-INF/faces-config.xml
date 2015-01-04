@@ -86,4 +86,9 @@
         <managed-bean-class>ec.com.sisapus.bean.rubroBean</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>presupuestoBean</managed-bean-name>
+        <managed-bean-class>ec.com.sisapus.bean.presupuestoBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
 </faces-config>
