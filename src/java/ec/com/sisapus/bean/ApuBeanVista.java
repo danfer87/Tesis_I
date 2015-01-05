@@ -775,7 +775,7 @@ public class ApuBeanVista implements Serializable {
              this.transportes=transpdao.getByIdTransporte(session, idtrans);
              
         //this.listaManoBra.add(new ManoobraApu(null,this.manoobras.getNombreManob(),null,null,this.manoobras.getCostojrhManob(),null, null, null,null));
-          this.listaTransporteApus.add(new TransporteApu(null, this.transportes.getNombreTransp(), null,null, this.transportes.getTarifaTransp(), null, null));
+          this.listaTransporteApus.add(new TransporteApu(null, this.transportes.getNombreTransp(), "GLB",null, this.transportes.getTarifaTransp(), null, null));
         this.transaction.commit();
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Transporte agregado"));
