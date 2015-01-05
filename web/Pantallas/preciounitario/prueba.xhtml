@@ -21,6 +21,7 @@
           <ui:define name="content">
           
               <h:form id="frmRealizarVentas">
+                             
         <p:growl id="mensajeGeneral" showDetail="true"/>          
         <p:dialog header="Rubros" id="dlg4" widgetVar="dlg4" showEffect="fade" hideEffect="explode" height="145"  modal="true">
     
@@ -41,11 +42,12 @@
                       <p:column headerText="Unidad">
                           <h:outputText value="#{item8.unidadRubro}"/>
                         </p:column>
-                        <p:column>
-                            <p:commandButton value="Seleccionar"  actionListener="#{ApuBeanVista.agregarRubroApus(item8.codigoRubro)}"/>
-                            
-                        </p:column>
+                        <p:column style="width:8%; text-align: center">
+                            <p:commandButton   icon="icon-add" title="Añadir"  actionListener="#{ApuBeanVista.agregarRubroApus(item8.codigoRubro)}"/>
+                         </p:column>      
+      
                     </p:dataTable>
+          
                        </p:dialog>           
        
                             <FIELDSET  style="-moz-border-radius:10px; width: 1118px; "  class="borderFieldSet">
@@ -86,8 +88,8 @@
                         <p:column headerText="Categoria">
                             <h:outputText value="#{item.categoriaequipoherramienta.nombCatEqherr}"/>
                         </p:column>
-                        <p:column>
-                            <p:commandButton value="Seleccionar"  actionListener="#{ApuBeanVista.agregarListaEquiposApus(item.codigoEqherr)}"
+                        <p:column style="width:8%; text-align: center">
+                            <p:commandButton  icon="icon-add" title="Añadir"   actionListener="#{ApuBeanVista.agregarListaEquiposApus(item.codigoEqherr)}"
                                             />
                             
                         </p:column>
@@ -394,12 +396,10 @@
    
                                          </h:panelGroup>
                                         </h:panelGrid>
-                                    
-                                         
-                                      
+                                        
                               
                             </FIELDSET>
-                            
+                 
     
              </h:form> 
             
