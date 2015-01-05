@@ -42,6 +42,8 @@ import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.tabview.Tab;
 import org.primefaces.component.tabview.TabView;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 
 /**
@@ -149,8 +151,8 @@ public class ApuBeanVista implements Serializable {
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Rubro agregado"));
           
-             RequestContext.getCurrentInstance().update("frmRealizarVentas4:panelFinalVenta4");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas4:mensajeGeneral4");
+             RequestContext.getCurrentInstance().update("frmRealizarVentas:panelFinalVenta4");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
            
           
         }
@@ -265,6 +267,9 @@ public class ApuBeanVista implements Serializable {
        
        public void calcularCostos()
     {
+       
+        
+        
         try
         {   
            Double totalVenta=new Double("0.00");
@@ -281,7 +286,7 @@ public class ApuBeanVista implements Serializable {
             }
             
             this.setPrecioTotalEquipo(totalVenta);
-             this.analisisapus.setAnalApuEqherr(totalVenta);
+         //    this.analisisapus.setAnalApuEqherr(totalVenta);
             RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta");
             RequestContext.getCurrentInstance().update("frmRealizarVentas:panelFinalVenta");
         }
@@ -315,9 +320,9 @@ public class ApuBeanVista implements Serializable {
             }
             
             this.transaction.commit();
-          //  this.listaEquiposApus=new ArrayList<>();
+           // this.listaEquiposApus=new ArrayList<>();
            // this.equipherramientas=new Equipoherramienta();
-           // this.precioTotalEquipo=0.0;
+            //this.precioTotalEquipo=0.0;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Equipo y Herramientas guardado correctamente"));
         }
         catch(Exception ex)
@@ -400,8 +405,8 @@ public class ApuBeanVista implements Serializable {
             
  
             //el qu estaba
-            RequestContext.getCurrentInstance().update("frmRealizarVentas1:tablaListaProductosVenta1");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas1:mensajeGeneral1");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta1");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
             //
        
         }
@@ -461,9 +466,9 @@ public class ApuBeanVista implements Serializable {
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Mano de Obra retirado de la lista"));
             
-            RequestContext.getCurrentInstance().update("frmRealizarVentas1:tablaListaProductosVenta1");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas1:panelFinalVenta1");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas1:mensajeGeneral1");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta1");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:panelFinalVenta1");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
         }
         catch(Exception ex)
         {            
@@ -492,14 +497,31 @@ public class ApuBeanVista implements Serializable {
             
           this.setPrecioTotalmanoobra(totalVenta1);
             
-            RequestContext.getCurrentInstance().update("frmRealizarVentas1:tablaListaProductosVenta1");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas1:panelFinalVenta1");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta1");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:panelFinalVenta1");
         }
         catch(Exception ex)
         {            
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
         }
     }
+     
+ //
+       public void guardaremmt ()
+             {
+         try{
+             guardarequiposApus();
+             guardarmanObraApus();
+             guardarmaterialApus();
+             guardarTransporteApus();
+         }
+         catch     (Exception ex)
+           {
+                     
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }    
+       
+        }
        
    // 
     
@@ -527,9 +549,9 @@ public class ApuBeanVista implements Serializable {
             }
             
             this.transaction.commit();
-            this.listaManoBra=new ArrayList<>();
-            this.manoobras=new Manoobra();
-            this.precioTotalmanoobra=0.0;
+           // this.listaManoBra=new ArrayList<>();
+           // this.manoobras=new Manoobra();
+           // this.precioTotalmanoobra=0.0;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Mano de Obra guardado correctamente"));
         }
         catch(Exception ex)
@@ -577,8 +599,8 @@ public class ApuBeanVista implements Serializable {
             
    
             //el qu estaba
-            RequestContext.getCurrentInstance().update("frmRealizarVentas2:tablaListaProductosVenta2");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas2:mensajeGeneral2");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta2");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
             //
        
         }
@@ -638,9 +660,9 @@ public class ApuBeanVista implements Serializable {
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Material retirado de la lista"));
             
-            RequestContext.getCurrentInstance().update("frmRealizarVentas2:tablaListaProductosVenta2");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas2:panelFinalVenta2");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas2:mensajeGeneral2");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta2");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:panelFinalVenta2");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
         }
         catch(Exception ex)
         {            
@@ -669,8 +691,8 @@ public class ApuBeanVista implements Serializable {
             
           this.setPrecioTotalmaterial(totalVenta1);
             
-            RequestContext.getCurrentInstance().update("frmRealizarVentas2:tablaListaProductosVenta2");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas2:panelFinalVenta2");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta2");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:panelFinalVenta2");
         }
         catch(Exception ex)
         {            
@@ -704,9 +726,9 @@ public class ApuBeanVista implements Serializable {
             }
             
             this.transaction.commit();
-            this.listaMaterialApus=new ArrayList<>();
-            this.materiales=new Material();
-            this.precioTotalmaterial=0.0;
+        //    this.listaMaterialApus=new ArrayList<>();
+         //   this.materiales=new Material();
+          //  this.precioTotalmaterial=0.0;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Material guardado correctamente"));
         }
         catch(Exception ex)
@@ -758,8 +780,8 @@ public class ApuBeanVista implements Serializable {
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Transporte agregado"));
             
-            RequestContext.getCurrentInstance().update("frmRealizarVentas3:tablaListaProductosVenta3");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas3:mensajeGeneral3");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta3");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
             //
        
         }
@@ -819,9 +841,9 @@ public class ApuBeanVista implements Serializable {
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Transporte retirado de la lista"));
             
-            RequestContext.getCurrentInstance().update("frmRealizarVentas3:tablaListaProductosVenta3");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas3:panelFinalVenta3");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas3:mensajeGeneral3");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta3");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:panelFinalVenta3");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:mensajeGeneral");
         }
         catch(Exception ex)
         {            
@@ -853,8 +875,8 @@ public class ApuBeanVista implements Serializable {
    
            
             
-            RequestContext.getCurrentInstance().update("frmRealizarVentas3:tablaListaProductosVenta3");
-            RequestContext.getCurrentInstance().update("frmRealizarVentas3:panelFinalVenta3");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta3");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:panelFinalVenta3");
         }
         catch(Exception ex)
         {            
@@ -888,9 +910,9 @@ public class ApuBeanVista implements Serializable {
             }
             
             this.transaction.commit();
-            this.listaTransporteApus=new ArrayList<>();
-            this.transportes=new Transporte();
-            this.precioTotaltransporte=0.0;
+            //this.listaTransporteApus=new ArrayList<>();
+            //this.transportes=new Transporte();
+            //this.precioTotaltransporte=0.0;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Transporte guardado correctamente"));
         }
         catch(Exception ex)
@@ -913,13 +935,8 @@ public class ApuBeanVista implements Serializable {
      
      
      
-   public void guardardos()
-           
-     {
-         guardarequiposApus();
-         guardarmanObraApus();
-     }
-    
+  
+     
 //fin transporte
 
 //Analisis Precios Unitarios
@@ -1286,6 +1303,21 @@ public class ApuBeanVista implements Serializable {
         this.auxiliarotroscostos = auxiliarotroscostos;
     }
 
+    ///probar cambio de datos
+    public void onCellEdit(CellEditEvent event) {
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+         
+        if(newValue != null && !newValue.equals(oldValue)) {
+
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        
+            
+          }        }
+  
+
+    
     
  
     
