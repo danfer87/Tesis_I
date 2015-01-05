@@ -62,7 +62,7 @@
                                               <p:outputLabel value="Categoria:" />
                                             <p:inputText value="#{ApuBeanVista.auxcategoria}" id="auxcatru" size="20"/>          
                                         <h:panelGroup>
-                                        <p:commandButton id="btnCrearRubro" oncomplete="dlg4.show()" value="Añadir Rubro"/>
+                                        <p:commandButton id="btnCrearRubro" oncomplete="dlg4.show()" value="Añadir"/>
                                       
                                         </h:panelGroup>
                                     </h:panelGrid>
@@ -374,9 +374,11 @@
                               
                                      <h:panelGrid id="panelFinalVenta5" columns="5" cellpadding="8" style="float:right" border="2">
                                          
-                                        
+                                         <p:ajax event="keyup" update="costodirecto" listener="#{ApuBeanVista.calcularCostosTotalesAPU()}" /> 
                                         <p:outputLabel value="Costo Directo (EH+M+MO+T)$:"  for="costodirecto" />
-                                        <h:outputText value="#{ApuBeanVista.totaldirAPU}" id="costodirecto" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;" />
+                                        <h:outputText  value="#{ApuBeanVista.totaldirAPU}" id="costodirecto" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;" />
+                                        
+                                        
                                         <p:outputLabel value="Costo Indirecto y Utilidades$:" for="costoindirecto" />
                                         <p:inputText value="#{ApuBeanVista.auxiliarPorcenjate}" id="costoindirectoaux" size="10"/>
                                         <h:outputText value="#{ApuBeanVista.costoinAPu}" id="costoindirecto" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>
@@ -388,7 +390,7 @@
                                       <h:panelGroup>
                                                                              
                                           <p:commandButton value="Guardar" ajax="false" actionListener="#{ApuBeanVista.guardaremmt()}"/>
-                                           <p:commandButton value="Calcular" actionListener="#{ApuBeanVista.calcularCostosTotalesAPU()}" />
+                                          
    
                                          </h:panelGroup>
                                         </h:panelGrid>
