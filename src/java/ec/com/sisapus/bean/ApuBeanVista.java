@@ -1009,7 +1009,7 @@ public class ApuBeanVista implements Serializable {
           this.setCostoinAPu(costoinAPu);
           this.setCostoaputotal(costoaputotal);
      
-            RequestContext.getCurrentInstance().update("frmRealizarVentas5:panelFinalVenta5");
+            RequestContext.getCurrentInstance().update("frmRealizarVentas:panelFinalVenta5");
         }
         catch(Exception ex)
         {            

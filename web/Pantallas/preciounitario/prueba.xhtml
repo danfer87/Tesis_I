@@ -212,7 +212,7 @@
             </p:dataTable>
             <p:panelGrid id="panelFinalVenta1" columns="1" style="text-align: right;width: 100%;">
                 <h:panelGroup>
-                    <p:commandButton id="btnProyectoCreate1"  oncomplete="dlg1.show()"  value="Crear">  
+                    <p:commandButton id="btnProyectoCreate1"  oncomplete="dlg1.show()"  value="Añadir">  
                     </p:commandButton>   
                    
                     <p:commandButton value="Calcular" actionListener="#{ApuBeanVista.calcularCostosManobra()}" />
@@ -282,11 +282,11 @@
             </p:dataTable>
             <p:panelGrid id="panelFinalVenta2" columns="1" style="text-align: right;width: 100%;">
                 <h:panelGroup>
-                    <p:commandButton id="btnProyectoCreate2"  oncomplete="dlg2.show()"  value="Crear">  
+                    <p:commandButton id="btnProyectoCreate2"  oncomplete="dlg2.show()"  value="Añadir">  
                     </p:commandButton>   
 
                     <p:commandButton value="Calcular" actionListener="#{ApuBeanVista.calcularCostosMateriales()}" />
-                    S./ 
+                  Total $./ 
                     <h:outputText value="#{ApuBeanVista.precioTotalmaterial}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>
                  _______
             
@@ -356,23 +356,19 @@
             </p:dataTable>
             <p:panelGrid id="panelFinalVenta3" columns="1" style="text-align: right;width: 100%;">
                 <h:panelGroup>
-                    <p:commandButton id="btnProyectoCreate3"  oncomplete="dlg3.show()"  value="Crear">  
+                    <p:commandButton id="btnProyectoCreate3"  oncomplete="dlg3.show()"  value="Añadir">  
                     </p:commandButton>   
 
                     <p:commandButton value="Calcular" actionListener="#{ApuBeanVista.calcularCostosTransporte()}" />
-                    $./ 
+                  Total $./ 
                     <h:outputText value="#{ApuBeanVista.precioTotaltransporte}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>          
-                    _____
-                 <p:commandButton value="Guardar" ajax="false" actionListener="#{ApuBeanVista.guardaremmt()}"/>
+                  ________
+                 
                 </h:panelGroup>
             </p:panelGrid>
            </FIELDSET>     
-             </h:form>    
+             
             
-
-            <h:form id="frmRealizarVentas5">
-                
-                   <p:growl id="mensajeGeneral5" showDetail="true"/>  
                 <FIELDSET  style="-moz-border-radius:10px; width: 1118px; "  class="borderFieldSet">
                                 <legend>Costo Rubro</legend>
                               
@@ -390,12 +386,11 @@
                                         <h:outputText value="#{ApuBeanVista.costoaputotal}" id="valorofertado" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>
                                       
                                       <h:panelGroup>
-                                          <p:commandButton id="btnguardarApu" ajax="true"  value="Guardar"/>  
-                                              <p:commandButton value="Calcular" actionListener="#{ApuBeanVista.calcularCostosTotalesAPU()}" />
+                                                                             
+                                          <p:commandButton value="Guardar" ajax="false" actionListener="#{ApuBeanVista.guardaremmt()}"/>
+                                           <p:commandButton value="Calcular" actionListener="#{ApuBeanVista.calcularCostosTotalesAPU()}" />
    
-                                             
-
-                                              </h:panelGroup>
+                                         </h:panelGroup>
                                         </h:panelGrid>
                                     
                                          
@@ -404,7 +399,7 @@
                             </FIELDSET>
                             
     
-                 </h:form> 
+             </h:form> 
             
             
             
