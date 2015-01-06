@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
+// Generated 06/01/2015 11:20:58 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -16,7 +16,8 @@ public class Categoriarubro  implements java.io.Serializable {
      private Set rubros = new HashSet(0);
 
     public Categoriarubro() {
-        this.codigoCatRubro = 0;
+        
+         this.codigoCatRubro = 0;
     }
 
     public Categoriarubro(String descripcionCatRubro, Set rubros) {

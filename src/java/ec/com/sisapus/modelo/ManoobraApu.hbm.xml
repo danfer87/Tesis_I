@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 18/12/2014 06:11:01 PM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 06/01/2015 11:20:59 AM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="ec.com.sisapus.modelo.ManoobraApu" table="manoobra_apu" catalog="bdsisapu">
         <id name="codMoApu" type="java.lang.Integer">
@@ -13,6 +13,9 @@
         </many-to-one>
         <property name="descMoApu" type="string">
             <column name="DESC_MO_APU" length="100" />
+        </property>
+        <property name="categMoApu" type="string">
+            <column name="CATEG_MO_APU" length="70" />
         </property>
         <property name="cantMoApu" type="java.lang.Integer">
             <column name="CANT_MO_APU" />

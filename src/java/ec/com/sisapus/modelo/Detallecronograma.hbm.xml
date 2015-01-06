@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 18/12/2014 06:11:01 PM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 06/01/2015 11:20:59 AM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="ec.com.sisapus.modelo.Detallecronograma" table="detallecronograma" catalog="bdsisapu">
         <id name="codigoDetalleCronograma" type="java.lang.Integer">
             <column name="CODIGO_DETALLE_CRONOGRAMA" />
             <generator class="identity" />
         </id>
+        <many-to-one name="cronograma" class="ec.com.sisapus.modelo.Cronograma" fetch="select">
+            <column name="CODIGO_CRON" />
+        </many-to-one>
         <property name="descripcionDetalleCrono" type="string">
             <column name="DESCRIPCION_DETALLE_CRONO" length="100" />
         </property>
@@ -20,11 +23,5 @@
         <property name="costoTotalDetalleCrono" type="java.lang.Double">
             <column name="COSTO_TOTAL_DETALLE_CRONO" precision="22" scale="0" />
         </property>
-        <set name="cronogramas" inverse="true">
-            <key>
-                <column name="CODIGO_DETALLE_CRONOGRAMA" />
-            </key>
-            <one-to-many class="ec.com.sisapus.modelo.Cronograma" />
-        </set>
     </class>
 </hibernate-mapping>

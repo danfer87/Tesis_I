@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
+// Generated 06/01/2015 11:20:58 AM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -15,6 +15,7 @@ public class Escenarioapu  implements java.io.Serializable {
 
     public Escenarioapu() {
         this.codigoEscenario=0;
+        this.analisispreciounitario=new Analisispreciounitario();
     }
 
     public Escenarioapu(Analisispreciounitario analisispreciounitario, String nombreEscenario) {

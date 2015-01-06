@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
+// Generated 06/01/2015 11:20:58 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -14,6 +14,7 @@ public class ManoobraApu  implements java.io.Serializable {
      private Integer codMoApu;
      private Manoobra manoobra;
      private String descMoApu;
+     private String categMoApu;
      private Integer cantMoApu;
      private Double costojrhMoApu;
      private Double costohoraMoApu;
@@ -26,9 +27,10 @@ public class ManoobraApu  implements java.io.Serializable {
         this.manoobra = new Manoobra();
     }
 
-    public ManoobraApu(Manoobra manoobra, String descMoApu, Integer cantMoApu, Double costojrhMoApu, Double costohoraMoApu, Double rendimMoApu, Double costotMoApu, Set analisispreciounitarios) {
+    public ManoobraApu(Manoobra manoobra, String descMoApu, String categMoApu, Integer cantMoApu, Double costojrhMoApu, Double costohoraMoApu, Double rendimMoApu, Double costotMoApu, Set analisispreciounitarios) {
        this.manoobra = manoobra;
        this.descMoApu = descMoApu;
+       this.categMoApu = categMoApu;
        this.cantMoApu = cantMoApu;
        this.costojrhMoApu = costojrhMoApu;
        this.costohoraMoApu = costohoraMoApu;
@@ -58,8 +60,13 @@ public class ManoobraApu  implements java.io.Serializable {
     public void setDescMoApu(String descMoApu) {
         this.descMoApu = descMoApu;
     }
+    public String getCategMoApu() {
+        return this.categMoApu;
+    }
     
-    
+    public void setCategMoApu(String categMoApu) {
+        this.categMoApu = categMoApu;
+    }
     public Integer getCantMoApu() {
         return this.cantMoApu;
     }

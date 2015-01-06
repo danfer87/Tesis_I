@@ -1,8 +1,7 @@
 package ec.com.sisapus.modelo;
-// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
+// Generated 06/01/2015 11:20:58 AM by Hibernate Tools 3.2.1.GA
 
 
-import com.sun.xml.rpc.processor.modeler.j2ee.xml.ejbLinkType;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +13,6 @@ public class Analisispreciounitario  implements java.io.Serializable {
 
      private Integer codigoApu;
      private TransporteApu transporteApu;
-    
      private Rubro rubro;
      private MaterialApu materialApu;
      private ManoobraApu manoobraApu;
@@ -36,7 +34,6 @@ public class Analisispreciounitario  implements java.io.Serializable {
      private Set escenarioapus = new HashSet(0);
 
     public Analisispreciounitario() {
-        
          this.codigoApu = 0;
         this.transporteApu = new TransporteApu();
       //  this.categoriapreciounitario=new Categoriapreciounitario();
@@ -48,7 +45,6 @@ public class Analisispreciounitario  implements java.io.Serializable {
 
     public Analisispreciounitario(TransporteApu transporteApu, Rubro rubro, MaterialApu materialApu, ManoobraApu manoobraApu, EquipherrApu equipherrApu, String descApu, String unidadApu, String categoriaApu, Double analApuMat, Double analApuEqherr, Double analApuMob, Double analApuTran, Double costDirApu, Double costIndApu, Double costOtrosIndApu, Double costotApu, Double rendApu, Double porcenIndApu, Set presupuestos, Set escenarioapus) {
        this.transporteApu = transporteApu;
-       //this.categoriapreciounitario = categoriapreciounitario;
        this.rubro = rubro;
        this.materialApu = materialApu;
        this.manoobraApu = manoobraApu;
@@ -84,7 +80,6 @@ public class Analisispreciounitario  implements java.io.Serializable {
     public void setTransporteApu(TransporteApu transporteApu) {
         this.transporteApu = transporteApu;
     }
-  
     public Rubro getRubro() {
         return this.rubro;
     }

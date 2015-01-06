@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 18/12/2014 06:11:01 PM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 06/01/2015 11:20:59 AM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="ec.com.sisapus.modelo.TransporteApu" table="transporte_apu" catalog="bdsisapu">
         <id name="codTranApu" type="java.lang.Integer">
@@ -15,7 +15,7 @@
             <column name="DESC_TRAN_APU" length="100" />
         </property>
         <property name="unidTranApu" type="string">
-            <column name="UNID_TRAN_APU" length="20" />
+            <column name="UNID_TRAN_APU" length="50" />
         </property>
         <property name="cantTranApu" type="java.lang.Integer">
             <column name="CANT_TRAN_APU" />

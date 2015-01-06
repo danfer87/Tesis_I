@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 18/12/2014 06:11:00 PM by Hibernate Tools 3.2.1.GA
+// Generated 06/01/2015 11:20:58 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -22,9 +22,9 @@ public class EquipherrApu  implements java.io.Serializable {
      private Set analisispreciounitarios = new HashSet(0);
 
     public EquipherrApu() {
-        this.codEqherrApu=0;
-        this.equipoherramienta = new Equipoherramienta();
-    }
+
+    this.codEqherrApu=0;
+        this.equipoherramienta = new Equipoherramienta();}
 
     public EquipherrApu(Equipoherramienta equipoherramienta, String descEqherrApu, Integer cantEqherrApu, Double tarifaEqherrApu, Double costohoraEqherrApu, Double rendimEqherrApu, Double costotEqherrApu, Set analisispreciounitarios) {
        this.equipoherramienta = equipoherramienta;
