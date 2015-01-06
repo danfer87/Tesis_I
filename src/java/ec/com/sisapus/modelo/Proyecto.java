@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 06/01/2015 02:17:13 PM by Hibernate Tools 3.2.1.GA
+// Generated 06/01/2015 02:51:14 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -25,8 +25,6 @@ public class Proyecto  implements java.io.Serializable {
      private Set presupuestos = new HashSet(0);
 
     public Proyecto() {
-        this.codigoProy = 0;
-        this.usuario = new Usuario();
     }
 
     public Proyecto(Usuario usuario, String propiepProy, String contratProy, String obraProy, String ubicProy, Date fechaProy, Double costotProy, Set cronogramas, Set controlEjecutadoPresupuestados, Set presupuestos) {

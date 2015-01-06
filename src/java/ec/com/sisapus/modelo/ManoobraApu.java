@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 06/01/2015 02:17:13 PM by Hibernate Tools 3.2.1.GA
+// Generated 06/01/2015 02:51:14 PM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -10,6 +10,7 @@ public class ManoobraApu  implements java.io.Serializable {
 
 
      private Integer codMoApu;
+     private Analisispreciounitario analisispreciounitario;
      private Manoobra manoobra;
      private String descMoApu;
      private String categMoApu;
@@ -20,11 +21,10 @@ public class ManoobraApu  implements java.io.Serializable {
      private Double costotMoApu;
 
     public ManoobraApu() {
-        this.codMoApu=0;
-        this.manoobra = new Manoobra();
     }
 
-    public ManoobraApu(Manoobra manoobra, String descMoApu, String categMoApu, Integer cantMoApu, Double costojrhMoApu, Double costohoraMoApu, Double rendimMoApu, Double costotMoApu) {
+    public ManoobraApu(Analisispreciounitario analisispreciounitario, Manoobra manoobra, String descMoApu, String categMoApu, Integer cantMoApu, Double costojrhMoApu, Double costohoraMoApu, Double rendimMoApu, Double costotMoApu) {
+       this.analisispreciounitario = analisispreciounitario;
        this.manoobra = manoobra;
        this.descMoApu = descMoApu;
        this.categMoApu = categMoApu;
@@ -41,6 +41,13 @@ public class ManoobraApu  implements java.io.Serializable {
     
     public void setCodMoApu(Integer codMoApu) {
         this.codMoApu = codMoApu;
+    }
+    public Analisispreciounitario getAnalisispreciounitario() {
+        return this.analisispreciounitario;
+    }
+    
+    public void setAnalisispreciounitario(Analisispreciounitario analisispreciounitario) {
+        this.analisispreciounitario = analisispreciounitario;
     }
     public Manoobra getManoobra() {
         return this.manoobra;

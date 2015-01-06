@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 06/01/2015 02:17:13 PM by Hibernate Tools 3.2.1.GA
+// Generated 06/01/2015 02:51:14 PM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -10,6 +10,7 @@ public class EquipherrApu  implements java.io.Serializable {
 
 
      private Integer codEqherrApu;
+     private Analisispreciounitario analisispreciounitario;
      private Equipoherramienta equipoherramienta;
      private String descEqherrApu;
      private Integer cantEqherrApu;
@@ -19,11 +20,10 @@ public class EquipherrApu  implements java.io.Serializable {
      private Double costotEqherrApu;
 
     public EquipherrApu() {
- this.codEqherrApu=0;
-        this.equipoherramienta = new Equipoherramienta();
     }
 
-    public EquipherrApu(Equipoherramienta equipoherramienta, String descEqherrApu, Integer cantEqherrApu, Double tarifaEqherrApu, Double costohoraEqherrApu, Double rendimEqherrApu, Double costotEqherrApu) {
+    public EquipherrApu(Analisispreciounitario analisispreciounitario, Equipoherramienta equipoherramienta, String descEqherrApu, Integer cantEqherrApu, Double tarifaEqherrApu, Double costohoraEqherrApu, Double rendimEqherrApu, Double costotEqherrApu) {
+       this.analisispreciounitario = analisispreciounitario;
        this.equipoherramienta = equipoherramienta;
        this.descEqherrApu = descEqherrApu;
        this.cantEqherrApu = cantEqherrApu;
@@ -39,6 +39,13 @@ public class EquipherrApu  implements java.io.Serializable {
     
     public void setCodEqherrApu(Integer codEqherrApu) {
         this.codEqherrApu = codEqherrApu;
+    }
+    public Analisispreciounitario getAnalisispreciounitario() {
+        return this.analisispreciounitario;
+    }
+    
+    public void setAnalisispreciounitario(Analisispreciounitario analisispreciounitario) {
+        this.analisispreciounitario = analisispreciounitario;
     }
     public Equipoherramienta getEquipoherramienta() {
         return this.equipoherramienta;

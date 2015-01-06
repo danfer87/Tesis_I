@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 06/01/2015 02:17:13 PM by Hibernate Tools 3.2.1.GA
+// Generated 06/01/2015 02:51:14 PM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -10,6 +10,7 @@ public class MaterialApu  implements java.io.Serializable {
 
 
      private Integer codMatApu;
+     private Analisispreciounitario analisispreciounitario;
      private Material material;
      private String descMatApu;
      private String unidMatApu;
@@ -18,11 +19,10 @@ public class MaterialApu  implements java.io.Serializable {
      private Double costotMatApu;
 
     public MaterialApu() {
-this.codMatApu = 0;
-        this.material = new Material();
     }
 
-    public MaterialApu(Material material, String descMatApu, String unidMatApu, Integer cantMatApu, Double preunitMatApu, Double costotMatApu) {
+    public MaterialApu(Analisispreciounitario analisispreciounitario, Material material, String descMatApu, String unidMatApu, Integer cantMatApu, Double preunitMatApu, Double costotMatApu) {
+       this.analisispreciounitario = analisispreciounitario;
        this.material = material;
        this.descMatApu = descMatApu;
        this.unidMatApu = unidMatApu;
@@ -37,6 +37,13 @@ this.codMatApu = 0;
     
     public void setCodMatApu(Integer codMatApu) {
         this.codMatApu = codMatApu;
+    }
+    public Analisispreciounitario getAnalisispreciounitario() {
+        return this.analisispreciounitario;
+    }
+    
+    public void setAnalisispreciounitario(Analisispreciounitario analisispreciounitario) {
+        this.analisispreciounitario = analisispreciounitario;
     }
     public Material getMaterial() {
         return this.material;

@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 06/01/2015 02:17:13 PM by Hibernate Tools 3.2.1.GA
+// Generated 06/01/2015 02:51:14 PM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -11,6 +11,7 @@ public class TransporteApu  implements java.io.Serializable {
 
      private Integer codTranApu;
      private Transporte transporte;
+     private Analisispreciounitario analisispreciounitario;
      private String descTranApu;
      private String unidTranApu;
      private Integer cantTranApu;
@@ -18,12 +19,11 @@ public class TransporteApu  implements java.io.Serializable {
      private Double costotTranApu;
 
     public TransporteApu() {
-         this.codTranApu = 0;
-        this.transporte = new Transporte();
     }
 
-    public TransporteApu(Transporte transporte, String descTranApu, String unidTranApu, Integer cantTranApu, Double tarifaTranApu, Double costotTranApu) {
+    public TransporteApu(Transporte transporte, Analisispreciounitario analisispreciounitario, String descTranApu, String unidTranApu, Integer cantTranApu, Double tarifaTranApu, Double costotTranApu) {
        this.transporte = transporte;
+       this.analisispreciounitario = analisispreciounitario;
        this.descTranApu = descTranApu;
        this.unidTranApu = unidTranApu;
        this.cantTranApu = cantTranApu;
@@ -44,6 +44,13 @@ public class TransporteApu  implements java.io.Serializable {
     
     public void setTransporte(Transporte transporte) {
         this.transporte = transporte;
+    }
+    public Analisispreciounitario getAnalisispreciounitario() {
+        return this.analisispreciounitario;
+    }
+    
+    public void setAnalisispreciounitario(Analisispreciounitario analisispreciounitario) {
+        this.analisispreciounitario = analisispreciounitario;
     }
     public String getDescTranApu() {
         return this.descTranApu;

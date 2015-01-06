@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 06/01/2015 02:17:13 PM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 06/01/2015 02:51:14 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="ec.com.sisapus.modelo.EquipherrApu" table="equipherr_apu" catalog="bdsisapu">
         <id name="codEqherrApu" type="java.lang.Integer">
             <column name="COD_EQHERR_APU" />
             <generator class="identity" />
         </id>
+        <many-to-one name="analisispreciounitario" class="ec.com.sisapus.modelo.Analisispreciounitario" fetch="select">
+            <column name="CODIGO_APU" />
+        </many-to-one>
         <many-to-one name="equipoherramienta" class="ec.com.sisapus.modelo.Equipoherramienta" fetch="select">
             <column name="CODIGO_EQHERR" />
         </many-to-one>
