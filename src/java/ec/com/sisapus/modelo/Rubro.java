@@ -20,6 +20,9 @@ public class Rubro  implements java.io.Serializable {
      private Set analisispreciounitarios = new HashSet(0);
 
     public Rubro() {
+
+    this.codigoRubro = 0;
+        this.categoriarubro = new Categoriarubro();
     }
 
     public Rubro(Categoriarubro categoriarubro, String nombreRubro, String detalleRubro, String unidadRubro, Set presupuestos, Set analisispreciounitarios) {

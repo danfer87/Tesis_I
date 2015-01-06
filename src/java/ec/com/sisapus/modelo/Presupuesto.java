@@ -23,6 +23,10 @@ public class Presupuesto  implements java.io.Serializable {
      private Double gastotPres;
 
     public Presupuesto() {
+        this.codigoPres = 0;
+        this.rubro = new Rubro();
+        this.analisispreciounitario = new Analisispreciounitario();
+        this.proyecto = new Proyecto();
     }
 
     public Presupuesto(Analisispreciounitario analisispreciounitario, Proyecto proyecto, Rubro rubro, String descripPres, String unidadPres, Integer cantidadPres, Double punitPres, Double ptotPres, Double subtPres, Double ivaPres, Double gastotPres) {

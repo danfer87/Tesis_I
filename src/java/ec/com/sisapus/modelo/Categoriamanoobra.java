@@ -16,6 +16,8 @@ public class Categoriamanoobra  implements java.io.Serializable {
      private Set manoobras = new HashSet(0);
 
     public Categoriamanoobra() {
+         this.codCatManob = 0;
+
     }
 
     public Categoriamanoobra(String nombCatManob, Set manoobras) {

@@ -18,6 +18,9 @@ public class Manoobra  implements java.io.Serializable {
      private Set manoobraApus = new HashSet(0);
 
     public Manoobra() {
+
+     this.codigoManob=0;
+        this.categoriamanoobra = new Categoriamanoobra();
     }
 
     public Manoobra(Categoriamanoobra categoriamanoobra, String nombreManob, Double costojrhManob, Set manoobraApus) {

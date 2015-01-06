@@ -17,6 +17,8 @@ public class Detallecronograma  implements java.io.Serializable {
      private Double costoTotalDetalleCrono;
 
     public Detallecronograma() {
+         this.codigoDetalleCronograma=0;
+     this.cronograma=new Cronograma();
     }
 
     public Detallecronograma(Cronograma cronograma, String descripcionDetalleCrono, Integer cantidadDetalleCrono, Double costoUnitarioDetalleCrono, Double costoTotalDetalleCrono) {

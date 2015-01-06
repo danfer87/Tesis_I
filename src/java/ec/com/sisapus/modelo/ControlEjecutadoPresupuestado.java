@@ -17,6 +17,8 @@ public class ControlEjecutadoPresupuestado  implements java.io.Serializable {
      private Double PTotalEjec;
 
     public ControlEjecutadoPresupuestado() {
+        this.codigoEjec = 0;
+        this.proyecto = new Proyecto();
     }
 
     public ControlEjecutadoPresupuestado(Proyecto proyecto, String descripcionEjec, Double PUnitEjec, Double PTotalEjecut, Double PTotalEjec) {
