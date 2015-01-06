@@ -26,9 +26,7 @@ import org.primefaces.context.RequestContext;
 public class presupuestoBean implements Serializable {
     Session session;
     Transaction transaction;
-    //Variables del Rubro
-    private Rubro rubros;
-    private List<Rubro> listaRubros;
+    
     //Variables del Presupuesto
     private Presupuesto presupuesto;
     private Integer porcentajeiva;
@@ -51,8 +49,7 @@ public class presupuestoBean implements Serializable {
     
     
     public presupuestoBean() {
-        this.rubros = new Rubro();
-        this.listaRubros = new ArrayList<>();
+        
         this.listaApus = new ArrayList<>();
         this.listaPresupuestos = new ArrayList<>();
         this.proyecto = new Proyecto();
@@ -81,22 +78,6 @@ public class presupuestoBean implements Serializable {
 
     public void setTransaction(Transaction transaction) {
         this.transaction = transaction;
-    }
-
-    public Rubro getRubros() {
-        return rubros;
-    }
-
-    public void setRubros(Rubro rubros) {
-        this.rubros = rubros;
-    }
-
-    public List<Rubro> getListaRubros() {
-        return listaRubros;
-    }
-
-    public void setListaRubros(List<Rubro> listaRubros) {
-        this.listaRubros = listaRubros;
     }
 
     public Double getCostoPresupuesto() {
@@ -241,9 +222,13 @@ public class presupuestoBean implements Serializable {
 
         try {
             this.session = HibernateUtil.getSessionFactory().openSession();
+            
             proyectoDaoImpl daoproyecto = new proyectoDaoImpl();
+            
             this.transaction = this.session.beginTransaction();
+            
             this.proyecto = daoproyecto.obtenerProyectoPorId(session, idproyecto);
+            
             this.setCodigoproyecto(this.proyecto.getCodigoProy());
             this.setContratistaproyecto(this.proyecto.getContratProy());
             this.setPropietarioproyecto(this.proyecto.getPropiepProy());
@@ -284,8 +269,6 @@ public class presupuestoBean implements Serializable {
 
             this.transaction = this.session.beginTransaction();
             this.apu = daoapu.obtenerApuPorId(this.session, idApu);
-            this.apu.getCodigoApu();
-            this.apu.getDescApu();
             this.listaPresupuestos.add(new Presupuesto(null, null, null, this.apu.getDescApu(), this.apu.getUnidadApu(),0, this.apu.getCostotApu(), new Double("0.00"), null, null, null));
             this.transaction.commit();
 

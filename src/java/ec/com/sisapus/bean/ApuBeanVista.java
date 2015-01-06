@@ -67,6 +67,7 @@ public class ApuBeanVista implements Serializable {
     //precios unitarios
     private Analisispreciounitario analisisapus;
     private List<Analisispreciounitario> listapus;
+    private List<Analisispreciounitario> listarapus;
     private Double auxiliarPorcenjate;
     private Double auxiliarotroscostos;
     private Double totaldirAPU;
@@ -104,8 +105,8 @@ public class ApuBeanVista implements Serializable {
 
 
     }
-    
-        public List<Analisispreciounitario> getlistarApus() {
+    //// Listar los apus en el dialogo
+    public List<Analisispreciounitario> getListarapus() {
         this.session = null;
         this.transaction = null;
 
@@ -114,9 +115,9 @@ public class ApuBeanVista implements Serializable {
 
             this.session = HibernateUtil.getSessionFactory().openSession();
             this.transaction = this.session.beginTransaction();
-            this.listapus = daoapu.listarApus(this.session);
+            this.listarapus = daoapu.listarApus(this.session);
             this.transaction.commit();
-            return this.listapus;
+            return this.listarapus;
         } catch (Exception ex) {
             if (this.transaction != null) {
                 this.transaction.rollback();
@@ -128,9 +129,16 @@ public class ApuBeanVista implements Serializable {
                 this.session.close();
             }
         }
+        
     }
 
-    ///funcion para agregar rubro
+    public void setListarapus(List<Analisispreciounitario> listarapus) {
+        this.listarapus = listarapus;
+    }
+        
+        
+
+    ///funcion para agregar el rubro
     public void agregarRubroApus(Integer idRubros) {
         this.session = null;
         this.transaction = null;

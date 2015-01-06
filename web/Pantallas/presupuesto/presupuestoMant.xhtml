@@ -58,46 +58,35 @@
                     <legend>Datos Generales del Proyecto</legend>
                         <h:panelGrid id="cabeceraPresupuesto" columns="2" cellpadding="4" >
                             <h:panelGrid columns="2" cellpadding="3">
-                                <p:outputLabel value="Codigo:" for="codigo" />
+                                <p:outputLabel value="Codigo:" />
                                 <p:inputText value="#{presupuestoBean.codigoproyecto}" id="codigo" size="10"/>
                                 
-                                <p:outputLabel value="Propietario:" for="propietario" />
+                                <p:outputLabel value="Propietario:" />
                                 <p:inputText value="#{presupuestoBean.propietarioproyecto}" id="propietario" size="35"/>
                                 
-                                <p:outputLabel value="Contratista:" for="contratista" />
+                                <p:outputLabel value="Contratista:"  />
                                 <p:inputText value="#{presupuestoBean.contratistaproyecto}" id="contratista" size="35"/>
-                                
                             </h:panelGrid>
                             <h:panelGrid columns="2" cellpadding="3">
-                                <p:outputLabel value="Obra:" for="obra" />
+                                <p:outputLabel value="Obra:" />
                                 <p:inputText value="#{presupuestoBean.obraproyecto}" id="obra" size="45"/>   
                                 
-                                <p:outputLabel value="Ubicacion:" for="ubic" />
+                                <p:outputLabel value="Ubicacion:" />
                                 <p:inputText value="#{presupuestoBean.ubicacionproyecto}" id="ubic" size="45"/>   
                                 
-                                <p:outputLabel value="Fecha:" for="fecha" />
+                                <p:outputLabel value="Fecha:" />
                                 <p:calendar id="fecha" value="#{presupuestoBean.fechaproyecto}" size="10" label="Fecha:" showOn="button" title="Ejemplo: dd/mm/yyyy"/>  
-                                
-                                
-                           </h:panelGrid>
+                            </h:panelGrid>
                         </h:panelGrid>
                         <p:commandButton id="btnAñadirProyecto" oncomplete="dialogProyectos.show()" value="Seleccionar Proyecto"/>
-                   
-
-                </FIELDSET>
-            
-                
+                  </FIELDSET>
                    <br></br> 
                    <p:commandButton id="btnAddRubro" oncomplete="dlgRubros.show()" value="Anadir Rubros al Detalle">
                    </p:commandButton>       
                    <br></br>
                    <br></br> 
-                
-       
                 <p:dialog header="Rubros" id="dlgRubros" widgetVar="dlgRubros" showEffect="fade" hideEffect="explode" height="120"  modal="true">
-    
-                    <p:dataTable value="#{ApuBeanVista.listarApus}" var="apu"  scrollable="true" scrollHeight="100"
-                                     style="width:650px ">
+                    <p:dataTable value="#{ApuBeanVista.listarapus}" var="apu"  scrollable="true" scrollHeight="100" style="width:650px ">
                         <p:column headerText="Codigo">
                             <h:outputText value="#{apu.codigoApu}"/>
                         </p:column>
