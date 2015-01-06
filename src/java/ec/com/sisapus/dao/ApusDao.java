@@ -27,8 +27,7 @@ public interface ApusDao {
       public boolean insertarMaterial(Session session,MaterialApu mateapu) throws Exception; 
       //insertar transporte
       public boolean insertarTransporte(Session session,TransporteApu transapu) throws Exception;
-     public boolean insertarAPU(Session session,Analisispreciounitario apu) throws Exception; 
-  //buscar ultimo registro_apu
-      public boolean insertarApu(Session session, Analisispreciounitario anpu) throws Exception;
+      
+    public boolean insertarAPU(Session session,Analisispreciounitario apu) throws Exception; 
     public Analisispreciounitario getUltimoRegistroApu(Session session) throws Exception;
 }
