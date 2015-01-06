@@ -142,7 +142,7 @@ public class ApuBeanVista implements Serializable {
              this.rubro=daorubro.getByIdRubro(session, idRubros);
             
             this.setAuxocidigo(this.rubro.getCodigoRubro());
-            this.setAuxdesrubro(this.rubro.getDetalleRubro());
+            this.setAuxdesrubro(this.rubro.getNombreRubro());
             this.setAuxunidrubro(this.rubro.getUnidadRubro());
             this.setAuxcategoria(this.rubro.getCategoriarubro().getDescripcionCatRubro());
                 

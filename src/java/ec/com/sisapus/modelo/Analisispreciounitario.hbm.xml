@@ -11,9 +11,7 @@
         <many-to-one name="transporteApu" class="ec.com.sisapus.modelo.TransporteApu" fetch="select">
             <column name="COD_TRAN_APU" />
         </many-to-one>
-        <many-to-one name="categoriapreciounitario" class="ec.com.sisapus.modelo.Categoriapreciounitario" fetch="select">
-            <column name="CODIGO_CAT_APU" />
-        </many-to-one>
+       
         <many-to-one name="rubro" class="ec.com.sisapus.modelo.Rubro" fetch="select">
             <column name="CODIGO_RUBRO" />
         </many-to-one>
