@@ -65,6 +65,19 @@ public class ApusDaoImpl implements ApusDao {
         
         return (EquipherrApu) query.uniqueResult(); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public boolean insertarApu(Session session, Analisispreciounitario anpu) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Analisispreciounitario getUltimoRegistroApu(Session session) throws Exception {
+        String hql="from Analisispreciounitario  order by  CODIGO_APU desc";
+        Query query=session.createQuery(hql).setMaxResults(1);
+        
+        return (Analisispreciounitario) query.uniqueResult(); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }
