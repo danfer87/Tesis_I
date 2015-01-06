@@ -55,10 +55,8 @@
           
               </p:dialog>        
                 <FIELDSET  style="-moz-border-radius:10px; width: 850px; "  class="borderFieldSet">
-                    
                     <legend>Datos Generales del Proyecto</legend>
-                    
-                    <h:panelGrid id="cabeceraPresupuesto" columns="2" cellpadding="4" >
+                        <h:panelGrid id="cabeceraPresupuesto" columns="2" cellpadding="4" >
                             <h:panelGrid columns="2" cellpadding="3">
                                 <p:outputLabel value="Codigo:" for="codigo" />
                                 <p:inputText value="#{presupuestoBean.codigoproyecto}" id="codigo" size="10"/>
@@ -87,10 +85,10 @@
                    
 
                 </FIELDSET>
-            <h:form id="frmPresupuesto">
-                <p:growl id="mensajeGeneral" showDetail="true"/>   
+            
+                
                    <br></br> 
-                   <p:commandButton id="btnAddRubro" oncomplete="dlgRubros.show()" value="Anadir">
+                   <p:commandButton id="btnAddRubro" oncomplete="dlgRubros.show()" value="Anadir Rubros al Detalle">
                    </p:commandButton>       
                    <br></br>
                    <br></br> 
@@ -125,29 +123,45 @@
                 <FIELDSET style="-moz-border-radius:10px;background-color: #EEEEEE;
                           width: 850px;" class="borderFieldSet">
                     <legend>Detalle Presupuesto</legend>
-                    <p:dataTable id="tablaDetallePresupuesto" value="#{presupuestoBean.listaApus}" var="apus" >
+                    <p:dataTable id="tablaDetallePresupuesto" value="#{presupuestoBean.listaPresupuestos}" var="apus" 
+                                 editable="true" editMode="cell" scrollable="true" scrollHeight="100">
+                        
                         <p:column headerText="#" style="text-align: center;">
                             <h:outputText value="" />
                         </p:column>
                         <p:column headerText="Descripcion" style="text-align: center;">
-                            <h:outputText value="#{apus.descApu}" />
+                            <h:outputText value="#{apus.descripPres}" />
                         </p:column>
                         <p:column headerText="Unidad" style="text-align: center;">
-                            <h:outputText value="#{apus.unidadApu}" />
+                            <h:outputText value="#{apus.unidadPres}" />
                         </p:column>
                         <p:column headerText="Costo U" style="text-align: center;">
-                            <h:outputText value="#{apus.costotApu}" />
+                            <h:outputText value="#{apus.punitPres}" />
                         </p:column>
-                        <p:column headerText="Categoria" style="text-align: center;">
-                            <h:outputText value="#{apus.categoriaApu}" />
+                        <p:column headerText="Cantidad" style="text-align: center;">
+                            <p:inputText value="#{apus.cantidadPres}" style="text-align: center;" />                    
                         </p:column>
-                        
+                        <p:column headerText="Costo T" style="text-align: center;">
+                            S./
+                            <h:outputText value="#{apus.ptotPres}" />
+                        </p:column>
+                        <p:column style="text-align: center;">
+                            <p:commandButton value="Retirar" ajax="true" actionListener="#{presupuestoBean.EliminarApuLista(apus.descripPres)}"/>
+                        </p:column >
                     </p:dataTable>
+                    <p:panelGrid id="panelFinalPres" columns="1" style="text-align: right;width: 98%;">
+                            <h:panelGroup>
+                                <p:commandButton id="btnCalcularCostoPres" value="Calcular Sub"  actionListener="#{presupuestoBean.calcularCostosPresupuesto()}"/>  
+                                Total $./
+                                <h:outputText value="#{presupuestoBean.presupuesto.subtPres}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>               
+                                -------------
+                            </h:panelGroup>
+                    </p:panelGrid>
                 </FIELDSET>
-     </h:form>     
+       
                 <FIELDSET style="-moz-border-radius:10px;width: 850px; ">
                     <legend>Presupuestar</legend>
-                    <h:form>
+                    
                         <td></td>
                         <h:panelGrid columns="2" style="float:right" cellpadding="3">
                             <h:outputText value="Subtotal "/>
@@ -157,12 +171,12 @@
                             <h:outputText value="Costo Total "/>
                             <p:inputText value="" />  
                         </h:panelGrid>
-                    </h:form>
+                    
                 </FIELDSET>
                       <br></br>
-                        <h:form>
+                        
                             <p:commandButton id="btnPresupuestar1" title="Generar Presupuesto" value="Presupuestar"/>  
-                        </h:form>
+                        
                         
                 </h:form>
             </ui:define>

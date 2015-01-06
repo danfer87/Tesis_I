@@ -257,7 +257,6 @@ public class ApuBeanVista implements Serializable {
 
             for (EquipherrApu item : this.listaEquiposApus) {
                 Double costohora = item.getCantEqherrApu() * (new Double(item.getTarifaEqherrApu()));
-
                 Double totalVentaPorProducto = (costohora * (new Double(item.getRendimEqherrApu())));
                 item.setCostohoraEqherrApu(costohora);
                 item.setCostotEqherrApu(totalVentaPorProducto);
@@ -722,7 +721,7 @@ public class ApuBeanVista implements Serializable {
         }
     }
 
-    //calculo subtotal equipos
+    //calculo subtotal transporte
     public void calcularCostosTransporte() {
         try {
             Double totalVenta1 = new Double("0.00");

@@ -9,6 +9,7 @@ import ec.com.sisapus.modelo.Proyecto;
 import ec.com.sisapus.modelo.Rubro;
 import ec.com.sisapus.util.HibernateUtil;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +31,8 @@ public class presupuestoBean implements Serializable {
     private List<Rubro> listaRubros;
     //Variables del Presupuesto
     private Presupuesto presupuesto;
+    private Integer porcentajeiva;
+    private Double subtotalPres;
     private Double costoPresupuesto;
     private List<Presupuesto> listaPresupuestos;
     //Variables de Proyecto
@@ -51,6 +54,7 @@ public class presupuestoBean implements Serializable {
         this.rubros = new Rubro();
         this.listaRubros = new ArrayList<>();
         this.listaApus = new ArrayList<>();
+        this.listaPresupuestos = new ArrayList<>();
         this.proyecto = new Proyecto();
         this.codigoproyecto = 0;
         this.propietarioproyecto = "";
@@ -187,7 +191,44 @@ public class presupuestoBean implements Serializable {
         this.listaApus = listaApus;
     }
     
+    ///Getter y Setter de Presupuesto
+    public Presupuesto getPresupuesto() {
+        return presupuesto;
+    }
+
+    public void setPresupuesto(Presupuesto presupuesto) {
+        this.presupuesto = presupuesto;
+    }
     
+    public List<Presupuesto> getListaPresupuestos() {
+        return listaPresupuestos;
+    }
+
+    public void setListaPresupuestos(List<Presupuesto> listaPresupuestos) {
+        this.listaPresupuestos = listaPresupuestos;
+    }
+
+    public Integer getPorcentajeiva() {
+        return porcentajeiva;
+    }
+
+    public void setPorcentajeiva(Integer porcentajeiva) {
+        this.porcentajeiva = porcentajeiva;
+    }
+
+    public Double getSubtotalPres() {
+        return subtotalPres;
+    }
+
+    public void setSubtotalPres(Double subtotalPres) {
+        this.subtotalPres = subtotalPres;
+    }
+    
+    
+    
+    
+    
+    /////
     
     
    
@@ -200,13 +241,9 @@ public class presupuestoBean implements Serializable {
 
         try {
             this.session = HibernateUtil.getSessionFactory().openSession();
-
             proyectoDaoImpl daoproyecto = new proyectoDaoImpl();
-
             this.transaction = this.session.beginTransaction();
-
             this.proyecto = daoproyecto.obtenerProyectoPorId(session, idproyecto);
-
             this.setCodigoproyecto(this.proyecto.getCodigoProy());
             this.setContratistaproyecto(this.proyecto.getContratProy());
             this.setPropietarioproyecto(this.proyecto.getPropiepProy());
@@ -246,8 +283,10 @@ public class presupuestoBean implements Serializable {
             ApusDaoImpl daoapu = new ApusDaoImpl();
 
             this.transaction = this.session.beginTransaction();
-            this.apu = daoapu.obtenerApuPorId(session, idApu);
-            this.listaApus.add(new Analisispreciounitario(null, null, null, null, null, null,this.apu.getDescApu(), this.apu.getUnidadApu(), this.apu.getCategoriaApu(), null, null, null, null, null, null, null, this.apu.getCostotApu(),null, null, null, null));
+            this.apu = daoapu.obtenerApuPorId(this.session, idApu);
+            this.apu.getCodigoApu();
+            this.apu.getDescApu();
+            this.listaPresupuestos.add(new Presupuesto(null, null, null, this.apu.getDescApu(), this.apu.getUnidadApu(),0, this.apu.getCostotApu(), new Double("0.00"), null, null, null));
             this.transaction.commit();
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Apu del rubro agregado"));
@@ -269,43 +308,55 @@ public class presupuestoBean implements Serializable {
         }
     }
     
-    public void EliminarListaRubro(String nom) {
+    public void EliminarApuLista(String nombrePres) {
         try {
             int i = 0;
 
-            for (Rubro item : this.listaRubros) {
-                if (item.getNombreRubro().equals(nom)) {
-                    this.listaRubros.remove(i);
+            for (Presupuesto presup : this.listaPresupuestos) {
+                if (presup.getDescripPres().equals(nombrePres)) {
+                    this.listaPresupuestos.remove(i);
                     break;
                 }
                 i++;
             }
 
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Equipos y Herramientas retirado de la lista"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Rubro retirado de la lista"));
 
-            RequestContext.getCurrentInstance().update("frmPresupuesto:tablaDetallePresupuesto");
-            RequestContext.getCurrentInstance().update("frmPresupuesto:panelFinalVenta");
-            RequestContext.getCurrentInstance().update("frmPresupuesto:mensajeGeneral");
+            RequestContext.getCurrentInstance().update("formPresupuesto:tablaDetallePresupuesto");
+            RequestContext.getCurrentInstance().update("formPresupuesto:mensajeGeneralPresupuesto");
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
         }
     }
     
     public void calcularCostosPresupuesto() {
+        Double ivaPres = new Double("0.00");
+        Double valorTotalPres = new Double("0.00");
         try {
-            Double totalCostoPresupuesto = new Double("0.00");
+            
+            Double subtotalPresup = new Double("0.00");
+            
+            //Presupuesto pres = new Presupuesto();
 
-            for (Presupuesto item : this.listaPresupuestos) {
-                Double costototalrubro = item.getCantidadPres() * (new Double(item.getPunitPres()));
-                item.setPtotPres(costototalrubro);
-                
-                totalCostoPresupuesto = totalCostoPresupuesto + costototalrubro;
+            for (Presupuesto presup : this.listaPresupuestos) {
+                Double costototalapurubro = presup.getPunitPres() * (new Double(presup.getCantidadPres()));
+                presup.setPtotPres(costototalapurubro);
+                subtotalPresup = subtotalPresup + costototalapurubro;
             }
+            this.presupuesto.setSubtPres(subtotalPresup);
+            //ivaPres = subtotalPresup * (12/100);
+            //valorTotalPres = subtotalPresup + ivaPres;
+            //this.setSubtotalPres(subtotalPresup);
+            //presupuesto.setSubtPres(subtotalPres);
+            //presupuesto.setIvaPres(ivaPres);
+            //presupuesto.setGastotPres(valorTotalPres);
 
-            this.setCostoPresupuesto(totalCostoPresupuesto);
+            //pres.setSubtPres(subtotalPres);
+            //pres.setIvaPres(ivaPres);
+            //pres.setGastotPres(valorTotalPres);
 
-            RequestContext.getCurrentInstance().update("frmPresupuesto:tablaDetallePresupuesto");
-            RequestContext.getCurrentInstance().update("frmPresupuesto:panelFinalVenta");
+            RequestContext.getCurrentInstance().update("formPresupuesto:tablaDetallePresupuesto");
+            RequestContext.getCurrentInstance().update("formPresupuesto:panelFinalPres");
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
         }
