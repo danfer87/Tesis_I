@@ -1,18 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 06/01/2015 11:20:59 AM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 06/01/2015 02:17:13 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="ec.com.sisapus.modelo.Escenarioapu" table="escenarioapu" catalog="bdsisapu">
         <id name="codigoEscenario" type="java.lang.Integer">
             <column name="CODIGO_ESCENARIO" />
             <generator class="identity" />
         </id>
-        <many-to-one name="analisispreciounitario" class="ec.com.sisapus.modelo.Analisispreciounitario" fetch="select">
+        <property name="codigoApu" type="java.lang.Integer">
             <column name="CODIGO_APU" />
-        </many-to-one>
+        </property>
         <property name="nombreEscenario" type="string">
             <column name="NOMBRE_ESCENARIO" length="100" />
         </property>
+        <set name="analisispreciounitarios" inverse="true">
+            <key>
+                <column name="CODIGO_ESCENARIO" />
+            </key>
+            <one-to-many class="ec.com.sisapus.modelo.Analisispreciounitario" />
+        </set>
     </class>
 </hibernate-mapping>

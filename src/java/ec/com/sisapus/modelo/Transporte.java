@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 06/01/2015 11:20:58 AM by Hibernate Tools 3.2.1.GA
+// Generated 06/01/2015 02:17:13 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -18,9 +18,6 @@ public class Transporte  implements java.io.Serializable {
      private Set transporteApus = new HashSet(0);
 
     public Transporte() {
-
-    this.codigoTransp = 0;
-        this.categoriatransporte = new Categoriatransporte();
     }
 
     public Transporte(Categoriatransporte categoriatransporte, String nombreTransp, Double tarifaTransp, Set transporteApus) {

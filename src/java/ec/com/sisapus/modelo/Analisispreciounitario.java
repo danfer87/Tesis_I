@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 06/01/2015 11:20:58 AM by Hibernate Tools 3.2.1.GA
+// Generated 06/01/2015 02:17:13 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -12,11 +12,8 @@ public class Analisispreciounitario  implements java.io.Serializable {
 
 
      private Integer codigoApu;
-     private TransporteApu transporteApu;
+     private Escenarioapu escenarioapu;
      private Rubro rubro;
-     private MaterialApu materialApu;
-     private ManoobraApu manoobraApu;
-     private EquipherrApu equipherrApu;
      private String descApu;
      private String unidadApu;
      private String categoriaApu;
@@ -31,24 +28,17 @@ public class Analisispreciounitario  implements java.io.Serializable {
      private Double rendApu;
      private Double porcenIndApu;
      private Set presupuestos = new HashSet(0);
-     private Set escenarioapus = new HashSet(0);
 
     public Analisispreciounitario() {
-         this.codigoApu = 0;
-        this.transporteApu = new TransporteApu();
-      //  this.categoriapreciounitario=new Categoriapreciounitario();
+        this.codigoApu = 0;
+      this.escenarioapu=new Escenarioapu();
         this.rubro=new Rubro();
-         this.materialApu=new MaterialApu();
-          this.manoobraApu=new ManoobraApu();
-           this.equipherrApu=new EquipherrApu();
+        
     }
 
-    public Analisispreciounitario(TransporteApu transporteApu, Rubro rubro, MaterialApu materialApu, ManoobraApu manoobraApu, EquipherrApu equipherrApu, String descApu, String unidadApu, String categoriaApu, Double analApuMat, Double analApuEqherr, Double analApuMob, Double analApuTran, Double costDirApu, Double costIndApu, Double costOtrosIndApu, Double costotApu, Double rendApu, Double porcenIndApu, Set presupuestos, Set escenarioapus) {
-       this.transporteApu = transporteApu;
+    public Analisispreciounitario(Escenarioapu escenarioapu, Rubro rubro, String descApu, String unidadApu, String categoriaApu, Double analApuMat, Double analApuEqherr, Double analApuMob, Double analApuTran, Double costDirApu, Double costIndApu, Double costOtrosIndApu, Double costotApu, Double rendApu, Double porcenIndApu, Set presupuestos) {
+       this.escenarioapu = escenarioapu;
        this.rubro = rubro;
-       this.materialApu = materialApu;
-       this.manoobraApu = manoobraApu;
-       this.equipherrApu = equipherrApu;
        this.descApu = descApu;
        this.unidadApu = unidadApu;
        this.categoriaApu = categoriaApu;
@@ -63,7 +53,6 @@ public class Analisispreciounitario  implements java.io.Serializable {
        this.rendApu = rendApu;
        this.porcenIndApu = porcenIndApu;
        this.presupuestos = presupuestos;
-       this.escenarioapus = escenarioapus;
     }
    
     public Integer getCodigoApu() {
@@ -73,12 +62,12 @@ public class Analisispreciounitario  implements java.io.Serializable {
     public void setCodigoApu(Integer codigoApu) {
         this.codigoApu = codigoApu;
     }
-    public TransporteApu getTransporteApu() {
-        return this.transporteApu;
+    public Escenarioapu getEscenarioapu() {
+        return this.escenarioapu;
     }
     
-    public void setTransporteApu(TransporteApu transporteApu) {
-        this.transporteApu = transporteApu;
+    public void setEscenarioapu(Escenarioapu escenarioapu) {
+        this.escenarioapu = escenarioapu;
     }
     public Rubro getRubro() {
         return this.rubro;
@@ -86,27 +75,6 @@ public class Analisispreciounitario  implements java.io.Serializable {
     
     public void setRubro(Rubro rubro) {
         this.rubro = rubro;
-    }
-    public MaterialApu getMaterialApu() {
-        return this.materialApu;
-    }
-    
-    public void setMaterialApu(MaterialApu materialApu) {
-        this.materialApu = materialApu;
-    }
-    public ManoobraApu getManoobraApu() {
-        return this.manoobraApu;
-    }
-    
-    public void setManoobraApu(ManoobraApu manoobraApu) {
-        this.manoobraApu = manoobraApu;
-    }
-    public EquipherrApu getEquipherrApu() {
-        return this.equipherrApu;
-    }
-    
-    public void setEquipherrApu(EquipherrApu equipherrApu) {
-        this.equipherrApu = equipherrApu;
     }
     public String getDescApu() {
         return this.descApu;
@@ -205,13 +173,6 @@ public class Analisispreciounitario  implements java.io.Serializable {
     
     public void setPresupuestos(Set presupuestos) {
         this.presupuestos = presupuestos;
-    }
-    public Set getEscenarioapus() {
-        return this.escenarioapus;
-    }
-    
-    public void setEscenarioapus(Set escenarioapus) {
-        this.escenarioapus = escenarioapus;
     }
 
 

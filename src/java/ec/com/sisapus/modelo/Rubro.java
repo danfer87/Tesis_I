@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 06/01/2015 11:20:58 AM by Hibernate Tools 3.2.1.GA
+// Generated 06/01/2015 02:17:13 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -20,8 +20,6 @@ public class Rubro  implements java.io.Serializable {
      private Set analisispreciounitarios = new HashSet(0);
 
     public Rubro() {
-   this.codigoRubro = 0;
-        this.categoriarubro = new Categoriarubro();
     }
 
     public Rubro(Categoriarubro categoriarubro, String nombreRubro, String detalleRubro, String unidadRubro, Set presupuestos, Set analisispreciounitarios) {

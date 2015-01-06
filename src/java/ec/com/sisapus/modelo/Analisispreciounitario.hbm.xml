@@ -1,27 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 06/01/2015 11:20:59 AM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 06/01/2015 02:17:13 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="ec.com.sisapus.modelo.Analisispreciounitario" table="analisispreciounitario" catalog="bdsisapu">
         <id name="codigoApu" type="java.lang.Integer">
             <column name="CODIGO_APU" />
             <generator class="identity" />
         </id>
-        <many-to-one name="transporteApu" class="ec.com.sisapus.modelo.TransporteApu" fetch="select">
-            <column name="COD_TRAN_APU" />
+        <many-to-one name="escenarioapu" class="ec.com.sisapus.modelo.Escenarioapu" fetch="select">
+            <column name="CODIGO_ESCENARIO" />
         </many-to-one>
         <many-to-one name="rubro" class="ec.com.sisapus.modelo.Rubro" fetch="select">
             <column name="CODIGO_RUBRO" />
-        </many-to-one>
-        <many-to-one name="materialApu" class="ec.com.sisapus.modelo.MaterialApu" fetch="select">
-            <column name="COD_MAT_APU" />
-        </many-to-one>
-        <many-to-one name="manoobraApu" class="ec.com.sisapus.modelo.ManoobraApu" fetch="select">
-            <column name="COD_MO_APU" />
-        </many-to-one>
-        <many-to-one name="equipherrApu" class="ec.com.sisapus.modelo.EquipherrApu" fetch="select">
-            <column name="COD_EQHERR_APU" />
         </many-to-one>
         <property name="descApu" type="string">
             <column name="DESC_APU" length="100" />
@@ -67,12 +58,6 @@
                 <column name="CODIGO_APU" />
             </key>
             <one-to-many class="ec.com.sisapus.modelo.Presupuesto" />
-        </set>
-        <set name="escenarioapus" inverse="true">
-            <key>
-                <column name="CODIGO_APU" />
-            </key>
-            <one-to-many class="ec.com.sisapus.modelo.Escenarioapu" />
         </set>
     </class>
 </hibernate-mapping>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 06/01/2015 11:20:59 AM by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 06/01/2015 02:17:13 PM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="ec.com.sisapus.modelo.ManoobraApu" table="manoobra_apu" catalog="bdsisapu">
         <id name="codMoApu" type="java.lang.Integer">
@@ -32,11 +32,5 @@
         <property name="costotMoApu" type="java.lang.Double">
             <column name="COSTOT_MO_APU" precision="22" scale="0" />
         </property>
-        <set name="analisispreciounitarios" inverse="true">
-            <key>
-                <column name="COD_MO_APU" />
-            </key>
-            <one-to-many class="ec.com.sisapus.modelo.Analisispreciounitario" />
-        </set>
     </class>
 </hibernate-mapping>
