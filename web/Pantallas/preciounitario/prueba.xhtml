@@ -20,12 +20,12 @@
       <ui:composition template="./../menuTemplate.xhtml">
           <ui:define name="content">
           
-              <h:form id="frmRealizarVentas">
+    <h:form id="frmRealizarVentas">
                              
         <p:growl id="mensajeGeneral" showDetail="true"/>          
         <p:dialog header="Rubros" id="dlg4" widgetVar="dlg4" showEffect="fade" hideEffect="explode" height="145"  modal="true">
     
-           <p:dataTable value="#{rubroBeanVista.all}" var="item8"  scrollable="true" scrollHeight="100"
+            <p:dataTable value="#{rubroBeanVista.all}" var="item8"  scrollable="true" scrollHeight="100"
                                      style="width:650px ">
                         <p:column headerText="Codigo">
                             <h:outputText value="#{item8.codigoRubro}"/>
@@ -95,7 +95,7 @@
                             
                         </p:column>
                     </p:dataTable>
-                       </p:dialog>
+            </p:dialog>
         
         
    <FIELDSET  style="-moz-border-radius:10px;background-color: #dddddd;

@@ -19,7 +19,7 @@ public interface manoobraDao {
     public boolean actualizarManoObra(Manoobra manoObra);
     public boolean eliminarManoObra(Integer idManoObra);
     
-     //agregado
-      public Manoobra getByIdManobra(Session session, Integer idmanobra) throws Exception;
-       public Manoobra getUltimoRegistro(Session session) throws Exception;
+    //agregado
+    public Manoobra getByIdManobra(Session session, Integer idmanobra) throws Exception;
+    public Manoobra getUltimoRegistro(Session session) throws Exception;
 }

@@ -19,54 +19,75 @@
         </style>
     </h:head>
     <body>
-        <h:form>
+       
         <ui:composition template="./../menuTemplate.xhtml">
             <ui:define name="content">
+               <h:form id="formPresupuesto">
+                <p:growl id="mensajeGeneralPresupuesto" showDetail="true"/>          
                 <p:growl id="msgs" showDetail="false" />  
-                <p:tabView>
-                    <p:tab title="Presupuesto" closable="true">
-                        <h:form>
-                        <h:outputText value="Proyectos:" />
-                        <p:selectOneMenu value="#{proyectoBean.proyecto.codigoProy}" onchange="submit()">  
-                                <f:selectItem itemLabel="-- Seleccione --" itemValue="" />  
-                                <f:selectItems value="#{proyectoBean.cargarProyectos}" />  
-                        </p:selectOneMenu>
-                        <br></br>
-                        </h:form>
+                <br/>
+                <p:dialog header="Proyectos" id="dialogProyectos" widgetVar="dialogProyectos" showEffect="fade" hideEffect="explode" height="165"  modal="true">
+                    <p:dataTable value="#{proyectoBean.listaProyectos}" var="proyecto"  scrollable="true" scrollHeight="100"
+                                     style="width:650px ">
+                        <p:column headerText="Codigo">
+                            <h:outputText value="#{proyecto.codigoProy}"/>
+                        </p:column>
+                        <p:column headerText="Propietario" >
+                            <h:outputText value="#{proyecto.propiepProy}"/>
+                        </p:column>
+                        <p:column headerText="Contratista">
+                            <h:outputText value="#{proyecto.contratProy}"/>
+                        </p:column>
+                        <p:column headerText="Obra">
+                            <h:outputText value="#{proyecto.obraProy}"/>
+                        </p:column>
+                      <p:column headerText="Ubicacion">
+                          <h:outputText value="#{proyecto.ubicProy}"/>
+                      </p:column>
+                      <p:column headerText="Fecha">
+                          <h:outputText value="#{proyecto.fechaProy}"/>
+                      </p:column>
+                        <p:column style="width:8%; text-align: center">
+                            <p:commandButton   icon="icon-add" title="Seleccionar"  actionListener="#{presupuestoBean.seleccionarProyectoPorId(proyecto.codigoProy)}"/>
+                         </p:column>      
+      
+                    </p:dataTable>
+          
+              </p:dialog>        
                 <FIELDSET  style="-moz-border-radius:10px; width: 850px; "  class="borderFieldSet">
                     
                     <legend>Datos Generales del Proyecto</legend>
-                    <h:form id="cargar_cabecera" >
-                        <h:panelGrid columns="2" cellpadding="4" >
-                            <h:panelGrid columns="3" cellpadding="3">
+                    
+                    <h:panelGrid id="cabeceraPresupuesto" columns="2" cellpadding="4" >
+                            <h:panelGrid columns="2" cellpadding="3">
                                 <p:outputLabel value="Codigo:" for="codigo" />
-                                <p:inputText value="" id="codigo" size="10"/>
-                                <p:message for="codigo"/>
+                                <p:inputText value="#{presupuestoBean.codigoproyecto}" id="codigo" size="10"/>
+                                
                                 <p:outputLabel value="Propietario:" for="propietario" />
-                                <p:inputText value="" id="propietario" size="20"/>
-                                <p:message for="propietario"/>
+                                <p:inputText value="#{presupuestoBean.propietarioproyecto}" id="propietario" size="35"/>
+                                
                                 <p:outputLabel value="Contratista:" for="contratista" />
-                                <p:inputText value="" id="contratista" size="20"/>
-                                <p:message for="contratista"/>
+                                <p:inputText value="#{presupuestoBean.contratistaproyecto}" id="contratista" size="35"/>
+                                
                             </h:panelGrid>
-                            <h:panelGrid columns="3" cellpadding="3">
+                            <h:panelGrid columns="2" cellpadding="3">
                                 <p:outputLabel value="Obra:" for="obra" />
-                                <p:inputText value="" id="obra" size="25"/>   
-                                <p:message for="obra"/>
+                                <p:inputText value="#{presupuestoBean.obraproyecto}" id="obra" size="45"/>   
+                                
                                 <p:outputLabel value="Ubicacion:" for="ubic" />
-                                <p:inputText value="" id="ubic" size="25"/>   
-                                <p:message for="ubic"/>
+                                <p:inputText value="#{presupuestoBean.ubicacionproyecto}" id="ubic" size="45"/>   
+                                
                                 <p:outputLabel value="Fecha:" for="fecha" />
-                                <p:calendar id="fecha" size="10" label="Fecha:" showOn="button" title="Ejemplo: dd/mm/yyyy" value="#{proyecto.fechaProy}"/>  
-                                <p:message for="fecha"/>
+                                <p:calendar id="fecha" value="#{presupuestoBean.fechaproyecto}" size="10" label="Fecha:" showOn="button" title="Ejemplo: dd/mm/yyyy"/>  
+                                
                                 
                            </h:panelGrid>
                         </h:panelGrid>
-
-                    </h:form>
+                        <p:commandButton id="btnAñadirProyecto" oncomplete="dialogProyectos.show()" value="Seleccionar Proyecto"/>
+                   
 
                 </FIELDSET>
-   <h:form id="frmPresupuesto">
+            <h:form id="frmPresupuesto">
                 <p:growl id="mensajeGeneral" showDetail="true"/>   
                    <br></br> 
                    <p:commandButton id="btnAddRubro" oncomplete="dlgRubros.show()" value="Anadir">
@@ -75,24 +96,27 @@
                    <br></br> 
                 
        
-       <p:dialog header="Rubros" id="dlgRubros" widgetVar="dlgRubros" showEffect="fade" hideEffect="explode" height="120"  modal="true">
+                <p:dialog header="Rubros" id="dlgRubros" widgetVar="dlgRubros" showEffect="fade" hideEffect="explode" height="120"  modal="true">
     
-           <p:dataTable value="#{rubroBeanVista.all}" var="rubro"  scrollable="true" scrollHeight="100"
+                    <p:dataTable value="#{ApuBeanVista.listarApus}" var="apu"  scrollable="true" scrollHeight="100"
                                      style="width:650px ">
                         <p:column headerText="Codigo">
-                            <h:outputText value="#{rubro.codigoRubro}"/>
+                            <h:outputText value="#{apu.codigoApu}"/>
                         </p:column>
                         <p:column headerText="Nombre" >
-                            <h:outputText value="#{rubro.nombreRubro}"/>
+                            <h:outputText value="#{apu.descApu}"/>
                         </p:column>
                         <p:column headerText="Unidad">
-                            <h:outputText value="#{rubro.unidadRubro}"/>
+                            <h:outputText value="#{apu.unidadApu}"/>
                         </p:column>
                         <p:column headerText="Categoria">
-                            <h:outputText value="#{rubro.categoriarubro.descripcionCatRubro}"/>
+                            <h:outputText value="#{apu.categoriaApu}"/>
+                        </p:column>
+                        <p:column headerText="Costo Unitario">
+                            <h:outputText value="#{apu.costotApu}"/>
                         </p:column>
                         <p:column>
-                            <p:commandButton value="Seleccionar"  actionListener="#{presupuestoBean.agregarListaRubros(rubro.codigoRubro)}"/>
+                            <p:commandButton value="Seleccionar"  actionListener="#{presupuestoBean.agregarApus(apu.codigoApu)}"/>
                         </p:column>
                     </p:dataTable>
         </p:dialog>
@@ -101,21 +125,21 @@
                 <FIELDSET style="-moz-border-radius:10px;background-color: #EEEEEE;
                           width: 850px;" class="borderFieldSet">
                     <legend>Detalle Presupuesto</legend>
-                    <p:dataTable id="tablaDetallePresupuesto" value="#{presupuestoBean.listaRubros}" var="rubros" >
+                    <p:dataTable id="tablaDetallePresupuesto" value="#{presupuestoBean.listaApus}" var="apus" >
                         <p:column headerText="#" style="text-align: center;">
                             <h:outputText value="" />
                         </p:column>
-                        <p:column headerText="Codigo" style="text-align: center;">
-                            <h:outputText value="#{rubros.codigoRubro}" />
-                        </p:column>
                         <p:column headerText="Descripcion" style="text-align: center;">
-                            <h:outputText value="#{rubros.nombreRubro}" />
+                            <h:outputText value="#{apus.descApu}" />
                         </p:column>
                         <p:column headerText="Unidad" style="text-align: center;">
-                            <h:outputText value="#{rubros.unidadRubro}" />
+                            <h:outputText value="#{apus.unidadApu}" />
+                        </p:column>
+                        <p:column headerText="Costo U" style="text-align: center;">
+                            <h:outputText value="#{apus.costotApu}" />
                         </p:column>
                         <p:column headerText="Categoria" style="text-align: center;">
-                            <h:outputText value="#{rubros.categoriarubro.descripcionCatRubro}" />
+                            <h:outputText value="#{apus.categoriaApu}" />
                         </p:column>
                         
                     </p:dataTable>
@@ -139,15 +163,10 @@
                         <h:form>
                             <p:commandButton id="btnPresupuestar1" title="Generar Presupuesto" value="Presupuestar"/>  
                         </h:form>
-                        </p:tab>
-                    
-                  
-            
-                    
-                    
-                    </p:tabView>
+                        
+                </h:form>
             </ui:define>
         </ui:composition>
-            </h:form>
+      
     </body>
 </html>

@@ -26,4 +26,7 @@ public interface proyectoDao {
     ///// Metodos para listar proyectos por usuario
     public List<Proyecto> listarPorUsuario(Session session, String sobre1)throws Exception;
     
+    //Metodos Agregados para usarlos dentro del presupuesto
+    public Proyecto obtenerProyectoPorId(Session session, Integer idProyecto) throws Exception;
+    
 }
