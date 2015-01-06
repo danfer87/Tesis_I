@@ -16,6 +16,7 @@ public class Categoriarubro  implements java.io.Serializable {
      private Set rubros = new HashSet(0);
 
     public Categoriarubro() {
+          this.codigoCatRubro = 0;
     }
 
     public Categoriarubro(String descripcionCatRubro, Set rubros) {

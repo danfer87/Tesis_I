@@ -18,6 +18,8 @@ public class MaterialApu  implements java.io.Serializable {
      private Double costotMatApu;
 
     public MaterialApu() {
+this.codMatApu = 0;
+        this.material = new Material();
     }
 
     public MaterialApu(Material material, String descMatApu, String unidMatApu, Integer cantMatApu, Double preunitMatApu, Double costotMatApu) {

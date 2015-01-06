@@ -18,6 +18,8 @@ public class Equipoherramienta  implements java.io.Serializable {
      private Set equipherrApus = new HashSet(0);
 
     public Equipoherramienta() {
+        this.codigoEqherr=0;
+        this.categoriaequipoherramienta = new Categoriaequipoherramienta();
     }
 
     public Equipoherramienta(Categoriaequipoherramienta categoriaequipoherramienta, String nombreEqherr, Double costohoraEqherr, Set equipherrApus) {

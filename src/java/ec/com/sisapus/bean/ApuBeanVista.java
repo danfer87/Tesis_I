@@ -190,7 +190,7 @@ public class ApuBeanVista implements Serializable {
             this.transaction=this.session.beginTransaction();    
              this.equipherramientas=daoequipo.getByIdEquipo(session, idEquipos);              
             //this.listaEquiposApus.add(new EquipherrApu( null,this.equipherramientas.getNombreEqherr(), null,this.equipherramientas.getCostohoraEqherr(),null, null, null, null));
-            this.listaEquiposApus.add(new EquipherrApu( null,this.equipherramientas.getNombreEqherr(), null,this.equipherramientas.getCostohoraEqherr(),null, null, null, null));
+            this.listaEquiposApus.add(new EquipherrApu( null,this.equipherramientas.getNombreEqherr(), null,this.equipherramientas.getCostohoraEqherr(),null, null, null));
             this.transaction.commit();
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Equipo/Herramienta agregado"));
@@ -398,7 +398,7 @@ public class ApuBeanVista implements Serializable {
             
              this.manoobras=daomano.getByIdManobra(session, idmanobra);
              
-        this.listaManoBra.add(new ManoobraApu(null,this.manoobras.getNombreManob(),null,null,this.manoobras.getCostojrhManob(),null, null, null,null));
+        this.listaManoBra.add(new ManoobraApu(null,this.manoobras.getNombreManob(),null,null,this.manoobras.getCostojrhManob(),null, null, null));
             this.transaction.commit();
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Mano de Obra agregado"));
@@ -592,7 +592,7 @@ public class ApuBeanVista implements Serializable {
              this.materiales=materialdao.getByIdMaterial(session, idmaterial);
              
         //this.listaManoBra.add(new ManoobraApu(null,this.manoobras.getNombreManob(),null,null,this.manoobras.getCostojrhManob(),null, null, null,null));
-          this.listaMaterialApus.add(new MaterialApu(null, this.materiales.getNombreMat(),this.materiales.getUnidMat(), null,this.materiales.getPrecunitMat(),null, null));
+          this.listaMaterialApus.add(new MaterialApu(null, this.materiales.getNombreMat(),this.materiales.getUnidMat(), null,this.materiales.getPrecunitMat(),null));
         this.transaction.commit();
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Material agregado"));
@@ -775,7 +775,7 @@ public class ApuBeanVista implements Serializable {
              this.transportes=transpdao.getByIdTransporte(session, idtrans);
              
         //this.listaManoBra.add(new ManoobraApu(null,this.manoobras.getNombreManob(),null,null,this.manoobras.getCostojrhManob(),null, null, null,null));
-          this.listaTransporteApus.add(new TransporteApu(null, this.transportes.getNombreTransp(), "GLB",null, this.transportes.getTarifaTransp(), null, null));
+          this.listaTransporteApus.add(new TransporteApu(null, this.transportes.getNombreTransp(), "GLB",null, this.transportes.getTarifaTransp(), null));
         this.transaction.commit();
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Transporte agregado"));
@@ -956,7 +956,7 @@ public class ApuBeanVista implements Serializable {
              
             for(Analisispreciounitario item : this.listapus)
             {
-                item.setEquipherrApu(this.equipapus);
+               
                 apusdao.insertarAPU(this.session, item);
             }
             

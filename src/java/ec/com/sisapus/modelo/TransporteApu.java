@@ -18,6 +18,8 @@ public class TransporteApu  implements java.io.Serializable {
      private Double costotTranApu;
 
     public TransporteApu() {
+         this.codTranApu = 0;
+        this.transporte = new Transporte();
     }
 
     public TransporteApu(Transporte transporte, String descTranApu, String unidTranApu, Integer cantTranApu, Double tarifaTranApu, Double costotTranApu) {
