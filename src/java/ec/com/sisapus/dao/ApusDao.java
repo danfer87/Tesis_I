@@ -30,4 +30,5 @@ public interface ApusDao {
       
     public boolean insertarAPU(Session session,Analisispreciounitario apu) throws Exception; 
     public Analisispreciounitario getUltimoRegistroApu(Session session) throws Exception;
+     public Analisispreciounitario getByIdAPUS(Session session, Integer ideapu) throws Exception;
 }

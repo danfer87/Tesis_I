@@ -73,6 +73,11 @@ public class ApusDaoImpl implements ApusDao {
         
         return (Analisispreciounitario) query.uniqueResult(); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Analisispreciounitario getByIdAPUS(Session session, Integer ideapu) throws Exception {
+        return (Analisispreciounitario) session.load(EquipherrApu.class, ideapu); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

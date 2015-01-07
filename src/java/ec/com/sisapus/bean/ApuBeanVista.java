@@ -300,56 +300,13 @@ public class ApuBeanVista implements Serializable {
         }
     }
        
-  /* 
-  public void guardarequiposApus()
-        {
-           this.session=null;
-        this.transaction=null;
-        
-        try
-        {
-            this.session=HibernateUtil.getSessionFactory().openSession();
-            
-           equipoherrDaoImpl daoequipo=new equipoherrDaoImpl();
-            ApusDaoImpl apusequip= new ApusDaoImpl();  
-            this.transaction=this.session.beginTransaction();
-            this.equipherramientas=daoequipo.getUltimoRegistro(session);
-            
-            for(EquipherrApu item : this.listaEquiposApus)
-            {
-                this.equipherramientas=daoequipo.getByIdEquipo(session,this.equipherramientas.getCodigoEqherr());
-                item.setEquipoherramienta(this.equipherramientas);
-           
-                apusequip.insert(this.session, item);
-            }
-            
-            this.transaction.commit();
-           // this.listaEquiposApus=new ArrayList<>();
-           // this.equipherramientas=new Equipoherramienta();
-            //this.precioTotalEquipo=0.0;
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Equipo y Herramientas guardado correctamente"));
-        }
-        catch(Exception ex)
-        {
-            if(this.transaction!=null)
-            {
-                transaction.rollback();
-            }
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
-        }
-        finally
-        {
-            if(this.session!=null)
-            {
-                this.session.close();
-            }
-        }  
-        }
-  */
-  //probar creacion de Escenarios
+  
   
   private TabView tabView;
+
+    public TabView getTabView() {
+        return tabView;
+    }
 
     public void setTabView(TabView tabView) {
         this.tabView = tabView;
@@ -510,74 +467,6 @@ public class ApuBeanVista implements Serializable {
         }
     }
      
- /*
-       public void guardaremmt ()
-             {
-         try{
-             guardarequiposApus();
-             guardarmanObraApus();
-             guardarmaterialApus();
-             guardarTransporteApus();
-         }
-         catch     (Exception ex)
-           {
-                     
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
-        }    
-       
-        }
-       
-  */ 
-    
-    /* public void guardarmanObraApus()
-        {
-           this.session=null;
-        this.transaction=null;
-        
-        try
-        {
-            this.session=HibernateUtil.getSessionFactory().openSession();
-            
-          manoobraDaoImpl manoobradao=new manoobraDaoImpl();
-            ApusDaoImpl apusmano= new ApusDaoImpl();
-     
-            
-            this.transaction=this.session.beginTransaction();
-            this.manoobras=manoobradao.getUltimoRegistro(session);
-            
-            for(ManoobraApu item : this.listaManoBra)
-            {
-                this.manoobras=manoobradao.getByIdManobra(session,this.manoobras.getCodigoManob());
-                item.setManoobra(this.manoobras);
-                apusmano.insertarManobra(this.session, item);
-            }
-            
-            this.transaction.commit();
-           // this.listaManoBra=new ArrayList<>();
-           // this.manoobras=new Manoobra();
-           // this.precioTotalmanoobra=0.0;
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Mano de Obra guardado correctamente"));
-        }
-        catch(Exception ex)
-        {
-            if(this.transaction!=null)
-            {
-                transaction.rollback();
-            }
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
-        }
-        finally
-        {
-            if(this.session!=null)
-            {
-                this.session.close();
-            }
-        }  
-        }
- */ 
-//materiales    
-    
      public void agregarListaMaterialApu(Integer idmaterial)
     {
         this.session=null;
@@ -704,59 +593,6 @@ public class ApuBeanVista implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
         }
     }
-       
-   // 
-    /*
-     public void guardarmaterialApus()
-        {
-           this.session=null;
-        this.transaction=null;
-        
-        try
-        {
-            this.session=HibernateUtil.getSessionFactory().openSession();
-            
-          materialDaoImpl materialdao=new materialDaoImpl();
-            ApusDaoImpl apusmaterial= new ApusDaoImpl();
-     
-            
-            this.transaction=this.session.beginTransaction();
-            this.materiales=materialdao.getUltimoRegistro(session);
-            
-            for(MaterialApu item : this.listaMaterialApus)
-            {
-                this.materiales=materialdao.getByIdMaterial(session,this.materiales.getCodigoMat());
-                item.setMaterial(this.materiales);
-                apusmaterial.insertarMaterial(this.session, item);
-            }
-            
-            this.transaction.commit();
-        //    this.listaMaterialApus=new ArrayList<>();
-         //   this.materiales=new Material();
-          //  this.precioTotalmaterial=0.0;
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Material guardado correctamente"));
-        }
-        catch(Exception ex)
-        {
-            if(this.transaction!=null)
-            {
-                transaction.rollback();
-            }
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
-        }
-        finally
-        {
-            if(this.session!=null)
-            {
-                this.session.close();
-            }
-        }  
-        }
-     
-     */
-     
-     
     
     
 //fin materiales
@@ -889,56 +725,7 @@ public class ApuBeanVista implements Serializable {
         }
     }
        
-   // 
-    /*
-     public void guardarTransporteApus()
-        {
-          this.session=null;
-        this.transaction=null;
-        
-        try
-        {
-      this.session=HibernateUtil.getSessionFactory().openSession();
-            
-        transporteDaoImpl transpodao=new transporteDaoImpl();
-            ApusDaoImpl apustraanporte= new ApusDaoImpl();
-     
-            
-            this.transaction=this.session.beginTransaction();
-            this.transportes=transpodao.getUltimoRegistro(session);
-            
-            for(TransporteApu item : this.listaTransporteApus)
-            {
-                this.transportes=transpodao.getByIdTransporte(session,this.transportes.getCodigoTransp());
-                item.setTransporte(this.transportes);
-                apustraanporte.insertarTransporte(this.session, item);
-            }
-            
-            this.transaction.commit();
-            //this.listaTransporteApus=new ArrayList<>();
-            //this.transportes=new Transporte();
-            //this.precioTotaltransporte=0.0;
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Transporte guardado correctamente"));
-        }
-        catch(Exception ex)
-        {
-            if(this.transaction!=null)
-            {
-                transaction.rollback();
-            }
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
-        }
-        finally
-        {
-            if(this.session!=null)
-            {
-                this.session.close();
-            }
-        }  
-        }
-     
-     */
+  
      
   
      
@@ -981,37 +768,39 @@ public class ApuBeanVista implements Serializable {
             {
                 this.equipherramientas=daoequipo.getByIdEquipo(session,this.equipherramientas.getCodigoEqherr());
                 item.setEquipoherramienta(this.equipherramientas);
-                apugenal.insert(this.session, item);
-                item.setAnalisispreciounitario(analisisapus);
+               
+                item.setAnalisispreciounitario(this.analisisapus);
+                  apugenal.insert(this.session, item);
             }
          //detalle mano de obra
            for(ManoobraApu item : this.listaManoBra)
             {
                 this.manoobras=manoobradao.getByIdManobra(session,this.manoobras.getCodigoManob());
                 item.setManoobra(this.manoobras);
-                apugenal.insertarManobra(this.session, item);
-               //  item.setAnalisispreciounitario(analisisapus);
+           
+                 item.setAnalisispreciounitario(this.analisisapus);
+                  apugenal.insertarManobra(this.session, item);
             }
          // detalle material
              for(MaterialApu item : this.listaMaterialApus)
             {
                 this.materiales=materialdao.getByIdMaterial(session,this.materiales.getCodigoMat());
                 item.setMaterial(this.materiales);
-                apugenal.insertarMaterial(this.session, item);
-                // item.setAnalisispreciounitario(analisisapus);
+               
+                 item.setAnalisispreciounitario(this.analisisapus);
+                  apugenal.insertarMaterial(this.session, item);
             }
           //detalle transporte
             for(TransporteApu item : this.listaTransporteApus)
             {
                 this.transportes=transportedao.getByIdTransporte(session,this.transportes.getCodigoTransp());
                 item.setTransporte(this.transportes);
+               item.setAnalisispreciounitario(this.analisisapus);
                 apugenal.insertarTransporte(this.session, item);
-                // item.setAnalisispreciounitario(analisisapus);
+                 
             }
          //    
              
-          
-
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Precio Unitario guardado correctamente"));
         }
         catch(Exception ex)
@@ -1067,15 +856,7 @@ public class ApuBeanVista implements Serializable {
     }
        //fin de costos totales apus   
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
  
   public Equipoherramienta getEquipherramientas() {
         return equipherramientas;
