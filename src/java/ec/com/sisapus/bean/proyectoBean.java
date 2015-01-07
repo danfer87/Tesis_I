@@ -1,9 +1,7 @@
 package ec.com.sisapus.bean;
 
 import ec.com.sisapus.dao.proyectoDao;
-import ec.com.sisapus.dao.proyectoInterface;
 import ec.com.sisapus.daoimpl.proyectoDaoImpl;
-import ec.com.sisapus.daoimpl.proyectoImplementaInterface;
 import ec.com.sisapus.modelo.Proyecto;
 import ec.com.sisapus.modelo.Usuario;
 import ec.com.sisapus.util.HibernateUtil;
@@ -42,15 +40,12 @@ public class proyectoBean implements Serializable {
     private List<Proyecto> listaProyectos;
     private List<Proyecto> liscaldimensional;
     private List<Proyecto> listaporUsuario;
-    private List<Proyecto> listaporcodigoproyecto;
-    private DataModel<Proyecto> modelp;
-    private Proyecto proyectoXId;
+    
     //////
     private Session session;
     private Transaction transaccion;
     private List<SelectItem> cargarProyectos;
-    private List<SelectItem> cargarproyectosporid;
-    private List<SelectItem> cargarTodosP;
+    
     private Integer codigoProy;
     /////
     private Usuario idUssuu;
@@ -123,26 +118,6 @@ public void setListaporUsuario(List<Proyecto> listaporUsuario) {
         this.listaporUsuario = listaporUsuario;
     }
 
-
-//////////
-
-    ///////////
-    public List<Proyecto> getListaporcodigoproyecto() {
-        this.listaporcodigoproyecto = new ArrayList<Proyecto>();
-        proyectoInterface dao = new proyectoImplementaInterface();
-        
-        List<Proyecto> proyectos = dao.encontrarProyectos(codigoProy);
-        System.out.println("Se cargaron los proyetos" + cargarproyectosporid.size());
-        return listaporcodigoproyecto;
-    }
-
-    public void setListaporcodigoproyecto(List<Proyecto> listaporcodigoproyecto) {
-        this.listaporcodigoproyecto = listaporcodigoproyecto;
-    }
-    
-    
-
-    //////////////////////////
     public Session getSession() {
         return session;
 
@@ -176,14 +151,14 @@ public void setListaporUsuario(List<Proyecto> listaporUsuario) {
     public void crearProyecto(ActionEvent actionEvent) {
         proyectoDao proyectDao = new proyectoDaoImpl();
         String msg;
-        this.proyecto.setUsuario(this.proyecto.getUsuario());
+        /*this.proyecto.setUsuario(this.proyecto.getUsuario());
         this.proyecto.setContratProy(this.proyecto.getContratProy());
         this.proyecto.setPropiepProy(this.proyecto.getPropiepProy());
         this.proyecto.setObraProy(this.proyecto.getObraProy());
         this.proyecto.setUbicProy(this.proyecto.getUbicProy());
         this.proyecto.setFechaProy(this.proyecto.getFechaProy());
         this.proyecto.setCostotProy(this.proyecto.getCostotProy());
-
+        */
         if (proyectDao.crearProyecto(this.proyecto)) {
             msg = "Proyecto creado correctamente";
             FacesMessage message1 = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
@@ -200,6 +175,7 @@ public void setListaporUsuario(List<Proyecto> listaporUsuario) {
     public void actualizarProyecto(ActionEvent actionEvent) {
         proyectoDao proyectDao = new proyectoDaoImpl();
         String msg;
+        /*
         this.proyecto.setUsuario(this.proyecto.getUsuario());
         this.proyecto.setContratProy(this.proyecto.getContratProy());
         this.proyecto.setPropiepProy(this.proyecto.getPropiepProy());
@@ -207,7 +183,7 @@ public void setListaporUsuario(List<Proyecto> listaporUsuario) {
         this.proyecto.setUbicProy(this.proyecto.getUbicProy());
         this.proyecto.setFechaProy(this.proyecto.getFechaProy());
         this.proyecto.setCostotProy(this.proyecto.getCostotProy());
-
+        */
         if (proyectDao.actualizarProyecto(this.proyecto)) {
             msg = "Proyecto modificado correctamente";
             FacesMessage message1 = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null);
@@ -291,6 +267,7 @@ public void setListaporUsuario(List<Proyecto> listaporUsuario) {
         }
     }
 
+    //Cargar lista de proyectos en el combobox
     public List<SelectItem> getCargarProyectos() {
         this.cargarProyectos = new ArrayList<SelectItem>();
         proyectoDao proydao = new proyectoDaoImpl();
@@ -302,47 +279,8 @@ public void setListaporUsuario(List<Proyecto> listaporUsuario) {
         return cargarProyectos;
     }
 
-    public List<SelectItem> getCargarTodosP() {
-        /*this.cargarTodosP = new ArrayList<SelectItem>();
-        proyectoInterface dao = new proyectoImplementaInterface();
-        List<Proyecto> proyectos = dao.encontrarTodoslosProyectos();
-        //cargarTodosP.clear();
-        for (Proyecto proj : proyectos) {
-            SelectItem selectitem = new SelectItem(proj.getCodigoProy(), proj.getObraProy());
-            this.cargarproyectosporid.add(selectitem);
-        }
-        System.out.println("Se cargaron los proyetos" + cargarTodosP.size());
-        * */
-        this.cargarProyectos = new ArrayList<SelectItem>();
-        proyectoInterface proydao = new proyectoImplementaInterface();
-        List<Proyecto> proy = proydao.encontrarProyectos(this.session, proyecto.getCodigoProy());
-        for (Proyecto pro : proy) {
-            SelectItem selectItem = new SelectItem(pro.getCodigoProy(), pro.getObraProy());
-            this.cargarProyectos.add(selectItem);
-        }
-        return cargarTodosP;
-    }
-
-    public void setCargarTodosP(List<SelectItem> cargarTodosP) {
-        this.cargarTodosP = cargarTodosP;
-    }
-
-    public List<SelectItem> getCargarproyectosporid() {
-        this.cargarproyectosporid = new ArrayList<SelectItem>();
-        proyectoInterface dao = new proyectoImplementaInterface();
-        List<Proyecto> proyectos = dao.encontrarProyectos(codigoProy);
-        cargarproyectosporid.clear();
-        for (Proyecto proj : proyectos) {
-            SelectItem selectitem = new SelectItem(proj.getCodigoProy(), proj.getObraProy(), proj.getContratProy());
-            this.cargarproyectosporid.add(selectitem);
-        }
-        System.out.println("Se cargaron los proyetos" + cargarproyectosporid.size());
-        return cargarproyectosporid;
-    }
-
-    public void setCargarproyectosporid(List<SelectItem> cargarproyectosporid) {
-        this.cargarproyectosporid = cargarproyectosporid;
-    }
+    
+    
     ////////Pestañas
     private TabView tabView;
 
@@ -380,18 +318,4 @@ public void setListaporUsuario(List<Proyecto> listaporUsuario) {
     }
     
     
-    
-    /////////////
-
-    /////////////
-    public Proyecto getProyectoXId() {
-        this.session = null;
-        proyectoInterface proyecDao = new proyectoImplementaInterface();
-        proyectoXId = proyecDao.proyetoPorId(session, proyecto.getCodigoProy());
-        return proyectoXId;
-    }
-
-    public void setProyectoXId(Proyecto proyectoXId) {
-        this.proyectoXId = proyectoXId;
-    }
 }

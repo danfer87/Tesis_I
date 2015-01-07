@@ -132,7 +132,10 @@ public class proyectoDaoImpl implements proyectoDao{
                 return (List<Proyecto>) query.list();
     }
 
-    
-    
-    
+    @Override
+    public Proyecto obtenerProyectoPorId(Session session, Integer idProyecto) throws Exception {
+        return (Proyecto) session.load(Proyecto.class, idProyecto);
+    }
+
+      
 }

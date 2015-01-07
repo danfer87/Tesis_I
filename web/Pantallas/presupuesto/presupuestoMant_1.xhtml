@@ -82,8 +82,7 @@
                         <p:commandButton id="btnAñadirProyecto" oncomplete="dialogProyectos.show()" value="Seleccionar Proyecto"/>
                     </FIELDSET>
                     <br></br> 
-                    <p:commandButton id="btnAddRubro" oncomplete="dlgRubrosApu.show()" value="Anadir Rubros al Detalle">
-                    </p:commandButton>       
+                           
                     <br></br>
                     <br></br> 
                     <p:dialog header="Rubros" id="dlgRubrosApu" widgetVar="dlgRubrosApu" showEffect="fade" hideEffect="explode" height="120"  modal="true">
@@ -103,7 +102,7 @@
                             <p:column headerText="Costo Unitario">
                                 <h:outputText value="#{apu.costotApu}"/>
                             </p:column>
-                            <p:column>
+                            <p:column headerText="Agregar">
                                 <p:commandButton value="Seleccionar"  actionListener="#{presupuestoBean.agregarApus(apu.codigoApu)}"/>
                             </p:column>
                         </p:dataTable>
@@ -140,36 +139,33 @@
                                 <p:commandButton value="Retirar" ajax="true" actionListener="#{presupuestoBean.EliminarApuLista(apus.descripPres)}"/>
                             </p:column >
                         </p:dataTable>
-                        <p:panelGrid id="panelFinalPres" columns="1" style="text-align: right;width: 98%;">
+                        <br/>
+                         <p:commandButton id="btnAddRubro" value="Anadir Rubros al Detalle" oncomplete="dlgRubrosApu.show()"/>
+                         <p:panelGrid id="panelFinalPres" columns="1" style="text-align: right;width: 100%;">
                             <h:panelGroup>
-                                <p:commandButton id="btnCalcularCostoPres" value="Calcular Sub Pres"  actionListener="#{presupuestoBean.calcularCostosPresupuesto()}"/>  
-                                Total $./
-                                <h:outputText value="#{presupuestoBean.precioTotApuRubro}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>               
-                                -------------
+                                <p:commandButton id="btnProyectoCreate1"  oncomplete="dlgRubrosApu.show()"  value="Añadir">  
+                                </p:commandButton>   
+
+                                <p:commandButton value="Calcular" actionListener="#{presupuestoBean.calcularCostosPresupuesto()}" />
+                                Total $./ 
+                                <h:outputText value="#{presupuestoBean.precioTotApuRubro}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>
+                                --------          
                             </h:panelGroup>
                         </p:panelGrid>
-                    </FIELDSET>
-
+                     </FIELDSET>
+                   
                     <FIELDSET style="-moz-border-radius:10px;width: 850px; ">
                         <legend>Presupuestar</legend>
-
-                        <td></td>
-                        <h:panelGrid id="panelPresupuestar" columns="2" style="float:right" cellpadding="3" border="1">
+                        <h:panelGrid id="panelPresupuestar" columns="2" style="float:right" cellpadding="3">
                             <h:outputText value="Subtotal "/>
-                            <h:outputText value="#{presupuestoBean.precioTotApuRubro}"/>  
+                            <p:inputText value="#"/>  
                             <h:outputText value="IVA " />
-                            <p:inputText value="#{presupuestoBean.porcentajeiva}" style="width: 50px"/>
-                            <h:outputText value="#{presupuestoBean.precioTiva}" />  
+                            <p:inputText value="#" />  
                             <h:outputText value="Costo Total "/>
-                            <h:outputText value="#{presupuestoBean.costoPresupuesto}" />  
+                            <p:inputText value="#" />  
                         </h:panelGrid>
-
                     </FIELDSET>
-                    <br></br>
-
-                    <p:commandButton id="btnPresupuestar1" title="Generar Presupuesto" value="Presupuestar"/>  
-
-
+                    
                 </h:form>
             </ui:define>
         </ui:composition>

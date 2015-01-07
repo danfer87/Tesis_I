@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 06/01/2015 02:51:14 PM by Hibernate Tools 3.2.1.GA
+// Generated 07/01/2015 01:13:46 PM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -17,8 +17,6 @@ public class Detallecronograma  implements java.io.Serializable {
      private Double costoTotalDetalleCrono;
 
     public Detallecronograma() {
-         this.codigoDetalleCronograma=0;
-     this.cronograma=new Cronograma();
     }
 
     public Detallecronograma(Cronograma cronograma, String descripcionDetalleCrono, Integer cantidadDetalleCrono, Double costoUnitarioDetalleCrono, Double costoTotalDetalleCrono) {

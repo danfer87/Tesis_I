@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 06/01/2015 02:51:14 PM by Hibernate Tools 3.2.1.GA
+// Generated 07/01/2015 01:13:46 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -42,7 +42,6 @@ public class Perfil  implements java.io.Serializable {
      private Set usuarios = new HashSet(0);
 
     public Perfil() {
-         this.codigoPerf = 0;
     }
 
     public Perfil(String descripPerf, Boolean modProyecto, Boolean modProyectos, Boolean modRecursos, Boolean modRubros, Boolean modMateriales, Boolean modEquiherr, Boolean modManoobra, Boolean modTransporte, Boolean modAnalcosto, Boolean modApu, Boolean modPresup, Boolean modCronograma, Boolean modReajprec, Boolean modEjecpresup, Boolean modReportes, Boolean modRepestadist, Boolean modRepapu, Boolean modReppresup, Boolean modRepcronog, Boolean modReppartida, Boolean modReprubro, Boolean modRepejecpres, Boolean modSeguridad, Boolean modUsuario, Boolean modPerfil, Boolean modRegusu, Set usuarios) {

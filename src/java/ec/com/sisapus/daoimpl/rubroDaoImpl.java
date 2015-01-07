@@ -88,7 +88,7 @@ public class rubroDaoImpl implements rubroDao{
         return flag;
     }
 
-        @Override
+    @Override
     public Rubro getByIdRubro(Session session, Integer idrubro) throws Exception {
         
          return (Rubro) session.load(Rubro.class, idrubro); //To change body of generated methods, choose Tools | Templates.

@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 06/01/2015 02:51:14 PM by Hibernate Tools 3.2.1.GA
+// Generated 07/01/2015 01:13:46 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -18,9 +18,6 @@ public class Manoobra  implements java.io.Serializable {
      private Set manoobraApus = new HashSet(0);
 
     public Manoobra() {
-
-     this.codigoManob=0;
-        this.categoriamanoobra = new Categoriamanoobra();
     }
 
     public Manoobra(Categoriamanoobra categoriamanoobra, String nombreManob, Double costojrhManob, Set manoobraApus) {

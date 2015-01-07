@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 06/01/2015 02:51:14 PM by Hibernate Tools 3.2.1.GA
+// Generated 07/01/2015 01:13:46 PM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -23,10 +23,6 @@ public class Presupuesto  implements java.io.Serializable {
      private Double gastotPres;
 
     public Presupuesto() {
-        this.codigoPres = 0;
-        this.rubro = new Rubro();
-        this.analisispreciounitario = new Analisispreciounitario();
-        this.proyecto = new Proyecto();
     }
 
     public Presupuesto(Analisispreciounitario analisispreciounitario, Proyecto proyecto, Rubro rubro, String descripPres, String unidadPres, Integer cantidadPres, Double punitPres, Double ptotPres, Double subtPres, Double ivaPres, Double gastotPres) {

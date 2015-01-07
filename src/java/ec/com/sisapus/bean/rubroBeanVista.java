@@ -39,22 +39,22 @@ public class rubroBeanVista {
      */
     private Session session;
     private Transaction transaccion;
-    
     private Rubro rubro;
     private List<Rubro> listaRubro;
     private List<SelectItem> listaRubross;
     //setear 
-    private int codigorubro ;
-      private String unidadrubro ;
-        private String descripcrubro ;
-          private String categString ;
-            Transaction transaction;
+    private int codigorubro;
+    private String unidadrubro;
+    private String descripcrubro;
+    private String categString;
+    Transaction transaction;
+
     public rubroBeanVista() {
-        this.rubro=new Rubro();
-       
-         this.codigorubro=0;
-           this.descripcrubro="";
-           this.unidadrubro="";
+        this.rubro = new Rubro();
+
+        this.codigorubro = 0;
+        this.descripcrubro = "";
+        this.unidadrubro = "";
         //this.rubro.setCodigoRubro();
     }
 
@@ -89,136 +89,109 @@ public class rubroBeanVista {
     public void setListaRubro(List<Rubro> listaRubro) {
         this.listaRubro = listaRubro;
     }
-    
+
     //Crear Rubro
-    public void crearRubros()
-    {
-        this.session=null;
-        this.transaccion=null;
-        
-        try 
-        {
-            rubroDaoImplInterface daoRubro=new rubroDaoImplInterface();
-            this.session= HibernateUtil.getSessionFactory().openSession();
-            this.transaccion=session.beginTransaction();
-            if (daoRubro.crearRubro(this.session, this.rubro))
-            {
+    public void crearRubros() {
+        this.session = null;
+        this.transaccion = null;
+
+        try {
+            rubroDaoImplInterface daoRubro = new rubroDaoImplInterface();
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaccion = session.beginTransaction();
+            if (daoRubro.crearRubro(this.session, this.rubro)) {
                 this.transaccion.commit();
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto:", "Rubro creado correctamente"));
-                this.rubro=new Rubro();
+                this.rubro = new Rubro();
             } else {
                 String msg = "No se modifico el Rubro";
                 FacesMessage message2 = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
                 FacesContext.getCurrentInstance().addMessage(null, message2);
-                }
-        }
-        catch (Exception ex) {
-            if(this.transaccion!=null)
-            {
+            }
+        } catch (Exception ex) {
+            if (this.transaccion != null) {
                 this.transaccion.rollback();
             }
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador "+ex.getMessage()));
-        }
-        finally
-        {
-            if(this.session!=null)
-            {
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador " + ex.getMessage()));
+        } finally {
+            if (this.session != null) {
                 this.session.close();
             }
         }
     }
 
     //Modificar Rubro
-    public void modificarRubros()
-    {
-        this.session=null;
-        this.transaccion=null;
-        
-        try
-        {
-            rubroDaoImplInterface daoRubro=new rubroDaoImplInterface();
-            
-            this.session=HibernateUtil.getSessionFactory().openSession();
-            this.transaccion=session.beginTransaction();
-            
+    public void modificarRubros() {
+        this.session = null;
+        this.transaccion = null;
+
+        try {
+            rubroDaoImplInterface daoRubro = new rubroDaoImplInterface();
+
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaccion = session.beginTransaction();
+
             /*this.rubro.setNombreRubro(this.rubro.getNombreRubro());
-            this.rubro.setDetalleRubro(this.rubro.getDetalleRubro());
-            this.rubro.setUnidadRubro(this.rubro.getUnidadRubro());
-            */
+             this.rubro.setDetalleRubro(this.rubro.getDetalleRubro());
+             this.rubro.setUnidadRubro(this.rubro.getUnidadRubro());
+             */
             daoRubro.modificarRubro(this.session, this.rubro);
-            
+
             this.transaccion.commit();
-            
+
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto:", "Los cambios fueron guardados correctamente"));
-        }
-        catch(Exception ex)
-        {
-            if(this.transaccion!=null)
-            {
+        } catch (Exception ex) {
+            if (this.transaccion != null) {
                 this.transaccion.rollback();
             }
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador "+ex.getMessage()));
-        }
-        finally
-        {
-            if(this.session!=null)
-            {
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador " + ex.getMessage()));
+        } finally {
+            if (this.session != null) {
                 this.session.close();
             }
         }
     }
-    
-    public void cargarRubroEditar(String codigoRubro)
-    {
-        this.session=null;
-        this.transaccion=null;
-        
-        try
-        {
-            rubroDaoImplInterface daoRubro=new rubroDaoImplInterface();
-            
-            this.session=HibernateUtil.getSessionFactory().openSession();
-            this.transaccion=session.beginTransaction();
-            
-            this.rubro=daoRubro.getByCodigoRubro(this.session, codigoRubro);
-            
+
+    public void cargarRubroEditar(String codigoRubro) {
+        this.session = null;
+        this.transaccion = null;
+
+        try {
+            rubroDaoImplInterface daoRubro = new rubroDaoImplInterface();
+
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaccion = session.beginTransaction();
+
+            this.rubro = daoRubro.getByCodigoRubro(this.session, codigoRubro);
+
             RequestContext.getCurrentInstance().update("frmEditarRubro:panelEditarRubro");
             RequestContext.getCurrentInstance().execute("PF('dialogoEditarRubro').show()");
-            
+
             this.transaccion.commit();
-        }
-        catch(Exception ex)
-        {
-            if(this.transaccion!=null)
-            {
+        } catch (Exception ex) {
+            if (this.transaccion != null) {
                 this.transaccion.rollback();
             }
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador "+ex.getMessage()));
-        }
-        finally
-        {
-            if(this.session!=null)
-            {
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador " + ex.getMessage()));
+        } finally {
+            if (this.session != null) {
                 this.session.close();
             }
         }
     }
-    
-    public void eliminarRubros()
-    {
-        this.session=null;
-        this.transaccion=null;
-        
-        try 
-        {
-            rubroDaoImplInterface daoRubro=new rubroDaoImplInterface();
-            this.session= HibernateUtil.getSessionFactory().openSession();
-            this.transaccion=session.beginTransaction();
-            if (daoRubro.eliminarRubro(this.session, this.rubro.getCodigoRubro()))
-            {
+
+    public void eliminarRubros() {
+        this.session = null;
+        this.transaccion = null;
+
+        try {
+            rubroDaoImplInterface daoRubro = new rubroDaoImplInterface();
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaccion = session.beginTransaction();
+            if (daoRubro.eliminarRubro(this.session, this.rubro.getCodigoRubro())) {
                 this.transaccion.commit();
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto:", "Rubro eliminado correctamente"));
                 //this.rubro=new Rubro();
@@ -226,92 +199,78 @@ public class rubroBeanVista {
                 String msg = "No se elimino el Rubro";
                 FacesMessage message2 = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
                 FacesContext.getCurrentInstance().addMessage(null, message2);
-                }
-        }
-        catch (Exception ex) {
-            if(this.transaccion!=null)
-            {
+            }
+        } catch (Exception ex) {
+            if (this.transaccion != null) {
                 this.transaccion.rollback();
             }
-            
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador "+ex.getMessage()));
-        }
-        finally
-        {
-            if(this.session!=null)
-            {
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador " + ex.getMessage()));
+        } finally {
+            if (this.session != null) {
                 this.session.close();
             }
         }
     }
-    
-     public List<Rubro> getAll()
-    {
-        this.session=null;
-        this.transaccion=null;
-        
-        try
-        {
-            rubroDaoImplInterface daoRubro=new rubroDaoImplInterface();
-            
-            this.session=HibernateUtil.getSessionFactory().openSession();
-            this.transaccion=this.session.beginTransaction();
-            this.listaRubro=daoRubro.listarTodosRubros(this.session);
+
+    public List<Rubro> getAll() {
+        this.session = null;
+        this.transaccion = null;
+
+        try {
+            rubroDaoImplInterface daoRubro = new rubroDaoImplInterface();
+
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaccion = this.session.beginTransaction();
+            this.listaRubro = daoRubro.listarTodosRubros(this.session);
             this.transaccion.commit();
             return this.listaRubro;
-        }
-        catch(Exception ex)
-        {
-            if(this.transaccion!=null)
-            {
+        } catch (Exception ex) {
+            if (this.transaccion != null) {
                 this.transaccion.rollback();
             }
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador "+ex.getMessage()));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", "Por favor contacte con su administrador " + ex.getMessage()));
             return null;
-        }
-        finally
-        {
-            if(this.session!=null)
-            {
+        } finally {
+            if (this.session != null) {
                 this.session.close();
             }
         }
     }
-     
-     public List<SelectItem> getListaRubross() throws Exception {
-          this.listaRubross = new ArrayList<SelectItem>();
+
+    //Lista de rubros para cargar en el combobox
+    public List<SelectItem> getListaRubross() throws Exception {
+        this.listaRubross = new ArrayList<SelectItem>();
         ///Crear Instancia de objeto para RolDaoImpl
         rubroDaoImpl rubrosdao = new rubroDaoImpl();
         List<Rubro> rubros = rubrosdao.BuscarRubro();
         for (Rubro rub : rubros) {
-            SelectItem selectItem = new SelectItem(rub.getCodigoRubro(),rub.getNombreRubro());
+            SelectItem selectItem = new SelectItem(rub.getCodigoRubro(), rub.getNombreRubro());
             this.listaRubross.add(selectItem);
         }
         return listaRubross;
     }
 
-   /*public void cargartextosRubros() throws Exception
+    /*public void cargartextosRubros() throws Exception
            
      {
-          this.listaRubross = new ArrayList<>();
-        rubroDao rubrodao = new rubroDaoImpl();
-          this.session=HibernateUtil.getSessionFactory().openSession();
-            this.transaction=this.session.beginTransaction();
-      rubro = rubrodao.getByIdRubro(session,this.rubro.getCodigoRubro());
-        for (Rubro rub : listaRubro) {
-            SelectItem selectItem = new SelectItem(rub.getCodigoRubro(),rub.getNombreRubro());
+     this.listaRubross = new ArrayList<>();
+     rubroDao rubrodao = new rubroDaoImpl();
+     this.session=HibernateUtil.getSessionFactory().openSession();
+     this.transaction=this.session.beginTransaction();
+     rubro = rubrodao.getByIdRubro(session,this.rubro.getCodigoRubro());
+     for (Rubro rub : listaRubro) {
+     SelectItem selectItem = new SelectItem(rub.getCodigoRubro(),rub.getNombreRubro());
           
-           this.codigorubro=rub.getCodigoRubro();
-           this.descripcrubro=rub.getNombreRubro();
-           this.unidadrubro=rub.getUnidadRubro();
+     this.codigorubro=rub.getCodigoRubro();
+     this.descripcrubro=rub.getNombreRubro();
+     this.unidadrubro=rub.getUnidadRubro();
           
     
        
-        }
-          this.transaction.commit();
+     }
+     this.transaction.commit();
      }*/
-     
-     
     public int getCodigorubro() {
         return codigorubro;
     }
@@ -336,8 +295,6 @@ public class rubroBeanVista {
         this.descripcrubro = descripcrubro;
     }
 
-    
-
     public String getCategString() {
         return categString;
     }
@@ -347,7 +304,7 @@ public class rubroBeanVista {
     }
 
     public void setListaRubross(List<SelectItem> listaRubross) {
-        
+
         this.listaRubross = listaRubross;
     }
 
@@ -359,31 +316,20 @@ public class rubroBeanVista {
         this.transaction = transaction;
     }
 
-
-        
-public void valueChangeListener(ValueChangeEvent event) {  
+    public void valueChangeListener(ValueChangeEvent event) {
         //System.out.println("Cliente: " + event.getNewValue());  
-         
-      /*  PhaseId phaseId = event.getPhaseId();  
-        //pega o novo valor  
-        Integer newValue = (Integer) event.getNewValue();  
-        if (phaseId.equals(PhaseId.ANY_PHASE)) {  
-            //agenda o evento para a fase que nos interessa  
-            event.setPhaseId(PhaseId.UPDATE_MODEL_VALUES);  
-            event.queue();  
-        } else if (phaseId.equals(PhaseId.UPDATE_MODEL_VALUES)) {  
-            //aqui vai o método de antes (um pouco mudado)  
+        /*  PhaseId phaseId = event.getPhaseId();  
+         //pega o novo valor  
+         Integer newValue = (Integer) event.getNewValue();  
+         if (phaseId.equals(PhaseId.ANY_PHASE)) {  
+         //agenda o evento para a fase que nos interessa  
+         event.setPhaseId(PhaseId.UPDATE_MODEL_VALUES);  
+         event.queue();  
+         } else if (phaseId.equals(PhaseId.UPDATE_MODEL_VALUES)) {  
+         //aqui vai o método de antes (um pouco mudado)  
               
-            this.rubro.setNombreRubro(newValue);  
-           // this.rubro.setDetalleRubro(newValue);
-            descripcrubro = String.valueOf(newValue);*/
-            
-        }  
-    
-    
-    
-
-    
-
-
+         this.rubro.setNombreRubro(newValue);  
+         // this.rubro.setDetalleRubro(newValue);
+         descripcrubro = String.valueOf(newValue);*/
+    }
 }

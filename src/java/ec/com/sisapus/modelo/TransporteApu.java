@@ -1,5 +1,5 @@
 package ec.com.sisapus.modelo;
-// Generated 06/01/2015 02:51:14 PM by Hibernate Tools 3.2.1.GA
+// Generated 07/01/2015 01:13:46 PM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -19,9 +19,6 @@ public class TransporteApu  implements java.io.Serializable {
      private Double costotTranApu;
 
     public TransporteApu() {
-         this.codTranApu = 0;
-        this.transporte = new Transporte();
-        this.analisispreciounitario=new Analisispreciounitario();
     }
 
     public TransporteApu(Transporte transporte, Analisispreciounitario analisispreciounitario, String descTranApu, String unidTranApu, Integer cantTranApu, Double tarifaTranApu, Double costotTranApu) {
