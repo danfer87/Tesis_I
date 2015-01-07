@@ -376,7 +376,7 @@
                               
                                      <h:panelGrid id="panelFinalVenta5" columns="5" cellpadding="8" style="float:right" border="2">
                                          
-                                         <p:ajax event="keyup" update="costodirecto" listener="#{ApuBeanVista.calcularCostosTotalesAPU()}" /> 
+                                         <p:ajax event="keyup" update="otrocostodirecto" listener="#{ApuBeanVista.calcularCostosTotalesAPU()}" /> 
                                         <p:outputLabel value="Costo Directo (EH+M+MO+T)$:"  for="costodirecto" />
                                         <h:outputText  value="#{ApuBeanVista.totaldirAPU}" id="costodirecto" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;" />
                                         

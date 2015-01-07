@@ -117,13 +117,6 @@ public class ApuBeanVista implements Serializable {
                 this.analisisapus=new Analisispreciounitario();
                 this.escenariosapu=new Escenarioapu();
                
-                this.auxdesrubro="";
-                this.auxunidrubro="";
-                //inicializar precios totales
-         //escenarios
-                
-                
-                
              }
      
  ///funcion para agregar rubro
@@ -799,7 +792,26 @@ public class ApuBeanVista implements Serializable {
                 apugenal.insertarTransporte(this.session, item);
                  
             }
-         //    
+         this.listaEquiposApus=new ArrayList<>();
+         this.listaManoBra= new ArrayList<>();
+         this.listaMaterialApus=new ArrayList<>();
+         this.listaTransporteApus=new ArrayList<>();
+         this.analisisapus=new Analisispreciounitario();
+         this.auxdesrubro="";
+         this.auxcategoria="";
+         this.auxiliarPorcenjate=null;
+         this.auxiliarotroscostos=null;
+         this.auxocidigo=0;
+         this.auxunidrubro="";
+         this.precioTotalEquipo=0.00;
+         this.precioTotalmanoobra=0.00;
+         this.precioTotalmaterial=0.00;
+         this.precioTotaltransporte=0.00;
+         this.costoaputotal=0.00;
+         this.costoinAPu=0.00;
+         this.totaldirAPU=0.00;
+    
+         
              
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Precio Unitario guardado correctamente"));
         }
