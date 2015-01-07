@@ -34,6 +34,8 @@ import ec.com.sisapus.util.HibernateUtil;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,11 +44,17 @@ import javax.faces.context.FacesContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.primefaces.component.tabview.TabView;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.CellEditEvent;
@@ -103,7 +111,13 @@ public class ApuBeanVista {
     private Categoriarubro catrubro;
     //
     private Escenarioapu escenariosapu;
-
+//llamar reporte
+     public static final String DRIVER="com.mysql.jdbc.Driver";
+        public static final String RUTA="jdbc:mysql://localhost/bdsisapu";
+        public static final String USER="root";
+        public static final String PASSWORD="nic0kl3p3r";
+	public static Connection CONEXION;
+   //     
     public ApuBeanVista() {
         this.equipherramientas = new Equipoherramienta();
         this.listaEquiposApus = new ArrayList<>();
@@ -881,13 +895,12 @@ public class ApuBeanVista {
                 apugenal.insertarTransporte(this.session, item);
                  
             }
-           // informe();
-           //verPDF();
+          
           	
-          //  
-         this.transaction.commit();
-         
            
+         this.transaction.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Precio Unitario guardado correctamente"));
+         imprimirpdfaapu();
          this.listaEquiposApus=new ArrayList<>();
          this.listaManoBra= new ArrayList<>();
          this.listaMaterialApus=new ArrayList<>();
@@ -911,7 +924,8 @@ public class ApuBeanVista {
       
         
             // this.precioTotaltransporte=0.0;
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Precio Unitario guardado correctamente"));
+         
+          
         } catch (Exception ex) {
             if (this.transaction != null) {
                 transaction.rollback();
@@ -1245,7 +1259,7 @@ public class ApuBeanVista {
 
     //Reporte
     
-   	public void verPDF(ActionEvent e ) throws Exception{
+ public void verPDF(ActionEvent e ) throws Exception{
      this.session=null;
         this.transaction=null;
         
@@ -1253,11 +1267,12 @@ public class ApuBeanVista {
         {        
             
          this.transaction=this.session.beginTransaction();
-     // List<Analisispreciounitario> lista = (List<Analisispreciounitario>)session.createQuery("From Analisispreciounitario").list();
+     List<Analisispreciounitario> lista = (List<Analisispreciounitario>)session.createQuery("From Analisispreciounitario").list();
 		File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
 		  Map parametros = new HashMap();
             parametros.put("codigo_apu",21);
-		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros, new JRBeanCollectionDataSource(this.listarapus));
+		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros, new JRBeanCollectionDataSource(lista));
+          //  byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros);
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		response.setContentType("application/pdf");
 		response.setContentLength(bytes.length);
@@ -1280,16 +1295,38 @@ public class ApuBeanVista {
                 this.session.close();
             }
         }
- 
-        
-        
+}
+public void imprimirpdfaapu(){
+      
+          try{
+            Class.forName(DRIVER);
+            CONEXION = DriverManager.getConnection(RUTA,USER,PASSWORD);
+           
+         File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
+		  Map parametros = new HashMap();
+            parametros.put("codigo_apu",this.analisisapus.getCodigoApu());
+		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros, CONEXION);
+          
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		response.setContentType("application/pdf");
+		response.setContentLength(bytes.length);
+		ServletOutputStream outStream = response.getOutputStream();
+		outStream.write(bytes, 0 , bytes.length);
+		outStream.flush();
+		outStream.close();   
+           
+
+
+
+        }catch(Exception e){
+            
+  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error","NO se Guardo Apu"));
         }
-        
-        
-         }
+    }
+         
 
     
-    
+      }
     
     
 
