@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteApu" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7b402d81-9dab-42f9-b408-875e7531ea81">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="221"/>
+	<parameter name="codigo_apu" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.*,f.NOMBRE_ESCENARIO,b.*,c.*,d.*,e.* from analisispreciounitario a, equipherr_apu b,material_apu d, manoobra_apu c,transporte_apu e,escenarioapu f 
+where a.CODIGO_APU=b.CODIGO_APU and a.CODIGO_APU=d.CODIGO_APU and a.CODIGO_APU=c.CODIGO_APU and 
+ a.CODIGO_APU=e.CODIGO_APU and a.CODIGO_ESCENARIO=f.CODIGO_ESCENARIO and 
+a.CODIGO_APU=$P{codigo_apu}]]>
+	</queryString>
+	<field name="CODIGO_APU" class="java.lang.Integer"/>
+	<field name="CODIGO_RUBRO" class="java.lang.Integer"/>
+	<field name="CODIGO_ESCENARIO" class="java.lang.Integer"/>
+	<field name="DESC_APU" class="java.lang.String"/>
+	<field name="UNIDAD_APU" class="java.lang.String"/>
+	<field name="CATEGORIA_APU" class="java.lang.String"/>
+	<field name="ANAL_APU_MAT" class="java.lang.Double"/>
+	<field name="ANAL_APU_EQHERR" class="java.lang.Double"/>
+	<field name="ANAL_APU_MOB" class="java.lang.Double"/>
+	<field name="ANAL_APU_TRAN" class="java.lang.Double"/>
+	<field name="COST_DIR_APU" class="java.lang.Double"/>
+	<field name="COST_IND_APU" class="java.lang.Double"/>
+	<field name="COST_OTROS_IND_APU" class="java.lang.Double"/>
+	<field name="COSTOT_APU" class="java.lang.Double"/>
+	<field name="REND_APU" class="java.lang.Double"/>
+	<field name="PORCEN_IND_APU" class="java.lang.Double"/>
+	<field name="NOMBRE_ESCENARIO" class="java.lang.String"/>
+	<field name="COD_EQHERR_APU" class="java.lang.Integer"/>
+	<field name="CODIGO_EQHERR" class="java.lang.Integer"/>
+	<field name="DESC_EQHERR_APU" class="java.lang.String"/>
+	<field name="CANT_EQHERR_APU" class="java.lang.Integer"/>
+	<field name="TARIFA_EQHERR_APU" class="java.lang.Double"/>
+	<field name="COSTOHORA_EQHERR_APU" class="java.lang.Double"/>
+	<field name="RENDIM_EQHERR_APU" class="java.lang.Double"/>
+	<field name="COSTOT_EQHERR_APU" class="java.lang.Double"/>
+	<field name="COD_MO_APU" class="java.lang.Integer"/>
+	<field name="CODIGO_MANOB" class="java.lang.Integer"/>
+	<field name="DESC_MO_APU" class="java.lang.String"/>
+	<field name="CATEG_MO_APU" class="java.lang.String"/>
+	<field name="CANT_MO_APU" class="java.lang.Integer"/>
+	<field name="COSTOJRH_MO_APU" class="java.lang.Double"/>
+	<field name="COSTOHORA_MO_APU" class="java.lang.Double"/>
+	<field name="RENDIM_MO_APU" class="java.lang.Double"/>
+	<field name="COSTOT_MO_APU" class="java.lang.Double"/>
+	<field name="COD_MAT_APU" class="java.lang.Integer"/>
+	<field name="CODIGO_MAT" class="java.lang.Integer"/>
+	<field name="DESC_MAT_APU" class="java.lang.String"/>
+	<field name="UNID_MAT_APU" class="java.lang.String"/>
+	<field name="CANT_MAT_APU" class="java.lang.Integer"/>
+	<field name="PREUNIT_MAT_APU" class="java.lang.Double"/>
+	<field name="COSTOT_MAT_APU" class="java.lang.Double"/>
+	<field name="COD_TRAN_APU" class="java.lang.Integer"/>
+	<field name="CODIGO_TRANSP" class="java.lang.Integer"/>
+	<field name="DESC_TRAN_APU" class="java.lang.String"/>
+	<field name="UNID_TRAN_APU" class="java.lang.String"/>
+	<field name="CANT_TRAN_APU" class="java.lang.Integer"/>
+	<field name="TARIFA_TRAN_APU" class="java.lang.Double"/>
+	<field name="COSTOT_TRAN_APU" class="java.lang.Double"/>
+	<variable name="CODIGO_APU_1" class="java.lang.Integer" resetType="Page" calculation="First">
+		<variableExpression><![CDATA[$F{CODIGO_APU}]]></variableExpression>
+	</variable>
+	<variable name="CODIGO_RUBRO_1" class="java.lang.Integer" resetType="Page" calculation="First">
+		<variableExpression><![CDATA[$F{CODIGO_RUBRO}]]></variableExpression>
+	</variable>
+	<variable name="CODIGO_ESCENARIO_1" class="java.lang.Integer" resetType="Page" calculation="First">
+		<variableExpression><![CDATA[$F{CODIGO_ESCENARIO}]]></variableExpression>
+	</variable>
+	<variable name="DESC_APU_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{DESC_APU}]]></variableExpression>
+	</variable>
+	<variable name="UNIDAD_APU_1" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{UNIDAD_APU}]]></variableExpression>
+	</variable>
+	<variable name="CATEGORIA_APU_1" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{CATEGORIA_APU}]]></variableExpression>
+	</variable>
+	<variable name="CATEGORIA_APU_2" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{CATEGORIA_APU}]]></variableExpression>
+	</variable>
+	<variable name="CODIGO_APU_2" class="java.lang.Integer" resetType="Page" calculation="First">
+		<variableExpression><![CDATA[$F{CODIGO_APU}]]></variableExpression>
+	</variable>
+	<variable name="CODIGO_RUBRO_2" class="java.lang.Integer" resetType="Page" calculation="First">
+		<variableExpression><![CDATA[$F{CODIGO_RUBRO}]]></variableExpression>
+	</variable>
+	<variable name="CODIGO_ESCENARIO_2" class="java.lang.Integer" resetType="Page" calculation="First">
+		<variableExpression><![CDATA[$F{CODIGO_ESCENARIO}]]></variableExpression>
+	</variable>
+	<variable name="DESC_APU_2" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{DESC_APU}]]></variableExpression>
+	</variable>
+	<variable name="UNIDAD_APU_2" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{UNIDAD_APU}]]></variableExpression>
+	</variable>
+	<variable name="DESC_APU_3" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{DESC_APU}]]></variableExpression>
+	</variable>
+	<variable name="COST_DIR_APU_1" class="java.lang.Double" resetType="Page" calculation="First">
+		<variableExpression><![CDATA[$F{COST_DIR_APU}]]></variableExpression>
+	</variable>
+	<variable name="COST_IND_APU_1" class="java.lang.Double" resetType="Page" calculation="First">
+		<variableExpression><![CDATA[$F{COST_IND_APU}]]></variableExpression>
+	</variable>
+	<variable name="COST_OTROS_IND_APU_1" class="java.lang.Double" resetType="Page" calculation="First">
+		<variableExpression><![CDATA[$F{COST_OTROS_IND_APU}]]></variableExpression>
+	</variable>
+	<variable name="COSTOT_APU_1" class="java.lang.Double" resetType="Page" calculation="First">
+		<variableExpression><![CDATA[$F{COSTOT_APU}]]></variableExpression>
+	</variable>
+	<variable name="PORCEN_IND_APU_1" class="java.lang.Double" resetType="Page" calculation="First">
+		<variableExpression><![CDATA[$F{PORCEN_IND_APU}]]></variableExpression>
+	</variable>
+	<variable name="NOMBRE_ESCENARIO_1" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{NOMBRE_ESCENARIO}]]></variableExpression>
+	</variable>
+	<variable name="DESC_EQHERR_APU_1" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{DESC_EQHERR_APU}]]></variableExpression>
+	</variable>
+	<variable name="DESC_EQHERR_APU_2" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{DESC_EQHERR_APU}]]></variableExpression>
+	</variable>
+	<variable name="CANT_EQHERR_APU_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{CANT_EQHERR_APU}]]></variableExpression>
+	</variable>
+	<variable name="TARIFA_EQHERR_APU_1" class="java.lang.Double" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{TARIFA_EQHERR_APU}]]></variableExpression>
+	</variable>
+	<variable name="COSTOHORA_EQHERR_APU_1" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{COSTOHORA_EQHERR_APU}]]></variableExpression>
+	</variable>
+	<variable name="RENDIM_EQHERR_APU_1" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{RENDIM_EQHERR_APU}]]></variableExpression>
+	</variable>
+	<variable name="COSTOT_EQHERR_APU_1" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{COSTOT_EQHERR_APU}]]></variableExpression>
+	</variable>
+	<variable name="CANT_MO_APU_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{CANT_MO_APU}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="76" y="13" width="399" height="29" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="20" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[REPORTE ANALISIS PRECIO UNITARIO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="504" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="56" y="3" width="75" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Código:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="56" y="20" width="75" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Rubro:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="56" y="40" width="75" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Escenario:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="311" y="20" width="64" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Categoria:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="311" y="0" width="64" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Unidad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="4e36cfd4-5d9b-45bd-ac73-8a4d93918e53" x="375" y="19" width="151" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CATEGORIA_APU}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="3" y="93" width="242" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Equipo y Herramientas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="1" y="117" width="55" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Nombre ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="131" y="117" width="55" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="206" y="117" width="55" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Tarifa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="278" y="117" width="74" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Costo Hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="369" y="117" width="74" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Rendimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="452" y="117" width="74" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="2" y="194" width="242" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Mano de Obra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="284" y="214" width="74" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Costo Hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="195" y="214" width="74" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Costo Jornal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="132" y="214" width="55" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="453" y="214" width="74" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="2" y="214" width="55" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Nombre ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="364" y="214" width="74" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Rendimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="3" y="262" width="242" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Material]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="3" y="287" width="55" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Nombre ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="132" y="287" width="55" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Unidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="245" y="287" width="55" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="334" y="287" width="85" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cost Unitario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="452" y="287" width="74" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="3" y="332" width="242" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Transporte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="5" y="357" width="55" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Nombre ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="335" y="357" width="85" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Tarifa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="129" y="357" width="55" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Unidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="242" y="357" width="55" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="449" y="357" width="74" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="164" y="415" width="184" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Costo Directo(EH+M+MO+T) $]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="164" y="432" width="184" height="25" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Costo Indirecto y Utilidades $]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="164" y="454" width="184" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Otros Costos Indirecto $]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="164" y="475" width="184" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Valor Ofertado $]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="598f9c11-db59-4882-951a-8fe2afd5a15a" x="346" y="433" width="20" height="20" forecolor="#003399" backcolor="#0033FF"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="3500ca8c-cbec-43c0-a532-96c8d3618a5a" x="149" y="40" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{NOMBRE_ESCENARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="525b0b5c-c4b1-4970-96e3-f140f4274ba7" x="149" y="21" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DESC_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ebe2c184-b773-40bf-84dd-7d7ecf5d9d4b" x="0" y="137" width="100" height="20"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{DESC_EQHERR_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e5df4e93-a0c2-49f0-b6a6-49a179cfc01b" x="454" y="137" width="73" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COSTOT_EQHERR_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8b050b6e-5779-4524-8c2f-3d0213e08dc7" x="3" y="234" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DESC_MO_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c9b980e7-d605-409b-8a3a-9e30895f90f2" x="198" y="234" width="69" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COSTOJRH_MO_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9caecd2b-d961-4b45-a1cd-a1c5590a34dc" x="284" y="234" width="71" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COSTOHORA_MO_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="45aae4cc-f845-4634-b8ff-7e3cf4f41e50" x="369" y="234" width="69" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{RENDIM_MO_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="620cb375-7beb-4703-83c0-4574ed4ddda1" x="454" y="234" width="73" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COSTOT_MO_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4971ca0e-1803-4645-8b9d-30abd919a757" x="3" y="307" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DESC_MAT_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="020f8632-3425-46f9-a06f-0726e35cdaa9" x="132" y="307" width="68" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{UNID_MAT_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="795eaec8-0ec4-48ba-8df1-6c15e6367fa3" x="245" y="307" width="69" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CANT_MAT_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="372fb311-6469-4a14-aacb-ade89a3fc347" x="335" y="307" width="84" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PREUNIT_MAT_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bc8807e9-3999-48d7-9001-856d97e451e9" x="449" y="307" width="78" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COSTOT_MAT_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0d6bf7e0-86cf-48de-beb2-2f900416b157" x="3" y="382" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DESC_TRAN_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d1471634-2adf-491a-ae9f-a4fbab34eafd" x="129" y="382" width="77" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{UNID_TRAN_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="66d95fdb-7980-4544-a9e3-6903984531e7" x="245" y="382" width="44" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CANT_TRAN_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="94618b76-cb2e-41ef-a512-2e5f3de46335" x="334" y="382" width="85" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TARIFA_TRAN_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bdfaf62c-298b-4278-abbb-22a0d3636ac4" x="132" y="3" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CODIGO_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a54aebe0-0ec5-45a8-91e2-f7d18cfdf094" x="132" y="22" width="17" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CODIGO_RUBRO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="176a82eb-da23-4bdc-857c-6e8dd09d2e06" x="132" y="42" width="17" height="17"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CODIGO_ESCENARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="728e0ae5-d6f1-463c-84d7-2bc571fa52b5" x="376" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{UNIDAD_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b54e5375-451f-4f28-8204-e1045017376b" x="131" y="137" width="53" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CANT_EQHERR_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="586a5f50-31a0-4d18-bbd8-d57cd607cdc6" x="206" y="137" width="48" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TARIFA_EQHERR_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="eb8648f8-4b0b-4b13-bc04-9148cc454b43" x="278" y="137" width="74" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COSTOHORA_EQHERR_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ae5f989b-c157-432f-879d-04dd30a9fe4e" x="369" y="137" width="74" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{RENDIM_EQHERR_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1779492f-9ddd-44fb-9520-75ebd1f26794" x="132" y="234" width="55" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CANT_MO_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5251911e-13c4-49e1-8c2c-ddb20181457a" x="444" y="381" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COSTOT_TRAN_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="89a6be76-37bc-4bc9-aef1-1d3fbdcaff39" x="377" y="415" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{COST_DIR_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="194d9db2-11a4-4dd2-a82e-94551fefcb29" x="377" y="434" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{COST_IND_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b5b11667-5cf9-4b6c-bf8e-03505465a898" x="377" y="453" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{COST_OTROS_IND_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7df8e54f-5700-4bce-86b0-590234ae787d" x="377" y="473" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{COSTOT_APU}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="60" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
