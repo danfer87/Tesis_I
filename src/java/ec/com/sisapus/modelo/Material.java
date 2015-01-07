@@ -19,6 +19,8 @@ public class Material  implements java.io.Serializable {
      private Set materialApus = new HashSet(0);
 
     public Material() {
+         this.codigoMat = 0;
+        this.categoriamaterial = new Categoriamaterial();
     }
 
     public Material(Categoriamaterial categoriamaterial, String nombreMat, String unidMat, Double precunitMat, Set materialApus) {

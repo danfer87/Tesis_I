@@ -16,6 +16,7 @@ public class Categoriatransporte  implements java.io.Serializable {
      private Set transportes = new HashSet(0);
 
     public Categoriatransporte() {
+         this.codCatTrans = 0;
     }
 
     public Categoriatransporte(String nombCatTrans, Set transportes) {

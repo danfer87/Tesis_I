@@ -16,6 +16,7 @@ public class Categoriamaterial  implements java.io.Serializable {
      private Set materials = new HashSet(0);
 
     public Categoriamaterial() {
+           this.codCatMat = 0;
     }
 
     public Categoriamaterial(String nombCatMat, Set materials) {

@@ -19,6 +19,9 @@ public class MaterialApu  implements java.io.Serializable {
      private Double costotMatApu;
 
     public MaterialApu() {
+         this.codMatApu = 0;
+        this.material = new Material();
+        this.analisispreciounitario=new Analisispreciounitario();
     }
 
     public MaterialApu(Analisispreciounitario analisispreciounitario, Material material, String descMatApu, String unidMatApu, Integer cantMatApu, Double preunitMatApu, Double costotMatApu) {

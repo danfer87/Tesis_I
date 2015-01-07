@@ -16,6 +16,7 @@ public class Categoriaequipoherramienta  implements java.io.Serializable {
      private Set equipoherramientas = new HashSet(0);
 
     public Categoriaequipoherramienta() {
+        this.codCatEqherr = 0;
     }
 
     public Categoriaequipoherramienta(String nombCatEqherr, Set equipoherramientas) {

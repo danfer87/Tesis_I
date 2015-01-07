@@ -282,7 +282,7 @@ public class presupuestoBean implements Serializable {
             this.transaction = this.session.beginTransaction();
             this.apu = daoapu.obtenerApuPorId(session, idApu);
             
-            this.listaPresupuestos.add(new Presupuesto(null, null, null, this.apu.getDescApu(), this.apu.getUnidadApu(),0, this.apu.getCostotApu(), new Double("0.00"), null, null, null));
+          //  this.listaPresupuestos.add(new Presupuesto(null, null, null, this.apu.getDescApu(), this.apu.getUnidadApu(),0, this.apu.getCostotApu(), new Double("0.00"), null, null, null));
             this.transaction.commit();
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Apu del rubro agregado"));

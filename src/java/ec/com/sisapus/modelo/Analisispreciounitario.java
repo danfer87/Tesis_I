@@ -34,6 +34,11 @@ public class Analisispreciounitario  implements java.io.Serializable {
      private Set transporteApus = new HashSet(0);
 
     public Analisispreciounitario() {
+         this.codigoApu = 0;
+      
+      //  this.categoriapreciounitario=new Categoriapreciounitario();
+        this.rubro=new Rubro();
+        this.escenarioapu=new Escenarioapu();
     }
 
     public Analisispreciounitario(Escenarioapu escenarioapu, Rubro rubro, String descApu, String unidadApu, String categoriaApu, Double analApuMat, Double analApuEqherr, Double analApuMob, Double analApuTran, Double costDirApu, Double costIndApu, Double costOtrosIndApu, Double costotApu, Double rendApu, Double porcenIndApu, Set materialApus, Set presupuestos, Set manoobraApus, Set equipherrApus, Set transporteApus) {

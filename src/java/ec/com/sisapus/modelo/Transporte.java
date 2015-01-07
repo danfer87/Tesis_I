@@ -18,6 +18,8 @@ public class Transporte  implements java.io.Serializable {
      private Set transporteApus = new HashSet(0);
 
     public Transporte() {
+        this.codigoTransp = 0;
+        this.categoriatransporte = new Categoriatransporte();
     }
 
     public Transporte(Categoriatransporte categoriatransporte, String nombreTransp, Double tarifaTransp, Set transporteApus) {

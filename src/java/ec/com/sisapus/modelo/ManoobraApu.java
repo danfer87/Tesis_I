@@ -21,6 +21,9 @@ public class ManoobraApu  implements java.io.Serializable {
      private Double costotMoApu;
 
     public ManoobraApu() {
+         this.codMoApu=0;
+        this.manoobra = new Manoobra();
+        this.analisispreciounitario=new Analisispreciounitario();
     }
 
     public ManoobraApu(Analisispreciounitario analisispreciounitario, Manoobra manoobra, String descMoApu, String categMoApu, Integer cantMoApu, Double costojrhMoApu, Double costohoraMoApu, Double rendimMoApu, Double costotMoApu) {

@@ -17,6 +17,7 @@ public class Escenarioapu  implements java.io.Serializable {
      private Set analisispreciounitarios = new HashSet(0);
 
     public Escenarioapu() {
+        this.codigoEscenario=0;
     }
 
     public Escenarioapu(Integer codigoApu, String nombreEscenario, Set analisispreciounitarios) {

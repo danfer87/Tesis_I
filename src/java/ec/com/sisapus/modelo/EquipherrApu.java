@@ -20,6 +20,9 @@ public class EquipherrApu  implements java.io.Serializable {
      private Double costotEqherrApu;
 
     public EquipherrApu() {
+         this.codEqherrApu=0;
+        this.equipoherramienta = new Equipoherramienta();
+        this.analisispreciounitario=new Analisispreciounitario();
     }
 
     public EquipherrApu(Analisispreciounitario analisispreciounitario, Equipoherramienta equipoherramienta, String descEqherrApu, Integer cantEqherrApu, Double tarifaEqherrApu, Double costohoraEqherrApu, Double rendimEqherrApu, Double costotEqherrApu) {
