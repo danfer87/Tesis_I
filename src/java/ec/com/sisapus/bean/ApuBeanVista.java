@@ -4,12 +4,14 @@
  */
 package ec.com.sisapus.bean;
 
+import ec.com.sisapus.dao.usuarioDao;
 import ec.com.sisapus.daoimpl.ApusDaoImpl;
 import ec.com.sisapus.daoimpl.equipoherrDaoImpl;
 import ec.com.sisapus.daoimpl.manoobraDaoImpl;
 import ec.com.sisapus.daoimpl.materialDaoImpl;
 import ec.com.sisapus.daoimpl.transporteDaoImpl;
 import ec.com.sisapus.daoimpl.rubroDaoImpl;
+import ec.com.sisapus.daoimpl.usuarioDaoImpl;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.view.ViewScoped;
@@ -135,7 +137,7 @@ public class ApuBeanVista {
     
     
     //// Listar los apus en el dialogo
-    public List<Analisispreciounitario> getListarapus() {
+    public List<Analisispreciounitario> getListarapus() throws Exception {
         this.session = null;
         this.transaction = null;
 
@@ -158,7 +160,9 @@ public class ApuBeanVista {
                 this.session.close();
             }
         }
-        
+        //)  ApusDaoImpl daoapu = new ApusDaoImpl();
+        //listarapus = daoapu.listarApus(this.session);
+        //return listarapus;
     }
 
     public void setListarapus(List<Analisispreciounitario> listarapus) {
@@ -878,8 +882,12 @@ public class ApuBeanVista {
                  
             }
            // informe();
-           verPDF();
-            this.transaction.commit();
+           //verPDF();
+          	
+          //  
+         this.transaction.commit();
+         
+           
          this.listaEquiposApus=new ArrayList<>();
          this.listaManoBra= new ArrayList<>();
          this.listaMaterialApus=new ArrayList<>();
@@ -1237,11 +1245,19 @@ public class ApuBeanVista {
 
     //Reporte
     
-   	public void verPDF() throws Exception{
+   	public void verPDF(ActionEvent e ) throws Exception{
+     this.session=null;
+        this.transaction=null;
+        
+        try
+        {        
+            
+         this.transaction=this.session.beginTransaction();
+      List<Analisispreciounitario> lista = (List<Analisispreciounitario>)session.createQuery("From Analisispreciounitario").list();
 		File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
 		  Map parametros = new HashMap();
             parametros.put("codigo_apu", this.analisisapus.getCodigoApu());
-		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.getListarapus()));
+		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(), parametros, new JRBeanCollectionDataSource(lista));
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		response.setContentType("application/pdf");
 		response.setContentLength(bytes.length);
@@ -1249,13 +1265,31 @@ public class ApuBeanVista {
 		outStream.write(bytes, 0 , bytes.length);
 		outStream.flush();
 		outStream.close();
-			
-		FacesContext.getCurrentInstance().responseComplete();
-	}
+	this.transaction.commit();
+		//FacesContext.getCurrentInstance().responseComplete();
+	
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Reporte Precio Unitario guardado correctamente"));
+        } catch (Exception ex) {
+            if (this.transaction != null) {
+                transaction.rollback();
+            }
 
-  //  
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error","NO se Guardo Apu"));
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+ 
+        
+        
+        }
+        
+        
+         }
+
     
     
     
     
-}
+
