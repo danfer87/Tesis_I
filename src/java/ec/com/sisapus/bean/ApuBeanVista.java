@@ -30,15 +30,32 @@ import ec.com.sisapus.modelo.Categoriarubro;
 import ec.com.sisapus.modelo.Escenarioapu;
 import ec.com.sisapus.modelo.Rubro;
 import ec.com.sisapus.util.HibernateUtil;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
 import javax.faces.event.ValueChangeEvent;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
+
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.tabview.Tab;
 import org.primefaces.component.tabview.TabView;
@@ -792,6 +809,8 @@ public class ApuBeanVista implements Serializable {
                 apugenal.insertarTransporte(this.session, item);
                  
             }
+           // informe();
+            exportarPDF();
          this.listaEquiposApus=new ArrayList<>();
          this.listaManoBra= new ArrayList<>();
          this.listaMaterialApus=new ArrayList<>();
@@ -869,6 +888,52 @@ public class ApuBeanVista implements Serializable {
     }
        //fin de costos totales apus   
  
+ //reporte
+ public void informe(){
+  try {
+        //Creamos una lista de los datos de la tabla "Proveedor" utilizando "List".
+        //Iniciamos una transacción.
+        this.transaction=this.session.beginTransaction();
+        List<Analisispreciounitario> lista = (List<Analisispreciounitario>)session.createQuery("From Analisispreciounitario").list();
+        Map<String,Object> parametros= new HashMap<String,Object>();
+		parametros.put("codigo_apu",this.analisisapus.getCodigoApu());
+        //Utilizamos el método siguiente para cargar el reporte "ProveedorReport.jasper"
+        //El "JRLoader.loadObject" es el cargador.
+        JasperReport report  = (JasperReport)JRLoader.loadObject(ClassLoader.getSystemResource("Reportes/ReporteApu.jasper")); 
+        //El método siguiente nos permite pasarle los datos al reporte utilizando JRBeanCollectionDataSource y como argumento la lista que creamos más arriba.
+        //La lista posee todos los campos necesarios para pasarle datos al reporte.
+        JasperPrint fillReport = JasperFillManager.fillReport(report, parametros,new JRBeanCollectionDataSource(lista));
+        //El JasperViewer para visualizar, le pasamos como argumento nuestro "fillReport" de arriba.
+        JasperViewer jviewer = new JasperViewer(fillReport,false);
+ 
+  } catch (Exception e) {
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error","No se puede generar reporte"));
+    }
+ }
+ 
+ 
+ 
+ //llamar reporte
+ public void exportarPDF() throws JRException, IOException{
+     
+       this.transaction=this.session.beginTransaction();
+        List<Analisispreciounitario> lista = (List<Analisispreciounitario>)session.createQuery("From Analisispreciounitario").list();
+		Map<String,Object> parametros= new HashMap<String,Object>();
+		parametros.put("codigo_apu",this.analisisapus.getCodigoApu());
+		
+		File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(),parametros, new JRBeanCollectionDataSource(lista));
+		
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		response.addHeader("Content-disposition","attachment; filename=ReporteApu.pdf");
+		ServletOutputStream stream = response.getOutputStream();
+		
+		JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+		
+		stream.flush();
+		stream.close();
+		FacesContext.getCurrentInstance().responseComplete();
+	}
 
  
   public Equipoherramienta getEquipherramientas() {
