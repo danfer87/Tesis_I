@@ -823,7 +823,7 @@ public class ApuBeanVista implements Serializable {
                 transaction.rollback();
             }
             
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error","No se puede guardar Precio Unitario ingrese correctamente los registros"));
         }
         finally
         {
