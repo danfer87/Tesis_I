@@ -810,7 +810,7 @@ public class ApuBeanVista implements Serializable {
                  
             }
            // informe();
-            exportarPDF();
+           // exportarPDF();
          this.listaEquiposApus=new ArrayList<>();
          this.listaManoBra= new ArrayList<>();
          this.listaMaterialApus=new ArrayList<>();
