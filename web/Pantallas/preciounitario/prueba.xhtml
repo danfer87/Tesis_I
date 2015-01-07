@@ -105,7 +105,7 @@
                         <p:dataTable  id="tablaListaProductosVenta" 
                                       editable="true" editMode="cell" value="#{ApuBeanVista.listaEquiposApus}" var="item" scrollable="true" scrollHeight="100">
 
-                            <p:ajax event="cellEdit" listener="#{ApuBeanVista.calcularCostos()}"   />
+                          
 
                             <p:column headerText="NOMBRE" style="text-align: left;">
 
@@ -113,10 +113,10 @@
 
                             </p:column>
                             <p:column headerText="Cantidad" style="text-align: center;">
-                                <p:cellEditor>
-                                    <f:facet name="output">   <h:outputText value="#{item.cantEqherrApu}" style="text-align: center;" /> </f:facet>                    
-                                    <f:facet name="input">   <p:inputText value="#{item.cantEqherrApu}" style="text-align: center;" /> </f:facet>                    
-                                </p:cellEditor>
+                              
+                                 
+                                      <p:inputText value="#{item.cantEqherrApu}" style="text-align: center;" />                     
+                               
                             </p:column>
                             <p:column headerText="Tarifa" style="text-align: center;">
                                 $./     <h:outputText value="#{item.tarifaEqherrApu}" />
@@ -126,12 +126,9 @@
                                 $./   <h:outputText value="#{item.costohoraEqherrApu}" />
                             </p:column>
                             <p:column headerText="Rendimiento" style="text-align: center;">
-                                <p:cellEditor>
-                                    <f:facet name="output">   <h:outputText value="#{item.rendimEqherrApu}" style="text-align: center;" />      </f:facet>                 
-                                    <f:facet name="input">   <p:inputText value="#{item.rendimEqherrApu}" style="text-align: center;" />      </f:facet>              
-                                </p:cellEditor>
-                            </p:column>
-
+                               
+                                    
+                                     <p:inputText value="#{item.rendimEqherrApu}" style="text-align: center;" />  </p:column>               
                             <p:column headerText="Total" style="text-align: center;">
                                 $./ 
                                 <h:outputText value="#{item.costotEqherrApu}"/>
@@ -148,6 +145,7 @@
                                 Total $./
                                 <h:outputText value="#{ApuBeanVista.precioTotalEquipo}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>               
                                 ____________
+                                <p:commandButton value="Calcular" actionListener="#{ApuBeanVista.calcularCostos()}" />
                             </h:panelGroup>
                         </p:panelGrid>
                     </FIELDSET>     
@@ -378,7 +376,7 @@
 
                         <h:panelGrid id="panelFinalVenta5" columns="5" cellpadding="8" style="float:right" border="2">
 
-                            <p:ajax event="keyup" update="costodirecto" listener="#{ApuBeanVista.calcularCostosTotalesAPU()}" /> 
+                            <p:ajax event="keyup" update="otrocostodirecto" listener="#{ApuBeanVista.calcularCostosTotalesAPU()}" /> 
                             <p:outputLabel value="Costo Directo (EH+M+MO+T)$:"  for="costodirecto" />
                             <h:outputText  value="#{ApuBeanVista.totaldirAPU}" id="costodirecto" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;" />
 

@@ -10,6 +10,7 @@ import ec.com.sisapus.modelo.ManoobraApu;
 import ec.com.sisapus.modelo.MaterialApu;
 import ec.com.sisapus.modelo.TransporteApu;
 import ec.com.sisapus.modelo.Analisispreciounitario;
+import java.util.List;
 
 
 /**
@@ -38,7 +39,7 @@ public interface ApusDao {
     //Metodos Agregados para usarlos en el presupuesto
     public Analisispreciounitario obtenerApuPorId(Session session, Integer idapu) throws Exception;
     public Analisispreciounitario obtenerUltimoRegistroApu(Session session) throws Exception;
-  //  public List<Analisispreciounitario> listarApus(Session session)throws Exception;
+    public List<Analisispreciounitario> listarApus(Session session)throws Exception;
     
 
 }

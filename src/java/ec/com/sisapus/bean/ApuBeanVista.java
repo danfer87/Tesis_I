@@ -29,9 +29,22 @@ import ec.com.sisapus.modelo.Categoriarubro;
 import ec.com.sisapus.modelo.Escenarioapu;
 import ec.com.sisapus.modelo.Rubro;
 import ec.com.sisapus.util.HibernateUtil;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperRunManager;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.primefaces.component.tabview.TabView;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.CellEditEvent;
@@ -209,7 +222,7 @@ public class ApuBeanVista {
             this.transaction = this.session.beginTransaction();
             this.equipherramientas = daoequipo.getByIdEquipo(session, idEquipos);
             //this.listaEquiposApus.add(new EquipherrApu( null,this.equipherramientas.getNombreEqherr(), null,this.equipherramientas.getCostohoraEqherr(),null, null, null, null));
-          //  this.listaEquiposApus.add(new EquipherrApu(null,null, this.equipherramientas.getNombreEqherr(), null, this.equipherramientas.getCostohoraEqherr(), null, null, null, null));
+            this.listaEquiposApus.add(new EquipherrApu(null,null, this.equipherramientas.getNombreEqherr(), null, this.equipherramientas.getCostohoraEqherr(), null, null, null));
             this.transaction.commit();
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Equipo/Herramienta agregado"));
@@ -865,7 +878,7 @@ public class ApuBeanVista {
                  
             }
            // informe();
-           // exportarPDF();
+           verPDF();
             this.transaction.commit();
          this.listaEquiposApus=new ArrayList<>();
          this.listaManoBra= new ArrayList<>();
@@ -1222,6 +1235,27 @@ public class ApuBeanVista {
         }
     }
 
+    //Reporte
+    
+   	public void verPDF() throws Exception{
+		File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
+		  Map parametros = new HashMap();
+            parametros.put("codigo_apu", this.analisisapus.getCodigoApu());
+		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(), parametros, new JRBeanCollectionDataSource(this.getListarapus()));
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		response.setContentType("application/pdf");
+		response.setContentLength(bytes.length);
+		ServletOutputStream outStream = response.getOutputStream();
+		outStream.write(bytes, 0 , bytes.length);
+		outStream.flush();
+		outStream.close();
+			
+		FacesContext.getCurrentInstance().responseComplete();
+	}
+
+  //  
+    
+    
     
     
 }
