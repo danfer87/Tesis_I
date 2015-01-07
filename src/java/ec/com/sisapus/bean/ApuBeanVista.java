@@ -810,7 +810,8 @@ public class ApuBeanVista implements Serializable {
          this.costoaputotal=0.00;
          this.costoinAPu=0.00;
          this.totaldirAPU=0.00;
-    
+         this.rubro=new Rubro();
+         this.escenariosapu=new Escenarioapu();
          
              
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Precio Unitario guardado correctamente"));
