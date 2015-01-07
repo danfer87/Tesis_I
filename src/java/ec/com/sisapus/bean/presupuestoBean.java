@@ -29,6 +29,7 @@ public class presupuestoBean implements Serializable {
     
     //Variables del Presupuesto
     private Presupuesto presupuesto;
+    private Double precioTotApuRubro;
     private Integer porcentajeiva;
     private Double subtotalPres;
     private Double costoPresupuesto;
@@ -79,7 +80,7 @@ public class presupuestoBean implements Serializable {
     public void setTransaction(Transaction transaction) {
         this.transaction = transaction;
     }
-
+//////
     public Double getCostoPresupuesto() {
         return costoPresupuesto;
     }
@@ -180,6 +181,15 @@ public class presupuestoBean implements Serializable {
     public void setPresupuesto(Presupuesto presupuesto) {
         this.presupuesto = presupuesto;
     }
+
+    public Double getPrecioTotApuRubro() {
+        return precioTotApuRubro;
+    }
+
+    public void setPrecioTotApuRubro(Double precioTotApuRubro) {
+        this.precioTotApuRubro = precioTotApuRubro;
+    }
+    
     
     public List<Presupuesto> getListaPresupuestos() {
         return listaPresupuestos;
@@ -205,17 +215,10 @@ public class presupuestoBean implements Serializable {
         this.subtotalPres = subtotalPres;
     }
     
-    
-    
-    
-    
-    /////
-    
-    
    
-    ///Funcion para seleccionar un proyecto por su id
+    ///Funcion para agregar un proyecto al presupuesto
     
-    public void seleccionarProyectoPorId(Integer idproyecto) {
+    public void agregarProyectoPresup(Integer idproyecto) {
         
         this.session = null;
         this.transaction = null;
@@ -240,9 +243,8 @@ public class presupuestoBean implements Serializable {
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Proyecto Seleccionado"));
 
-            RequestContext.getCurrentInstance().update("formPresupuesto:cabeceraPresupuesto");
-            RequestContext.getCurrentInstance().update("formPresupuesto:mensajeGeneralPresupuesto");
-
+            RequestContext.getCurrentInstance().update("frmPresupuesto:cabeceraPresupuesto");
+            RequestContext.getCurrentInstance().update("frmPresupuesto:mensajeGeneralPresupuesto");
 
         } catch (Exception ex) {
             if (this.transaction != null) {
@@ -269,6 +271,7 @@ public class presupuestoBean implements Serializable {
 
             this.transaction = this.session.beginTransaction();
             this.apu = daoapu.obtenerApuPorId(this.session, idApu);
+            
             this.listaPresupuestos.add(new Presupuesto(null, null, null, this.apu.getDescApu(), this.apu.getUnidadApu(),0, this.apu.getCostotApu(), new Double("0.00"), null, null, null));
             this.transaction.commit();
 
@@ -305,28 +308,30 @@ public class presupuestoBean implements Serializable {
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Rubro retirado de la lista"));
 
-            RequestContext.getCurrentInstance().update("formPresupuesto:tablaDetallePresupuesto");
-            RequestContext.getCurrentInstance().update("formPresupuesto:mensajeGeneralPresupuesto");
+            RequestContext.getCurrentInstance().update("frmPresupuesto:tablaDetallePresupuesto");
+            RequestContext.getCurrentInstance().update("frmPresupuesto:mensajeGeneralPresupuesto");
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
         }
     }
     
     public void calcularCostosPresupuesto() {
-        Double ivaPres = new Double("0.00");
-        Double valorTotalPres = new Double("0.00");
+        //Double ivaPres = new Double("0.00");
+        //Double valorTotalPres = new Double("0.00");
         try {
             
             Double subtotalPresup = new Double("0.00");
             
             //Presupuesto pres = new Presupuesto();
 
-            for (Presupuesto presup : this.listaPresupuestos) {
-                Double costototalapurubro = presup.getPunitPres() * (new Double(presup.getCantidadPres()));
+            for (Presupuesto presup : this.listaPresupuestos) 
+            {
+                Double costototalapurubro = (new Double(presup.getCantidadPres())) * (new Double(presup.getPunitPres()));
                 presup.setPtotPres(costototalapurubro);
                 subtotalPresup = subtotalPresup + costototalapurubro;
             }
-            this.presupuesto.setSubtPres(subtotalPresup);
+            this.setPrecioTotApuRubro(subtotalPresup);
+            
             //ivaPres = subtotalPresup * (12/100);
             //valorTotalPres = subtotalPresup + ivaPres;
             //this.setSubtotalPres(subtotalPresup);
@@ -338,8 +343,8 @@ public class presupuestoBean implements Serializable {
             //pres.setIvaPres(ivaPres);
             //pres.setGastotPres(valorTotalPres);
 
-            RequestContext.getCurrentInstance().update("formPresupuesto:tablaDetallePresupuesto");
-            RequestContext.getCurrentInstance().update("formPresupuesto:panelFinalPres");
+            RequestContext.getCurrentInstance().update("frmPresupuesto:tablaDetallePresupuesto");
+            RequestContext.getCurrentInstance().update("frmPresupuesto:panelFinalPres");
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
         }

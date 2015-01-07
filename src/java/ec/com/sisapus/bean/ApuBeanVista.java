@@ -95,8 +95,6 @@ public class ApuBeanVista implements Serializable {
         this.listaTransporteApus = new ArrayList<>();
         this.rubro = new Rubro();
         this.analisisapus = new Analisispreciounitario();
-
-
         this.auxdesrubro = "";
         this.auxunidrubro = "";
         //inicializar precios totales
