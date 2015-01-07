@@ -3,13 +3,11 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="221"/>
-	<parameter name="codigo_apu" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
+	<parameter name="codigo_apu" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select a.*,f.NOMBRE_ESCENARIO,b.*,c.*,d.*,e.* from analisispreciounitario a, equipherr_apu b,material_apu d, manoobra_apu c,transporte_apu e,escenarioapu f 
 where a.CODIGO_APU=b.CODIGO_APU and a.CODIGO_APU=d.CODIGO_APU and a.CODIGO_APU=c.CODIGO_APU and 
- a.CODIGO_APU=e.CODIGO_APU and a.CODIGO_ESCENARIO=f.CODIGO_ESCENARIO and 
+ a.CODIGO_APU=e.CODIGO_APU and a.CODIGO_ESCENARIO=f.CODIGO_ESCENARIO and
 a.CODIGO_APU=$P{codigo_apu}]]>
 	</queryString>
 	<field name="CODIGO_APU" class="java.lang.Integer"/>

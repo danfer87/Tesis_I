@@ -1253,11 +1253,11 @@ public class ApuBeanVista {
         {        
             
          this.transaction=this.session.beginTransaction();
-      List<Analisispreciounitario> lista = (List<Analisispreciounitario>)session.createQuery("From Analisispreciounitario").list();
+     // List<Analisispreciounitario> lista = (List<Analisispreciounitario>)session.createQuery("From Analisispreciounitario").list();
 		File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
 		  Map parametros = new HashMap();
-            parametros.put("codigo_apu", this.analisisapus.getCodigoApu());
-		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(), parametros, new JRBeanCollectionDataSource(lista));
+            parametros.put("codigo_apu",21);
+		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros, new JRBeanCollectionDataSource(this.listarapus));
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		response.setContentType("application/pdf");
 		response.setContentLength(bytes.length);
