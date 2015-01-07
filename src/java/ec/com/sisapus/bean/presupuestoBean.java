@@ -30,7 +30,8 @@ public class presupuestoBean implements Serializable {
     //Variables del Presupuesto
     private Presupuesto presupuesto;
     private Double precioTotApuRubro;
-    private Integer porcentajeiva;
+    private Double porcentajeiva;
+    private Double precioTiva;
     private Double subtotalPres;
     private Double costoPresupuesto;
     private List<Presupuesto> listaPresupuestos;
@@ -53,6 +54,7 @@ public class presupuestoBean implements Serializable {
         
         this.listaApus = new ArrayList<>();
         this.listaPresupuestos = new ArrayList<>();
+        this.presupuesto = new Presupuesto();
         this.proyecto = new Proyecto();
         this.codigoproyecto = 0;
         this.propietarioproyecto = "";
@@ -199,14 +201,22 @@ public class presupuestoBean implements Serializable {
         this.listaPresupuestos = listaPresupuestos;
     }
 
-    public Integer getPorcentajeiva() {
+    public Double getPorcentajeiva() {
         return porcentajeiva;
     }
 
-    public void setPorcentajeiva(Integer porcentajeiva) {
+    public void setPorcentajeiva(Double porcentajeiva) {
         this.porcentajeiva = porcentajeiva;
     }
 
+    public Double getPrecioTiva() {
+        return precioTiva;
+    }
+
+    public void setPrecioTiva(Double precioTiva) {
+        this.precioTiva = precioTiva;
+    }
+    
     public Double getSubtotalPres() {
         return subtotalPres;
     }
@@ -270,15 +280,15 @@ public class presupuestoBean implements Serializable {
             ApusDaoImpl daoapu = new ApusDaoImpl();
 
             this.transaction = this.session.beginTransaction();
-            this.apu = daoapu.obtenerApuPorId(this.session, idApu);
+            this.apu = daoapu.obtenerApuPorId(session, idApu);
             
             this.listaPresupuestos.add(new Presupuesto(null, null, null, this.apu.getDescApu(), this.apu.getUnidadApu(),0, this.apu.getCostotApu(), new Double("0.00"), null, null, null));
             this.transaction.commit();
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Apu del rubro agregado"));
 
-            RequestContext.getCurrentInstance().update("formPresupuesto:tablaDetallePresupuesto");
-            RequestContext.getCurrentInstance().update("formPresupuesto:mensajeGeneralPresupuesto");
+            RequestContext.getCurrentInstance().update("frmPresupuesto:tablaDetallePresupuesto");
+            RequestContext.getCurrentInstance().update("frmPresupuesto:mensajeGeneralPresupuesto");
 
 
         } catch (Exception ex) {
@@ -305,22 +315,9 @@ public class presupuestoBean implements Serializable {
                 }
                 i++;
             }
-
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Rubro retirado de la lista"));
-
-            RequestContext.getCurrentInstance().update("frmPresupuesto:tablaDetallePresupuesto");
-            RequestContext.getCurrentInstance().update("frmPresupuesto:mensajeGeneralPresupuesto");
-        } catch (Exception ex) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
-        }
-    }
-    
-    public void calcularCostosPresupuesto() {
-        //Double ivaPres = new Double("0.00");
-        //Double valorTotalPres = new Double("0.00");
-        try {
-            
             Double subtotalPresup = new Double("0.00");
+            Double ivaPres = new Double("0.00");
+            Double valorTotalPres = new Double("0.00");
             
             //Presupuesto pres = new Presupuesto();
 
@@ -331,22 +328,91 @@ public class presupuestoBean implements Serializable {
                 subtotalPresup = subtotalPresup + costototalapurubro;
             }
             this.setPrecioTotApuRubro(subtotalPresup);
+            ivaPres = (subtotalPresup * (this.porcentajeiva/100));
+            this.setPrecioTiva(ivaPres);
+            valorTotalPres=subtotalPresup+ivaPres;
+            this.setCostoPresupuesto(valorTotalPres);
             
-            //ivaPres = subtotalPresup * (12/100);
-            //valorTotalPres = subtotalPresup + ivaPres;
-            //this.setSubtotalPres(subtotalPresup);
-            //presupuesto.setSubtPres(subtotalPres);
-            //presupuesto.setIvaPres(ivaPres);
-            //presupuesto.setGastotPres(valorTotalPres);
-
-            //pres.setSubtPres(subtotalPres);
-            //pres.setIvaPres(ivaPres);
-            //pres.setGastotPres(valorTotalPres);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Rubro retirado de la lista"));
 
             RequestContext.getCurrentInstance().update("frmPresupuesto:tablaDetallePresupuesto");
             RequestContext.getCurrentInstance().update("frmPresupuesto:panelFinalPres");
+            RequestContext.getCurrentInstance().update("frmPresupuesto:panelPresupuestar");
+            RequestContext.getCurrentInstance().update("frmPresupuesto:mensajeGeneralPresupuesto");
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
         }
     }
+    
+    public void calcularCostosPresupuesto() {
+        
+        try {
+            
+            Double subtotalPresup = new Double("0.00");
+            Double ivaPres = new Double("0.00");
+            Double valorTotalPres = new Double("0.00");
+            
+            Presupuesto pres = new Presupuesto();
+
+            for (Presupuesto presup : this.listaPresupuestos) 
+            {
+                Double costototalapurubro = (new Double(presup.getCantidadPres())) * (new Double(presup.getPunitPres()));
+                presup.setPtotPres(costototalapurubro);
+                subtotalPresup = subtotalPresup + costototalapurubro;
+            }
+            this.setPrecioTotApuRubro(subtotalPresup);
+            ivaPres = (subtotalPresup * (this.porcentajeiva/100));
+            this.setPrecioTiva(ivaPres);
+            valorTotalPres=subtotalPresup+ivaPres;
+            this.setCostoPresupuesto(valorTotalPres);
+            ////
+            presupuesto.setSubtPres(subtotalPresup);
+            presupuesto.setIvaPres(ivaPres);
+            presupuesto.setGastotPres(valorTotalPres);
+            //pres.setSubtPres(subtotalPresup);
+            //pres.setIvaPres(ivaPres);
+            //pres.setGastotPres(valorTotalPres);
+            
+            RequestContext.getCurrentInstance().update("frmPresupuesto:tablaDetallePresupuesto");
+            RequestContext.getCurrentInstance().update("frmPresupuesto:panelFinalPres");
+            RequestContext.getCurrentInstance().update("frmPresupuesto:panelPresupuestar");
+            
+        } catch (Exception ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        }
+    }
+    
+    /*public void guardarPresupuesto() {
+        this.session = null;
+        this.transaction = null;
+
+        try {
+            this.session = HibernateUtil.getSessionFactory().openSession();
+
+            ApusDaoImpl apusdao = new ApusDaoImpl();
+            this.transaction = this.session.beginTransaction();
+            this.apu = apusdao.obtenerUltimoRegistroApu(session);
+
+            for (Analisispreciounitario item : this.listapus) {
+                item.setEquipherrApu(this.equipapus);
+                apusdao.insertarAPU(this.session, item);
+            }
+
+            this.transaction.commit();
+            this.listapus = new ArrayList<>();
+            this.equipapus = new EquipherrApu();
+            // this.precioTotaltransporte=0.0;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Precio Unitario guardado correctamente"));
+        } catch (Exception ex) {
+            if (this.transaction != null) {
+                transaction.rollback();
+            }
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }*/
 }
