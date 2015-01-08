@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f9d5c2be-49df-42b2-8b6f-2d595f2f5842">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="46"/>
+	<property name="ireport.y" value="96"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#FFCC00"/>
@@ -81,10 +81,8 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select a.*,f.NOMBRE_ESCENARIO,b.*,c.*,d.*,e.* from analisispreciounitario a, equipherr_apu b,material_apu d, manoobra_apu c,transporte_apu e,escenarioapu f 
-where a.CODIGO_APU=b.CODIGO_APU and a.CODIGO_APU=d.CODIGO_APU and a.CODIGO_APU=c.CODIGO_APU and 
- a.CODIGO_APU=e.CODIGO_APU and a.CODIGO_ESCENARIO=f.CODIGO_ESCENARIO and
-a.CODIGO_APU=$P{codigo_apu}]]>
+		<![CDATA[select a.*,f.NOMBRE_ESCENARIO from analisispreciounitario a,escenarioapu f 
+where  a.CODIGO_ESCENARIO=f.CODIGO_ESCENARIO and a.CODIGO_APU=$P{codigo_apu}]]>
 	</queryString>
 	<field name="CODIGO_APU" class="java.lang.Integer"/>
 	<field name="CODIGO_RUBRO" class="java.lang.Integer"/>
@@ -103,37 +101,6 @@ a.CODIGO_APU=$P{codigo_apu}]]>
 	<field name="REND_APU" class="java.lang.Double"/>
 	<field name="PORCEN_IND_APU" class="java.lang.Double"/>
 	<field name="NOMBRE_ESCENARIO" class="java.lang.String"/>
-	<field name="COD_EQHERR_APU" class="java.lang.Integer"/>
-	<field name="CODIGO_EQHERR" class="java.lang.Integer"/>
-	<field name="DESC_EQHERR_APU" class="java.lang.String"/>
-	<field name="CANT_EQHERR_APU" class="java.lang.Integer"/>
-	<field name="TARIFA_EQHERR_APU" class="java.lang.Double"/>
-	<field name="COSTOHORA_EQHERR_APU" class="java.lang.Double"/>
-	<field name="RENDIM_EQHERR_APU" class="java.lang.Double"/>
-	<field name="COSTOT_EQHERR_APU" class="java.lang.Double"/>
-	<field name="COD_MO_APU" class="java.lang.Integer"/>
-	<field name="CODIGO_MANOB" class="java.lang.Integer"/>
-	<field name="DESC_MO_APU" class="java.lang.String"/>
-	<field name="CATEG_MO_APU" class="java.lang.String"/>
-	<field name="CANT_MO_APU" class="java.lang.Integer"/>
-	<field name="COSTOJRH_MO_APU" class="java.lang.Double"/>
-	<field name="COSTOHORA_MO_APU" class="java.lang.Double"/>
-	<field name="RENDIM_MO_APU" class="java.lang.Double"/>
-	<field name="COSTOT_MO_APU" class="java.lang.Double"/>
-	<field name="COD_MAT_APU" class="java.lang.Integer"/>
-	<field name="CODIGO_MAT" class="java.lang.Integer"/>
-	<field name="DESC_MAT_APU" class="java.lang.String"/>
-	<field name="UNID_MAT_APU" class="java.lang.String"/>
-	<field name="CANT_MAT_APU" class="java.lang.Integer"/>
-	<field name="PREUNIT_MAT_APU" class="java.lang.Double"/>
-	<field name="COSTOT_MAT_APU" class="java.lang.Double"/>
-	<field name="COD_TRAN_APU" class="java.lang.Integer"/>
-	<field name="CODIGO_TRANSP" class="java.lang.Integer"/>
-	<field name="DESC_TRAN_APU" class="java.lang.String"/>
-	<field name="UNID_TRAN_APU" class="java.lang.String"/>
-	<field name="CANT_TRAN_APU" class="java.lang.Integer"/>
-	<field name="TARIFA_TRAN_APU" class="java.lang.Double"/>
-	<field name="COSTOT_TRAN_APU" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -235,7 +202,7 @@ a.CODIGO_APU=$P{codigo_apu}]]>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="163" splitType="Stretch">
+		<band height="399" splitType="Stretch">
 			<subreport>
 				<reportElement uuid="28d52ebc-900e-4d28-98ad-c076fb506c64" x="3" y="0" width="116" height="39"/>
 				<subreportParameter name="codigo_apu">
@@ -244,16 +211,16 @@ a.CODIGO_APU=$P{codigo_apu}]]>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["C:\\Users\\kleber\\Documents\\tesis-espe\\sisapus\\web\\Reportes\\EquipoHerramienta.jasper"]]></subreportExpression>
 			</subreport>
+			<subreport>
+				<reportElement uuid="4dd9a2a7-c7dd-472c-8f98-55e34afc1e3a" x="0" y="128" width="120" height="38"/>
+				<subreportParameter name="codigo_apu">
+					<subreportParameterExpression><![CDATA[$F{CODIGO_APU}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\kleber\\Documents\\tesis-espe\\sisapus\\web\\Reportes\\Manobra.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</columnHeader>
-	<detail>
-		<band height="50">
-			<elementGroup/>
-		</band>
-	</detail>
-	<columnFooter>
-		<band height="23" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
 		<band height="25" splitType="Stretch">
 			<textField>

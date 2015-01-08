@@ -43,12 +43,12 @@ where b.CODIGO_APU=$P{codigo_apu}]]>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="8eb57c8f-0a8f-439c-aee1-96b595e8f533" x="257" y="6" width="100" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="8eb57c8f-0a8f-439c-aee1-96b595e8f533" x="257" y="6" width="62" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Costo/Hora]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="ec98628c-218a-4daf-8098-07f7d0a11d0e" x="369" y="6" width="68" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="ec98628c-218a-4daf-8098-07f7d0a11d0e" x="354" y="6" width="68" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Rendimiento]]></text>
 			</staticText>
@@ -68,18 +68,18 @@ where b.CODIGO_APU=$P{codigo_apu}]]>
 	<detail>
 		<band height="22" splitType="Stretch">
 			<textField>
-				<reportElement uuid="5a9044e0-70e9-4e4c-aeef-03b6316ab381" x="183" y="0" width="54" height="20"/>
-				<textElement/>
+				<reportElement uuid="5a9044e0-70e9-4e4c-aeef-03b6316ab381" x="173" y="0" width="54" height="20"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{TARIFA_EQHERR_APU}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="fd6a7dcd-3c31-4dff-a260-a7f76d8f3399" x="369" y="0" width="37" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{RENDIM_EQHERR_APU}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="a8227b95-82a9-4f99-8fbc-bf6decfdd157" x="447" y="0" width="66" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{COSTOT_EQHERR_APU}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -89,12 +89,12 @@ where b.CODIGO_APU=$P{codigo_apu}]]>
 			</textField>
 			<textField>
 				<reportElement uuid="e893b190-8fd5-4629-b137-c35decd4612e" x="113" y="1" width="44" height="20"/>
-				<textElement/>
+				<textElement textAlignment="Justified"/>
 				<textFieldExpression><![CDATA[$F{CANT_EQHERR_APU}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="b9768dc5-6cd0-48c5-867e-099f2c059c20" x="258" y="2" width="85" height="20" forecolor="#333333"/>
-				<textElement/>
+				<reportElement uuid="b9768dc5-6cd0-48c5-867e-099f2c059c20" x="246" y="1" width="62" height="20" forecolor="#333333"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{COSTOHORA_EQHERR_APU}]]></textFieldExpression>
 			</textField>
 		</band>
