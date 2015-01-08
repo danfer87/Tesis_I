@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b44915e4-b4f3-4703-a7f2-83b4dbe6d40a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigo_apu" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.* from transporte_apu a where a.COD_TRAN_APU=$P{codigo_apu}]]>
+	</queryString>
+	<field name="COD_TRAN_APU" class="java.lang.Integer"/>
+	<field name="CODIGO_APU" class="java.lang.Integer"/>
+	<field name="CODIGO_TRANSP" class="java.lang.Integer"/>
+	<field name="DESC_TRAN_APU" class="java.lang.String"/>
+	<field name="UNID_TRAN_APU" class="java.lang.String"/>
+	<field name="CANT_TRAN_APU" class="java.lang.Integer"/>
+	<field name="TARIFA_TRAN_APU" class="java.lang.Double"/>
+	<field name="COSTOT_TRAN_APU" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ec4b1151-8826-4ebe-8f0d-30a9127fade3" x="0" y="10" width="100" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="67ac106a-01f0-49c3-92d2-1877d47a46c4" x="0" y="7" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="db5cbcd7-7cc8-47ff-96df-375c7a096623" x="0" y="31" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="4f3bf6d7-a35f-4c4d-8352-bd1c1d9fc3fd" x="116" y="10" width="100" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Unidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f11e288a-feb0-4725-9d2d-f14e95e38552" x="226" y="10" width="100" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ab9adf19-dee1-4490-8dc9-4af4c30c0e0f" x="343" y="10" width="100" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Tarifa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c98a501f-f086-45de-a92a-cd0dd6daa839" x="455" y="10" width="100" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Costo Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement uuid="92c70f1f-67a2-4c0b-a899-f8a82cc56486" x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DESC_TRAN_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="efebbda9-560a-4820-8bae-0b0b1815d058" x="116" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{UNID_TRAN_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="45f231d8-83a5-4a2f-a759-8fbdae9c2018" x="240" y="0" width="46" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CANT_TRAN_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3a54cbcf-9192-4a96-b235-b4e17991b711" x="353" y="0" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TARIFA_TRAN_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="157a967e-c4d0-436c-b6c9-5ad65cf40d06" x="478" y="0" width="52" height="20"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{COSTOT_TRAN_APU}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
