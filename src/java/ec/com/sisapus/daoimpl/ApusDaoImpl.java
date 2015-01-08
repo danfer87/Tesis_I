@@ -101,6 +101,14 @@ public class ApusDaoImpl implements ApusDao {
         List<Analisispreciounitario> listaApu=(List<Analisispreciounitario>) query.list();
         return listaApu; //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Analisispreciounitario getUltimoRegistroReporteApu(Session session) throws Exception {
+           String hql="select p.codigoApu from Analisispreciounitario p order by  codigoApu desc";
+        Query query=session.createQuery(hql).setMaxResults(1);
+        
+        return (Analisispreciounitario) query.uniqueResult(); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

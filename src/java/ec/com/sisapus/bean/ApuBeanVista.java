@@ -903,7 +903,7 @@ public class ApuBeanVista {
          this.transaction.commit();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Precio Unitario guardado correctamente"));
          //imprimirpdfaapu();
-           // imprimirexcelapu();
+            imprimirexcelapu();
          this.listaEquiposApus=new ArrayList<>();
          this.listaManoBra= new ArrayList<>();
          this.listaMaterialApus=new ArrayList<>();
@@ -1267,15 +1267,15 @@ public class ApuBeanVista {
         this.transaction=null;
         
         try
-        {        
-            
+        {  
          this.transaction=this.session.beginTransaction();
+         
         ApusDaoImpl apugenal=new ApusDaoImpl();
-        this.analisisapus=apugenal.getUltimoRegistroApu(session);
-     //List<Analisispreciounitario> lista = (List<Analisispreciounitario>)session.createQuery("From Analisispreciounitario").list();
+        this.analisisapus=apugenal.getUltimoRegistroReporteApu(session);
+    
 		File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
 		  Map parametros = new HashMap();
-            parametros.put("codigo_apu",this.analisisapus.getCodigoApu());
+            parametros.put("codigo_apu",21);
 		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros,CONEXION);
           //  byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros);
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
@@ -1306,10 +1306,10 @@ public void imprimirpdfaapu(){
           try{
             Class.forName(DRIVER);
             CONEXION = DriverManager.getConnection(RUTA,USER,PASSWORD);
-           
+          
          File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
 		  Map parametros = new HashMap();
-            parametros.put("codigo_apu",21);
+            parametros.put("codigo_apu",this.analisisapus.getCodigoApu());
 		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros, CONEXION);
           
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
@@ -1336,7 +1336,7 @@ public void imprimirpdfaapu(){
             CONEXION = DriverManager.getConnection(RUTA,USER,PASSWORD);
           File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
 		  Map parametros = new HashMap();
-            parametros.put("codigo_apu",21);  
+            parametros.put("codigo_apu",this.analisisapus.getCodigoApu());  
        
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(),parametros, CONEXION);
 		
@@ -1352,9 +1352,6 @@ public void imprimirpdfaapu(){
 		outStream.flush();
 		outStream.close();
 		FacesContext.getCurrentInstance().responseComplete();		
-           
-
-
 
         }catch(Exception e){
             
@@ -1362,14 +1359,13 @@ public void imprimirpdfaapu(){
         }
     }
 
-
+/*
     public void informe(){
     //try - para controlar las excepciones.
     try {               
         //Iniciamos una transacción
    this.transaction=this.session.beginTransaction();
-     Map parametros = new HashMap();
-            parametros.put("codigom",1);  
+   
         //Utilizamos un Lista para almacenar los datos combinados de Articulo y Tipo.
         List articuloList = new ArrayList();
         //Obtenemos una lista de artículos
@@ -1382,21 +1378,23 @@ public void imprimirpdfaapu(){
             articuloList.add( new Categoriamaterial( cat.getNombCatMat(),cat.getMaterials()));
         }         
         //Utilizamos el método siguiente para cargar el reporte "ArticuloReport.jasper"
-        //El "JRLoader.loadObject" es el cargador.
-        JasperReport report  = (JasperReport)JRLoader.loadObject(ClassLoader.getSystemResource("Reportes/reporte1.jasper")); 
-        //El método siguiente nos permite pasarle los datos al reporte utilizando JRBeanCollectionDataSource y como argumento la lista que creamos más arriba.
-        //La lista posee los siguiente campos: "id" "des" "tipo" "pve" "can" en coincidencia con los de nuestro archivo de reporte.
-        JasperPrint fillReport = JasperFillManager.fillReport(report, parametros,new JRBeanCollectionDataSource(articuloList));
-        //El JasperViewer para visualizar, le pasamos como argumento nuestro "fillReport" de arriba.
-        JasperViewer jviewer = new JasperViewer(fillReport,false);
-        //Le damos un título al reporte.
-        jviewer.setTitle("Lista de Artículos.");
-        //La hacemos visible.
-        jviewer.setVisible(true);
+       File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
+		  Map parametros = new HashMap();
+            parametros.put("codigom",1);  
+		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros, CONEXION);
+          
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		response.setContentType("application/pdf");
+		response.setContentLength(bytes.length);
+		ServletOutputStream outStream = response.getOutputStream();
+		outStream.write(bytes, 0 , bytes.length);
+		outStream.flush();
+		outStream.close();   
+           
     } catch (Exception e) {
        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error","NO se Guardo Apu"));
     }
-}		
+}	*/	
       }
     
     

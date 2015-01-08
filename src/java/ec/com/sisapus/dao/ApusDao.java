@@ -34,8 +34,8 @@ public interface ApusDao {
     public boolean insertarAPU(Session session,Analisispreciounitario apu) throws Exception; 
     public Analisispreciounitario getUltimoRegistroApu(Session session) throws Exception;
      public Analisispreciounitario getByIdAPUS(Session session, Integer ideapu) throws Exception;
-
-    
+       public Analisispreciounitario getUltimoRegistroReporteApu(Session session) throws Exception;
+//    
     //Metodos Agregados para usarlos en el presupuesto
     public Analisispreciounitario obtenerApuPorId(Session session, Integer idapu) throws Exception;
     public Analisispreciounitario obtenerUltimoRegistroApu(Session session) throws Exception;
