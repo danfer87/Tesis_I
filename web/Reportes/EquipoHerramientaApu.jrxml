@@ -63,7 +63,7 @@ where b.CODIGO_APU=$P{codigo_apu}]]>
 			<staticText>
 				<reportElement uuid="45826ce2-0e52-48d6-bf87-7f0e03a3da16" x="2" y="2" width="181" height="20" forecolor="#000099"/>
 				<textElement>
-					<font isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Equipos y Herramientas]]></text>
 			</staticText>

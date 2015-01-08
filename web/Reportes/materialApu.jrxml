@@ -21,42 +21,49 @@
 		<band splitType="Stretch"/>
 	</background>
 	<columnHeader>
-		<band height="42" splitType="Stretch">
+		<band height="48" splitType="Stretch">
 			<line>
-				<reportElement uuid="875f0c4b-c2ad-4595-b14b-4267a1f2a476" x="1" y="15" width="554" height="1"/>
+				<reportElement uuid="875f0c4b-c2ad-4595-b14b-4267a1f2a476" x="1" y="22" width="554" height="1"/>
 			</line>
 			<line>
-				<reportElement uuid="7191997a-677a-4a09-bb0f-14ea9194316f" x="1" y="38" width="554" height="1"/>
+				<reportElement uuid="7191997a-677a-4a09-bb0f-14ea9194316f" x="1" y="45" width="554" height="1"/>
 			</line>
 			<staticText>
-				<reportElement uuid="7614dc7a-32e6-49b6-97ae-35ac36c0e769" x="1" y="16" width="47" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="7614dc7a-32e6-49b6-97ae-35ac36c0e769" x="1" y="23" width="47" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b96495bf-5074-4d63-aced-a4f13b0520fc" x="113" y="16" width="100" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="b96495bf-5074-4d63-aced-a4f13b0520fc" x="113" y="23" width="100" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Unidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="7004d261-4fd8-4cdf-a262-23bf2d0367f8" x="241" y="16" width="100" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="7004d261-4fd8-4cdf-a262-23bf2d0367f8" x="241" y="23" width="100" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="dbb15e7a-0131-4808-b571-d35ce7ccd883" x="359" y="18" width="100" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="dbb15e7a-0131-4808-b571-d35ce7ccd883" x="359" y="25" width="100" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Precio Unitario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="41c8dc7b-d920-4ffa-af3a-4288e6f507dc" x="477" y="18" width="60" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="41c8dc7b-d920-4ffa-af3a-4288e6f507dc" x="477" y="25" width="60" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Costo Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ac3e8f0e-2469-4c94-8cd0-7e3bfe729070" x="0" y="0" width="100" height="20" forecolor="#000099"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Material]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="24" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<textField>
 				<reportElement uuid="54dbcdb8-b494-4924-b465-e8c55c88c46a" x="1" y="0" width="100" height="20"/>
 				<textElement/>

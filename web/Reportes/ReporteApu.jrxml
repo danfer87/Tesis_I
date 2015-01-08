@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f9d5c2be-49df-42b2-8b6f-2d595f2f5842">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="333"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#FFCC00"/>
@@ -123,7 +123,7 @@ where  a.CODIGO_ESCENARIO=f.CODIGO_ESCENARIO and a.CODIGO_APU=$P{codigo_apu}]]>
 				<textFieldExpression><![CDATA[$F{CODIGO_APU}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="bb05318e-71b1-4202-8541-c39803b07096" x="36" y="1" width="49" height="20"/>
+				<reportElement uuid="bb05318e-71b1-4202-8541-c39803b07096" x="27" y="1" width="49" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -135,7 +135,7 @@ where  a.CODIGO_ESCENARIO=f.CODIGO_ESCENARIO and a.CODIGO_APU=$P{codigo_apu}]]>
 				<textFieldExpression><![CDATA[$F{CODIGO_RUBRO}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="bb05318e-71b1-4202-8541-c39803b07096" x="36" y="19" width="49" height="20"/>
+				<reportElement uuid="bb05318e-71b1-4202-8541-c39803b07096" x="27" y="19" width="49" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -147,7 +147,7 @@ where  a.CODIGO_ESCENARIO=f.CODIGO_ESCENARIO and a.CODIGO_APU=$P{codigo_apu}]]>
 				<textFieldExpression><![CDATA[$F{CODIGO_ESCENARIO}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="bb05318e-71b1-4202-8541-c39803b07096" x="36" y="39" width="49" height="20"/>
+				<reportElement uuid="bb05318e-71b1-4202-8541-c39803b07096" x="26" y="39" width="59" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -181,7 +181,7 @@ where  a.CODIGO_ESCENARIO=f.CODIGO_ESCENARIO and a.CODIGO_APU=$P{codigo_apu}]]>
 				<text><![CDATA[Unidad:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="bb05318e-71b1-4202-8541-c39803b07096" x="234" y="21" width="49" height="20"/>
+				<reportElement uuid="bb05318e-71b1-4202-8541-c39803b07096" x="234" y="21" width="59" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>

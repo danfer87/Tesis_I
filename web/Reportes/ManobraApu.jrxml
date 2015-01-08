@@ -20,47 +20,54 @@
 	<field name="RENDIM_MO_APU" class="java.lang.Double"/>
 	<field name="COSTOT_MO_APU" class="java.lang.Double"/>
 	<columnHeader>
-		<band height="40" splitType="Stretch">
+		<band height="58" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="a53abebb-66e0-4ac6-8ac9-73c9584aceb3" x="0" y="17" width="100" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="a53abebb-66e0-4ac6-8ac9-73c9584aceb3" x="0" y="30" width="100" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="15eef536-ecdb-4fb8-aeea-a18f8b52aab3" x="121" y="17" width="52" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="15eef536-ecdb-4fb8-aeea-a18f8b52aab3" x="121" y="30" width="52" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="ccf49b5e-3a80-40de-b806-6268453a7b93" x="188" y="17" width="68" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="ccf49b5e-3a80-40de-b806-6268453a7b93" x="188" y="30" width="68" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Costo Jornal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="9589bb31-2f91-4ec5-91f4-7400a95d5b59" x="278" y="17" width="72" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="9589bb31-2f91-4ec5-91f4-7400a95d5b59" x="278" y="30" width="72" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Costo Hora]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="2386aa22-9778-4dda-ab67-741123a6b701" x="371" y="17" width="66" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="2386aa22-9778-4dda-ab67-741123a6b701" x="371" y="30" width="66" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Rendimiento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="cb61c39c-4251-459c-bb69-43a14563b7c1" x="472" y="17" width="83" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="cb61c39c-4251-459c-bb69-43a14563b7c1" x="472" y="30" width="83" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Costo Total]]></text>
 			</staticText>
 			<line>
-				<reportElement uuid="b39169e9-994a-4115-ad9e-bdf743677a18" x="0" y="11" width="555" height="4"/>
+				<reportElement uuid="b39169e9-994a-4115-ad9e-bdf743677a18" x="0" y="24" width="555" height="4"/>
 			</line>
 			<line>
-				<reportElement uuid="1b675833-c79d-4a97-99cf-dd0f37bdc6d3" x="0" y="35" width="555" height="2" forecolor="#333333"/>
+				<reportElement uuid="1b675833-c79d-4a97-99cf-dd0f37bdc6d3" x="0" y="54" width="555" height="2" forecolor="#333333"/>
 			</line>
+			<staticText>
+				<reportElement uuid="f3f6045d-6e69-4da4-b707-62719b091953" x="1" y="3" width="100" height="20" forecolor="#000099"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Mano de Obra]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="24" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<textField>
 				<reportElement uuid="c3d3572b-7282-4fbb-ab37-d38c3835ebbc" x="0" y="0" width="119" height="20"/>
 				<textElement textAlignment="Justified"/>
@@ -87,7 +94,7 @@
 				<textFieldExpression><![CDATA[$F{RENDIM_MO_APU}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="73e7d311-4871-4783-bf83-b293fb201141" x="458" y="0" width="64" height="20"/>
+				<reportElement uuid="73e7d311-4871-4783-bf83-b293fb201141" x="437" y="0" width="64" height="20"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{COSTOT_MO_APU}]]></textFieldExpression>
 			</textField>
