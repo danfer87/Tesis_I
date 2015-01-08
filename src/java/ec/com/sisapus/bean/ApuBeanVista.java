@@ -330,42 +330,7 @@ public class ApuBeanVista {
         }
     }
 
-   /* public void guardarequiposApus() {
-        this.session = null;
-        this.transaction = null;
-
-        try {
-            this.session = HibernateUtil.getSessionFactory().openSession();
-
-            equipoherrDaoImpl daoequipo = new equipoherrDaoImpl();
-            ApusDaoImpl apusequip = new ApusDaoImpl();
-            this.transaction = this.session.beginTransaction();
-            this.equipherramientas = daoequipo.getUltimoRegistro(session);
-
-            for (EquipherrApu item : this.listaEquiposApus) {
-                this.equipherramientas = daoequipo.getByIdEquipo(session, this.equipherramientas.getCodigoEqherr());
-                item.setEquipoherramienta(this.equipherramientas);
-
-                apusequip.insert(this.session, item);
-            }
-
-            this.transaction.commit();
-            // this.listaEquiposApus=new ArrayList<>();
-            // this.equipherramientas=new Equipoherramienta();
-            //this.precioTotalEquipo=0.0;
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Equipo y Herramientas guardado correctamente"));
-        } catch (Exception ex) {
-            if (this.transaction != null) {
-                transaction.rollback();
-            }
-
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
-        } finally {
-            if (this.session != null) {
-                this.session.close();
-            }
-        }
-    }*/
+  
     //probar creacion de Escenarios
     private TabView tabView;
 
@@ -506,44 +471,7 @@ public class ApuBeanVista {
    
 
     // 
-    /*public void guardarmanObraApus() {
-        this.session = null;
-        this.transaction = null;
-
-        try {
-            this.session = HibernateUtil.getSessionFactory().openSession();
-
-            manoobraDaoImpl manoobradao = new manoobraDaoImpl();
-            ApusDaoImpl apusmano = new ApusDaoImpl();
-
-
-            this.transaction = this.session.beginTransaction();
-            this.manoobras = manoobradao.getUltimoRegistro(session);
-
-            for (ManoobraApu item : this.listaManoBra) {
-                this.manoobras = manoobradao.getByIdManobra(session, this.manoobras.getCodigoManob());
-                item.setManoobra(this.manoobras);
-                apusmano.insertarManobra(this.session, item);
-            }
-
-            this.transaction.commit();
-            // this.listaManoBra=new ArrayList<>();
-            // this.manoobras=new Manoobra();
-            // this.precioTotalmanoobra=0.0;
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Mano de Obra guardado correctamente"));
-        } catch (Exception ex) {
-            if (this.transaction != null) {
-                transaction.rollback();
-            }
-
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
-        } finally {
-            if (this.session != null) {
-                this.session.close();
-            }
-        }
-    }*/
-
+   
 //materiales    
     public void agregarListaMaterialApu(Integer idmaterial) {
         this.session = null;
@@ -650,44 +578,8 @@ public class ApuBeanVista {
     }
 
     // 
-   /* public void guardarmaterialApus() {
-        this.session = null;
-        this.transaction = null;
+  
 
-        try {
-            this.session = HibernateUtil.getSessionFactory().openSession();
-
-            materialDaoImpl materialdao = new materialDaoImpl();
-            ApusDaoImpl apusmaterial = new ApusDaoImpl();
-
-
-            this.transaction = this.session.beginTransaction();
-            this.materiales = materialdao.getUltimoRegistro(session);
-
-            for (MaterialApu item : this.listaMaterialApus) {
-                this.materiales = materialdao.getByIdMaterial(session, this.materiales.getCodigoMat());
-                item.setMaterial(this.materiales);
-                apusmaterial.insertarMaterial(this.session, item);
-            }
-
-            this.transaction.commit();
-            //    this.listaMaterialApus=new ArrayList<>();
-            //   this.materiales=new Material();
-            //  this.precioTotalmaterial=0.0;
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Material guardado correctamente"));
-        } catch (Exception ex) {
-            if (this.transaction != null) {
-                transaction.rollback();
-            }
-
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", ex.getMessage()));
-        } finally {
-            if (this.session != null) {
-                this.session.close();
-            }
-        }
-    }
-*/
 //fin materiales
 //transporte    
     public void agregarListaTransporteApu(Integer idtrans) {
@@ -1267,16 +1159,19 @@ public class ApuBeanVista {
         
         try
         {  
+             Class.forName(DRIVER);
+            CONEXION = DriverManager.getConnection(RUTA,USER,PASSWORD);
          this.transaction=this.session.beginTransaction();
          
         ApusDaoImpl apugenal=new ApusDaoImpl();
         this.analisisapus=apugenal.getUltimoRegistroReporteApu(session);
-    
+        this.analisisapus=apugenal.getByIdAPUS(session, this.analisisapus.getCodigoApu());
+       
 		File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
 		  Map parametros = new HashMap();
-            parametros.put("codigo_apu",21);
-		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros,new JRBeanCollectionDataSource(this.listarapus));
-          //  byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros);
+            parametros.put("codigo_apu",this.analisisapus.getCodigoApu());
+		//byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros,new JRBeanCollectionDataSource(this.listarapus));
+            byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros,CONEXION);
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		response.setContentType("application/pdf");
 		response.setContentLength(bytes.length);

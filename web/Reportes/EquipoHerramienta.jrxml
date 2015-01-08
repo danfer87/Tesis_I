@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fc05bb3c-e5e8-48a9-a5b1-640704cbff6e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigo_apu" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select b.* from  equipherr_apu b
+where b.CODIGO_APU=$P{codigo_apu}]]>
+	</queryString>
+	<field name="COD_EQHERR_APU" class="java.lang.Integer"/>
+	<field name="CODIGO_EQHERR" class="java.lang.Integer"/>
+	<field name="CODIGO_APU" class="java.lang.Integer"/>
+	<field name="DESC_EQHERR_APU" class="java.lang.String"/>
+	<field name="CANT_EQHERR_APU" class="java.lang.Integer"/>
+	<field name="TARIFA_EQHERR_APU" class="java.lang.Double"/>
+	<field name="COSTOHORA_EQHERR_APU" class="java.lang.Double"/>
+	<field name="RENDIM_EQHERR_APU" class="java.lang.Double"/>
+	<field name="COSTOT_EQHERR_APU" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="44" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="14" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8f086417-c4e8-4392-b79e-695594ee79d2" x="183" y="6" width="33" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Tarifa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b0c97243-23f0-403d-9d60-2bfe23f35f3d" x="0" y="6" width="43" height="20" forecolor="#0099CC"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f0b4ebb3-888b-4aa1-bc0e-8f0582ea7cee" x="113" y="7" width="44" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8eb57c8f-0a8f-439c-aee1-96b595e8f533" x="257" y="6" width="100" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Costo/Hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ec98628c-218a-4daf-8098-07f7d0a11d0e" x="369" y="6" width="68" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Rendimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="90dbe675-d8c8-48aa-b934-1f118c1429c6" x="447" y="6" width="66" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Costo Total]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="72a7b6f2-e45e-4cd8-b4db-87b127bf8079" x="0" y="3" width="555" height="3"/>
+			</line>
+			<line>
+				<reportElement uuid="8231bfce-036f-4756-8524-adcf106e4c7c" x="2" y="29" width="553" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement uuid="5a9044e0-70e9-4e4c-aeef-03b6316ab381" x="183" y="0" width="54" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TARIFA_EQHERR_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fd6a7dcd-3c31-4dff-a260-a7f76d8f3399" x="369" y="0" width="37" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{RENDIM_EQHERR_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a8227b95-82a9-4f99-8fbc-bf6decfdd157" x="447" y="0" width="66" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COSTOT_EQHERR_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6c4facca-73f1-4475-ac60-4eaf3a74c782" x="0" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DESC_EQHERR_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e893b190-8fd5-4629-b137-c35decd4612e" x="113" y="1" width="44" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{CANT_EQHERR_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b9768dc5-6cd0-48c5-867e-099f2c059c20" x="258" y="2" width="85" height="20" forecolor="#333333"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{COSTOHORA_EQHERR_APU}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
