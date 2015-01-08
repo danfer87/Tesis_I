@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f9d5c2be-49df-42b2-8b6f-2d595f2f5842">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="186"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#FFCC00"/>
@@ -202,9 +202,9 @@ where  a.CODIGO_ESCENARIO=f.CODIGO_ESCENARIO and a.CODIGO_APU=$P{codigo_apu}]]>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="399" splitType="Stretch">
+		<band height="420" splitType="Stretch">
 			<subreport>
-				<reportElement uuid="28d52ebc-900e-4d28-98ad-c076fb506c64" x="3" y="0" width="116" height="39"/>
+				<reportElement uuid="28d52ebc-900e-4d28-98ad-c076fb506c64" x="3" y="0" width="116" height="114"/>
 				<subreportParameter name="codigo_apu">
 					<subreportParameterExpression><![CDATA[$F{CODIGO_APU}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -212,12 +212,20 @@ where  a.CODIGO_ESCENARIO=f.CODIGO_ESCENARIO and a.CODIGO_APU=$P{codigo_apu}]]>
 				<subreportExpression><![CDATA["C:\\Users\\kleber\\Documents\\tesis-espe\\sisapus\\web\\Reportes\\EquipoHerramienta.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement uuid="4dd9a2a7-c7dd-472c-8f98-55e34afc1e3a" x="0" y="128" width="120" height="38"/>
+				<reportElement uuid="4dd9a2a7-c7dd-472c-8f98-55e34afc1e3a" x="-1" y="115" width="120" height="115"/>
 				<subreportParameter name="codigo_apu">
 					<subreportParameterExpression><![CDATA[$F{CODIGO_APU}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["C:\\Users\\kleber\\Documents\\tesis-espe\\sisapus\\web\\Reportes\\Manobra.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="fef3aa98-b27f-4d5e-ad72-e2573a4d5b0b" x="-1" y="230" width="122" height="100"/>
+				<subreportParameter name="codigo_apu">
+					<subreportParameterExpression><![CDATA[$F{CODIGO_APU}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\kleber\\Documents\\tesis-espe\\sisapus\\web\\Reportes\\material.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</columnHeader>

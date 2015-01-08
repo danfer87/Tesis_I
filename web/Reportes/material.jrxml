@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="eb553da2-3731-4598-bfdc-da8efb7ef185">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigo_apu" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.* from material_apu a where a.COD_MAT_APU=$P{codigo_apu}]]>
+	</queryString>
+	<field name="COD_MAT_APU" class="java.lang.Integer"/>
+	<field name="CODIGO_APU" class="java.lang.Integer"/>
+	<field name="CODIGO_MAT" class="java.lang.Integer"/>
+	<field name="DESC_MAT_APU" class="java.lang.String"/>
+	<field name="UNID_MAT_APU" class="java.lang.String"/>
+	<field name="CANT_MAT_APU" class="java.lang.Integer"/>
+	<field name="PREUNIT_MAT_APU" class="java.lang.Double"/>
+	<field name="COSTOT_MAT_APU" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="42" splitType="Stretch">
+			<line>
+				<reportElement uuid="875f0c4b-c2ad-4595-b14b-4267a1f2a476" x="1" y="15" width="554" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="7191997a-677a-4a09-bb0f-14ea9194316f" x="1" y="38" width="554" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="7614dc7a-32e6-49b6-97ae-35ac36c0e769" x="1" y="16" width="47" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b96495bf-5074-4d63-aced-a4f13b0520fc" x="101" y="16" width="100" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Unidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7004d261-4fd8-4cdf-a262-23bf2d0367f8" x="215" y="17" width="100" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dbb15e7a-0131-4808-b571-d35ce7ccd883" x="325" y="17" width="100" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Precio Unitario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="41c8dc7b-d920-4ffa-af3a-4288e6f507dc" x="437" y="16" width="100" height="20" forecolor="#0099CC"/>
+				<textElement/>
+				<text><![CDATA[Costo Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement uuid="54dbcdb8-b494-4924-b465-e8c55c88c46a" x="1" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DESC_MAT_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="44fa7075-663b-4261-bb9f-c50eeb25ff91" x="101" y="0" width="100" height="20"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{UNID_MAT_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72eed5eb-62db-4179-89bd-7070ca8ea7e5" x="241" y="0" width="40" height="20"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{CANT_MAT_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="280599c7-73cf-4589-8734-b0f88f57c8bd" x="325" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{PREUNIT_MAT_APU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="944ab82a-ae0a-4b22-8517-829d44e2b05f" x="437" y="0" width="78" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{COSTOT_MAT_APU}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
