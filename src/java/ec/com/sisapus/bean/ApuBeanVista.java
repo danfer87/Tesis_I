@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package ec.com.sisapus.bean;
-
+import ec.com.sisapus.modelo.Categoriamaterial;
 import ec.com.sisapus.dao.usuarioDao;
 import ec.com.sisapus.daoimpl.ApusDaoImpl;
 import ec.com.sisapus.daoimpl.equipoherrDaoImpl;
@@ -38,6 +38,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -53,6 +54,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import org.primefaces.component.tabview.TabView;
@@ -130,7 +132,7 @@ public class ApuBeanVista {
         this.rubro = new Rubro();
         this.analisisapus = new Analisispreciounitario();
         this.escenariosapu=new Escenarioapu();
-        this.rubro=new Rubro();
+        
         this.auxdesrubro = "";
         this.auxunidrubro = "";
         //inicializar precios totales
@@ -900,7 +902,8 @@ public class ApuBeanVista {
            
          this.transaction.commit();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Precio Unitario guardado correctamente"));
-         imprimirpdfaapu();
+         //imprimirpdfaapu();
+           // imprimirexcelapu();
          this.listaEquiposApus=new ArrayList<>();
          this.listaManoBra= new ArrayList<>();
          this.listaMaterialApus=new ArrayList<>();
@@ -1267,11 +1270,13 @@ public class ApuBeanVista {
         {        
             
          this.transaction=this.session.beginTransaction();
-     List<Analisispreciounitario> lista = (List<Analisispreciounitario>)session.createQuery("From Analisispreciounitario").list();
+        ApusDaoImpl apugenal=new ApusDaoImpl();
+        this.analisisapus=apugenal.getUltimoRegistroApu(session);
+     //List<Analisispreciounitario> lista = (List<Analisispreciounitario>)session.createQuery("From Analisispreciounitario").list();
 		File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
 		  Map parametros = new HashMap();
-            parametros.put("codigo_apu",21);
-		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros, new JRBeanCollectionDataSource(lista));
+            parametros.put("codigo_apu",this.analisisapus.getCodigoApu());
+		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros,CONEXION);
           //  byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros);
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		response.setContentType("application/pdf");
@@ -1289,7 +1294,7 @@ public class ApuBeanVista {
                 transaction.rollback();
             }
 
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error","NO se Guardo Apu"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error","NO se genero Reporte"));
         } finally {
             if (this.session != null) {
                 this.session.close();
@@ -1304,7 +1309,7 @@ public void imprimirpdfaapu(){
            
          File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
 		  Map parametros = new HashMap();
-            parametros.put("codigo_apu",this.analisisapus.getCodigoApu());
+            parametros.put("codigo_apu",21);
 		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros, CONEXION);
           
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
@@ -1324,8 +1329,74 @@ public void imprimirpdfaapu(){
         }
     }
          
+	public void imprimirexcelapu(){
+      
+          try{
+            Class.forName(DRIVER);
+            CONEXION = DriverManager.getConnection(RUTA,USER,PASSWORD);
+          File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
+		  Map parametros = new HashMap();
+            parametros.put("codigo_apu",21);  
+       
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(),parametros, CONEXION);
+		
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		response.addHeader("Content-disposition","attachment; filename=jsfReporte.xls");
+		ServletOutputStream outStream = response.getOutputStream();
+		
+		JRXlsExporter exporter = new JRXlsExporter();
+		exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+		exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, outStream);
+		exporter.exportReport();
+		
+		outStream.flush();
+		outStream.close();
+		FacesContext.getCurrentInstance().responseComplete();		
+           
 
-    
+
+
+        }catch(Exception e){
+            
+  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error","NO se Guardo Apu"));
+        }
+    }
+
+
+    public void informe(){
+    //try - para controlar las excepciones.
+    try {               
+        //Iniciamos una transacción
+   this.transaction=this.session.beginTransaction();
+     Map parametros = new HashMap();
+            parametros.put("codigom",1);  
+        //Utilizamos un Lista para almacenar los datos combinados de Articulo y Tipo.
+        List articuloList = new ArrayList();
+        //Obtenemos una lista de artículos
+        List<Categoriamaterial> lista = (List<Categoriamaterial>)session.createQuery("From Categoriamaterial ").list();
+        //utilizamos Iterator para acceder a los datos
+        for (Iterator<Categoriamaterial> it = lista.iterator(); it.hasNext();) {
+            Categoriamaterial cat = it.next();
+            //Llenamos nuestro "articuloList", la diferencia con la lista original es que obtenemos las descripción del tipo con "articulo.getTipo().getDes()"
+            //de otra forma no traería un objeto "Tipo" no un String con el nombre específico que necesitamos.
+            articuloList.add( new Categoriamaterial( cat.getNombCatMat(),cat.getMaterials()));
+        }         
+        //Utilizamos el método siguiente para cargar el reporte "ArticuloReport.jasper"
+        //El "JRLoader.loadObject" es el cargador.
+        JasperReport report  = (JasperReport)JRLoader.loadObject(ClassLoader.getSystemResource("Reportes/reporte1.jasper")); 
+        //El método siguiente nos permite pasarle los datos al reporte utilizando JRBeanCollectionDataSource y como argumento la lista que creamos más arriba.
+        //La lista posee los siguiente campos: "id" "des" "tipo" "pve" "can" en coincidencia con los de nuestro archivo de reporte.
+        JasperPrint fillReport = JasperFillManager.fillReport(report, parametros,new JRBeanCollectionDataSource(articuloList));
+        //El JasperViewer para visualizar, le pasamos como argumento nuestro "fillReport" de arriba.
+        JasperViewer jviewer = new JasperViewer(fillReport,false);
+        //Le damos un título al reporte.
+        jviewer.setTitle("Lista de Artículos.");
+        //La hacemos visible.
+        jviewer.setVisible(true);
+    } catch (Exception e) {
+       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error","NO se Guardo Apu"));
+    }
+}		
       }
     
     
