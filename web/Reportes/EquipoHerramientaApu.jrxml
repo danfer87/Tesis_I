@@ -22,47 +22,51 @@ where b.CODIGO_APU=$P{codigo_apu}]]>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<pageHeader>
-		<band height="14" splitType="Stretch"/>
-	</pageHeader>
 	<columnHeader>
-		<band height="35" splitType="Stretch">
+		<band height="53" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="8f086417-c4e8-4392-b79e-695594ee79d2" x="183" y="6" width="33" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="8f086417-c4e8-4392-b79e-695594ee79d2" x="183" y="25" width="33" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Tarifa]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b0c97243-23f0-403d-9d60-2bfe23f35f3d" x="0" y="6" width="43" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="b0c97243-23f0-403d-9d60-2bfe23f35f3d" x="0" y="25" width="43" height="20" forecolor="#0099CC"/>
 				<textElement textAlignment="Justified"/>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="f0b4ebb3-888b-4aa1-bc0e-8f0582ea7cee" x="113" y="7" width="44" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="f0b4ebb3-888b-4aa1-bc0e-8f0582ea7cee" x="113" y="26" width="44" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="8eb57c8f-0a8f-439c-aee1-96b595e8f533" x="257" y="6" width="62" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="8eb57c8f-0a8f-439c-aee1-96b595e8f533" x="257" y="25" width="62" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Costo/Hora]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="ec98628c-218a-4daf-8098-07f7d0a11d0e" x="354" y="6" width="68" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="ec98628c-218a-4daf-8098-07f7d0a11d0e" x="354" y="25" width="68" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Rendimiento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="90dbe675-d8c8-48aa-b934-1f118c1429c6" x="447" y="6" width="66" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="90dbe675-d8c8-48aa-b934-1f118c1429c6" x="447" y="25" width="66" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Costo Total]]></text>
 			</staticText>
 			<line>
-				<reportElement uuid="72a7b6f2-e45e-4cd8-b4db-87b127bf8079" x="0" y="3" width="555" height="3"/>
+				<reportElement uuid="72a7b6f2-e45e-4cd8-b4db-87b127bf8079" x="0" y="22" width="555" height="3"/>
 			</line>
 			<line>
-				<reportElement uuid="8231bfce-036f-4756-8524-adcf106e4c7c" x="2" y="29" width="553" height="1"/>
+				<reportElement uuid="8231bfce-036f-4756-8524-adcf106e4c7c" x="2" y="48" width="553" height="1"/>
 			</line>
+			<staticText>
+				<reportElement uuid="45826ce2-0e52-48d6-bf87-7f0e03a3da16" x="2" y="2" width="181" height="20" forecolor="#000099"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Equipos y Herramientas]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
