@@ -34,22 +34,22 @@
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b96495bf-5074-4d63-aced-a4f13b0520fc" x="101" y="16" width="100" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="b96495bf-5074-4d63-aced-a4f13b0520fc" x="113" y="16" width="100" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Unidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="7004d261-4fd8-4cdf-a262-23bf2d0367f8" x="215" y="17" width="100" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="7004d261-4fd8-4cdf-a262-23bf2d0367f8" x="241" y="16" width="100" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="dbb15e7a-0131-4808-b571-d35ce7ccd883" x="325" y="17" width="100" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="dbb15e7a-0131-4808-b571-d35ce7ccd883" x="359" y="18" width="100" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Precio Unitario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="41c8dc7b-d920-4ffa-af3a-4288e6f507dc" x="437" y="16" width="100" height="20" forecolor="#0099CC"/>
+				<reportElement uuid="41c8dc7b-d920-4ffa-af3a-4288e6f507dc" x="477" y="18" width="60" height="20" forecolor="#0099CC"/>
 				<textElement/>
 				<text><![CDATA[Costo Total]]></text>
 			</staticText>
@@ -63,22 +63,22 @@
 				<textFieldExpression><![CDATA[$F{DESC_MAT_APU}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="44fa7075-663b-4261-bb9f-c50eeb25ff91" x="101" y="0" width="100" height="20"/>
+				<reportElement uuid="44fa7075-663b-4261-bb9f-c50eeb25ff91" x="113" y="0" width="100" height="20"/>
 				<textElement textAlignment="Justified"/>
 				<textFieldExpression><![CDATA[$F{UNID_MAT_APU}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="72eed5eb-62db-4179-89bd-7070ca8ea7e5" x="241" y="0" width="40" height="20"/>
+				<reportElement uuid="72eed5eb-62db-4179-89bd-7070ca8ea7e5" x="261" y="0" width="40" height="20"/>
 				<textElement textAlignment="Justified"/>
 				<textFieldExpression><![CDATA[$F{CANT_MAT_APU}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="280599c7-73cf-4589-8734-b0f88f57c8bd" x="325" y="0" width="100" height="20"/>
+				<reportElement uuid="280599c7-73cf-4589-8734-b0f88f57c8bd" x="344" y="0" width="100" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{PREUNIT_MAT_APU}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="944ab82a-ae0a-4b22-8517-829d44e2b05f" x="437" y="0" width="78" height="20"/>
+				<reportElement uuid="944ab82a-ae0a-4b22-8517-829d44e2b05f" x="459" y="0" width="78" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{COSTOT_MAT_APU}]]></textFieldExpression>
 			</textField>
