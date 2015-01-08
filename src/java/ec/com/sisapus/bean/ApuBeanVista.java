@@ -898,12 +898,11 @@ public class ApuBeanVista {
                  
             }
           
-          	
+          	//   imprimirexcelapu();
            
-         this.transaction.commit();
+            this.transaction.commit();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Precio Unitario guardado correctamente"));
-         //imprimirpdfaapu();
-            imprimirexcelapu();
+       
          this.listaEquiposApus=new ArrayList<>();
          this.listaManoBra= new ArrayList<>();
          this.listaMaterialApus=new ArrayList<>();
@@ -1276,7 +1275,7 @@ public class ApuBeanVista {
 		File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
 		  Map parametros = new HashMap();
             parametros.put("codigo_apu",21);
-		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros,CONEXION);
+		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros,new JRBeanCollectionDataSource(this.listarapus));
           //  byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros);
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 		response.setContentType("application/pdf");

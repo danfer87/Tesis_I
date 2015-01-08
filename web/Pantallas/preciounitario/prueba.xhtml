@@ -79,6 +79,7 @@
                         <p:dataTable value="#{equipoherramientaBean.listaEquipoHerramienta}" var="item"  scrollable="true" scrollHeight="100"
                                      style="width:650px ">
                             <p:column headerText="Codigo">
+                                
                                 <h:outputText value="#{item.codigoEqherr}"/>
                             </p:column>
                             <p:column headerText="NOMBRE" >
@@ -146,6 +147,7 @@
                                 <h:outputText value="#{ApuBeanVista.precioTotalEquipo}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;"/>               
                                 ____________
                                 <p:commandButton value="Calcular" actionListener="#{ApuBeanVista.calcularCostos()}" />
+                               
                             </h:panelGroup>
                         </p:panelGrid>
                     </FIELDSET>     
@@ -392,11 +394,11 @@
                             <h:panelGroup>
 
                                 <p:commandButton value="Guardar" ajax="false" actionListener="#{ApuBeanVista.guardarAPU()}"/>
-                                <p:commandButton value="IMPRIMIR PDF" ajax="false" actionListener="#{ApuBeanVista.imprimirpdfaapu()}"/>
+                                <p:commandButton value="IMPRIMIR PDF" ajax="false" actionListener="#{ApuBeanVista.verPDF(e)}"/>
                                   
                                 <p:commandButton value="IMPRIMIR EXCEL" ajax="false" actionListener="#{ApuBeanVista.imprimirexcelapu()}"/>
 
-
+ 
                             </h:panelGroup>
                         </h:panelGrid>
 
