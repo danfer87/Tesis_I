@@ -134,8 +134,8 @@
                                 $./ 
                                 <h:outputText value="#{item.costotEqherrApu}"/>
                             </p:column>
-                            <p:column style="text-align: center;">
-                                <p:commandButton  icon="icon-eliminarapu" ajax="true" actionListener="#{ApuBeanVista.EliminarListaEquipo(item.descEqherrApu)}"/>
+                            <p:column style="width:5%; text-align: center">
+                                <p:commandButton   icon="icon-edit1" ajax="true" actionListener="#{ApuBeanVista.EliminarListaEquipo(item.descEqherrApu)}"/>
                             </p:column >
 
                         </p:dataTable >
@@ -171,8 +171,8 @@
                             <p:column headerText="Categoria">
                                 <h:outputText value="#{item2.categoriamanoobra.nombCatManob}"/>
                             </p:column>
-                            <p:column>
-                                <p:commandButton value="Seleccionar"  actionListener="#{ApuBeanVista.agregarListaManobraApu(item2.codigoManob)}"
+                            <p:column style="width:8%; text-align: center"  >
+                                <p:commandButton  icon="icon-add"  actionListener="#{ApuBeanVista.agregarListaManobraApu(item2.codigoManob)}"
                                                  />
 
                             </p:column>
@@ -209,8 +209,8 @@
                                 S./ 
                                 <h:outputText value="#{item1.costotMoApu}"/>
                             </p:column>
-                            <p:column style="text-align: center;">
-                                <p:commandButton value="Retirar de la lista" ajax="true" actionListener="#{ApuBeanVista.EliminarListaManObra(item1.descMoApu)}"/>
+                            <p:column style="width:5%; text-align: center">
+                                <p:commandButton  icon="icon-edit1" ajax="true" actionListener="#{ApuBeanVista.EliminarListaManObra(item1.descMoApu)}"/>
                             </p:column>
 
                         </p:dataTable>
@@ -250,8 +250,8 @@
                             <p:column headerText="Categoria">
                                 <h:outputText value="#{item4.categoriamaterial.nombCatMat}"/>
                             </p:column>
-                            <p:column>
-                                <p:commandButton value="Seleccionar"  actionListener="#{ApuBeanVista.agregarListaMaterialApu(item4.codigoMat)}"
+                            <p:column style="width:8%; text-align: center">
+                                <p:commandButton  icon="icon-add" actionListener="#{ApuBeanVista.agregarListaMaterialApu(item4.codigoMat)}"
                                                  />
 
                             </p:column>
@@ -280,8 +280,8 @@
                                 S./ 
                                 <h:outputText value="#{item3.costotMatApu}"/>
                             </p:column>
-                            <p:column style="text-align: center;">
-                                <p:commandButton value="Retirar de la lista" ajax="true" actionListener="#{ApuBeanVista.EliminarListaMateriales(item3.descMatApu)}"/>
+                            <p:column style="width:5%; text-align: center">
+                                <p:commandButton icon="icon-edit1" ajax="true" actionListener="#{ApuBeanVista.EliminarListaMateriales(item3.descMatApu)}"/>
                             </p:column>
                         </p:dataTable>
                         <p:panelGrid id="panelFinalVenta2" columns="1" style="text-align: right;width: 100%;">
@@ -322,8 +322,8 @@
                             <p:column headerText="Categoria">
                                 <h:outputText value="#{item5.categoriatransporte.nombCatTrans}"/>
                             </p:column>
-                            <p:column>
-                                <p:commandButton value="Seleccionar"  actionListener="#{ApuBeanVista.agregarListaTransporteApu(item5.codigoTransp)}"
+                            <p:column style="width:8%; text-align: center">
+                                <p:commandButton  icon="icon-add" actionListener="#{ApuBeanVista.agregarListaTransporteApu(item5.codigoTransp)}"
                                                  />
 
                             </p:column>
@@ -354,8 +354,8 @@
                                 S./ 
                                 <h:outputText value="#{item6.costotTranApu}"/>
                             </p:column>
-                            <p:column style="text-align: center;">
-                                <p:commandButton value="Retirar de la lista" ajax="true" actionListener="#{ApuBeanVista.EliminarListaTransporte(item6.descTranApu)}"/>
+                            <p:column style="width:5%; text-align: center">
+                                <p:commandButton icon="icon-edit1" ajax="true" actionListener="#{ApuBeanVista.EliminarListaTransporte(item6.descTranApu)}"/>
                             </p:column>
                         </p:dataTable>
                         <p:panelGrid id="panelFinalVenta3" columns="1" style="text-align: right;width: 100%;">
