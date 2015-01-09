@@ -56,7 +56,7 @@ public class proyectoBean implements Serializable {
         this.proyecto = new Proyecto();
         //probar
         
-       // this.usuario=new Usuario();
+        this.usuario=new Usuario();
         //
     }
 
