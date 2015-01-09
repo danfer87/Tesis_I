@@ -1,7 +1,9 @@
 package ec.com.sisapus.bean;
 
 import ec.com.sisapus.dao.proyectoDao;
+import ec.com.sisapus.dao.usuarioDao;
 import ec.com.sisapus.daoimpl.proyectoDaoImpl;
+import ec.com.sisapus.daoimpl.usuarioDaoImpl;
 import ec.com.sisapus.modelo.Proyecto;
 import ec.com.sisapus.modelo.Usuario;
 import ec.com.sisapus.util.HibernateUtil;
@@ -52,6 +54,10 @@ public class proyectoBean implements Serializable {
 
     public proyectoBean() {
         this.proyecto = new Proyecto();
+        //probar
+        
+        this.usuario=new Usuario();
+        //
     }
 
     public Proyecto getProyecto() {
@@ -148,11 +154,13 @@ public void setListaporUsuario(List<Proyecto> listaporUsuario) {
     //////////
     //////////////////////////
     ////Crear Proyecto
-    public void crearProyecto(ActionEvent actionEvent) {
+    public void crearProyecto(ActionEvent actionEvent) throws Exception {
         proyectoDao proyectDao = new proyectoDaoImpl();
+        usuarioDao usdao=new usuarioDaoImpl();
         String msg;
-        /*this.proyecto.setUsuario(this.proyecto.getUsuario());
-        this.proyecto.setContratProy(this.proyecto.getContratProy());
+        this.usuario=usdao.getByIdUsuario(usuario);
+        this.proyecto.setUsuario(usuario);
+      /*  this.proyecto.setContratProy(this.proyecto.getContratProy());
         this.proyecto.setPropiepProy(this.proyecto.getPropiepProy());
         this.proyecto.setObraProy(this.proyecto.getObraProy());
         this.proyecto.setUbicProy(this.proyecto.getUbicProy());

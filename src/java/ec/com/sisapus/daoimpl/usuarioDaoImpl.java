@@ -139,5 +139,16 @@ public class usuarioDaoImpl implements usuarioDao{
         }
         
     }
+
+    @Override
+    public Usuario getByIdUsuario(Usuario usuario) throws Exception {
+      Session session = HibernateUtil.getSessionFactory().openSession();
+     String sql="select u.codigoUsu from Usuario u where sobrenombreUsu=:usuario \n" +
+"and  CONTRASENIA_USU=:clave and ESTADO_USU=1";
+     Query query=session.createQuery(sql);
+     query.setString("usuario", usuario.getSobrenombreUsu());
+     query.setString("clave", usuario.getContraseniaUsu());
+     return (Usuario) query.uniqueResult();  //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
