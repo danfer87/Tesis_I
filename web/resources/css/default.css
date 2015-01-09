@@ -128,3 +128,7 @@ a:link:hover, a:visited:hover  {
 .ui-icon.icon-presupuesto{
     background-image: url(../imagenes/iconos/Presupuesto.png);
 }
+
+.ui-icon.icon-eliminarapu{
+    background-image: url(../imagenes/iconos/eliminar1.png);
+}

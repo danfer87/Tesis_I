@@ -1203,7 +1203,7 @@ public void imprimirpdfaapu(){
           
          File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
 		  Map parametros = new HashMap();
-            parametros.put("codigo_apu",77);
+            parametros.put("codigo_apu",78);
 		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros, CONEXION);
           
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
@@ -1230,7 +1230,7 @@ public void imprimirpdfaapu(){
             CONEXION = DriverManager.getConnection(RUTA,USER,PASSWORD);
           File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
 		  Map parametros = new HashMap();
-            parametros.put("codigo_apu",this.analisisapus.getCodigoApu());  
+            parametros.put("codigo_apu",78);  
        
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(),parametros, CONEXION);
 		
