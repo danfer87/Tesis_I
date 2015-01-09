@@ -7,7 +7,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select a.* from manoobra_apu  a where a.COD_MO_APU= $P{codigo_apu}]]>
+		<![CDATA[select a.* from manoobra_apu  a where a.CODIGO_APU=$P{codigo_apu}]]>
 	</queryString>
 	<field name="COD_MO_APU" class="java.lang.Integer"/>
 	<field name="CODIGO_APU" class="java.lang.Integer"/>
@@ -60,7 +60,7 @@
 			<staticText>
 				<reportElement uuid="f3f6045d-6e69-4da4-b707-62719b091953" x="1" y="3" width="100" height="20" forecolor="#000099"/>
 				<textElement>
-					<font size="14"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Mano de Obra]]></text>
 			</staticText>

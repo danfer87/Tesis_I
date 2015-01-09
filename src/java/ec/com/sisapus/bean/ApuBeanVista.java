@@ -857,7 +857,7 @@ public class ApuBeanVista {
             this.analisisapus.setCostDirApu(costodir1APu);
             this.analisisapus.setCostIndApu(costoinAPu);
             this.analisisapus.setCostOtrosIndApu(costosotrosindAPu);
-            this.analisisapus.setCostotApu(costoinAPu);
+            this.analisisapus.setCostotApu(costoaputotal);
             this.analisisapus.setPorcenIndApu(getAuxiliarPorcenjate());
             //setear los totales de la pantalla
             this.setTotaldirAPU(costodir1APu);
@@ -1203,7 +1203,7 @@ public void imprimirpdfaapu(){
           
          File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("Reportes/ReporteApu.jasper"));		
 		  Map parametros = new HashMap();
-            parametros.put("codigo_apu",this.analisisapus.getCodigoApu());
+            parametros.put("codigo_apu",77);
 		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(),parametros, CONEXION);
           
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
